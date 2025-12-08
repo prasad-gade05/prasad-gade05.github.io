@@ -2,26 +2,105 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { TypeAnimation } from 'react-type-animation'
 import { 
-  ArrowRight, MapPin, Code, Briefcase, GraduationCap, Trophy, Award,
+  MapPin, Code, Briefcase, GraduationCap, Trophy, Award,
   ExternalLink, Folder, BarChart2
 } from 'lucide-react'
-import { FaGithub, FaLinkedin, FaKaggle, FaTwitter, FaInstagram, FaKeyboard } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaKaggle, FaTwitter, FaInstagram, FaKeyboard, FaPython, FaJs, FaJava, FaReact, FaNodeJs, FaDocker, FaAws, FaLinux, FaGitAlt, FaDatabase } from 'react-icons/fa'
+import { SiTypescript, SiCplusplus, SiPandas, SiNumpy, SiScikitlearn, SiPytorch, SiTensorflow, SiKeras, SiPlotly, SiFlask, SiFastapi, SiStreamlit, SiMongodb, SiSqlite, SiPostgresql, SiLangchain } from 'react-icons/si'
 import { HiMail } from 'react-icons/hi'
 import './Hero.css'
 
 const Hero = () => {
-  const [hoveredSocial, setHoveredSocial] = useState(null)
   const [activeTab, setActiveTab] = useState('projects')
 
   const socialLinks = [
-    { icon: FaGithub, href: 'https://github.com/prasad-gade05', label: 'GitHub', handle: '@prasad-gade05', bgColor: '#161b22', desc: '15+ repos' },
-    { icon: FaLinkedin, href: 'https://www.linkedin.com/in/prasad-gade05/', label: 'LinkedIn', handle: 'prasad-gade05', bgColor: '#0a66c2', desc: 'Connect' },
-    { icon: FaKaggle, href: 'https://kaggle.com/prasadgade', label: 'Kaggle', handle: 'prasadgade', bgColor: '#20beff', desc: 'Notebooks' },
-    { icon: FaKeyboard, href: 'https://monkeytype.com/profile/prasad_gade05', label: 'Monkeytype', handle: 'prasad_gade05', bgColor: '#323437', desc: '100+ WPM' },
-    { icon: FaTwitter, href: 'https://twitter.com/prasad_gade05', label: 'Twitter', handle: '@prasad_gade05', bgColor: '#1da1f2', desc: 'Thoughts' },
-    { icon: FaInstagram, href: 'https://instagram.com/prasad_gade05', label: 'Instagram', handle: '@prasad_gade05', bgColor: '#e4405f', desc: 'Life' },
-    { icon: HiMail, href: 'mailto:prasadgade4405@gmail.com', label: 'Email', handle: 'prasadgade4405@gmail.com', bgColor: '#ea4335', desc: 'Contact' },
+    { 
+      icon: FaGithub, 
+      href: 'https://github.com/prasad-gade05', 
+      label: 'GitHub', 
+      handle: '@prasad-gade05', 
+      bgColor: '#161b22',
+      accentColor: '#6e7681',
+      stat: '15+',
+      statLabel: 'repos',
+      vibe: 'code'
+    },
+    { 
+      icon: FaLinkedin, 
+      href: 'https://www.linkedin.com/in/prasad-gade05/', 
+      label: 'LinkedIn', 
+      handle: 'prasad-gade05', 
+      bgColor: '#1a1f2e',
+      accentColor: '#58a6ff',
+      stat: '500+',
+      statLabel: 'connections',
+      vibe: 'professional'
+    },
+    { 
+      icon: FaKaggle, 
+      href: 'https://kaggle.com/prasadgade', 
+      label: 'Kaggle', 
+      handle: 'prasadgade', 
+      bgColor: '#1a2332',
+      accentColor: '#58a6ff',
+      stat: 'DS',
+      statLabel: 'notebooks',
+      vibe: 'data'
+    },
+    { 
+      icon: FaKeyboard, 
+      href: 'https://monkeytype.com/profile/prasad_gade05', 
+      label: 'Monkeytype', 
+      handle: 'prasad_gade05', 
+      bgColor: '#1e1e1e',
+      accentColor: '#8b949e',
+      stat: '100+',
+      statLabel: 'WPM',
+      vibe: 'speed'
+    },
+    { 
+      icon: FaTwitter, 
+      href: 'https://twitter.com/prasad_gade05', 
+      label: 'Twitter', 
+      handle: '@prasad_gade05', 
+      bgColor: '#1a1f2e',
+      accentColor: '#6e7681',
+      stat: 'X',
+      statLabel: 'thoughts',
+      vibe: 'social'
+    },
+    { 
+      icon: FaInstagram, 
+      href: 'https://instagram.com/prasad_gade05', 
+      label: 'Instagram', 
+      handle: '@prasad_gade05', 
+      bgColor: '#1f1a1e',
+      accentColor: '#8b949e',
+      stat: 'IG',
+      statLabel: 'moments',
+      vibe: 'creative'
+    },
+    { 
+      icon: HiMail, 
+      href: 'mailto:prasadgade4405@gmail.com', 
+      label: 'Email', 
+      handle: 'prasadgade4405@gmail.com', 
+      bgColor: '#1e1a1a',
+      accentColor: '#8b949e',
+      stat: 'Say',
+      statLabel: 'hello!',
+      vibe: 'contact'
+    },
   ]
+
+  const skillIcons = {
+    'Python': FaPython, 'JavaScript': FaJs, 'TypeScript': SiTypescript, 'Java': FaJava, 'C++': SiCplusplus, 'SQL': FaDatabase,
+    'Pandas': SiPandas, 'NumPy': SiNumpy, 'Scikit-Learn': SiScikitlearn, 'PyTorch': SiPytorch, 'TensorFlow': SiTensorflow, 'LangChain': SiLangchain, 'Keras': SiKeras,
+    'Matplotlib': SiPlotly, 'Seaborn': SiPlotly, 'Power BI': BarChart2, 'Plotly': SiPlotly,
+    'React': FaReact, 'Flask': SiFlask, 'FastAPI': SiFastapi, 'Node.js': FaNodeJs, 'Streamlit': SiStreamlit,
+    'MongoDB': SiMongodb, 'SQLite': SiSqlite, 'ChromaDB': FaDatabase, 'PostgreSQL': SiPostgresql,
+    'Git': FaGitAlt, 'Docker': FaDocker, 'AWS': FaAws, 'Linux': FaLinux,
+  }
 
   const skills = {
     'Languages': ['Python', 'JavaScript', 'TypeScript', 'Java', 'C++', 'SQL'],
@@ -123,9 +202,42 @@ const Hero = () => {
   return (
     <section className="hero">
       <div className="hero-grid">
-        {/* Left Column - Code Card + Info */}
+        {/* Left Column - Name First, then Code Card, then Social */}
         <div className="hero-left">
-          {/* Code Card */}
+          {/* Info Section - Top */}
+          <motion.div 
+            className="info-section"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <div className="info-header">
+              <div className="status-badge">
+                <span className="status-dot"></span>
+                <span>Open to Work</span>
+              </div>
+              <div className="location">
+                <MapPin size={12} />
+                <span>Mumbai, India</span>
+              </div>
+            </div>
+
+            <h1 className="name">Prasad Gade</h1>
+            
+            <div className="role-typing">
+              <TypeAnimation
+                sequence={['Data Scientist', 2000, 'ML Engineer', 2000, 'Data Storyteller', 2000]}
+                wrapper="span"
+                repeat={Infinity}
+              />
+            </div>
+
+            <p className="bio">
+              B.Tech CE @ SPIT · Minor @ SPJIMR · Former Gen Sec · Transforming data into insights
+            </p>
+          </motion.div>
+
+          {/* Code Card - Middle */}
           <motion.div 
             className="code-card"
             initial={{ opacity: 0, y: 20 }}
@@ -145,79 +257,57 @@ const Hero = () => {
                 <span className="line"><span className="ln">1</span><span className="kw">class</span> <span className="cls">DataScientist</span><span className="p">:</span></span>
                 <span className="line"><span className="ln">2</span><span className="kw">    def</span> <span className="fn">__init__</span><span className="p">(</span><span className="sf">self</span><span className="p">):</span></span>
                 <span className="line"><span className="ln">3</span><span className="sf">        self</span><span className="p">.</span><span className="pr">name</span> <span className="op">=</span> <span className="st">"Prasad Gade"</span></span>
-                <span className="line"><span className="ln">4</span><span className="sf">        self</span><span className="p">.</span><span className="pr">role</span> <span className="op">=</span> <span className="st">"Data Scientist"</span></span>
-                <span className="line"><span className="ln">5</span><span className="sf">        self</span><span className="p">.</span><span className="pr">passion</span> <span className="op">=</span> <span className="st">"Data Storytelling"</span></span>
-                <span className="line"><span className="ln">6</span></span>
-                <span className="line"><span className="ln">7</span><span className="kw">    def</span> <span className="fn">transform</span><span className="p">(</span><span className="sf">self</span><span className="p">,</span> <span className="pm">data</span><span className="p">):</span></span>
-                <span className="line"><span className="ln">8</span><span className="kw">        return</span> <span className="sf">self</span><span className="p">.</span><span className="fn">insights</span><span className="p">(</span><span className="pm">data</span><span className="p">)</span></span>
+                <span className="line"><span className="ln">4</span><span className="sf">        self</span><span className="p">.</span><span className="pr">roles</span> <span className="op">=</span> <span className="p">[</span></span>
+                <span className="line"><span className="ln">5</span>            <span className="st">"Data Scientist"</span><span className="p">,</span></span>
+                <span className="line"><span className="ln">6</span>            <span className="st">"ML Engineer"</span><span className="p">,</span></span>
+                <span className="line"><span className="ln">7</span>            <span className="st">"Data Analyst"</span><span className="p">,</span></span>
+                <span className="line"><span className="ln">8</span>            <span className="st">"Computer Engineer"</span></span>
+                <span className="line"><span className="ln">9</span><span className="sf">        </span><span className="p">]</span></span>
+                <span className="line"><span className="ln">10</span><span className="sf">        self</span><span className="p">.</span><span className="pr">passion</span> <span className="op">=</span> <span className="st">"Data Storytelling"</span></span>
+                <span className="line"><span className="ln">11</span><span className="sf">        self</span><span className="p">.</span><span className="pr">skills</span> <span className="op">=</span> <span className="p">[</span><span className="st">"Python"</span><span className="p">,</span> <span className="st">"ML"</span><span className="p">,</span> <span className="st">"AI"</span><span className="p">]</span></span>
+                <span className="line"><span className="ln">12</span></span>
+                <span className="line"><span className="ln">13</span><span className="kw">    def</span> <span className="fn">transform</span><span className="p">(</span><span className="sf">self</span><span className="p">,</span> <span className="pm">data</span><span className="p">):</span></span>
+                <span className="line"><span className="ln">14</span><span className="kw">        return</span> <span className="sf">self</span><span className="p">.</span><span className="fn">insights</span><span className="p">(</span><span className="pm">data</span><span className="p">)</span></span>
               </code>
             </pre>
           </motion.div>
 
-          {/* Info Panel */}
+          {/* Social Cards - Bottom */}
           <motion.div 
-            className="info-panel"
+            className="social-section"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <div className="info-header">
-              <div className="status-badge">
-                <span className="status-dot"></span>
-                <span>Open to Work</span>
-              </div>
-              <div className="location">
-                <MapPin size={11} />
-                <span>Mumbai, India</span>
-              </div>
-            </div>
-
-            <h1 className="name">Prasad Gade</h1>
-            
-            <div className="role-typing">
-              <TypeAnimation
-                sequence={['Data Scientist', 2000, 'ML Engineer', 2000, 'Data Storyteller', 2000]}
-                wrapper="span"
-                repeat={Infinity}
-              />
-            </div>
-
-            <p className="bio">
-              B.Tech CE @ SPIT · Minor @ SPJIMR · Former Gen Sec · Transforming data into insights
-            </p>
-
-            {/* Social Links */}
-            <div className="social-row">
+            <div className="social-cards-grid">
               {socialLinks.map((link, idx) => (
-                <div 
+                <motion.a 
                   key={idx}
-                  className="social-item"
-                  onMouseEnter={() => setHoveredSocial(idx)}
-                  onMouseLeave={() => setHoveredSocial(null)}
+                  href={link.href} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={`social-card-fun social-${link.vibe}`}
+                  style={{ 
+                    '--card-bg': link.bgColor,
+                    '--card-accent': link.accentColor
+                  }}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
-                    <link.icon size={14} />
-                  </a>
-                  <AnimatePresence>
-                    {hoveredSocial === idx && (
-                      <motion.div 
-                        className="social-card"
-                        initial={{ opacity: 0, y: 8, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 8, scale: 0.95 }}
-                        transition={{ duration: 0.12 }}
-                      >
-                        <div className="social-card-icon" style={{ background: link.bgColor }}>
-                          <link.icon size={14} />
-                        </div>
-                        <div className="social-card-info">
-                          <span className="social-card-label">{link.label}</span>
-                          <span className="social-card-handle">{link.handle}</span>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                  <div className="social-card-content">
+                    <div className="social-icon-wrap">
+                      <link.icon className="social-icon" />
+                    </div>
+                    <div className="social-details">
+                      <span className="social-platform">{link.label}</span>
+                      <span className="social-handle">{link.handle}</span>
+                    </div>
+                    <div className="social-stat">
+                      <span className="stat-value">{link.stat}</span>
+                      <span className="stat-label">{link.statLabel}</span>
+                    </div>
+                  </div>
+                </motion.a>
               ))}
             </div>
           </motion.div>
@@ -308,9 +398,15 @@ const Hero = () => {
                       <div key={category} className="skill-group">
                         <span className="skill-category">{category}</span>
                         <div className="skill-items">
-                          {items.map((skill, i) => (
-                            <span key={i} className="skill-chip">{skill}</span>
-                          ))}
+                          {items.map((skill, i) => {
+                            const IconComp = skillIcons[skill]
+                            return (
+                              <span key={i} className="skill-chip">
+                                {IconComp && <IconComp size={12} />}
+                                {skill}
+                              </span>
+                            )
+                          })}
                         </div>
                       </div>
                     ))}
