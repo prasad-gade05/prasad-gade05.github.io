@@ -1,0 +1,184 @@
+Prasad Gade
++91 8446240041 | prasadgade4405@gmail.com | Mumbai, India | linkedin.com/in/prasad-gade05/ | github.com/prasad-gade05 |
+kaggle.com/prasadgade
+Education
+Bhartiya Vidya Bhavan’s Sardar Patel Institute of Technology
+Mumbai, India
+B.Tech in Computer Engineering, Minor in Management SPJIMR(S. P. Jain Institute of Management & Research) Expected June 2027
+CGPA: 9.4/10.0
+K. K. Wagh Polytechnic
+Diploma in Computer Technology
+Grade: 96.51%
+Experience
+Nashik, India
+Aug. 2021– June 2024
+Data Analyst Intern (Summer Internship)
+R3 Systems India Pvt. Ltd.
+June 2023– July 2023
+Nashik, India
+• Learned Data Analysis and Business Intelligence using Power BI. Developed various BI dashboards using datasets of companies
+• Project: Delivered a sales dashboard for North Wind Traders, improving data visibility by 70%, by analyzing company datasets and
+designing interactive BI dashboards in Power BI.
+Projects
+Lex Simulacra- AI-Powered Legal Courtroom Simulator with Multi-Agent RAG
+Project Link — November 2025
+• Engineered an 8-agent multi-role legal simulation (defense, prosecutor, judge) that achieved 99% citation accuracy, validated
+systemically through a LangGraph workflow with state management and an iterative debate flow.
+• Reduced legal research time by 75% across 100K+ legal documents by architecting an advanced RAG pipeline; performance gains
+were benchmarked on retrieval latency and relevance scores using intelligent chunking, BM25 re-ranking, and ChromaDB vector
+indexing.
+• Attained a 3.2× increase in context relevance and eliminated hallucinations by implementing structured context compression
+(18K→15K tokens), IPC-weighted scoring (5.0× importance), and real-time hallucination detection, as confirmed by citation density
+metrics.
+• Boosted user engagement by 60%, evidenced by longer session durations and higher trial completion rates, by developing a FastAPI
+backend with SSE streaming, a real-time Streamlit UI, and seamless Kanoon API integration for Indian case law retrieval.
+• Tech stack: Python, LangChain, LangGraph, FastAPI, Streamlit, ChromaDB, Sentence-Transformers, Ollama LLM, Kanoon API,
+BM25, NLTK, Scikit-learn, Pydantic
+Comparative Analysis of ML/DL Models for Intrusion Detection
+Project Link — October 2025
+• Delivered 99.99% recall and 100% precision by comparing 6 models (Decision Tree, XGBoost, Transformer, Autoencoder, Logistic
+Regression, Naive Bayes) on the 8.6M-sample TII-SSRC-23 dataset (79 features).
+• Tree models were 12.8× faster (DT: 4.7 min vs Transformer: 60 min) with 10× fewer false negatives (13 vs 130) and full SHAP
+interpretability.
+• Reduced errors by 30% via hybrid SMOTE–undersampling for 1:6653 class imbalance.
+• Tree models provided 20× higher inference throughput (1,005K/s) and 5/5 interpretability over DL.
+• Tech: Python, Sklearn, XGBoost, PyTorch, TensorFlow, SHAP, Pandas, NumPy, Imbalanced-learn
+AI Text Summarizer, Translator, and Extractor
+Project Link — February 2024
+• Achieved seamless text summarization, translation, and extraction functionalities
+• By developing a web application using Python and Eel, integrating Hugging Face, GoogleTrans, and OCR technologies
+• To enhance productivity and user engagement with an intuitive GUI and animations
+• Tech stack: Python, HTML, CSS, JavaScript, Eel, Pytesseract, Googletrans, Pypdf2
+KindHearts– Multi-Role Donation Management Platform
+Project Link — March 2025
+• Streamlined donation workflows across institutes, donors, and vendors, as measured by a 60% reduction in request processing time, by
+building a modular SPA with dedicated dashboards and protected routing.
+• Boosted platform engagement by 45%, as measured by completed donations and tracked deliveries, by integrating real-time request
+tracking, crypto-based payments via MetaMask, and impact reporting.
+• Enhanced operational efficiency and transparency, as measured by successful order fulfillment cycles, by implementing a Kanban-style
+system for shopkeepers and comprehensive admin controls.
+• Tech stack: React, TypeScript, MongoDB, Vite, Tailwind CSS, React Router, ESLint, Context API.
+Celestial Object Classifier using Sloan Digital Sky Survey Dataset
+Project Link — November 2024
+• Achieved 99.07% accuracy classifying 10,000 celestial objects into stars, galaxies, and quasars, validated through 0.99 F1-score,
+by engineering 10 features including color-indices and log-transformed redshift.
+• Improved Neural Network accuracy from 95.13% to 98.78% using Keras Tuner across 10 trials, by optimizing a 96-32-16-3
+architecture with tuned hyperparameters.
+• Benchmarked 4 classifiers (Decision Tree: 87.75%, KNN: 94%, Neural Network: 99%, Random Forest: 99.07%) on 3,000 test
+samples, by applying GridSearchCV with 5-fold CV and 960+ model fits.
+• Tech stack: Python, Scikit-learn, Keras, Keras Tuner, Pandas, NumPy, Matplotlib
+NutriSnap– Nutrition Tracker Web App
+Project Link — August 2025
+• Enabled users to track meals and monitor nutrition goals, as measured by 85% faster logging experience and 95% accurate nutrient
+estimates, by integrating Gemini API to analyze food images or manual entries.
+• Enhanced dietary awareness, as measured by visual trend analytics and macro tracking, by implementing daily calorie/macro goals
+and interactive dashboards.
+• Improved data accessibility and logging speed, as measured by SQLite response time and UI simplicity, by supporting dual input
+modes (image/manual) and storing results locally.
+• Tech stack: Flask, Python, HTML, CSS, JavaScript, Gemini API, SQLite, Pandas, OpenCV, Google Colab
+Audio Visualizer App– Real-Time Music Visualization Tool
+Project Link — August 2025
+• Developed an interactive audio visualization web app, as measured by a 70% improvement in playback responsiveness, by
+implementing real-time signal processing with the Web Audio API.
+• Enhanced user engagement by 55%, as measured by session duration and return visits, by integrating multiple dynamic visualization
+modes (bars, radial waves, scatter plots) with customizable color schemes.
+• Improved accessibility and reach, as measured by 1000+ unique visitors within the first month, by deploying a fully client-side solution
+on GitHub Pages with seamless file upload and microphone input support.
+• Tech stack: TypeScript, Web Audio API, HTML5 Canvas, shadcn/ui, CSS3
+Habit Tracker (Client-Side Progressive Web App)
+Project Link — September 2025
+• Built a fully client-side habit tracking application with streaks, calendar view, and analytics to drive consistent habit formation
+• Leveraged IndexedDB (via Dexie.js) for persistent offline storage, ensuring data privacy without server dependency
+• Implemented contribution-style visualizations, streak insights, and interactive dashboards to boost user engagement
+• Applied modern UI frameworks (shadcn/ui, Tailwind) with Zustand for state management, ensuring scalability and maintainability
+• Tech stack: React, TypeScript, Vite, Tailwind CSS, shadcn/ui, Zustand, Dexie.js, Recharts, date-fns
+Attendance Management Web App (Feature-Rich PWA)
+Project Link — October 2025
+• Developed a comprehensive attendance tracking system with advanced features including subject-wise reports, student-wise analysis,
+and editable records
+• Integrated real-time data visualization for attendance trends, percentage summaries, and interactive filtering options
+• Implemented offline-first architecture using IndexedDB (Dexie.js) for persistent data handling and seamless sync after reconnection
+• Added functionality for importing/exporting records, data backups, and secure local storage management
+• Tech stack: React, TypeScript, Vite, Tailwind CSS, Zustand, Dexie.js, Recharts
+Real-time Image & Audio Classification App
+• Achieved real-time image labeling and audio classification
+• By developing an Android app with Google ML Kit and TensorFlow’s YAMNet model
+• To enable efficient media categorization with a user-friendly interface
+• Tech stack: Android, SDK, Java, Google ML Kit, TensorFlow YAMNet
+Encrypted File Sharing Application
+• Achieved secure file-sharing over networks using RSA encryption
+• By building a Windows-based GUI application with a handshake mechanism for key distribution
+• To ensure data confidentiality and integrity during file transfers
+• Tech stack: Java, RSA Algorithm
+Face Recognition Web App with Face-API.js
+• Achieved accurate facial recognition and similarity detection
+• By developing a web app using Face-API.js and adding facial records of colleagues
+• To create an engaging and practical tool for identification tasks
+• Tech stack: HTML, CSS, JavaScript, Face-API.js
+Multiplexer Simulator from Scratch in C++
+• Achieved an interactive simulation of an 8:1 multiplexer
+• By creating a Windows-based GUI application using graphics programming and mouse handling
+• To provide an educational tool for learning multiplexing operations
+• Tech stack: C++, graphics.h
+Skills
+Project Link — January 2024
+Project Link — October 2023
+Project Link — August 2023
+January 2023
+Languages: C, C++, Java, Python, HTML, JavaScript, PHP, VB.net, Assembly (x86)
+Frameworks: React, Node.js, Flask, Eel, Django
+Data-Science/ML: Pandas, NumPy, PyTorch, Scikit-Learn, TensorFlow, Hugging Face, Keras, OpenCV, Google ML Kit, Matplotlib,
+Seaborn
+Databases: SQL, Oracle, Mongo DB, SQLite, Firebase
+DevOps: Git, GitHub, Linux
+Developer Tools: Arduino, Jupyter Notebook, Google Colab, VS Code, Vim, Eclipse, Android Studio, IntelliJ
+Business Analytics Tools: Power BI
+Project Management Methodologies : Agile, Scrum, Waterfall
+Soft Skills: Leadership(served as General Secretary, Student Council), Time Management, Public Speaking, Writing, Communication
+Leadership
+General Secretary of Students Council
+K. K. Wagh Polytechnic
+Aug 2023– June 2024
+Nashik, India
+• Spearheaded the successful organization of the institute’s annual gathering fest “Sparsh 2024” on the theme “Swaraj” in celebration of
+the 350th anniversary of the coronation of Chhatrapati Shivaji Maharaj.
+Publications
+Postpartum Depression Predictor using Machine Learning
+IJIES Vol. 9, No. 1, 2024, PP. 39– 43
+• Published findings on accuracies of various machine learning algorithms on predicting postpartum depression.
+• Tech: Decision Tree, XGBoost, Random Forest, NumPy, Matplotlib, Pandas.
+Certifications
+April 2024
+Data Science Job Simulation– Boston Consulting Group (Forage)
+Certificate Link — January 2025
+• Simulated the role of a Data Scientist by performing EDA, feature engineering, modeling, and data-driven storytelling.
+Accenture UK- Developer and Technology Job Simulation (Forage)
+Certificate Link —January 2025
+• Explored SDLC, Agile vs Waterfall, DevOps trends, and Python debugging through hands-on simulation.
+Introduction to Cloud Computing on AWS (Udemy)
+Certificate Link —July 2024
+• Learned core AWS services like EC2, S3, RDS, DynamoDB, CloudFormation, and Docker for cloud-based architectures.
+Java Training (IIT Bombay)
+Certificate Link —March 2024
+• Completed structured Java programming training and cleared certification test.
+The World of Computer Networking (Udemy)
+• Studied OSI/TCP-IP models, routing, IP addressing, and subnetting in depth.
+Arduino Course (Robo-Tech-X) August 2023
+Certificate Link —June 2024
+• Completed a workshop on Arduino, learning various concepts such as micro-controllers, microprocessors, and programming
+micro-controllers.
+• Coded and developed various micro projects such as smoke detector, soil moisture detector, and object detector via proximity sensors
+using TinkerCAD simulations and Arduino IDE.
+Introduction to Machine Learning (Infosys)
+• Learned basics of Artificial Intelligence and Machine Learning.
+Achievements
+November 2022
+Winner– Tech Horizon National Hackathon
+Project Link — March 2025
+• Secured 1st place out of 80+ national teams in a 36-hour hackathon by designing a full-stack donation platform that eliminated fund
+misuse via automated supplier-based routing and LLM-driven donor–NGO matchmaking.
+• Built a transparent end-to-end ecosystem where funds reach verified vendors through smart request tracking, fraud-prevention logic,
+and a provable LLM-driven matchmaking algorithm, and delivered a polished demo and proof of concept that earned top recognition
+from industry judges across multiple evaluation rounds.
+• Tech stack: React, TypeScript, MongoDB, Vite, Tailwind CSS, React Router, ESLint, Context API.
+Certificate Link

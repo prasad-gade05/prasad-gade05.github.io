@@ -1,0 +1,110 @@
+/* ============================================
+   PRASAD GADE - DATA SCIENCE PORTFOLIO
+   Modern 3D React Theme - Single View
+   ============================================ */
+
+:root {
+  /* Colors - GitHub Dark Theme */
+  --bg-primary: #0d1117;
+  --bg-secondary: #010409;
+  --bg-tertiary: #161b22;
+  --bg-card: rgba(22, 27, 34, 0.8);
+  --bg-glass: rgba(255, 255, 255, 0.02);
+  
+  /* Accent Colors - GitHub Style */
+  --accent-cyan: #58a6ff;
+  --accent-green: #3fb950;
+  --accent-orange: #d29922;
+  --accent-red: #f85149;
+  --accent-blue: #58a6ff;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #58a6ff 0%, #3fb950 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(88, 166, 255, 0.1) 0%, rgba(63, 185, 80, 0.1) 100%);
+  --gradient-glow: radial-gradient(ellipse at center, rgba(88, 166, 255, 0.1) 0%, transparent 70%);
+  
+  /* Text Colors */
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --text-muted: #6e7681;
+  
+  /* Typography */
+  --font-primary: 'Inter', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  /* Borders */
+  --border-subtle: #30363d;
+  --border-glow: rgba(88, 166, 255, 0.4);
+  
+  /* Shadows */
+  --glow-cyan: 0 0 40px rgba(88, 166, 255, 0.2);
+  --glow-green: 0 0 40px rgba(63, 185, 80, 0.2);
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  overflow: hidden;
+  height: 100vh;
+}
+
+#root {
+  height: 100vh;
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--accent-cyan);
+  color: white;
+}
+
+/* Hide scrollbars */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Glass morphism utility */
+.glass {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

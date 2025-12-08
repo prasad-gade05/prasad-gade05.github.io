@@ -1,0 +1,39 @@
+/* ============================================
+   APP STYLES - SINGLE VIEW NO SCROLL
+   ============================================ */
+
+.app {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.content-wrapper {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Cursor Glow Effect */
+.cursor-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(88, 166, 255, 0.04) 0%,
+    rgba(63, 185, 80, 0.02) 30%,
+    transparent 70%
+  );
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  transition: opacity 0.3s;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  overflow: hidden;
+}
