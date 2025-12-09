@@ -238,6 +238,28 @@
   flex-shrink: 0;
 }
 
+.code-header .resume-btn {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: clamp(5px, 0.7vmin, 8px) clamp(10px, 1.2vmin, 14px);
+  background: transparent;
+  border: 1px solid var(--accent-cyan);
+  border-radius: 6px;
+  font-size: clamp(10px, 1.2vmin, 12px);
+  font-weight: 600;
+  color: var(--accent-cyan);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.code-header .resume-btn:hover {
+  background: rgba(13, 185, 129, 0.15);
+  box-shadow: 0 0 15px rgba(13, 185, 129, 0.3);
+  transform: translateY(-1px);
+}
+
 .code-dots {
   display: flex;
   gap: clamp(5px, 0.7vmin, 7px);
@@ -1286,31 +1308,6 @@
   }
 }
 
-/* Resume Button */
-
-.resume-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: clamp(8px, 1vmin, 12px) clamp(14px, 1.8vmin, 20px);
-  background: var(--gradient-primary);
-  border: none;
-  border-radius: 8px;
-  font-size: clamp(11px, 1.3vmin, 13px);
-  font-weight: 600;
-  color: white;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  margin-top: auto;
-  width: fit-content;
-  flex-shrink: 0;
-}
-
-.resume-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(88, 166, 255, 0.35);
-}
-
 /* Achievement Links */
 .achieve-link {
   display: inline-flex;
@@ -1781,11 +1778,6 @@
   
   .skills-section {
     display: none;
-  }
-  
-  .resume-btn {
-    padding: clamp(6px, 0.8vmin, 10px) clamp(10px, 1.4vmin, 16px);
-    font-size: clamp(10px, 1.2vmin, 12px);
   }
 }
 

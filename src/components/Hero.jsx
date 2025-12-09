@@ -535,17 +535,6 @@ const Hero = () => {
                 <span className="skill-tag">Android</span>
               </div>
             </div>
-
-            <a
-              href="https://drive.google.com/file/d/134zdT9FaQX6siuHMxnICxBqZrK_R3YXV/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="resume-btn"
-            >
-              <FileText size={14} />
-              View Resume
-              <ExternalLink size={12} />
-            </a>
           </motion.div>
 
           {/* Code Card - Middle */}
@@ -562,6 +551,16 @@ const Hero = () => {
                 <span className="dot green"></span>
               </div>
               <span className="code-filename">prasad_gade.py</span>
+              <a
+                href="https://drive.google.com/file/d/134zdT9FaQX6siuHMxnICxBqZrK_R3YXV/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="resume-btn"
+              >
+                <FileText size={12} />
+                Resume
+                <ExternalLink size={10} />
+              </a>
             </div>
             <pre className="code-content">
               <code>
