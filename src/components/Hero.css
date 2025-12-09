@@ -36,8 +36,7 @@
   height: 100%;
   min-height: 0;
   max-height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: auto;
   scrollbar-width: none;
 }
 
@@ -637,8 +636,7 @@
 
 .projects-pane {
   gap: clamp(10px, 1.4vmin, 16px);
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: auto;
   scrollbar-width: none;
 }
 
@@ -840,8 +838,7 @@
 
 .skills-pane {
   gap: clamp(10px, 1.2vmin, 14px);
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: auto;
   scrollbar-width: none;
 }
 
@@ -1716,7 +1713,7 @@
   }
   
   .code-card {
-    display: none;
+    display: flex;
   }
   
   .social-section {
@@ -2247,7 +2244,7 @@
   }
   
   .code-card {
-    display: none;
+    display: flex;
   }
   
   .social-section {
