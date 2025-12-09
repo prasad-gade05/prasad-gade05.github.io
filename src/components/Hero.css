@@ -1700,15 +1700,35 @@
   
   .hero-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: 25vh 1fr;
     gap: 8px;
+    height: 100%;
   }
   
   .hero-left {
     flex-direction: column;
-    height: auto;
-    max-height: none;
+    flex-wrap: nowrap;
+    height: 100%;
+    max-height: 25vh;
     gap: 8px;
+    overflow: auto;
+    scrollbar-width: none;
+  }
+  
+  .hero-left > * {
+    flex-shrink: 0;
+    width: 100%;
+    min-width: 280px;
+  }
+  
+  .hero-left::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .hero-right {
+    height: 100%;
+    min-height: 0;
+    max-height: 75vh;
   }
   
   .info-section {
@@ -1718,6 +1738,7 @@
   
   .code-card {
     display: flex;
+    flex: 0 0 auto;
   }
   
   .social-section {
@@ -2249,6 +2270,7 @@
   
   .code-card {
     display: flex;
+    flex: 0 0 auto;
   }
   
   .social-section {
