@@ -11,9 +11,9 @@
   --bg-card: rgba(20, 20, 20, 0.85);
   --bg-glass: rgba(255, 255, 255, 0.02);
   
-  /* Accent Colors - Emerald & Purple Palette */
-  --accent-cyan: #0db981;
-  --accent-green: #00bc7d;
+  /* Accent Colors - Royal Gold Palette */
+  --accent-cyan: #c9a227;
+  --accent-green: #c9a227;
   --accent-orange: #fff085;
   --accent-red: #ef4545;
   --accent-blue: #50a2ff;
@@ -21,16 +21,16 @@
   --accent-magenta: #c765e9;
   --accent-deep-purple: #9860c6;
   --accent-muted-blue: #3b588e;
-  --accent-teal: #0db981;
-  --accent-lime: #7dff8a;
+  --accent-teal: #c9a227;
+  --accent-lime: #d4af37;
   --accent-coral: #ff6b6b;
   
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #0db981 0%, #c27aff 100%);
+  --gradient-primary: linear-gradient(135deg, #c9a227 0%, #d4af37 100%);
   --gradient-secondary: linear-gradient(135deg, #c765e9 0%, #9860c6 100%);
-  --gradient-tertiary: linear-gradient(135deg, #50a2ff 0%, #0db981 100%);
-  --gradient-subtle: linear-gradient(135deg, rgba(13, 185, 129, 0.1) 0%, rgba(194, 122, 255, 0.1) 100%);
-  --gradient-glow: radial-gradient(ellipse at center, rgba(13, 185, 129, 0.1) 0%, transparent 70%);
+  --gradient-tertiary: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(201, 162, 39, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
+  --gradient-glow: radial-gradient(ellipse at center, rgba(201, 162, 39, 0.1) 0%, transparent 70%);
   --gradient-purple: linear-gradient(135deg, #9860c6 0%, #c765e9 100%);
   --gradient-warm: linear-gradient(135deg, #fff085 0%, #ef4545 100%);
   
@@ -46,11 +46,11 @@
   
   /* Borders */
   --border-subtle: #252525;
-  --border-glow: rgba(13, 185, 129, 0.4);
+  --border-glow: rgba(201, 162, 39, 0.4);
   
   /* Shadows */
-  --glow-cyan: 0 0 40px rgba(13, 185, 129, 0.25);
-  --glow-green: 0 0 40px rgba(0, 188, 125, 0.25);
+  --glow-cyan: 0 0 40px rgba(201, 162, 39, 0.25);
+  --glow-green: 0 0 40px rgba(201, 162, 39, 0.25);
   --glow-purple: 0 0 40px rgba(194, 122, 255, 0.25);
   --glow-magenta: 0 0 40px rgba(199, 101, 233, 0.25);
 }
