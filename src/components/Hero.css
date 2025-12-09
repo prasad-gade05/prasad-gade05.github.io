@@ -221,7 +221,7 @@
 .social-cards-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: clamp(6px, 0.8vmin, 10px);
+  gap: clamp(8px, 1vmin, 12px);
   flex: 1;
   align-content: stretch;
 }
@@ -232,7 +232,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(10px, 1.2vmin, 14px);
+  padding: clamp(8px, 1vmin, 12px);
   border-radius: 10px;
   text-decoration: none;
   overflow: hidden;
@@ -250,14 +250,15 @@
   position: relative;
   z-index: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: clamp(8px, 1vmin, 12px);
+  gap: clamp(6px, 0.8vmin, 10px);
   flex: 1;
 }
 
 .social-icon-wrap {
-  width: clamp(32px, 4vmin, 42px);
-  height: clamp(32px, 4vmin, 42px);
+  width: clamp(28px, 3.5vmin, 36px);
+  height: clamp(28px, 3.5vmin, 36px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -268,8 +269,8 @@
 }
 
 .social-icon {
-  width: clamp(18px, 2.2vmin, 24px);
-  height: clamp(18px, 2.2vmin, 24px);
+  width: clamp(16px, 2vmin, 20px);
+  height: clamp(16px, 2vmin, 20px);
   color: #8b949e;
   transition: all 0.3s ease;
 }
@@ -277,24 +278,26 @@
 .social-details {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  flex: 1;
-  min-width: 0;
+  align-items: center;
+  gap: 1px;
+  text-align: center;
 }
 
 .social-platform {
-  font-size: clamp(11px, 1.4vmin, 14px);
+  font-size: clamp(10px, 1.2vmin, 12px);
   font-weight: 600;
   color: #e6edf3;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
 }
 
 .social-handle {
-  font-size: clamp(9px, 1.1vmin, 11px);
+  font-size: clamp(8px, 0.9vmin, 10px);
   color: #6e7681;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 /* Platform-specific hover colors */
@@ -574,13 +577,14 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
+  justify-content: space-between;
 }
 
 .project-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: clamp(4px, 0.6vmin, 6px);
+  margin-bottom: clamp(6px, 0.8vmin, 10px);
 }
 
 .project-cat {
@@ -601,30 +605,32 @@
   font-size: clamp(14px, 1.8vmin, 18px);
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: clamp(3px, 0.4vmin, 5px);
+  margin-bottom: clamp(4px, 0.5vmin, 6px);
 }
 
 .project-subtitle {
   font-size: clamp(11px, 1.3vmin, 13px);
   color: var(--text-muted);
-  margin-bottom: clamp(4px, 0.5vmin, 6px);
+  margin-bottom: clamp(6px, 0.7vmin, 8px);
 }
 
 .project-desc {
   font-size: clamp(10px, 1.2vmin, 12px);
   color: var(--text-secondary);
   line-height: 1.4;
-  margin-bottom: clamp(6px, 0.8vmin, 10px);
+  margin-bottom: clamp(8px, 1vmin, 12px);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  flex: 1;
 }
 
 .project-tech {
   display: flex;
   flex-wrap: wrap;
   gap: clamp(4px, 0.5vmin, 6px);
+  margin-bottom: clamp(8px, 1vmin, 12px);
 }
 
 .tech-tag {
@@ -639,8 +645,8 @@
 .project-card-links {
   display: flex;
   gap: 6px;
-  margin-top: auto;
-  padding-top: 6px;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .project-card-link {
@@ -1432,26 +1438,35 @@
 .hobby-series .hobby-card-decoration { background: #e50914; }
 
 .hobby-card-icon {
-  margin-bottom: clamp(8px, 1vmin, 12px);
+  display: inline-flex;
+  align-items: center;
   opacity: 0.9;
+  flex-shrink: 0;
 }
 
 .hobby-card-icon svg {
-  width: clamp(24px, 3vmin, 32px);
-  height: clamp(24px, 3vmin, 32px);
+  width: clamp(20px, 2.5vmin, 26px);
+  height: clamp(20px, 2.5vmin, 26px);
 }
 
-.hobby-card-content h4 {
-  font-size: clamp(13px, 1.6vmin, 16px);
+.hobby-card-header {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1vmin, 12px);
+  margin-bottom: clamp(8px, 1vmin, 12px);
+}
+
+.hobby-card-header h4 {
+  font-size: clamp(12px, 1.4vmin, 15px);
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: clamp(6px, 0.8vmin, 10px);
+  margin: 0;
 }
 
 .hobby-card-content p {
-  font-size: clamp(11px, 1.3vmin, 14px);
+  font-size: clamp(10px, 1.2vmin, 13px);
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 .hobby-songs {

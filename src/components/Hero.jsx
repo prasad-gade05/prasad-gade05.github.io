@@ -259,7 +259,7 @@ const Hero = () => {
     hobby: 'Playing cricket and Minecraft',
     book: 'How to Win Friends and Influence People by Dale Carnegie',
     songs: [
-      { name: 'Take Me Home, Country Roads', link: 'https://open.spotify.com/track/1YYhDizHx7PnDhAhko6cDS?si=b5b58f4e8aa2480e' },
+      { name: 'Take Me Home, Country Roads - John Denver', link: 'https://open.spotify.com/track/1YYhDizHx7PnDhAhko6cDS?si=b5b58f4e8aa2480e' },
       { name: 'Main Zindagi Ka Saath Nibhata Chala Gaya - Mohammed Rafi', link: 'https://open.spotify.com/track/1TAoZRnSmZOOXUSoJqycxN?si=59e59c8d6f1747a6' },
     ],
     series: ['Squid Games', 'Money Heist'],
@@ -336,19 +336,14 @@ const Hero = () => {
             <pre className="code-content">
               <code>
                 <span className="line"><span className="ln">1</span><span className="kw">class</span> <span className="cls">DataScientist</span><span className="p">:</span></span>
-                <span className="line"><span className="ln">2</span><span className="kw">    def</span> <span className="fn">__init__</span><span className="p">(</span><span className="sf">self</span><span className="p">):</span></span>
-                <span className="line"><span className="ln">3</span><span className="sf">        self</span><span className="p">.</span><span className="pr">name</span> <span className="op">=</span> <span className="st">"Prasad Gade"</span></span>
-                <span className="line"><span className="ln">4</span><span className="sf">        self</span><span className="p">.</span><span className="pr">roles</span> <span className="op">=</span> <span className="p">[</span></span>
-                <span className="line"><span className="ln">5</span>            <span className="st">"Data Scientist"</span><span className="p">,</span></span>
-                <span className="line"><span className="ln">6</span>            <span className="st">"ML Engineer"</span><span className="p">,</span></span>
-                <span className="line"><span className="ln">7</span>            <span className="st">"Data Analyst"</span><span className="p">,</span></span>
-                <span className="line"><span className="ln">8</span>            <span className="st">"Computer Engineer"</span></span>
-                <span className="line"><span className="ln">9</span><span className="sf">        </span><span className="p">]</span></span>
-                <span className="line"><span className="ln">10</span><span className="sf">        self</span><span className="p">.</span><span className="pr">passion</span> <span className="op">=</span> <span className="st">"Data Storytelling"</span></span>
-                <span className="line"><span className="ln">11</span><span className="sf">        self</span><span className="p">.</span><span className="pr">skills</span> <span className="op">=</span> <span className="p">[</span><span className="st">"Python"</span><span className="p">,</span> <span className="st">"ML"</span><span className="p">,</span> <span className="st">"AI"</span><span className="p">]</span></span>
-                <span className="line"><span className="ln">12</span></span>
-                <span className="line"><span className="ln">13</span><span className="kw">    def</span> <span className="fn">transform</span><span className="p">(</span><span className="sf">self</span><span className="p">,</span> <span className="pm">data</span><span className="p">):</span></span>
-                <span className="line"><span className="ln">14</span><span className="kw">        return</span> <span className="sf">self</span><span className="p">.</span><span className="fn">insights</span><span className="p">(</span><span className="pm">data</span><span className="p">)</span></span>
+                <span className="line"><span className="ln">2</span>  <span className="kw">def</span> <span className="fn">__init__</span><span className="p">(</span><span className="sf">self</span><span className="p">):</span></span>
+                <span className="line"><span className="ln">3</span>    <span className="sf">self</span><span className="p">.</span><span className="pr">name</span> <span className="op">=</span> <span className="st">"Prasad Gade"</span></span>
+                <span className="line"><span className="ln">4</span>    <span className="sf">self</span><span className="p">.</span><span className="pr">roles</span> <span className="op">=</span> <span className="p">[</span><span className="st">"DS"</span><span className="p">,</span> <span className="st">"ML"</span><span className="p">,</span> <span className="st">"DA"</span><span className="p">]</span></span>
+                <span className="line"><span className="ln">5</span>    <span className="sf">self</span><span className="p">.</span><span className="pr">passion</span> <span className="op">=</span> <span className="st">"Data"</span></span>
+                <span className="line"><span className="ln">6</span>    <span className="sf">self</span><span className="p">.</span><span className="pr">skills</span> <span className="op">=</span> <span className="p">[</span><span className="st">"Py"</span><span className="p">,</span> <span className="st">"ML"</span><span className="p">,</span> <span className="st">"AI"</span><span className="p">]</span></span>
+                <span className="line"><span className="ln">7</span></span>
+                <span className="line"><span className="ln">8</span>  <span className="kw">def</span> <span className="fn">transform</span><span className="p">(</span><span className="sf">self</span><span className="p">,</span> <span className="pm">data</span><span className="p">):</span></span>
+                <span className="line"><span className="ln">9</span>    <span className="kw">return</span> <span className="sf">self</span><span className="p">.</span><span className="fn">insights</span><span className="p">(</span><span className="pm">data</span><span className="p">)</span></span>
               </code>
             </pre>
           </motion.div>
@@ -702,33 +697,39 @@ const Hero = () => {
                   </div>
                   <div className="hobbies-grid">
                     <div className="hobby-card hobby-sports">
-                      <div className="hobby-card-icon">
-                        <Gamepad2 size={24} />
+                      <div className="hobby-card-header">
+                        <div className="hobby-card-icon">
+                          <Gamepad2 size={20} />
+                        </div>
+                        <h4>Sports & Gaming</h4>
                       </div>
                       <div className="hobby-card-content">
-                        <h4>Sports & Gaming</h4>
                         <p>{hobbies.hobby}</p>
                       </div>
                       <div className="hobby-card-decoration"></div>
                     </div>
                     
                     <div className="hobby-card hobby-reading">
-                      <div className="hobby-card-icon">
-                        <Book size={24} />
+                      <div className="hobby-card-header">
+                        <div className="hobby-card-icon">
+                          <Book size={20} />
+                        </div>
+                        <h4>Currently Reading</h4>
                       </div>
                       <div className="hobby-card-content">
-                        <h4>Currently Reading</h4>
                         <p>{hobbies.book}</p>
                       </div>
                       <div className="hobby-card-decoration"></div>
                     </div>
                     
                     <div className="hobby-card hobby-music">
-                      <div className="hobby-card-icon">
-                        <Headphones size={24} />
+                      <div className="hobby-card-header">
+                        <div className="hobby-card-icon">
+                          <Headphones size={20} />
+                        </div>
+                        <h4>Favorite Tracks</h4>
                       </div>
                       <div className="hobby-card-content">
-                        <h4>Favorite Tracks</h4>
                         <div className="hobby-songs">
                           {hobbies.songs.map((song, i) => (
                             <a key={i} href={song.link} target="_blank" rel="noopener noreferrer" className="song-link">
@@ -742,11 +743,13 @@ const Hero = () => {
                     </div>
                     
                     <div className="hobby-card hobby-series">
-                      <div className="hobby-card-icon">
-                        <Tv size={24} />
+                      <div className="hobby-card-header">
+                        <div className="hobby-card-icon">
+                          <Tv size={20} />
+                        </div>
+                        <h4>Binge Watching</h4>
                       </div>
                       <div className="hobby-card-content">
-                        <h4>Binge Watching</h4>
                         <div className="hobby-tags">
                           {hobbies.series.map((series, i) => (
                             <span key={i} className="series-tag">{series}</span>
