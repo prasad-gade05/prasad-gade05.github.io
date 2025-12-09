@@ -430,15 +430,15 @@
 }
 
 /* VS Code Dark+ Syntax Colors */
-.code-content .kw { color: #c586c0; }
-.code-content .cls { color: #4ec9b0; }
-.code-content .fn { color: #dcdcaa; }
-.code-content .sf { color: #9cdcfe; }
-.code-content .pr { color: #9cdcfe; }
-.code-content .pm { color: #9cdcfe; }
-.code-content .st { color: #ce9178; }
-.code-content .op { color: #d4d4d4; }
-.code-content .p { color: #d4d4d4; }
+.code-content .kw { color: #d6984a; }
+.code-content .cls { color: #8cb243; }
+.code-content .fn { color: #d4af37; }
+.code-content .sf { color: #aeaca6; }
+.code-content .pr { color: #aeaca6; }
+.code-content .pm { color: #c9a227; }
+.code-content .st { color: #8cb243; }
+.code-content .op { color: #aeaca6; }
+.code-content .p { color: #d6984a; }
 
 /* Social Section - IMPROVED DESIGN */
 .social-section {
@@ -793,6 +793,12 @@
   font-weight: 700;
   border-radius: 4px;
   z-index: 10;
+}
+
+.project-badge.first-place {
+  background: linear-gradient(135deg, #10b981, #3fb950);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
 }
 
 .project-header {
@@ -1311,7 +1317,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--gradient-primary);
+  background: linear-gradient(135deg, #c9a227 0%, #8cb243 50%, #d4af37 100%);
   border-radius: 8px;
   font-size: clamp(9px, 1.1vmin, 11px);
   font-weight: 700;
@@ -1500,7 +1506,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f85149 0%, #ff7b72 100%);
+  background: linear-gradient(135deg, #c9a227 0%, #d4af37 100%);
   border-radius: 10px;
   color: white;
   flex-shrink: 0;
@@ -1759,6 +1765,21 @@
 .hobby-activity-item svg {
   color: #c9a227;
   flex-shrink: 0;
+}
+
+/* Sports Card Activity Items - Keep Green */
+.hobby-sports .hobby-activity-item {
+  background: rgba(63, 185, 80, 0.1);
+  border: 1px solid rgba(63, 185, 80, 0.2);
+}
+
+.hobby-sports .hobby-activity-item:hover {
+  background: rgba(63, 185, 80, 0.15);
+  border-color: rgba(63, 185, 80, 0.4);
+}
+
+.hobby-sports .hobby-activity-item svg {
+  color: #3fb950;
 }
 
 /* Book Info */

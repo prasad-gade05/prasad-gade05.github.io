@@ -236,6 +236,7 @@ const Hero = () => {
       date: "Mar 2025",
       color: "#d29922",
       link: "https://drive.google.com/file/d/19EXpm1wVqM35qLiHvbcFzmwwwEiFSr_4/view?usp=drive_link",
+      linkText: "View Certificate",
     },
     {
       title: "Published Researcher",
@@ -243,6 +244,7 @@ const Hero = () => {
       date: "Apr 2024",
       color: "#3fb950",
       link: "https://ijies.net/finial-docs/finial-pdf/220424918.pdf",
+      linkText: "View Paper",
     },
   ];
 
@@ -758,7 +760,7 @@ const Hero = () => {
                       return (
                         <div key={i} className="project-card">
                           {project.badge && (
-                            <span className="project-badge">
+                            <span className={`project-badge${project.badge === "1st Place" ? " first-place" : ""}`}>
                               {project.badge}
                             </span>
                           )}
@@ -979,7 +981,7 @@ const Hero = () => {
                               className="achieve-link"
                             >
                               <ExternalLink size={10} />
-                              View Certificate
+                              {ach.linkText || "View Certificate"}
                             </a>
                           )}
                         </div>
