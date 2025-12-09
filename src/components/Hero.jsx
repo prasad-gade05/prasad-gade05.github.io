@@ -71,6 +71,7 @@ import "./Hero.css";
 
 const Hero = () => {
   const [activeTabs, setActiveTabs] = useState(["projects"]); // Support multiple active tabs
+  const [showProfileModal, setShowProfileModal] = useState(false);
 
   const socialLinks = [
     {
@@ -494,7 +495,53 @@ const Hero = () => {
               </div>
             </div>
 
-            <h1 className="name">Prasad Gade</h1>
+            <div className="name-row">
+              <div 
+                className="profile-image-wrapper"
+                onClick={() => setShowProfileModal(true)}
+              >
+                <img 
+                  src={`${import.meta.env.BASE_URL}profile.png`}
+                  alt="Prasad Gade" 
+                  className="profile-image"
+                />
+              </div>
+              <h1 className="name">Prasad Gade</h1>
+            </div>
+
+            {/* Profile Image Modal */}
+            <AnimatePresence>
+              {showProfileModal && (
+                <motion.div 
+                  className="profile-modal-overlay"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setShowProfileModal(false)}
+                >
+                  <motion.div 
+                    className="profile-modal-card"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.8, opacity: 0 }}
+                    transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <img 
+                      src={`${import.meta.env.BASE_URL}profile.png`}
+                      alt="Prasad Gade" 
+                      className="profile-modal-image"
+                    />
+                    <button 
+                      className="profile-modal-close"
+                      onClick={() => setShowProfileModal(false)}
+                    >
+                      ×
+                    </button>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             <div className="role-typing">
               <TypeAnimation
