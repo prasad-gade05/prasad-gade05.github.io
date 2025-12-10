@@ -67,11 +67,15 @@ import { HiMail } from "react-icons/hi";
 import { GiCricketBat, GiBookCover } from "react-icons/gi";
 import { MdMovie } from "react-icons/md";
 import { TbBrandMinecraft } from "react-icons/tb";
+import { Move3D } from "lucide-react";
+import MinecraftSkinViewer from "./MinecraftSkinViewer";
+import "./MinecraftSkinViewer.css";
 import "./Hero.css";
 
 const Hero = () => {
   const [activeTabs, setActiveTabs] = useState(["projects"]); // Support multiple active tabs
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [showMinecraftModal, setShowMinecraftModal] = useState(false);
 
   const socialLinks = [
     {
@@ -537,6 +541,50 @@ const Hero = () => {
                     <button 
                       className="profile-modal-close"
                       onClick={() => setShowProfileModal(false)}
+                    >
+                      ×
+                    </button>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Minecraft Skin Modal */}
+            <AnimatePresence>
+              {showMinecraftModal && (
+                <motion.div 
+                  className="minecraft-modal-overlay"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setShowMinecraftModal(false)}
+                >
+                  <motion.div 
+                    className="minecraft-modal-card"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.8, opacity: 0 }}
+                    transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <div className="minecraft-modal-header">
+                      <TbBrandMinecraft />
+                      <h3>My Minecraft Skin</h3>
+                    </div>
+                    <div className="minecraft-skin-container">
+                      <MinecraftSkinViewer 
+                        skinUrl={`${import.meta.env.BASE_URL}minecraft-skin.png`}
+                        width={280}
+                        height={400}
+                      />
+                      <div className="minecraft-controls-hint">
+                        <Move3D />
+                        <span>Drag to rotate • Scroll to zoom</span>
+                      </div>
+                    </div>
+                    <button 
+                      className="minecraft-modal-close"
+                      onClick={() => setShowMinecraftModal(false)}
                     >
                       ×
                     </button>
@@ -1111,7 +1159,10 @@ const Hero = () => {
                             <GiCricketBat size={18} />
                             <span>{hobbies.sports.cricket}</span>
                           </div>
-                          <div className="hobby-activity-item">
+                          <div 
+                            className="hobby-activity-item minecraft-clickable"
+                            onClick={() => setShowMinecraftModal(true)}
+                          >
                             <TbBrandMinecraft size={18} />
                             <span>{hobbies.sports.minecraft}</span>
                           </div>
