@@ -570,6 +570,7 @@ const Hero = () => {
                     <div className="minecraft-modal-header">
                       <TbBrandMinecraft />
                       <h3>My Minecraft Skin</h3>
+                      <span className="minecraft-gamertag">prasadgade05</span>
                     </div>
                     <div className="minecraft-skin-container">
                       <MinecraftSkinViewer 

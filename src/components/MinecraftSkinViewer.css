@@ -64,6 +64,19 @@
   letter-spacing: 0.5px;
 }
 
+.minecraft-gamertag {
+  margin-left: auto;
+  padding: 6px 12px;
+  background: rgba(98, 181, 98, 0.15);
+  border: 1px solid rgba(98, 181, 98, 0.3);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #3fb950;
+  font-family: 'Minecraft', monospace, sans-serif;
+  letter-spacing: 0.5px;
+}
+
 .minecraft-skin-container {
   display: flex;
   flex-direction: column;
