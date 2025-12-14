@@ -988,7 +988,7 @@
 .skill-category {
   font-size: clamp(12px, 1.4vmin, 15px);
   font-weight: 600;
-  color: var(--accent-cyan);
+  color: var(--accent-green);
   text-transform: uppercase;
   letter-spacing: 0.8px;
   flex-shrink: 0;
