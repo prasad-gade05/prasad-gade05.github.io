@@ -20,6 +20,8 @@ import { FaGithub, FaSpotify } from "react-icons/fa";
 import { GiCricketBat, GiBookCover } from "react-icons/gi";
 import { MdMovie } from "react-icons/md";
 import { TbBrandMinecraft } from "react-icons/tb";
+import MoviesModal from "./MoviesModal";
+import "../../components/hero/MoviesModal.css";
 
 // Data Imports
 import {
@@ -32,12 +34,15 @@ import {
   certifications,
   volunteering,
   hobbies,
-  projects
+  projects,
+  movies,
+  webShows
 } from "../../data/portfolioData";
 
 const ContentTabs = ({ onOpenMinecraft }) => {
   const [activeTabs, setActiveTabs] = useState(["projects"]);
   const [theme, setTheme] = useState('dark');
+  const [isMoviesModalOpen, setIsMoviesModalOpen] = useState(false);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -580,6 +585,13 @@ const ContentTabs = ({ onOpenMinecraft }) => {
                         </span>
                       ))}
                     </div>
+                    <button 
+                      className="see-more-btn"
+                      onClick={() => setIsMoviesModalOpen(true)}
+                    >
+                      <MdMovie size={14} />
+                      <span>See All Movies & Shows</span>
+                    </button>
                   </div>
                   <div className="hobby-card-decoration"></div>
                 </div>
@@ -588,6 +600,13 @@ const ContentTabs = ({ onOpenMinecraft }) => {
           )}
         </AnimatePresence>
       </div>
+
+      <MoviesModal 
+        isOpen={isMoviesModalOpen}
+        onClose={() => setIsMoviesModalOpen(false)}
+        movies={movies}
+        shows={webShows}
+      />
     </motion.div>
   );
 };
