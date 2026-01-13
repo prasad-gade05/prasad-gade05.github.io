@@ -48,8 +48,45 @@ const ContentTabs = ({ onOpenMinecraft }) => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  const toggleTheme = (e) => {
+    // If view transitions are not supported, just switch theme
+    if (!document.startViewTransition) {
+      setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+      return;
+    }
+
+    // Get click coordinates
+    const x = e.clientX;
+    const y = e.clientY;
+    
+    // Calculate distance to furthest corner
+    const right = window.innerWidth - x;
+    const bottom = window.innerHeight - y;
+    const maxRadius = Math.hypot(
+      Math.max(x, right),
+      Math.max(y, bottom)
+    );
+
+    const transition = document.startViewTransition(() => {
+      setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+    });
+
+    transition.ready.then(() => {
+      // Animate the circle clip-path
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${maxRadius}px at ${x}px ${y}px)`,
+          ],
+        },
+        {
+          duration: 500,
+          easing: "ease-in-out",
+          pseudoElement: "::view-transition-new(root)",
+        }
+      );
+    });
   };
 
   const tabs = [

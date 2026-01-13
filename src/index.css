@@ -189,3 +189,15 @@ button {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* View Transition for Theme Toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-image-pair(root) {
+  isolation: isolate;
+}
+
