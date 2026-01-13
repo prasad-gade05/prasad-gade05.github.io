@@ -787,6 +787,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: clamp(10px, 1.4vmin, 16px);
+  padding-top: 6px;
 }
 
 .project-card {
