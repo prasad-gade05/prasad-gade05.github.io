@@ -193,7 +193,7 @@ export const education = [
     degree: "Minor in Management",
     school: "SPJIMR (SP Jain Institute of Management & Research)",
     date: "Expected 2027",
-    grade: "Ongoing",
+    grade: "9.0 CGPA",
   },
   {
     degree: "Diploma in Computer Technology",
