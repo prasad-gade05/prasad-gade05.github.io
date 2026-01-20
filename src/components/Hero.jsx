@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TbBrandMinecraft } from "react-icons/tb";
-import { Move3D } from "lucide-react";
+import { Move3D, FileText } from "lucide-react";
 import "./Hero.css";
 import "./MinecraftSkinViewer.css";
+import ResumeViewer from "./ResumeViewer";
 import ProfileSection from "./hero/ProfileSection";
 import CodeCard from "./hero/CodeCard";
 import SocialLinks from "./hero/SocialLinks";
@@ -12,6 +13,7 @@ import MinecraftSkinViewer from "./MinecraftSkinViewer";
 
 const Hero = () => {
   const [showMinecraftModal, setShowMinecraftModal] = useState(false);
+  const [showResumeModal, setShowResumeModal] = useState(false);
 
   return (
     <section className="hero">
@@ -19,7 +21,7 @@ const Hero = () => {
         {/* Left Column - Name First, then Code Card, then Social */}
         <div className="hero-left">
           <ProfileSection />
-          <CodeCard />
+          <CodeCard onOpenResume={() => setShowResumeModal(true)} />
           <SocialLinks />
         </div>
 
@@ -29,6 +31,31 @@ const Hero = () => {
 
       {/* Minecraft Skin Modal - Centrally Managed */}
       <AnimatePresence>
+        {showResumeModal && (
+          <motion.div
+            className="resume-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowResumeModal(false)}
+          >
+            <motion.div
+              className="resume-modal-card"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div style={{ flex: 1, overflow: 'hidden' }}>
+                <ResumeViewer 
+                  pdfUrl={`${import.meta.env.BASE_URL}Prasad_Gade_Resume.pdf`}
+                  onClose={() => setShowResumeModal(false)}
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
         {showMinecraftModal && (
           <motion.div
             className="minecraft-modal-overlay"

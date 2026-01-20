@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { FileText, ExternalLink } from "lucide-react";
 import { codeCardData } from "../../data/portfolioData";
 
-const CodeCard = () => {
+const CodeCard = ({ onOpenResume }) => {
   return (
     <motion.div
       className="code-card"
@@ -19,6 +19,12 @@ const CodeCard = () => {
         <span className="code-filename">{codeCardData.filename}</span>
         <a
           href={codeCardData.resumeLink}
+          onClick={(e) => {
+            if (onOpenResume) {
+              e.preventDefault();
+              onOpenResume();
+            }
+          }}
           target="_blank"
           rel="noopener noreferrer"
           className="resume-btn"
