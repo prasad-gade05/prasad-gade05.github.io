@@ -25,7 +25,6 @@ const SocialLinks = () => {
                 <link.icon className="social-icon" />
               </div>
               <div className="social-details">
-                <span className="social-platform">{link.label}</span>
                 <span className="social-handle">{link.handle}</span>
               </div>
             </div>

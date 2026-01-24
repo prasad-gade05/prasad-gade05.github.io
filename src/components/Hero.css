@@ -32,7 +32,7 @@
 .hero-left {
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1vmin, 12px);
+  gap: clamp(6px, 0.8vmin, 8px);
   height: 100%;
   min-height: 0;
   max-height: 100%;
@@ -48,12 +48,14 @@
 .info-section {
   display: flex;
   flex-direction: column;
-  gap: clamp(4px, 0.6vmin, 8px);
-  padding: clamp(12px, 1.5vmin, 18px);
+  gap: clamp(3px, 0.5vmin, 6px);
+  padding: clamp(10px, 1.2vmin, 14px);
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
   flex-shrink: 0;
+  min-height: fit-content;
+  overflow: visible;
 }
 
 .info-header {
@@ -243,6 +245,7 @@
 /* Bio Section - Tags Style */
 .bio-section {
   flex-shrink: 0;
+  min-height: fit-content;
 }
 
 .bio-tags {
@@ -300,6 +303,7 @@
   flex-direction: column;
   gap: clamp(4px, 0.5vmin, 6px);
   flex-shrink: 0;
+  min-height: fit-content;
 }
 
 .skills-label {
@@ -346,8 +350,8 @@
 .code-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: clamp(10px, 1.4vmin, 14px) clamp(12px, 1.6vmin, 16px);
+  gap: 8px;
+  padding: clamp(8px, 1.1vmin, 12px) clamp(10px, 1.3vmin, 14px);
   background: var(--bg-tertiary);
   border-bottom: 1px solid var(--border-subtle);
   flex-shrink: 0;
@@ -398,15 +402,21 @@
 }
 
 .code-content {
-  padding: clamp(12px, 1.6vmin, 18px);
+  padding: clamp(8px, 1.2vmin, 12px);
   margin: 0;
   font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
-  font-size: clamp(12px, 1.5vmin, 15px);
-  line-height: 1.6;
+  font-size: clamp(11px, 1.3vmin, 13px);
+  line-height: 1.4;
   background: var(--bg-code);
   flex: 0 0 auto;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   white-space: pre;
+  scrollbar-width: none;
+}
+
+.code-content::-webkit-scrollbar {
+  display: none;
 }
 
 .code-content code {
@@ -416,17 +426,17 @@
 
 .code-content .line {
   display: block;
-  min-height: clamp(18px, 2.2vmin, 24px);
+  min-height: clamp(16px, 1.8vmin, 20px);
   white-space: pre;
 }
 
 .code-content .ln {
   display: inline-block;
-  width: clamp(22px, 2.6vmin, 30px);
+  width: clamp(20px, 2.2vmin, 26px);
   color: var(--text-muted);
   user-select: none;
   text-align: right;
-  padding-right: clamp(10px, 1.4vmin, 14px);
+  padding-right: clamp(8px, 1.1vmin, 12px);
 }
 
 /* VS Code Dark+ Syntax Colors */
@@ -439,6 +449,7 @@
 .code-content .st { color: var(--accent-green); }
 .code-content .op { color: var(--text-secondary); }
 .code-content .p { color: var(--accent-purple); }
+.code-content .cm { color: #6a9955; font-style: italic; }
 
 /* Social Section - IMPROVED DESIGN */
 .social-section {
@@ -452,8 +463,9 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: clamp(6px, 0.8vmin, 10px);
+  gap: clamp(5px, 0.7vmin, 8px);
   flex: 1;
+  min-height: 0;
 }
 
 /* Modern Social Cards */
@@ -462,7 +474,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(8px, 1vmin, 14px);
+  padding: clamp(6px, 0.8vmin, 10px);
   border-radius: 10px;
   text-decoration: none;
   overflow: hidden;
@@ -483,14 +495,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(6px, 0.8vmin, 10px);
+  gap: clamp(4px, 0.6vmin, 8px);
   flex: 1;
   min-height: 0;
 }
 
 .social-icon-wrap {
-  width: clamp(32px, 4vmin, 44px);
-  height: clamp(32px, 4vmin, 44px);
+  width: clamp(28px, 3.5vmin, 38px);
+  height: clamp(28px, 3.5vmin, 38px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -501,8 +513,8 @@
 }
 
 .social-icon {
-  width: clamp(18px, 2.2vmin, 24px);
-  height: clamp(18px, 2.2vmin, 24px);
+  width: clamp(16px, 2vmin, 22px);
+  height: clamp(16px, 2vmin, 22px);
   color: #8b949e;
   transition: all 0.3s ease;
 }
@@ -526,7 +538,8 @@
 }
 
 .social-handle {
-  font-size: clamp(9px, 1.1vmin, 12px);
+  font-size: clamp(10px, 1.2vmin, 13px);
+  font-weight: 500;
   color: var(--text-secondary);
   white-space: nowrap;
   overflow: hidden;
@@ -2221,6 +2234,8 @@
   
   .info-section {
     padding: 10px;
+    min-height: fit-content;
+    overflow: visible;
   }
   
   .name {
@@ -2248,6 +2263,24 @@
   .bio-tag {
     padding: 3px 6px;
     font-size: 9px;
+  }
+
+  .skills-section {
+    min-height: fit-content;
+  }
+
+  .skills-label {
+    font-size: 9px;
+  }
+
+  .skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .skill-tag {
+    font-size: 9px;
+    padding: 3px 6px;
   }
   
   .social-cards-grid {

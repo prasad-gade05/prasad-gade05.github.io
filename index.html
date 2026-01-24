@@ -12,5 +12,22 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Suppress browser extension warnings -->
+    <script>
+      // Filter out browser extension errors
+      const originalError = console.error;
+      console.error = (...args) => {
+        const errorMsg = args[0]?.toString() || '';
+        if (
+          errorMsg.includes('message channel closed') ||
+          errorMsg.includes('runtime.lastError') ||
+          errorMsg.includes('listener indicated an asynchronous response')
+        ) {
+          return; // Suppress extension-related errors
+        }
+        originalError.apply(console, args);
+      };
+    </script>
   </body>
 </html>
