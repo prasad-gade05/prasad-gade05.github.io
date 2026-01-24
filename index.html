@@ -8,10 +8,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/Portfolio/assets/index-BKhefUYJ.js"></script>
-    <link rel="stylesheet" crossorigin href="/Portfolio/assets/index-DnQn6MUd.css">
+    <script type="module" crossorigin src="/Portfolio/assets/index-C2sSzeGF.js"></script>
+    <link rel="stylesheet" crossorigin href="/Portfolio/assets/index-CkSjSeIU.css">
   </head>
   <body>
     <div id="root"></div>
+    
+    <!-- Suppress browser extension warnings -->
+    <script>
+      // Filter out browser extension errors
+      const originalError = console.error;
+      console.error = (...args) => {
+        const errorMsg = args[0]?.toString() || '';
+        if (
+          errorMsg.includes('message channel closed') ||
+          errorMsg.includes('runtime.lastError') ||
+          errorMsg.includes('listener indicated an asynchronous response')
+        ) {
+          return; // Suppress extension-related errors
+        }
+        originalError.apply(console, args);
+      };
+    </script>
   </body>
 </html>
