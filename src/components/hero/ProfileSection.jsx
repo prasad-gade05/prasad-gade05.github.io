@@ -4,6 +4,7 @@ import { TypeAnimation } from "react-type-animation";
 import { MapPin } from "lucide-react";
 import { profileData } from "../../data/portfolioData";
 import AnimatedName from "./AnimatedName";
+import CurrentTime from "./CurrentTime";
 
 const ProfileSection = () => {
   const [showProfileModal, setShowProfileModal] = useState(false);
@@ -24,6 +25,7 @@ const ProfileSection = () => {
           <MapPin size={12} />
           <span>{profileData.location}</span>
         </div>
+        <CurrentTime />
       </div>
 
       <div className="name-row">
