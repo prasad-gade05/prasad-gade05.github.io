@@ -10,6 +10,7 @@ import CodeCard from "./hero/CodeCard";
 import SocialLinks from "./hero/SocialLinks";
 import ContentTabs from "./hero/ContentTabs";
 import MinecraftSkinViewer from "./MinecraftSkinViewer";
+import ClickSparkle from "./ClickSparkle";
 
 const Hero = () => {
   const [showMinecraftModal, setShowMinecraftModal] = useState(false);
@@ -17,6 +18,7 @@ const Hero = () => {
 
   return (
     <section className="hero">
+      <ClickSparkle />
       <div className="hero-grid">
         {/* Left Column - Name First, then Code Card, then Social */}
         <div className="hero-left">
