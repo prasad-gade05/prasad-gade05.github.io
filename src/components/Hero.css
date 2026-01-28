@@ -495,6 +495,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: clamp(4px, 0.6vmin, 8px);
   flex: 1;
   min-height: 0;
@@ -513,8 +514,8 @@
 }
 
 .social-icon {
-  width: clamp(16px, 2vmin, 22px);
-  height: clamp(16px, 2vmin, 22px);
+  width: clamp(22px, 2.8vmin, 30px);
+  height: clamp(22px, 2.8vmin, 30px);
   color: #8b949e;
   transition: all 0.3s ease;
 }

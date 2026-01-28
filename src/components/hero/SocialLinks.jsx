@@ -16,6 +16,7 @@ const SocialLinks = () => {
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={link.label}
             className={`social-card-fun social-${link.vibe}`}
             whileHover={{ y: -3 }}
             whileTap={{ scale: 0.98 }}
@@ -23,9 +24,6 @@ const SocialLinks = () => {
             <div className="social-card-content">
               <div className="social-icon-wrap">
                 <link.icon className="social-icon" />
-              </div>
-              <div className="social-details">
-                <span className="social-handle">{link.handle}</span>
               </div>
             </div>
           </motion.a>
