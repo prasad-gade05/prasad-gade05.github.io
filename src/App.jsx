@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import confetti from 'canvas-confetti'
 import './App.css'
 
 // Components
@@ -22,6 +23,30 @@ function App() {
     }
     window.addEventListener('mousemove', handleMouseMove)
     return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
+  useEffect(() => {
+    const konamiCode = [
+      'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+      'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
+      'b', 'a'
+    ]
+    let keys = []
+
+    const handleKeyDown = (e) => {
+      keys.push(e.key)
+      if (keys.length > konamiCode.length) {
+        keys.shift()
+      }
+      if (keys.length === konamiCode.length && 
+          keys.every((key, index) => key.toLowerCase() === konamiCode[index].toLowerCase())) {
+        confetti()
+        keys = []
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
   return (
