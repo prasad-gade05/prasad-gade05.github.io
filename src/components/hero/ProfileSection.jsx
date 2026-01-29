@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import { MapPin } from "lucide-react";
+import { MapPin, HelpCircle } from "lucide-react";
 import { profileData } from "../../data/portfolioData";
 import AnimatedName from "./AnimatedName";
 import CurrentTime from "./CurrentTime";
+import HelpModal from "./HelpModal";
+import "./HelpModal.css";
 
 const ProfileSection = () => {
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [showHelpModal, setShowHelpModal] = useState(false);
 
   return (
     <motion.div
@@ -26,6 +29,14 @@ const ProfileSection = () => {
           <span>{profileData.location}</span>
         </div>
         <CurrentTime />
+        <button 
+          className="help-button"
+          onClick={() => setShowHelpModal(true)}
+          title="Start Here - Guide for visitors"
+          aria-label="Open help guide"
+        >
+          <HelpCircle />
+        </button>
       </div>
 
       <div className="name-row">
@@ -73,6 +84,9 @@ const ProfileSection = () => {
               </button>
             </motion.div>
           </motion.div>
+        )}
+        {showHelpModal && (
+          <HelpModal onClose={() => setShowHelpModal(false)} />
         )}
       </AnimatePresence>
 

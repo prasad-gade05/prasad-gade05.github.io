@@ -1,0 +1,345 @@
+/* ============================================
+   HELP MODAL - Start Here / Information Modal
+   ============================================ */
+
+.help-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: pointer;
+  padding: 20px;
+}
+
+.help-modal-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 229, 255, 0.15);
+  cursor: default;
+  max-width: 950px;
+  width: 95%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.help-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(0, 229, 255, 0.05);
+  flex-shrink: 0;
+}
+
+.help-modal-header .help-icon {
+  color: var(--accent-cyan);
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.help-modal-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2.5vmin, 20px);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  flex: 1;
+}
+
+.help-modal-close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.help-modal-close:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.help-modal-content {
+  padding: 16px 24px;
+  overflow-y: auto;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px 24px;
+}
+
+/* Scrollbar styling for the content */
+.help-modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.help-modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.help-modal-content::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 3px;
+}
+
+.help-modal-content::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Sections */
+.help-section {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.help-section:last-child {
+  padding: 12px;
+}
+
+.help-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.help-section-title svg {
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+}
+
+.help-section-title h3 {
+  font-family: var(--font-display);
+  font-size: clamp(13px, 1.8vmin, 15px);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.help-section p {
+  font-size: clamp(12px, 1.6vmin, 14px);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.help-section p strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.help-subtext {
+  margin-top: 6px;
+  font-size: clamp(11px, 1.4vmin, 13px);
+  color: var(--text-muted);
+}
+
+.help-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.help-list li {
+  font-size: clamp(12px, 1.6vmin, 14px);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  padding-left: 16px;
+  position: relative;
+}
+
+.help-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+.help-list li strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Easter egg section */
+.help-section-easter {
+  background: linear-gradient(135deg, rgba(213, 0, 249, 0.08) 0%, rgba(0, 229, 255, 0.08) 100%);
+  padding: 12px !important;
+  border: 1px solid rgba(213, 0, 249, 0.2) !important;
+}
+
+/* Navigation section spans full width on desktop */
+.help-section-navigate {
+  grid-column: span 2;
+}
+
+@media (max-width: 900px) {
+  .help-section-navigate {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .help-section-navigate {
+    grid-column: span 1;
+  }
+}
+
+.help-section-easter .help-section-title svg {
+  color: var(--accent-purple);
+}
+
+.easter-hint {
+  font-style: italic;
+  opacity: 0.9;
+}
+
+/* Footer */
+.help-modal-footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--border-subtle);
+  background: rgba(0, 229, 255, 0.03);
+  flex-shrink: 0;
+}
+
+.help-modal-footer p {
+  font-size: clamp(11px, 1.4vmin, 13px);
+  color: var(--text-muted);
+  text-align: center;
+  margin: 0;
+}
+
+/* Help Button Styling */
+.help-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(28px, 4vmin, 34px);
+  height: clamp(28px, 4vmin, 34px);
+  background: rgba(var(--rgb-cyan), 0.1);
+  border: 1px solid rgba(var(--rgb-cyan), 0.3);
+  border-radius: 50%;
+  color: var(--accent-cyan);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.help-button:hover {
+  background: rgba(var(--rgb-cyan), 0.2);
+  border-color: var(--accent-cyan);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
+}
+
+.help-button svg {
+  width: clamp(14px, 2vmin, 18px);
+  height: clamp(14px, 2vmin, 18px);
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+/* Tablet - 2 columns */
+@media (max-width: 900px) {
+  .help-modal-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile - 1 column with scroll */
+@media (max-width: 600px) {
+  .help-modal-overlay {
+    padding: 12px;
+  }
+
+  .help-modal-card {
+    max-height: 90vh;
+    border-radius: 12px;
+  }
+
+  .help-modal-header {
+    padding: 14px 16px;
+  }
+
+  .help-modal-content {
+    padding: 14px 16px;
+    gap: 12px;
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+
+  .help-section {
+    padding: 10px;
+  }
+
+  .help-modal-footer {
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .help-modal-header h2 {
+    font-size: 15px;
+  }
+
+  .help-section-title h3 {
+    font-size: 13px;
+  }
+
+  .help-section p,
+  .help-list li {
+    font-size: 12px;
+  }
+}
+
+/* Height-based responsive */
+@media (max-height: 700px) {
+  .help-modal-card {
+    max-height: 95vh;
+  }
+
+  .help-section {
+    padding: 10px;
+  }
+
+  .help-modal-content {
+    gap: 12px;
+    padding: 12px 20px;
+  }
+
+  .help-section-title {
+    margin-bottom: 6px;
+  }
+
+  .help-list {
+    gap: 4px;
+  }
+}
