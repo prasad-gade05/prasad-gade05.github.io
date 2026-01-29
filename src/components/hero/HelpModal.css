@@ -37,7 +37,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 16px 20px;
+  padding: 12px 20px;
   border-bottom: 1px solid var(--border-subtle);
   background: rgba(0, 229, 255, 0.05);
   flex-shrink: 0;
@@ -81,12 +81,12 @@
 }
 
 .help-modal-content {
-  padding: 16px 24px;
+  padding: 12px 20px;
   overflow-y: auto;
   flex: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px 24px;
+  gap: 10px 16px;
 }
 
 /* Scrollbar styling for the content */
@@ -109,21 +109,21 @@
 
 /* Sections */
 .help-section {
-  padding: 12px;
+  padding: 10px 12px;
   background: rgba(255, 255, 255, 0.02);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .help-section:last-child {
-  padding: 12px;
+  padding: 10px 12px;
 }
 
 .help-section-title {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .help-section-title svg {
@@ -142,7 +142,7 @@
 .help-section p {
   font-size: clamp(12px, 1.6vmin, 14px);
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.6;
   margin: 0;
 }
 
@@ -163,14 +163,14 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 .help-list li {
   font-size: clamp(12px, 1.6vmin, 14px);
   color: var(--text-secondary);
-  line-height: 1.6;
-  padding-left: 16px;
+  line-height: 1.5;
+  padding-left: 14px;
   position: relative;
 }
 
@@ -222,7 +222,7 @@
 
 /* Footer */
 .help-modal-footer {
-  padding: 12px 20px;
+  padding: 10px 20px;
   border-top: 1px solid var(--border-subtle);
   background: rgba(0, 229, 255, 0.03);
   flex-shrink: 0;
@@ -342,4 +342,42 @@
   .help-list {
     gap: 4px;
   }
+}
+
+/* ============================================
+   LIGHT THEME STYLES
+   ============================================ */
+
+[data-theme='light'] .help-modal-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme='light'] .help-modal-card {
+  background: var(--bg-card);
+  border-color: var(--border-subtle);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15), 0 0 40px rgba(0, 123, 181, 0.1);
+}
+
+[data-theme='light'] .help-modal-header {
+  background: rgba(0, 123, 181, 0.08);
+  border-color: var(--border-subtle);
+}
+
+[data-theme='light'] .help-section {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='light'] .help-section-easter {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.08) 0%, rgba(0, 123, 181, 0.08) 100%) !important;
+  border: 1px solid rgba(147, 51, 234, 0.2) !important;
+}
+
+[data-theme='light'] .help-modal-footer {
+  background: rgba(0, 123, 181, 0.05);
+  border-color: var(--border-subtle);
+}
+
+[data-theme='light'] .help-modal-close:hover {
+  background: rgba(239, 68, 68, 0.1);
 }
