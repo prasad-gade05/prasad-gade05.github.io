@@ -341,7 +341,7 @@
   border-radius: 12px;
   border: 1px solid var(--border-subtle);
   overflow: hidden;
-  flex-shrink: 0;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
@@ -408,9 +408,9 @@
   font-size: clamp(11px, 1.3vmin, 13px);
   line-height: 1.4;
   background: var(--bg-code);
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: visible;
   white-space: pre;
   scrollbar-width: none;
 }
@@ -1448,7 +1448,7 @@
   }
   
   .code-card {
-    flex: 1;
+    flex: 0 0 auto;
     min-width: 280px;
   }
   
@@ -2616,6 +2616,143 @@
   .hero {
     max-width: 1800px;
     margin: 0 auto;
+  }
+}
+
+/* ============================================
+   DESKTOP VIEW ON SMALL PHYSICAL SCREENS
+   (Desktop site requested on mobile browser)
+   Targets screens with desktop width but small physical size
+   ============================================ */
+@media (max-height: 500px), (max-resolution: 150dpi) and (min-width: 900px) and (max-width: 1400px) {
+  /* Constrain left column cards */
+  .info-section {
+    padding: 8px 10px;
+  }
+  
+  .code-card {
+    /* No max-height - let it show all content */
+  }
+  
+  .social-section {
+    max-height: 100px;
+  }
+  
+  .social-card-fun {
+    max-height: 45px;
+    padding: 4px;
+  }
+  
+  .social-icon-wrap {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Constrain right column tabs content */
+  .tabs-content {
+    padding: 10px;
+  }
+  
+  /* Skills grid - tighter */
+  .skills-compact {
+    gap: 8px;
+  }
+  
+  .skill-category-card {
+    padding: 8px;
+  }
+  
+  .skill-category-title {
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+  
+  .skill-item {
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+  
+  .skill-icon-mini {
+    width: 12px;
+    height: 12px;
+  }
+  
+  /* Projects grid - tighter */
+  .projects-grid {
+    gap: 8px;
+  }
+  
+  .project-card {
+    padding: 10px;
+  }
+  
+  .project-title {
+    font-size: 12px;
+  }
+  
+  .project-subtitle {
+    font-size: 10px;
+  }
+  
+  .project-desc {
+    font-size: 10px;
+    -webkit-line-clamp: 2;
+  }
+  
+  .project-tech {
+    gap: 4px;
+  }
+  
+  .project-tech span {
+    font-size: 9px;
+    padding: 2px 5px;
+  }
+  
+  /* Education cards - tighter */
+  .edu-card, .cert-card, .achieve-card, .vol-card {
+    padding: 8px 10px;
+  }
+  
+  .edu-degree, .cert-name, .achieve-title, .vol-role {
+    font-size: 11px;
+  }
+  
+  .edu-school, .cert-org, .achieve-desc, .vol-org {
+    font-size: 10px;
+  }
+  
+  /* Hobbies - tighter */
+  .hobbies-grid {
+    gap: 8px;
+  }
+  
+  .hobby-card {
+    padding: 10px;
+  }
+  
+  .hobby-title {
+    font-size: 11px;
+  }
+  
+  .hobby-content {
+    font-size: 10px;
+  }
+  
+  /* Experience card */
+  .exp-card {
+    padding: 10px;
+  }
+  
+  .exp-title {
+    font-size: 12px;
+  }
+  
+  .exp-company {
+    font-size: 11px;
+  }
+  
+  .exp-points li {
+    font-size: 10px;
   }
 }
 
