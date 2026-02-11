@@ -68,13 +68,18 @@ const MinecraftSkinViewer = ({ skinUrl, width = 300, height = 400 }) => {
         }
       }
       
-      // Wave Animation based on rotation (wave when facing viewer)
+      // Wave Animation based on relative rotation to camera
       if (player.parent) {
-        const rotY = player.parent.rotation.y;
-        let normalizedRot = rotY % (2 * Math.PI);
-        // Normalize to 0..2PI
+        // Calculate angle between player's facing direction and camera
+        const camPos = viewer.camera.position;
+        const camAngle = Math.atan2(camPos.x, camPos.z);
+        const playerRot = player.parent.rotation.y;
+        
+        // Calculate difference relative to camera
+        let normalizedRot = (playerRot - camAngle) % (2 * Math.PI);
+        
+        // Normalize to -PI..PI
         if (normalizedRot < 0) normalizedRot += 2 * Math.PI;
-        // Shift to -PI..PI (0 is front)
         if (normalizedRot > Math.PI) normalizedRot -= 2 * Math.PI;
         
         // Define wave window (radians) - approx +/- 30 degrees
