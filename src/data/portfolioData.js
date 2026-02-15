@@ -98,7 +98,7 @@ export const socialLinks = [
     label: "Instagram",
     handle: "@prasad_gade05",
     vibe: "instagram",
-    },
+  },
   {
     icon: HiMail,
     href: "mailto:prasadgade4405@gmail.com",
@@ -351,8 +351,7 @@ export const projects = [
     subtitle: "AI Nutrition Tracker",
     category: "AI",
     stats: "Image Analysis",
-    description:
-      "Nutrition tracking using Gemini API for food image analysis.",
+    description: "Nutrition tracking using Gemini API for food image analysis.",
     tech: ["React", "Gemini API"],
     github: "https://github.com/prasad-gade05/nutrition_tracker",
     demo: "https://prasadsnutritiontracker.netlify.app/",
@@ -365,7 +364,7 @@ export const volunteering = [
     organization:
       "Bhartiya Vidya Bhavan's Sardar Patel Institute of Technology",
     location: "Munshi Nagar, Andheri, Mumbai",
-    date: "2025",
+    date: "2025 - Present",
     certificateLink:
       "https://drive.google.com/file/d/1JnA6WtIeWsKkc0x4YsTQ95hjl5PNQwgh/view?usp=sharing",
   },
@@ -406,7 +405,11 @@ export const movies = [
   { title: "Article 370", year: "2024", genre: "Action, Thriller" },
   { title: "From Paris with Love", year: "2010", genre: "Action, Thriller" },
   { title: "Shaurya", year: "2008", genre: "Drama, Thriller" },
-  { title: "The Greatest Beer Run Ever", year: "2022", genre: "Adventure, Comedy, Drama" },
+  {
+    title: "The Greatest Beer Run Ever",
+    year: "2022",
+    genre: "Adventure, Comedy, Drama",
+  },
   { title: "Ground Zero", year: "1987", genre: "Drama, Thriller" },
   { title: "American Sniper", year: "2014", genre: "Action, Biography, Drama" },
   { title: "Hacksaw Ridge", year: "2016", genre: "Biography, Drama, War" },
@@ -415,12 +418,36 @@ export const movies = [
   { title: "Snowden", year: "2016", genre: "Biography, Drama, Thriller" },
   { title: "Unbroken", year: "2014", genre: "Biography, Drama, War" },
   { title: "1917", year: "2019", genre: "Drama, War" },
-  { title: "Kingdom of Heaven", year: "2005", genre: "Action, Adventure, Drama" },
-  { title: "All Quiet on the Western Front", year: "2022", genre: "Action, Drama, War" },
-  { title: "Kung Fu Panda", year: "2008", genre: "Animation, Action, Adventure" },
-  { title: "Kung Fu Panda 2", year: "2011", genre: "Animation, Action, Adventure" },
-  { title: "Kung Fu Panda 3", year: "2016", genre: "Animation, Action, Adventure" },
-  { title: "Kung Fu Panda 4", year: "2024", genre: "Animation, Action, Adventure" },
+  {
+    title: "Kingdom of Heaven",
+    year: "2005",
+    genre: "Action, Adventure, Drama",
+  },
+  {
+    title: "All Quiet on the Western Front",
+    year: "2022",
+    genre: "Action, Drama, War",
+  },
+  {
+    title: "Kung Fu Panda",
+    year: "2008",
+    genre: "Animation, Action, Adventure",
+  },
+  {
+    title: "Kung Fu Panda 2",
+    year: "2011",
+    genre: "Animation, Action, Adventure",
+  },
+  {
+    title: "Kung Fu Panda 3",
+    year: "2016",
+    genre: "Animation, Action, Adventure",
+  },
+  {
+    title: "Kung Fu Panda 4",
+    year: "2024",
+    genre: "Animation, Action, Adventure",
+  },
   { title: "Toy Story", year: "1995", genre: "Animation, Adventure, Comedy" },
   { title: "Toy Story 2", year: "1999", genre: "Animation, Adventure, Comedy" },
   { title: "Toy Story 3", year: "2010", genre: "Animation, Adventure, Comedy" },
@@ -429,17 +456,41 @@ export const movies = [
   { title: "Cars 2", year: "2011", genre: "Animation, Adventure, Comedy" },
   { title: "Cars 3", year: "2017", genre: "Animation, Adventure, Comedy" },
   { title: "Planes", year: "2013", genre: "Animation, Adventure, Comedy" },
-  { title: "Planes: Fire & Rescue", year: "2014", genre: "Animation, Adventure, Comedy" },
+  {
+    title: "Planes: Fire & Rescue",
+    year: "2014",
+    genre: "Animation, Adventure, Comedy",
+  },
   { title: "Rio", year: "2011", genre: "Animation, Adventure, Comedy" },
   { title: "Rio 2", year: "2014", genre: "Animation, Adventure, Comedy" },
-  { title: "The Incredibles", year: "2004", genre: "Animation, Action, Adventure" },
-  { title: "Incredibles 2", year: "2018", genre: "Animation, Action, Adventure" },
-  { title: "Finding Nemo", year: "2003", genre: "Animation, Adventure, Comedy" },
-  { title: "Finding Dory", year: "2016", genre: "Animation, Adventure, Comedy" },
+  {
+    title: "The Incredibles",
+    year: "2004",
+    genre: "Animation, Action, Adventure",
+  },
+  {
+    title: "Incredibles 2",
+    year: "2018",
+    genre: "Animation, Action, Adventure",
+  },
+  {
+    title: "Finding Nemo",
+    year: "2003",
+    genre: "Animation, Adventure, Comedy",
+  },
+  {
+    title: "Finding Dory",
+    year: "2016",
+    genre: "Animation, Adventure, Comedy",
+  },
   { title: "WALL·E", year: "2008", genre: "Animation, Adventure, Sci-Fi" },
   { title: "Big Hero 6", year: "2014", genre: "Animation, Action, Adventure" },
   { title: "Ratatouille", year: "2007", genre: "Animation, Adventure, Comedy" },
-  { title: "The Wild Robot", year: "2024", genre: "Animation, Adventure, Sci-Fi" },
+  {
+    title: "The Wild Robot",
+    year: "2024",
+    genre: "Animation, Adventure, Sci-Fi",
+  },
   { title: "Up", year: "2009", genre: "Animation, Adventure, Comedy" },
   { title: "Coco", year: "2017", genre: "Animation, Adventure, Family" },
   { title: "Zootopia", year: "2016", genre: "Animation, Adventure, Comedy" },
@@ -503,7 +554,8 @@ export const profileData = {
 
 export const codeCardData = {
   filename: "prasad_gade.py",
-  resumeLink: "https://drive.google.com/file/d/134zdT9FaQX6siuHMxnICxBqZrK_R3YXV/view?usp=sharing",
+  resumeLink:
+    "https://drive.google.com/file/d/134zdT9FaQX6siuHMxnICxBqZrK_R3YXV/view?usp=sharing",
   codeLines: [
     {
       lineNum: 1,
