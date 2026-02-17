@@ -49,7 +49,8 @@
   --font-mono: 'JetBrains Mono', monospace;
   
   /* Borders */
-  --border-subtle: #333333;
+  --border-subtle: transparent;
+  --border-separator: rgba(255, 255, 255, 0.06);
   --border-glow: rgba(0, 229, 255, 0.4);
   
   /* Shadows */
@@ -100,7 +101,8 @@
   --text-muted: #71717a;
 
   /* Borders */
-  --border-subtle: #e4e4e7;
+  --border-subtle: transparent;
+  --border-separator: rgba(0, 0, 0, 0.08);
   --border-glow: rgba(0, 123, 181, 0.3);
 
   /* Shadows */
@@ -179,7 +181,7 @@ button {
   background: var(--bg-glass);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-separator);
 }
 
 /* Gradient text utility */

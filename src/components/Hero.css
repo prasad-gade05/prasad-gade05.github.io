@@ -353,7 +353,7 @@
   gap: 8px;
   padding: clamp(8px, 1.1vmin, 12px) clamp(10px, 1.3vmin, 14px);
   background: var(--bg-tertiary);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-separator);
   flex-shrink: 0;
 }
 
@@ -673,7 +673,7 @@
 
 .tabs-header {
   display: flex;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-separator);
   flex-shrink: 0;
   overflow-x: auto;
   scrollbar-width: none;
@@ -786,7 +786,7 @@
   gap: 8px;
   margin-bottom: clamp(8px, 1.2vmin, 14px);
   padding-bottom: clamp(6px, 1vmin, 10px);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-separator);
   color: var(--accent-cyan);
   font-size: clamp(13px, 1.6vmin, 16px);
   font-weight: 600;
@@ -987,7 +987,8 @@
   margin-top: auto;
   padding: 10px 16px;
   background: transparent;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-separator);
+  border-left: 4px solid var(--accent-cyan);
   border-radius: 8px;
   font-size: clamp(12px, 1.4vmin, 14px);
   font-weight: 500;

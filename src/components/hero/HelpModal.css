@@ -38,7 +38,7 @@
   align-items: center;
   gap: 12px;
   padding: 12px 20px;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-separator);
   background: rgba(0, 229, 255, 0.05);
   flex-shrink: 0;
 }
@@ -99,7 +99,7 @@
 }
 
 .help-modal-content::-webkit-scrollbar-thumb {
-  background: var(--border-subtle);
+  background: var(--text-muted);
   border-radius: 3px;
 }
 
@@ -223,7 +223,7 @@
 /* Footer */
 .help-modal-footer {
   padding: 10px 20px;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border-separator);
   background: rgba(0, 229, 255, 0.03);
   flex-shrink: 0;
 }
