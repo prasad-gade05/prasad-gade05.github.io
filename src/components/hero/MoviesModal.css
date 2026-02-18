@@ -416,3 +416,75 @@
     padding: 3px 8px;
   }
 }
+
+/* Arcade theme overrides for Movies modal */
+[data-theme='arcade-dark'] .movies-modal-card,
+[data-theme='arcade-light'] .movies-modal-card {
+  border: 3px solid #000;
+  border-radius: 16px;
+  box-shadow: 8px 8px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .movies-modal-card {
+  background: #1A1A2E;
+}
+
+[data-theme='arcade-light'] .movies-modal-card {
+  background: #FFFFFF;
+}
+
+[data-theme='arcade-dark'] .movies-modal-header,
+[data-theme='arcade-light'] .movies-modal-header {
+  border-bottom: 3px solid #000;
+}
+
+[data-theme='arcade-dark'] .movies-modal-header h2,
+[data-theme='arcade-light'] .movies-modal-header h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+[data-theme='arcade-dark'] .movies-modal-tabs,
+[data-theme='arcade-light'] .movies-modal-tabs {
+  border-bottom: 3px solid #000;
+}
+
+[data-theme='arcade-dark'] .movie-item,
+[data-theme='arcade-light'] .movie-item {
+  border: 3px solid #000;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .movie-item {
+  background: #252542;
+}
+
+[data-theme='arcade-light'] .movie-item {
+  background: #F0EDE6;
+}
+
+[data-theme='arcade-dark'] .genre-tag,
+[data-theme='arcade-light'] .genre-tag {
+  border: 2px solid #000;
+  border-radius: 999px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+}
+
+[data-theme='arcade-dark'] .movies-modal-close,
+[data-theme='arcade-light'] .movies-modal-close {
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .movies-modal-close {
+  background: #FF2D55;
+  color: #fff;
+}
+
+[data-theme='arcade-light'] .movies-modal-close {
+  background: #CC1440;
+  color: #fff;
+}

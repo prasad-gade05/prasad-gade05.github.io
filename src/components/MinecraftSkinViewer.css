@@ -201,3 +201,88 @@
     padding: 6px 12px;
   }
 }
+
+/* Arcade theme overrides for Minecraft modal */
+[data-theme='arcade-dark'] .minecraft-modal-card,
+[data-theme='arcade-light'] .minecraft-modal-card {
+  border: 3px solid #000;
+  border-radius: 16px;
+  box-shadow: 8px 8px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .minecraft-modal-card::before,
+[data-theme='arcade-light'] .minecraft-modal-card::before {
+  height: 0;
+}
+
+[data-theme='arcade-dark'] .minecraft-modal-card {
+  background: #1A1A2E;
+}
+
+[data-theme='arcade-light'] .minecraft-modal-card {
+  background: #FFFFFF;
+}
+
+[data-theme='arcade-dark'] .minecraft-modal-header,
+[data-theme='arcade-light'] .minecraft-modal-header {
+  border-bottom: 3px solid #000;
+}
+
+[data-theme='arcade-dark'] .minecraft-modal-header h3,
+[data-theme='arcade-light'] .minecraft-modal-header h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+[data-theme='arcade-light'] .minecraft-modal-header h3 {
+  color: #000;
+}
+
+[data-theme='arcade-dark'] .minecraft-gamertag,
+[data-theme='arcade-light'] .minecraft-gamertag {
+  border: 2px solid #000;
+  border-radius: 999px;
+  box-shadow: 2px 2px 0px 0px #000;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+}
+
+[data-theme='arcade-dark'] .minecraft-gamertag {
+  background: #FFE600;
+  color: #000;
+}
+
+[data-theme='arcade-light'] .minecraft-gamertag {
+  background: #0088AA;
+  color: #fff;
+}
+
+[data-theme='arcade-dark'] .minecraft-controls-hint,
+[data-theme='arcade-light'] .minecraft-controls-hint {
+  border: 2px solid #000;
+  border-radius: 999px;
+  font-family: 'Fredoka', sans-serif;
+}
+
+[data-theme='arcade-light'] .minecraft-controls-hint {
+  color: #555;
+  background: #EBEBEB;
+  border-color: #000;
+}
+
+[data-theme='arcade-dark'] .minecraft-modal-close,
+[data-theme='arcade-light'] .minecraft-modal-close {
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .minecraft-modal-close {
+  background: #FF2D55;
+  color: #fff;
+}
+
+[data-theme='arcade-light'] .minecraft-modal-close {
+  background: #CC1440;
+  color: #fff;
+}

@@ -200,3 +200,71 @@
   font-weight: 600;
   color: var(--text-primary, #e6edf3);
 }
+
+/* Arcade theme overrides for Resume modal */
+[data-theme='arcade-dark'] .resume-modal-card,
+[data-theme='arcade-light'] .resume-modal-card {
+  border: 3px solid #000;
+  border-radius: 16px;
+  box-shadow: 8px 8px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .resume-modal-card {
+  background: #1A1A2E;
+}
+
+[data-theme='arcade-light'] .resume-modal-card {
+  background: #FFFFFF;
+  box-shadow: 8px 8px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .resume-modal-header,
+[data-theme='arcade-light'] .resume-modal-header {
+  border-bottom: 3px solid #000;
+}
+
+[data-theme='arcade-dark'] .resume-modal-header h3,
+[data-theme='arcade-light'] .resume-modal-header h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+[data-theme='arcade-dark'] .control-btn,
+[data-theme='arcade-light'] .control-btn {
+  border: 2px solid #000;
+  border-radius: 8px;
+  box-shadow: 2px 2px 0px 0px #000;
+  transition: all 0.1s ease;
+}
+
+[data-theme='arcade-dark'] .control-btn:hover,
+[data-theme='arcade-light'] .control-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .download-btn,
+[data-theme='arcade-light'] .download-btn {
+  border: 2px solid #000;
+  border-radius: 999px;
+  box-shadow: 2px 2px 0px 0px #000;
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+[data-theme='arcade-dark'] .download-btn {
+  background: #FFE600;
+  color: #000;
+}
+
+[data-theme='arcade-light'] .download-btn {
+  background: #0088AA;
+  color: #fff;
+}
+
+[data-theme='arcade-dark'] .resume-controls,
+[data-theme='arcade-light'] .resume-controls {
+  border-bottom: 3px solid #000;
+}

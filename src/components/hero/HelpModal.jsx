@@ -114,8 +114,8 @@ const HelpModal = ({ onClose }) => {
               <h3>Themes</h3>
             </div>
             <p>
-              Switch between <strong>dark and light modes</strong> using the toggle. 
-              Pick what's comfortable for your eyes!
+              Cycle through <strong>4 themes</strong> — Dark, Light, Arcade Dark, and Arcade Light — 
+              using the toggle button. The arcade themes bring a retro game aesthetic!
             </p>
           </section>
 

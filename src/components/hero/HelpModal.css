@@ -381,3 +381,74 @@
 [data-theme='light'] .help-modal-close:hover {
   background: rgba(239, 68, 68, 0.1);
 }
+
+/* Arcade theme overrides for Help modal */
+[data-theme='arcade-dark'] .help-modal-card,
+[data-theme='arcade-light'] .help-modal-card {
+  border: 3px solid #000;
+  border-radius: 16px;
+  box-shadow: 8px 8px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .help-modal-card {
+  background: #1A1A2E;
+}
+
+[data-theme='arcade-light'] .help-modal-card {
+  background: #FFFFFF;
+}
+
+[data-theme='arcade-dark'] .help-modal-header,
+[data-theme='arcade-light'] .help-modal-header {
+  border-bottom: 3px solid #000;
+}
+
+[data-theme='arcade-dark'] .help-modal-header h2,
+[data-theme='arcade-light'] .help-modal-header h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+[data-theme='arcade-dark'] .help-section,
+[data-theme='arcade-light'] .help-section {
+  border: 3px solid #000;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .help-section {
+  background: #252542;
+}
+
+[data-theme='arcade-light'] .help-section {
+  background: #F0EDE6;
+}
+
+[data-theme='arcade-dark'] .help-section-title h3,
+[data-theme='arcade-light'] .help-section-title h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+[data-theme='arcade-dark'] .help-modal-footer,
+[data-theme='arcade-light'] .help-modal-footer {
+  border-top: 3px solid #000;
+}
+
+[data-theme='arcade-dark'] .help-modal-close,
+[data-theme='arcade-light'] .help-modal-close {
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .help-modal-close {
+  background: #FF2D55;
+  color: #fff;
+}
+
+[data-theme='arcade-light'] .help-modal-close {
+  background: #CC1440;
+  color: #fff;
+}

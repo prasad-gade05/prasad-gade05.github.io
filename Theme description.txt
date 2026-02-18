@@ -1,0 +1,479 @@
+DARK THEME:
+
+Design System Specification: Midnight Neo-Brutalism
+1. Design Philosophy
+
+This theme combines the immersion of a dark-mode interface with the tactile, high-energy aesthetics of "Pop Brutalism." The visual metaphor is that of physical tokens, stickers, and playing cards resting on a deep velvet table.
+
+Key Characteristics:
+
+Tactile Depth: Elements do not float; they sit heavily. Depth is achieved through hard, solid-color drop shadows (no blurs).
+
+High Contrast: Vibrant "high-voltage" accents pop aggressively against deep indigo backgrounds.
+
+Defined Boundaries: Every element is encased in a thick, solid border.
+
+Playful Geometry: A mix of pill shapes and soft-rounded rectangles creates a friendly yet structured interface.
+
+2. Color Palette
+2.1 Backgrounds & Surfaces
+
+Avoid pure black for backgrounds to maintain warmth and depth.
+
+Global Background: #12121A (Deep Void Indigo)
+
+Card/Surface Background: #1E1E2E (Rich Navy)
+
+Input/Inactive Background: #28283E (Muted Indigo)
+
+2.2 Structural Colors
+
+These define the physical edges of the UI.
+
+Borders & Outlines: #000000 (Pure Black) - Applied to all structural edges.
+
+Hard Shadows: #000000 (Pure Black) - Applied to all elevated elements.
+
+2.3 Accent Colors (The "Voltage" Palette)
+
+Used for actions, highlights, and status indicators.
+
+Primary Action (Mint): #00FF9D
+
+Attention/Warning (Voltage Yellow): #FFD700
+
+Primary Brand (Electric Blue): #4A90E2
+
+Destructive/Error (Salmon): #FF756B
+
+Information/Secondary (Lavender): #A0A0FF
+
+2.4 Typography Colors
+
+Primary Text (On Dark): #FFFFFF (Pure White)
+
+Secondary Text (On Dark): #8F90A6 (Cool Grey)
+
+Action Text (On Accent Colors): #000000 (Pure Black - Essential for contrast on yellow/mint buttons)
+
+3. Typography System
+3.1 Font Families
+
+Headings (Display): Bebas Neue, Anton, or Teko.
+
+Usage: Large titles, stat numbers, button labels.
+
+Style: Condensed, Heavy weight, often uppercase.
+
+Body (UI Text): Fredoka, Manrope, or Nunito.
+
+Usage: Paragraphs, input labels, list items.
+
+Style: Rounded sans-serif, high legibility.
+
+Data/Code: JetBrains Mono or Fira Code.
+
+Usage: IDs, timestamps, file paths.
+
+3.2 Hierarchy Rules
+
+H1/Hero Titles: Uppercase, Italicized, with a text-shadow (2px 2px #000).
+
+Button Labels: Uppercase, Bold (700 weight), letter-spacing 1px.
+
+Body Text: Regular or Medium weight (400/500), never thin.
+
+4. UI Physics (Borders, Shadows, & Radius)
+4.1 The "Sticker" Effect (Hard Shadows)
+
+Instead of soft, blurred shadows, use solid offset shadows to create a physical "stacked" look.
+
+Standard Elevation: box-shadow: 4px 4px 0px 0px #000000;
+
+High Elevation (Modals): box-shadow: 8px 8px 0px 0px #000000;
+
+Interaction (Active/Pressed):
+
+transform: translate(4px, 4px);
+
+box-shadow: 0px 0px 0px 0px #000000;
+
+Result: The element visually depresses into the screen.
+
+4.2 Borders
+
+Standard Width: 2px or 3px.
+
+Style: Solid.
+
+Color: #000000 (Black) or specific accent color for active states.
+
+4.3 Corner Radius
+
+Cards/Containers: 16px (Soft modern roundness).
+
+Buttons/Tags: 999px (Full Pill) or 12px (Rounded Rect).
+
+Inputs: 12px.
+
+5. Component Styles
+5.1 Buttons
+
+Primary Button:
+
+Background: Accent Color (Mint or Yellow).
+
+Text: Black, Bold, Uppercase.
+
+Border: 3px solid Black.
+
+Shadow: Hard Black Shadow (4px).
+
+Secondary Button:
+
+Background: Transparent or Surface Color (#1E1E2E).
+
+Text: White or Lavender.
+
+Border: 2px solid #8F90A6.
+
+Shadow: None (or subtle).
+
+5.2 Cards (Containers)
+
+Appearance: Surface Background (#1E1E2E) with 2px Black Border and 6px Black Shadow.
+
+Header Badges: Section titles should often appear as "Stickers" that overlap the border of the card (position: absolute, top: -15px, left: 20px).
+
+5.3 Input Fields
+
+Default State:
+
+Background: #12121A (Darker than card).
+
+Border: 2px solid #383854.
+
+Text: White.
+
+Focus State:
+
+Border: 3px solid Accent Color (Yellow/Blue).
+
+Shadow: 4px 4px 0px Accent Color (Solid, no blur).
+
+5.4 Modals / Popups
+
+Overlay: High opacity dark overlay (80% Black).
+
+Window: Surface Background (#1E1E2E).
+
+Border: 3px solid Accent Color (e.g., Mint).
+
+Shadow: Deep Hard Shadow (10px 10px 0px Black).
+
+6. Layout & patterns
+6.1 Grids
+
+Elements should be tightly packed.
+
+Marquee Pattern: Use scrolling text bars with solid black backgrounds and white monospace text for status updates or section dividers.
+
+6.2 Imagery
+
+Images should never be "naked." They must be wrapped in a container.
+
+The Polaroid Frame: Images should have a 3px Black border.
+
+Hover Effect: On hover, images should scale up slightly (1.05) and the border color should switch to an accent (Yellow/Mint).
+
+6.3 Data Visualization
+
+Charts: Use thick stroke lines (4px).
+
+Fills: Use pattern fills (dots/stripes) instead of opacity fades.
+
+Nodes/Points: Large, circular nodes with thick borders.
+
+7. CSS Reference Snippet
+code
+CSS
+download
+content_copy
+expand_less
+:root {
+  /* Colors */
+  --bg-app: #12121A;
+  --bg-surface: #1E1E2E;
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --accent-primary: #00FF9D;
+  --accent-warning: #FFD700;
+  --accent-danger: #FF756B;
+
+  /* Dimensions */
+  --border-width: 3px;
+  --radius-std: 16px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-card: 6px 6px 0px 0px var(--color-black);
+  --shadow-btn: 4px 4px 0px 0px var(--color-black);
+
+  /* Fonts */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+}
+
+/* Application Class Example */
+.neo-brutalist-card {
+  background: var(--bg-surface);
+  border: var(--border-width) solid var(--color-black);
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-std);
+}
+
+.neo-brutalist-btn {
+  background: var(--accent-primary);
+  color: var(--color-black);
+  border: var(--border-width) solid var(--color-black);
+  box-shadow: var(--shadow-btn);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: all 0.1s;
+}
+
+.neo-brutalist-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 0;
+}
+
+-------------------------------
+
+LIGHT THEME:
+
+Design System Specification: Daylight Neo-Brutalism (Light Mode)
+1. Design Philosophy
+
+This theme translates the "Sticker Arcade" aesthetic into a high-visibility, "Pop Art" notebook style. The visual metaphor shifts from tokens on a dark table to stickers, sketches, and cutouts on a clean paper canvas.
+
+Key Characteristics:
+
+Paper-Like Sharpness: High contrast between black ink outlines and white surfaces.
+
+CMYK Energy: Accent colors are saturated and reminiscent of print markers or highlighters.
+
+Absolute Definition: No blurs, no fades. Hard lines and hard shadows define every object.
+
+Graphic Novel Logic: The UI should feel like an interactive comic book page—flat, bold, and outlined.
+
+2. Color Palette
+2.1 Backgrounds & Surfaces
+
+Global Background: #F4F4F0 (Off-White / Bone) - Reduces eye strain compared to pure white.
+
+Card/Surface Background: #FFFFFF (Pure White) - Creates clear separation from the global background.
+
+Input/Field Background: #FFFFFF (Pure White) or #EBEBEB (Light Grey).
+
+2.2 Structural Colors
+
+Borders & Outlines: #000000 (Pure Black) - Applied rigidly to all elements.
+
+Hard Shadows: #000000 (Pure Black) - Essential for the "cutout" look.
+
+2.3 Accent Colors (The "Marker" Palette)
+
+Colors should look like fresh highlighter ink.
+
+Primary Action (Kelly Green): #00D166
+
+Attention/Highlight (School Bus Yellow): #FFCC00
+
+Brand/Info (Azure Blue): #3366FF
+
+Destructive/Alert (Hot Coral): #FF5E57
+
+Secondary/Neutral (Lilac): #DCD6F7
+
+2.4 Typography Colors
+
+Primary Text: #000000 (Pure Black)
+
+Secondary Text: #555555 (Dark Grey)
+
+Link/Action Text: #000000 (Underlined or Bold)
+
+3. Typography System
+3.1 Font Families (Identical to Dark Mode)
+
+Headings (Display): Bebas Neue, Anton, or Teko.
+
+Style: Uppercase, Heavy, Condensed.
+
+Body (UI Text): Fredoka, Manrope, or Nunito.
+
+Style: Rounded sans-serif to keep it friendly.
+
+Data/Code: JetBrains Mono or Fira Code.
+
+3.2 Hierarchy Rules
+
+H1/Hero: Huge, Black, All-Caps. Optional: White text with a thick Black stroke (-webkit-text-stroke: 2px black).
+
+Labels: All-caps, small, bold.
+
+Body: High contrast black text.
+
+4. UI Physics (Borders, Shadows, & Radius)
+4.1 The "Cutout" Effect (Hard Shadows)
+
+Shadows mimic a piece of paper or cardboard cut out and placed on a desk.
+
+Standard Shadow: box-shadow: 4px 4px 0px 0px #000000;
+
+Hover State: box-shadow: 6px 6px 0px 0px #000000; (Element rises).
+
+Active/Click State:
+
+transform: translate(4px, 4px);
+
+box-shadow: 0px 0px 0px 0px transparent;
+
+4.2 Borders
+
+Global Thickness: 3px solid Black.
+
+Reasoning: In light mode, the black border is the primary separator since there is less contrast between the background colors.
+
+4.3 Corner Radius
+
+Cards: 16px.
+
+Buttons: 999px (Pill) or 12px (Block).
+
+5. Component Styles
+5.1 Buttons
+
+Primary Button:
+
+Background: Accent Color (Yellow/Green).
+
+Text: Black, Bold, Uppercase.
+
+Border: 3px solid Black.
+
+Shadow: 4px solid Black.
+
+Secondary/Ghost Button:
+
+Background: White.
+
+Text: Black.
+
+Border: 3px solid Black.
+
+Shadow: 4px solid Black.
+
+5.2 Cards (Containers)
+
+Style: White Card (#FFFFFF) on Off-White Background (#F4F4F0).
+
+Border: 3px solid Black.
+
+Shadow: 6px solid Black.
+
+Decorative: Use "Washi Tape" logic—small rectangular vibrant strips placed on the corners of cards for decoration.
+
+5.3 Inputs & Forms
+
+Field: White background, 3px Black border.
+
+Placeholder Text: Dark Grey (#888).
+
+Focus: Background turns slightly Yellow (#FFF9C4) or border becomes thicker (4px).
+
+5.4 Data Visualization
+
+Grid Lines: Dotted Black lines (1px dotted #000).
+
+Bars/Charts: Solid Black outlines filled with "Hatched" patterns (diagonal lines) in accent colors to mimic architectural drawings.
+
+6. Visual Patterns
+6.1 Background Textures
+
+Dot Grid: The global background (#F4F4F0) should have a 2px Grey dot grid spaced 20px apart. This reinforces the "Sketchbook/Notebook" aesthetic.
+
+6.2 "Sticker" Badges
+
+Status tags (e.g., "New", "Beta") should look like physical stickers.
+
+Shape: Circular or Starburst.
+
+Style: Solid Accent Background + White Text + Black Border.
+
+7. CSS Reference Snippet
+code
+CSS
+download
+content_copy
+expand_less
+:root {
+  /* Daylight Palette */
+  --bg-app: #F4F4F0; /* Bone White */
+  --bg-surface: #FFFFFF; /* Pure White */
+  --color-black: #000000;
+  --color-text-main: #000000;
+  --color-text-sub: #555555;
+  
+  /* Marker Accents */
+  --accent-primary: #00D166; /* Kelly Green */
+  --accent-warning: #FFCC00; /* School Bus Yellow */
+  --accent-highlight: #3366FF; /* Azure */
+  --accent-danger: #FF5E57; /* Hot Coral */
+
+  /* Dimensions */
+  --border-width: 3px;
+  --radius-std: 16px;
+  
+  /* Physics */
+  --shadow-std: 4px 4px 0px 0px var(--color-black);
+  --shadow-hover: 6px 6px 0px 0px var(--color-black);
+
+  /* Fonts */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+}
+
+/* Light Mode Component Classes */
+.daylight-card {
+  background-color: var(--bg-surface);
+  border: var(--border-width) solid var(--color-black);
+  box-shadow: var(--shadow-std);
+  border-radius: var(--radius-std);
+  color: var(--color-text-main);
+}
+
+.daylight-btn {
+  background-color: var(--accent-warning);
+  color: var(--color-black);
+  border: var(--border-width) solid var(--color-black);
+  box-shadow: var(--shadow-std);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.daylight-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 0;
+}
+
+/* Notebook Grid Background */
+body {
+  background-color: var(--bg-app);
+  background-image: radial-gradient(#BFBFBF 1px, transparent 1px);
+  background-size: 20px 20px;
+}

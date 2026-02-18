@@ -488,7 +488,6 @@
 }
 
 .social-card-fun:hover {
-  transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
@@ -560,6 +559,9 @@
 
 [data-theme='light'] .social-github .social-icon { color: #24292f; }
 [data-theme='light'] .social-github .social-icon-wrap { background: rgba(36, 41, 47, 0.1); }
+
+[data-theme='arcade-light'] .social-github .social-icon { color: #24292f; }
+[data-theme='arcade-light'] .social-github .social-icon-wrap { background: rgba(36, 41, 47, 0.15); }
 
 .social-github:hover {
   background: rgba(110, 118, 129, 0.15);
@@ -2775,5 +2777,575 @@
   .exp-points li {
     font-size: 10px;
   }
+}
+
+/* ============================================
+   3D TILT ANIMATION - All interactive cards
+   ============================================ */
+
+.social-card-fun,
+.skill-group,
+.exp-card,
+.edu-item,
+.achieve-item,
+.cert-item,
+.volunteer-item,
+.hobby-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.15s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* ============================================
+   ARCADE THEMES - Neo-Brutalist Game Overrides
+   ============================================ */
+
+/* Shared arcade styles (both dark and light) */
+[data-theme='arcade-dark'] .info-section,
+[data-theme='arcade-light'] .info-section {
+  border: 3px solid #000;
+  border-radius: 16px;
+  box-shadow: 4px 4px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .hero-right,
+[data-theme='arcade-light'] .hero-right {
+  border: 3px solid #000;
+  border-radius: 16px;
+  box-shadow: 6px 6px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .code-card,
+[data-theme='arcade-light'] .code-card {
+  border: 3px solid #000;
+  border-radius: 16px;
+  box-shadow: 4px 4px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .social-card-fun,
+[data-theme='arcade-light'] .social-card-fun {
+  border: 3px solid #000;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0px 0px #000;
+  transition: all 0.15s ease;
+}
+
+[data-theme='arcade-dark'] .social-card-fun:hover,
+[data-theme='arcade-light'] .social-card-fun:hover {
+  box-shadow: 5px 5px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .social-card-fun:active,
+[data-theme='arcade-light'] .social-card-fun:active {
+  box-shadow: 0px 0px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .tabs-header,
+[data-theme='arcade-light'] .tabs-header {
+  border-bottom: 3px solid #000;
+  background: var(--bg-tertiary);
+}
+
+[data-theme='arcade-dark'] .tab-btn,
+[data-theme='arcade-light'] .tab-btn {
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: clamp(13px, 1.6vmin, 16px);
+  border-bottom: 3px solid transparent;
+  font-weight: 700;
+}
+
+[data-theme='arcade-dark'] .tab-btn.active,
+[data-theme='arcade-light'] .tab-btn.active {
+  border-bottom: 3px solid var(--accent-cyan);
+}
+
+[data-theme='arcade-dark'] .project-card,
+[data-theme='arcade-light'] .project-card {
+  border: 3px solid #000;
+  border-radius: 16px;
+  box-shadow: 4px 4px 0px 0px #000;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+[data-theme='arcade-dark'] .project-card:hover,
+[data-theme='arcade-light'] .project-card:hover {
+  box-shadow: 6px 6px 0px 0px #000;
+  border-color: var(--accent-cyan);
+}
+
+[data-theme='arcade-dark'] .project-badge,
+[data-theme='arcade-light'] .project-badge {
+  border: 2px solid #000;
+  border-radius: 999px;
+  box-shadow: 2px 2px 0px 0px #000;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+  font-size: 12px;
+  padding: 4px 12px;
+}
+
+[data-theme='arcade-dark'] .project-badge.first-place {
+  background: #FFE600;
+  color: #000;
+  box-shadow: 2px 2px 0px 0px #000;
+}
+
+[data-theme='arcade-light'] .project-badge.first-place {
+  background: #0088AA;
+  color: #fff;
+  box-shadow: 2px 2px 0px 0px #1A1A1A;
+}
+
+[data-theme='arcade-dark'] .tech-tag,
+[data-theme='arcade-light'] .tech-tag {
+  border: 2px solid #000;
+  border-radius: 999px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+  padding: 3px 10px;
+}
+
+[data-theme='arcade-dark'] .tech-tag {
+  background: rgba(0, 229, 255, 0.15);
+  color: #00E5FF;
+}
+
+[data-theme='arcade-light'] .tech-tag {
+  background: rgba(0, 136, 170, 0.12);
+  color: #006680;
+}
+
+[data-theme='arcade-dark'] .project-card-link,
+[data-theme='arcade-light'] .project-card-link {
+  border: 2px solid #000;
+  border-radius: 8px;
+  box-shadow: 2px 2px 0px 0px #000;
+  transition: all 0.1s ease;
+}
+
+[data-theme='arcade-dark'] .project-card-link:hover,
+[data-theme='arcade-light'] .project-card-link:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .view-all-btn,
+[data-theme='arcade-light'] .view-all-btn {
+  border: 3px solid #000;
+  border-left: 3px solid #000;
+  border-radius: 999px;
+  box-shadow: 4px 4px 0px 0px #000;
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  transition: all 0.1s ease;
+}
+
+[data-theme='arcade-dark'] .view-all-btn {
+  background: #FFE600;
+  color: #000;
+}
+
+[data-theme='arcade-light'] .view-all-btn {
+  background: #B38600;
+  color: #fff;
+}
+
+[data-theme='arcade-dark'] .view-all-btn:hover,
+[data-theme='arcade-light'] .view-all-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .view-all-btn:active,
+[data-theme='arcade-light'] .view-all-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px #000;
+}
+
+/* Skill chips */
+[data-theme='arcade-dark'] .skill-chip,
+[data-theme='arcade-light'] .skill-chip {
+  border: 2px solid #000;
+  border-radius: 999px;
+  box-shadow: 2px 2px 0px 0px #000;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+}
+
+[data-theme='arcade-dark'] .skill-category,
+[data-theme='arcade-light'] .skill-category {
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Experience, Education, Achievements panes */
+[data-theme='arcade-dark'] .tab-pane.split,
+[data-theme='arcade-light'] .tab-pane.split {
+  border: 3px solid #000;
+  border-radius: 16px;
+  box-shadow: 4px 4px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .pane-header,
+[data-theme='arcade-light'] .pane-header {
+  border-bottom: 3px solid #000;
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: clamp(15px, 1.8vmin, 18px);
+}
+
+[data-theme='arcade-dark'] .exp-card,
+[data-theme='arcade-light'] .exp-card {
+  border: 3px solid #000;
+  border-radius: 16px;
+  box-shadow: 4px 4px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .exp-tag,
+[data-theme='arcade-light'] .exp-tag {
+  border: 2px solid #000;
+  border-radius: 999px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+}
+
+[data-theme='arcade-dark'] .exp-cert-link,
+[data-theme='arcade-light'] .exp-cert-link {
+  border: 2px solid #000;
+  border-radius: 999px;
+  box-shadow: 2px 2px 0px 0px #000;
+  padding: 4px 12px;
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+[data-theme='arcade-dark'] .edu-item,
+[data-theme='arcade-light'] .edu-item {
+  border: 3px solid #000;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .edu-grade,
+[data-theme='arcade-light'] .edu-grade {
+  border: 2px solid #000;
+  border-radius: 999px;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.5px;
+  padding: 3px 10px;
+}
+
+[data-theme='arcade-dark'] .achieve-item,
+[data-theme='arcade-light'] .achieve-item {
+  border: 3px solid #000;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .achieve-dot,
+[data-theme='arcade-light'] .achieve-dot {
+  border: 2px solid #000;
+}
+
+[data-theme='arcade-dark'] .achieve-link,
+[data-theme='arcade-light'] .achieve-link {
+  border: 2px solid #000;
+  border-radius: 999px;
+  box-shadow: 2px 2px 0px 0px #000;
+  padding: 2px 10px;
+}
+
+/* Certifications */
+[data-theme='arcade-dark'] .cert-item,
+[data-theme='arcade-light'] .cert-item {
+  border: 3px solid #000;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .cert-badge,
+[data-theme='arcade-light'] .cert-badge {
+  border: 2px solid #000;
+  border-radius: 8px;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+}
+
+[data-theme='arcade-dark'] .cert-link,
+[data-theme='arcade-light'] .cert-link {
+  border: 2px solid #000;
+  border-radius: 6px;
+  box-shadow: 2px 2px 0px 0px #000;
+}
+
+/* Volunteering */
+[data-theme='arcade-dark'] .volunteer-item,
+[data-theme='arcade-light'] .volunteer-item {
+  border: 3px solid #000;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .volunteer-icon,
+[data-theme='arcade-light'] .volunteer-icon {
+  border: 2px solid #000;
+  border-radius: 8px;
+}
+
+[data-theme='arcade-dark'] .volunteer-cert-link,
+[data-theme='arcade-light'] .volunteer-cert-link {
+  border: 2px solid #000;
+  border-radius: 999px;
+  box-shadow: 2px 2px 0px 0px #000;
+  padding: 2px 10px;
+}
+
+/* Hobbies */
+[data-theme='arcade-dark'] .hobby-card,
+[data-theme='arcade-light'] .hobby-card {
+  border: 3px solid #000;
+  border-radius: 16px;
+  box-shadow: 4px 4px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .hobby-card-header h4,
+[data-theme='arcade-light'] .hobby-card-header h4 {
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+[data-theme='arcade-dark'] .hobby-card-icon,
+[data-theme='arcade-light'] .hobby-card-icon {
+  border: 2px solid #000;
+  border-radius: 8px;
+}
+
+[data-theme='arcade-dark'] .series-tag,
+[data-theme='arcade-light'] .series-tag {
+  border: 2px solid #000;
+  border-radius: 999px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+}
+
+[data-theme='arcade-dark'] .song-link,
+[data-theme='arcade-light'] .song-link {
+  border: 2px solid #000;
+  border-radius: 999px;
+  box-shadow: 2px 2px 0px 0px #000;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+}
+
+/* Hobby text font overrides for arcade themes */
+[data-theme='arcade-dark'] .hobby-activity-item,
+[data-theme='arcade-light'] .hobby-activity-item {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 2px 2px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .book-title,
+[data-theme='arcade-light'] .book-title {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+}
+
+[data-theme='arcade-dark'] .book-author,
+[data-theme='arcade-light'] .book-author {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+}
+
+[data-theme='arcade-dark'] .book-info,
+[data-theme='arcade-light'] .book-info {
+  border: 2px solid #000;
+  border-left: 4px solid var(--accent-orange);
+  border-radius: 10px;
+  box-shadow: 2px 2px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .see-more-btn,
+[data-theme='arcade-light'] .see-more-btn {
+  border: 3px solid #000 !important;
+  border-radius: 999px !important;
+  box-shadow: 3px 3px 0px 0px #000;
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  transition: all 0.1s ease;
+}
+
+[data-theme='arcade-dark'] .see-more-btn {
+  background: #BF5AF2 !important;
+  color: #fff !important;
+}
+
+[data-theme='arcade-light'] .see-more-btn {
+  background: #7B2FBF !important;
+  color: #fff !important;
+}
+
+[data-theme='arcade-dark'] .see-more-btn:hover,
+[data-theme='arcade-light'] .see-more-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #000;
+}
+
+/* Profile image - arcade style */
+[data-theme='arcade-dark'] .profile-image,
+[data-theme='arcade-light'] .profile-image {
+  border: 3px solid #000;
+  box-shadow: 3px 3px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .profile-image:hover,
+[data-theme='arcade-light'] .profile-image:hover {
+  box-shadow: 4px 4px 0px 0px #000;
+}
+
+/* Profile modal - arcade style */
+[data-theme='arcade-dark'] .profile-modal-card,
+[data-theme='arcade-light'] .profile-modal-card {
+  border: 3px solid #000;
+  border-radius: 16px;
+  box-shadow: 8px 8px 0px 0px #000;
+}
+
+/* Status badge */
+[data-theme='arcade-dark'] .status-badge,
+[data-theme='arcade-light'] .status-badge {
+  border: 2px solid #000;
+  border-radius: 999px;
+  box-shadow: 2px 2px 0px 0px #000;
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+[data-theme='arcade-dark'] .status-badge {
+  background: #FFE600;
+  color: #000;
+}
+
+[data-theme='arcade-light'] .status-badge {
+  background: #0088AA;
+  color: #fff;
+}
+
+[data-theme='arcade-dark'] .status-dot {
+  box-shadow: none;
+  background: #000;
+}
+
+[data-theme='arcade-light'] .status-dot {
+  box-shadow: none;
+  background: #fff;
+}
+
+/* Code card header */
+[data-theme='arcade-dark'] .code-header,
+[data-theme='arcade-light'] .code-header {
+  border-bottom: 3px solid #000;
+}
+
+[data-theme='arcade-dark'] .code-header .resume-btn,
+[data-theme='arcade-light'] .code-header .resume-btn {
+  border: 2px solid #000;
+  border-radius: 999px;
+  box-shadow: 2px 2px 0px 0px #000;
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.1s ease;
+}
+
+[data-theme='arcade-dark'] .code-header .resume-btn {
+  background: #FFE600;
+  color: #000;
+}
+
+[data-theme='arcade-light'] .code-header .resume-btn {
+  background: #B38600;
+  color: #fff;
+}
+
+[data-theme='arcade-dark'] .code-header .resume-btn:hover,
+[data-theme='arcade-light'] .code-header .resume-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px 0px #000;
+}
+
+/* Theme toggle button - arcade active state */
+[data-theme='arcade-dark'] .theme-toggle-tab,
+[data-theme='arcade-light'] .theme-toggle-tab {
+  border: 2px solid #000;
+  border-radius: 8px;
+  box-shadow: 2px 2px 0px 0px #000;
+  transition: all 0.1s ease;
+}
+
+[data-theme='arcade-dark'] .theme-toggle-tab {
+  background: #FF2D55;
+  color: #fff;
+}
+
+[data-theme='arcade-light'] .theme-toggle-tab {
+  background: #CC1440;
+  color: #fff;
+}
+
+[data-theme='arcade-dark'] .theme-toggle-tab:hover,
+[data-theme='arcade-light'] .theme-toggle-tab:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px 0px #000;
+}
+
+/* Skill tags in info section */
+[data-theme='arcade-dark'] .skill-tag,
+[data-theme='arcade-light'] .skill-tag {
+  border: 2px solid #000;
+  border-radius: 999px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+}
+
+/* Animated name - arcade style */
+[data-theme='arcade-dark'] .animated-name,
+[data-theme='arcade-light'] .animated-name {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 2px;
+}
+
+/* Hobby minecraft clickable */
+[data-theme='arcade-dark'] .minecraft-clickable,
+[data-theme='arcade-light'] .minecraft-clickable {
+  border: 2px solid #000;
+  border-radius: 8px;
+  box-shadow: 2px 2px 0px 0px #000;
+  padding: 4px 8px;
+}
+
+/* Arcade light specific background pattern (dot grid notebook) */
+[data-theme='arcade-light'] .hero {
+  background-image: radial-gradient(#C0B8A8 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Arcade dark specific background pattern (subtle grid) */
+[data-theme='arcade-dark'] .hero {
+  background-image: radial-gradient(rgba(0, 229, 255, 0.06) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 

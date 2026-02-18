@@ -15,6 +15,7 @@ import {
   Gamepad2,
   Tv,
   Headphones,
+  Joystick,
 } from "lucide-react";
 import { FaGithub, FaSpotify } from "react-icons/fa";
 import { GiCricketBat, GiBookCover } from "react-icons/gi";
@@ -42,6 +43,7 @@ import {
 
 const ContentTabs = ({ onOpenMinecraft }) => {
   const [activeTabs, setActiveTabs] = useState(["projects"]);
+  const themeOrder = ['dark', 'light', 'arcade-dark', 'arcade-light'];
   const [theme, setTheme] = useState('dark');
   const [isMoviesModalOpen, setIsMoviesModalOpen] = useState(false);
 
@@ -66,18 +68,20 @@ const ContentTabs = ({ onOpenMinecraft }) => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
+  const getNextTheme = (current) => {
+    const currentIndex = themeOrder.indexOf(current);
+    return themeOrder[(currentIndex + 1) % themeOrder.length];
+  };
+
   const toggleTheme = (e) => {
-    // If view transitions are not supported, just switch theme
     if (!document.startViewTransition) {
-      setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+      setTheme(prev => getNextTheme(prev));
       return;
     }
 
-    // Get click coordinates
     const x = e.clientX;
     const y = e.clientY;
     
-    // Calculate distance to furthest corner
     const right = window.innerWidth - x;
     const bottom = window.innerHeight - y;
     const maxRadius = Math.hypot(
@@ -86,11 +90,10 @@ const ContentTabs = ({ onOpenMinecraft }) => {
     );
 
     const transition = document.startViewTransition(() => {
-      setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+      setTheme(prev => getNextTheme(prev));
     });
 
     transition.ready.then(() => {
-      // Animate the circle clip-path
       document.documentElement.animate(
         {
           clipPath: [
@@ -105,6 +108,26 @@ const ContentTabs = ({ onOpenMinecraft }) => {
         }
       );
     });
+  };
+
+  const getThemeIcon = () => {
+    switch (theme) {
+      case 'dark': return <Sun size={16} />;
+      case 'light': return <Moon size={16} />;
+      case 'arcade-dark': return <Joystick size={16} />;
+      case 'arcade-light': return <Moon size={16} />;
+      default: return <Sun size={16} />;
+    }
+  };
+
+  const getThemeLabel = () => {
+    switch (theme) {
+      case 'dark': return 'Light';
+      case 'light': return 'Arcade Dark';
+      case 'arcade-dark': return 'Arcade Light';
+      case 'arcade-light': return 'Dark';
+      default: return 'Light';
+    }
   };
 
   const tabs = [
@@ -180,11 +203,12 @@ const ContentTabs = ({ onOpenMinecraft }) => {
           </button>
         ))}
         <button
-          className="theme-toggle-tab"
+          className={`theme-toggle-tab ${theme.startsWith('arcade') ? 'arcade-active' : ''}`}
           onClick={toggleTheme}
-          aria-label="Toggle theme"
+          aria-label={`Switch to ${getThemeLabel()} theme`}
+          title={`Switch to ${getThemeLabel()}`}
         >
-          {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+          {getThemeIcon()}
         </button>
       </div>
 
@@ -297,7 +321,10 @@ const ContentTabs = ({ onOpenMinecraft }) => {
             >
               <div className="skills-compact">
                 {Object.entries(skills).map(([category, items]) => (
-                  <div key={category} className="skill-group">
+                  <div key={category} className="skill-group"
+                    onMouseMove={handleCardTilt}
+                    onMouseLeave={handleCardTiltReset}
+                  >
                     <span className="skill-category">{category}</span>
                     <div className="skill-items">
                       {items.map((skill, i) => {
@@ -331,7 +358,10 @@ const ContentTabs = ({ onOpenMinecraft }) => {
                 <Briefcase size={16} />
                 <span>Experience</span>
               </div>
-              <div className="exp-card">
+              <div className="exp-card"
+                onMouseMove={handleCardTilt}
+                onMouseLeave={handleCardTiltReset}
+              >
                 <div className="exp-header">
                   <div>
                     <h3>{experience.title}</h3>
@@ -383,7 +413,10 @@ const ContentTabs = ({ onOpenMinecraft }) => {
               </div>
               <div className="edu-list">
                 {education.map((edu, i) => (
-                  <div key={i} className="edu-item">
+                  <div key={i} className="edu-item"
+                    onMouseMove={handleCardTilt}
+                    onMouseLeave={handleCardTiltReset}
+                  >
                     <div className="edu-main">
                       <h3>{edu.degree}</h3>
                       <p>{edu.school}</p>
@@ -422,6 +455,8 @@ const ContentTabs = ({ onOpenMinecraft }) => {
                     key={i}
                     className="achieve-item"
                     style={{ "--accent": ach.color }}
+                    onMouseMove={handleCardTilt}
+                    onMouseLeave={handleCardTiltReset}
                   >
                     <div className="achieve-dot"></div>
                     <div className="achieve-content">
@@ -463,7 +498,10 @@ const ContentTabs = ({ onOpenMinecraft }) => {
               </div>
               <div className="certs-grid">
                 {certifications.map((cert, i) => (
-                  <div key={i} className="cert-item">
+                  <div key={i} className="cert-item"
+                    onMouseMove={handleCardTilt}
+                    onMouseLeave={handleCardTiltReset}
+                  >
                     <div className="cert-badge">
                       {cert.org.slice(0, 3).toUpperCase()}
                     </div>
@@ -507,7 +545,10 @@ const ContentTabs = ({ onOpenMinecraft }) => {
               </div>
               <div className="volunteer-list">
                 {volunteering.map((vol, i) => (
-                  <div key={i} className="volunteer-item">
+                  <div key={i} className="volunteer-item"
+                    onMouseMove={handleCardTilt}
+                    onMouseLeave={handleCardTiltReset}
+                  >
                     <div className="volunteer-icon">
                       <Heart size={16} />
                     </div>
@@ -552,7 +593,10 @@ const ContentTabs = ({ onOpenMinecraft }) => {
                 <span>Hobbies & Interests</span>
               </div>
               <div className="hobbies-grid">
-                <div className="hobby-card hobby-sports">
+                <div className="hobby-card hobby-sports"
+                  onMouseMove={handleCardTilt}
+                  onMouseLeave={handleCardTiltReset}
+                >
                   <div className="hobby-card-header">
                     <div className="hobby-card-icon">
                       <Gamepad2 size={20} />
@@ -577,7 +621,10 @@ const ContentTabs = ({ onOpenMinecraft }) => {
                   <div className="hobby-card-decoration"></div>
                 </div>
 
-                <div className="hobby-card hobby-reading">
+                <div className="hobby-card hobby-reading"
+                  onMouseMove={handleCardTilt}
+                  onMouseLeave={handleCardTiltReset}
+                >
                   <div className="hobby-card-header">
                     <div className="hobby-card-icon">
                       <GiBookCover size={20} />
@@ -597,7 +644,10 @@ const ContentTabs = ({ onOpenMinecraft }) => {
                   <div className="hobby-card-decoration"></div>
                 </div>
 
-                <div className="hobby-card hobby-music">
+                <div className="hobby-card hobby-music"
+                  onMouseMove={handleCardTilt}
+                  onMouseLeave={handleCardTiltReset}
+                >
                   <div className="hobby-card-header">
                     <div className="hobby-card-icon">
                       <Headphones size={20} />
@@ -629,7 +679,10 @@ const ContentTabs = ({ onOpenMinecraft }) => {
                   <div className="hobby-card-decoration"></div>
                 </div>
 
-                <div className="hobby-card hobby-series">
+                <div className="hobby-card hobby-series"
+                  onMouseMove={handleCardTilt}
+                  onMouseLeave={handleCardTiltReset}
+                >
                   <div className="hobby-card-header">
                     <div className="hobby-card-icon">
                       <Tv size={20} />
