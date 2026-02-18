@@ -67,7 +67,7 @@
   --bg-tertiary: #e4e4e7;
   --bg-card: rgba(244, 244, 245, 0.95);
   --bg-panel: #f4f4f5;
-  --bg-code: #ffffff;
+  --bg-code: #f0f0f2;
   --bg-glass: rgba(0, 0, 0, 0.05);
 
   /* Accent Colors - Adjusted for Light Theme */
@@ -179,9 +179,9 @@
   --bg-primary: #F0EDE6;
   --bg-secondary: #FFFFFF;
   --bg-tertiary: #E8E4DC;
-  --bg-card: #FFFFFF;
+  --bg-card: #F5F2EB;
   --bg-panel: #E8E4DC;
-  --bg-code: #FFFFFF;
+  --bg-code: #F0EDE6;
   --bg-glass: rgba(255, 255, 255, 0.95);
 
   /* Saturated Marker Palette (readable on white) */
