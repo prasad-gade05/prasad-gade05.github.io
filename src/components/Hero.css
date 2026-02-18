@@ -684,8 +684,13 @@
   align-items: center;
 }
 
-.theme-toggle-tab {
+.theme-picker-wrapper {
+  position: relative;
   margin-left: auto;
+  flex-shrink: 0;
+}
+
+.theme-toggle-tab {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -696,11 +701,63 @@
   background: transparent;
   transition: all 0.2s ease;
   flex-shrink: 0;
+  cursor: pointer;
+  border: none;
 }
 
 .theme-toggle-tab:hover {
   background: rgba(255, 255, 255, 0.05);
   color: var(--accent-cyan);
+}
+
+.theme-picker-dropdown {
+  position: fixed;
+  z-index: 9999;
+  background: var(--bg-card);
+  border: 1px solid var(--border-separator);
+  border-radius: 10px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 150px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.theme-option:hover {
+  background: rgba(var(--rgb-cyan), 0.1);
+  color: var(--text-primary);
+}
+
+.theme-option.active {
+  color: var(--accent-cyan);
+  background: rgba(var(--rgb-cyan), 0.12);
+}
+
+[data-theme='light'] .theme-picker-dropdown {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='light'] .theme-toggle-tab:hover {
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .tabs-header::-webkit-scrollbar {
@@ -3310,6 +3367,47 @@
 [data-theme='arcade-light'] .theme-toggle-tab:hover {
   transform: translate(1px, 1px);
   box-shadow: 1px 1px 0px 0px #000;
+}
+
+[data-theme='arcade-dark'] .theme-picker-dropdown,
+[data-theme='arcade-light'] .theme-picker-dropdown {
+  border: 3px solid #000;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0px 0px #000;
+  backdrop-filter: none;
+}
+
+[data-theme='arcade-dark'] .theme-picker-dropdown {
+  background: #1A1A2E;
+}
+
+[data-theme='arcade-light'] .theme-picker-dropdown {
+  background: #F5F2EB;
+}
+
+[data-theme='arcade-dark'] .theme-option,
+[data-theme='arcade-light'] .theme-option {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+[data-theme='arcade-dark'] .theme-option:hover {
+  background: rgba(255, 45, 85, 0.15);
+}
+
+[data-theme='arcade-light'] .theme-option:hover {
+  background: rgba(204, 20, 64, 0.1);
+}
+
+[data-theme='arcade-dark'] .theme-option.active {
+  background: rgba(255, 45, 85, 0.2);
+  color: #FF2D55;
+}
+
+[data-theme='arcade-light'] .theme-option.active {
+  background: rgba(0, 136, 170, 0.15);
+  color: #0088AA;
 }
 
 /* Skill tags in info section */

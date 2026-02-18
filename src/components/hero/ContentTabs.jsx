@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, lazy, Suspense } from "react";
+import { useState, useEffect, useCallback, useRef, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Folder,
@@ -16,6 +16,7 @@ import {
   Tv,
   Headphones,
   Joystick,
+  Palette,
 } from "lucide-react";
 import { FaGithub, FaSpotify } from "react-icons/fa";
 import { GiCricketBat, GiBookCover } from "react-icons/gi";
@@ -43,9 +44,18 @@ import {
 
 const ContentTabs = ({ onOpenMinecraft }) => {
   const [activeTabs, setActiveTabs] = useState(["projects"]);
-  const themeOrder = ['dark', 'light', 'arcade-dark', 'arcade-light'];
+  const themes = [
+    { id: 'dark', label: 'Dark', icon: Moon },
+    { id: 'light', label: 'Light', icon: Sun },
+    { id: 'arcade-dark', label: 'Arcade Dark', icon: Joystick },
+    { id: 'arcade-light', label: 'Arcade Light', icon: Gamepad2 },
+  ];
   const [theme, setTheme] = useState('dark');
+  const [showThemePicker, setShowThemePicker] = useState(false);
+  const [pickerPos, setPickerPos] = useState({ top: 0, right: 0 });
   const [isMoviesModalOpen, setIsMoviesModalOpen] = useState(false);
+  const themePickerRef = useRef(null);
+  const toggleBtnRef = useRef(null);
 
   const handleCardTilt = useCallback((e) => {
     const card = e.currentTarget;
@@ -68,20 +78,33 @@ const ContentTabs = ({ onOpenMinecraft }) => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
-  const getNextTheme = (current) => {
-    const currentIndex = themeOrder.indexOf(current);
-    return themeOrder[(currentIndex + 1) % themeOrder.length];
-  };
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (themePickerRef.current && !themePickerRef.current.contains(e.target)) {
+        setShowThemePicker(false);
+      }
+    };
+    if (showThemePicker) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [showThemePicker]);
 
-  const toggleTheme = (e) => {
-    if (!document.startViewTransition) {
-      setTheme(prev => getNextTheme(prev));
+  const switchTheme = (newThemeId, e) => {
+    if (newThemeId === theme) {
+      setShowThemePicker(false);
       return;
     }
 
     const x = e.clientX;
     const y = e.clientY;
-    
+
+    if (!document.startViewTransition) {
+      setTheme(newThemeId);
+      setShowThemePicker(false);
+      return;
+    }
+
     const right = window.innerWidth - x;
     const bottom = window.innerHeight - y;
     const maxRadius = Math.hypot(
@@ -89,8 +112,9 @@ const ContentTabs = ({ onOpenMinecraft }) => {
       Math.max(y, bottom)
     );
 
+    setShowThemePicker(false);
     const transition = document.startViewTransition(() => {
-      setTheme(prev => getNextTheme(prev));
+      setTheme(newThemeId);
     });
 
     transition.ready.then(() => {
@@ -108,26 +132,6 @@ const ContentTabs = ({ onOpenMinecraft }) => {
         }
       );
     });
-  };
-
-  const getThemeIcon = () => {
-    switch (theme) {
-      case 'dark': return <Sun size={16} />;
-      case 'light': return <Moon size={16} />;
-      case 'arcade-dark': return <Joystick size={16} />;
-      case 'arcade-light': return <Moon size={16} />;
-      default: return <Sun size={16} />;
-    }
-  };
-
-  const getThemeLabel = () => {
-    switch (theme) {
-      case 'dark': return 'Light';
-      case 'light': return 'Arcade Dark';
-      case 'arcade-dark': return 'Arcade Light';
-      case 'arcade-light': return 'Dark';
-      default: return 'Light';
-    }
   };
 
   const tabs = [
@@ -202,14 +206,52 @@ const ContentTabs = ({ onOpenMinecraft }) => {
             <span>{tab.label}</span>
           </button>
         ))}
-        <button
-          className={`theme-toggle-tab ${theme.startsWith('arcade') ? 'arcade-active' : ''}`}
-          onClick={toggleTheme}
-          aria-label={`Switch to ${getThemeLabel()} theme`}
-          title={`Switch to ${getThemeLabel()}`}
-        >
-          {getThemeIcon()}
-        </button>
+        <div className="theme-picker-wrapper" ref={themePickerRef}>
+          <button
+            className="theme-toggle-tab"
+            ref={toggleBtnRef}
+            onClick={() => {
+              if (!showThemePicker && toggleBtnRef.current) {
+                const rect = toggleBtnRef.current.getBoundingClientRect();
+                setPickerPos({
+                  top: rect.bottom + 6,
+                  right: window.innerWidth - rect.right,
+                });
+              }
+              setShowThemePicker(prev => !prev);
+            }}
+            aria-label="Choose theme"
+            title="Choose theme"
+          >
+            <Palette size={16} />
+          </button>
+          <AnimatePresence>
+            {showThemePicker && (
+              <motion.div
+                className="theme-picker-dropdown"
+                style={{ top: pickerPos.top, right: pickerPos.right }}
+                initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                transition={{ duration: 0.15 }}
+              >
+                {themes.map((t) => {
+                  const Icon = t.icon;
+                  return (
+                    <button
+                      key={t.id}
+                      className={`theme-option ${theme === t.id ? 'active' : ''}`}
+                      onClick={(e) => switchTheme(t.id, e)}
+                    >
+                      <Icon size={14} />
+                      <span>{t.label}</span>
+                    </button>
+                  );
+                })}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
 
       <div
