@@ -322,7 +322,7 @@ export const projects = [
       "Audio visualization with file upload, system capture, and 3D globe mode.",
     tech: ["TypeScript", "Web Audio", "Canvas"],
     github: "https://github.com/prasad-gade05/audio_visualizer_app",
-    demo: "https://prasad-gade05.github.io/audio_visualizer_app/",
+    demo: "https://prasadgade.dev/audio_visualizer_app/",
   },
   {
     title: "Attendance Tracker",
@@ -333,7 +333,7 @@ export const projects = [
       "Attendance simulation to calculate required classes with goal tracking.",
     tech: ["React", "TypeScript", "Dexie.js"],
     github: "https://github.com/prasad-gade05/attendance",
-    demo: "https://prasad-gade05.github.io/attendance/",
+    demo: "https://prasadgade.dev/attendance/",
   },
   {
     title: "Habit Tracker",
@@ -344,7 +344,7 @@ export const projects = [
       "Client-side habit tracking with GitHub-style contribution charts.",
     tech: ["React 19", "Zustand", "Dexie.js"],
     github: "https://github.com/prasad-gade05/Habit-Tracker",
-    demo: "https://prasad-gade05.github.io/Habit-Tracker/",
+    demo: "https://prasadgade.dev/Habit-Tracker/",
   },
   {
     title: "NutriSnap",
