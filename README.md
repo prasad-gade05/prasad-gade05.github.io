@@ -21,7 +21,7 @@ Clean and scalable GitHub Pages architecture.
 ## Other Projects Under This Setup
 
 - Audio Visualizer — https://prasadgade.dev/audio_visualizer_app/
-- Attendance Tracker — https://prasad-gade05.github.io/attendance/
-- Habit Tracker — https://prasad-gade05.github.io/Habit-Tracker/
+- Attendance Tracker — https://prasadgade.dev/attendance/
+- Habit Tracker — https://prasadgade.dev/Habit-Tracker/
 
 _(PS: You might’ve just learned something new about how GitHub Pages routing works)_
