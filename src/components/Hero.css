@@ -1615,7 +1615,7 @@
 }
 
 .volunteer-item:hover {
-  border-color: var(--accent-cyan);
+  border-color: var(--accent-magenta);
 }
 
 .volunteer-icon {
@@ -1624,9 +1624,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--gradient-primary);
+  background: transparent;
   border-radius: 10px;
-  color: white;
+  color: var(--accent-magenta);
   flex-shrink: 0;
 }
 
@@ -3292,8 +3292,8 @@
 }
 
 [data-theme='arcade-dark'] .volunteer-icon {
-  border-color: #6EDCB1;
-  color: #6EDCB1;
+  border-color: #FF6B9D;
+  color: #FF6B9D;
 }
 
 [data-theme='arcade-dark'] .volunteer-cert-link,
@@ -3427,17 +3427,21 @@
 }
 
 [data-theme='arcade-dark'] .see-more-btn {
-  background: var(--accent-purple) !important;
+  background: var(--accent-red) !important;
   color: #181818 !important;
 }
 
 [data-theme='arcade-light'] .see-more-btn {
-  background: var(--accent-cyan) !important;
+  background: var(--accent-red) !important;
   color: #ffffff !important;
 }
 
 [data-theme='arcade-light'] .hobby-music h4 {
-  color: var(--accent-magenta);
+  color: var(--accent-purple);
+}
+
+[data-theme='arcade-dark'] .hobby-music h4 {
+  color: var(--accent-purple);
 }
 
 [data-theme='arcade-dark'] .see-more-btn:hover,

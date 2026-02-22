@@ -261,7 +261,7 @@ const ContentTabs = ({ onOpenMinecraft }) => {
           activeTabs.length > 1 ? "split-view" : ""
         }`}
       >
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="sync">
           {activeTabs.includes("projects") && (
             <motion.div
               key="projects"

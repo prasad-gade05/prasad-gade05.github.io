@@ -216,7 +216,7 @@ export const achievements = [
     title: "1st Place - Tech Horizon Hackathon",
     desc: "80+ teams",
     date: "Mar 2025",
-    color: "#d29922",
+    color: "#3fb950",
     link: "https://drive.google.com/file/d/19EXpm1wVqM35qLiHvbcFzmwwwEiFSr_4/view?usp=drive_link",
     linkText: "View Certificate",
   },
