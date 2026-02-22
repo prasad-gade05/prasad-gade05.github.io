@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TbBrandMinecraft } from "react-icons/tb";
 import { Move3D, FileText } from "lucide-react";
@@ -16,6 +16,17 @@ const MinecraftSkinViewer = lazy(() => import("./MinecraftSkinViewer"));
 const Hero = () => {
   const [showMinecraftModal, setShowMinecraftModal] = useState(false);
   const [showResumeModal, setShowResumeModal] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        if (showResumeModal) setShowResumeModal(false);
+        if (showMinecraftModal) setShowMinecraftModal(false);
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [showResumeModal, showMinecraftModal]);
 
   return (
     <section className="hero">

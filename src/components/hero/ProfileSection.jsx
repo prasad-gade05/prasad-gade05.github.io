@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { MapPin, HelpCircle } from "lucide-react";
@@ -11,6 +11,17 @@ import "./HelpModal.css";
 const ProfileSection = () => {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [showHelpModal, setShowHelpModal] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        if (showProfileModal) setShowProfileModal(false);
+        if (showHelpModal) setShowHelpModal(false);
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [showProfileModal, showHelpModal]);
 
   return (
     <motion.div

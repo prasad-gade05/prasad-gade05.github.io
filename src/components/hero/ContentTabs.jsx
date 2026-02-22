@@ -56,6 +56,14 @@ const ContentTabs = ({ onOpenMinecraft }) => {
   const [showThemePicker, setShowThemePicker] = useState(false);
   const [pickerPos, setPickerPos] = useState({ top: 0, right: 0 });
   const [isMoviesModalOpen, setIsMoviesModalOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isMoviesModalOpen) setIsMoviesModalOpen(false);
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isMoviesModalOpen]);
   const themePickerRef = useRef(null);
   const toggleBtnRef = useRef(null);
 
