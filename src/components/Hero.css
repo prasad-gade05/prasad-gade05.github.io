@@ -1100,6 +1100,10 @@
   flex: 1;
 }
 
+.skill-group:hover {
+  border-color: var(--accent-green);
+}
+
 .skill-category {
   font-size: clamp(12px, 1.4vmin, 15px);
   font-weight: 600;
@@ -1162,6 +1166,10 @@
   border: 1px solid var(--border-subtle);
   border-radius: 10px;
   border-left: 4px solid var(--accent-cyan);
+}
+
+.exp-card:hover {
+  border-color: var(--accent-cyan);
 }
 
 .exp-header {
@@ -1280,7 +1288,7 @@
 }
 
 .edu-item:hover {
-  border-color: var(--accent-cyan);
+  border-color: var(--accent-blue);
 }
 
 .edu-main h3 {
@@ -1424,7 +1432,7 @@
 }
 
 .cert-item:hover {
-  border-color: var(--accent-cyan);
+  border-color: var(--accent-orange);
   transform: translateY(-2px);
 }
 
@@ -3112,12 +3120,16 @@
 /* Reduced skill group sizing */
 [data-theme='arcade-dark'] .skill-group,
 [data-theme='arcade-light'] .skill-group {
+  border: var(--arcade-border);
+  box-shadow: var(--arcade-shadow);
+  border-radius: 14px;
   padding: clamp(6px, 0.8vmin, 10px);
   gap: clamp(3px, 0.4vmin, 6px);
 }
 
-[data-theme='arcade-light'] .skill-group {
-  border-left-color: #1a1a2e;
+[data-theme='arcade-dark'] .skill-group {
+  border-color: #FFD666;
+  box-shadow: 3px 3px 0px 0px #FFD666;
 }
 
 [data-theme='arcade-dark'] .skill-items,
