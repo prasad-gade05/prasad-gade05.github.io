@@ -17,6 +17,7 @@ import {
   Headphones,
   Joystick,
   Palette,
+  User,
 } from "lucide-react";
 import { FaGithub, FaSpotify } from "react-icons/fa";
 import { GiCricketBat, GiBookCover } from "react-icons/gi";
@@ -146,7 +147,18 @@ const ContentTabs = ({ onOpenMinecraft }) => {
 
   const tabs = [
     { id: "projects", label: "Projects", icon: Folder },
-    { id: "skills", label: "Skills", icon: Code },
+    {
+      id: "about",
+      label: "About",
+      icon: User,
+      splitGroup: "about-skills",
+    },
+    {
+      id: "skills",
+      label: "Skills",
+      icon: Code,
+      splitGroup: "about-skills",
+    },
     {
       id: "experience",
       label: "Experience",
@@ -181,6 +193,7 @@ const ContentTabs = ({ onOpenMinecraft }) => {
   ];
 
   const splitGroups = {
+    "about-skills": ["about", "skills"],
     "exp-edu": ["experience", "education"],
     "ach-cert": ["achievements", "certifications"],
     "vol-hob": ["volunteering", "hobbies"],
@@ -362,15 +375,61 @@ const ContentTabs = ({ onOpenMinecraft }) => {
             </motion.div>
           )}
 
-          {activeTabs.includes("skills") && (
+          {activeTabs.includes("about") && (
             <motion.div
-              key="skills"
-              className="tab-pane skills-pane"
+              key="about"
+              className={`tab-pane about-pane ${
+                activeTabs.length > 1 ? "split" : ""
+              }`}
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 10 }}
               transition={{ duration: 0.15 }}
             >
+              <div className="pane-header">
+                <User size={16} />
+                <span>About Me</span>
+              </div>
+              <div className="about-card"
+                onMouseMove={handleCardTilt}
+                onMouseLeave={handleCardTiltReset}
+              >
+                <p className="about-intro">
+                  I'm a Computer Engineer with expertise in Data Analytics, Data Science, and Cross-Platform App Development. I build scalable, insight-driven solutions that merge data with clean engineering.
+                </p>
+                <p className="about-subtitle">I work across the entire data pipeline:</p>
+                <ul className="about-points">
+                  <li>Data cleaning &amp; transformation with Python &amp; SQL</li>
+                  <li>Interactive dashboards with Power BI</li>
+                  <li>Machine learning models for prediction &amp; classification</li>
+                </ul>
+                <p className="about-detail">
+                  I bring a product mindset to every project, focusing on code quality, model performance, and user impact. I write clean, maintainable code and follow sound software design principles.
+                </p>
+                <p className="about-cta">
+                  Open to opportunities and collaborations in Data Analytics, Data Science, and App Development.
+                </p>
+              </div>
+            </motion.div>
+          )}
+
+          {activeTabs.includes("skills") && (
+            <motion.div
+              key="skills"
+              className={`tab-pane skills-pane ${
+                activeTabs.length > 1 ? "split" : ""
+              }`}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 10 }}
+              transition={{ duration: 0.15 }}
+            >
+              {activeTabs.length > 1 && (
+                <div className="pane-header">
+                  <Code size={16} />
+                  <span>Skills</span>
+                </div>
+              )}
               <div className="skills-compact">
                 {Object.entries(skills).map(([category, items]) => (
                   <div key={category} className="skill-group"

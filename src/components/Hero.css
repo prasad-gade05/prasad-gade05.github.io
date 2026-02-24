@@ -831,11 +831,17 @@
 
 .tab-pane.split {
   flex: 1;
-  min-height: auto;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: none;
   background: rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   padding: clamp(10px, 1.4vmin, 16px);
   border: 1px solid var(--border-subtle);
+}
+
+.tab-pane.split::-webkit-scrollbar {
+  display: none;
 }
 
 /* Pane Header for Split View */
@@ -1068,6 +1074,81 @@
 }
 
 /* ============================================
+   ABOUT PANE
+   ============================================ */
+
+.about-pane {
+  gap: clamp(8px, 1.2vmin, 14px);
+}
+
+.about-pane.split {
+  flex: 0.45;
+}
+
+.about-card {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1vmin, 12px);
+  padding: clamp(12px, 1.6vmin, 20px);
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  border-left: 4px solid var(--accent-teal);
+}
+
+.about-card:hover {
+  border-color: var(--accent-teal);
+}
+
+.about-intro {
+  font-size: clamp(12px, 1.5vmin, 15px);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.about-subtitle {
+  font-size: clamp(12px, 1.4vmin, 14px);
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.about-points {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 0.5vmin, 6px);
+  list-style: none;
+  padding-left: 0;
+}
+
+.about-points li {
+  font-size: clamp(11px, 1.3vmin, 14px);
+  color: var(--text-secondary);
+  padding-left: clamp(14px, 1.6vmin, 18px);
+  position: relative;
+}
+
+.about-points li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--accent-teal);
+}
+
+.about-detail {
+  font-size: clamp(11px, 1.3vmin, 14px);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.about-cta {
+  font-size: clamp(11px, 1.3vmin, 14px);
+  color: var(--accent-teal);
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* ============================================
    SKILLS PANE - LARGER TEXT
    ============================================ */
 
@@ -1075,6 +1156,10 @@
   gap: clamp(8px, 1vmin, 12px);
   overflow: auto;
   scrollbar-width: none;
+}
+
+.skills-pane.split {
+  flex: 0.55;
 }
 
 .skills-pane::-webkit-scrollbar {
@@ -1085,7 +1170,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: clamp(8px, 1.2vmin, 12px);
-  flex: 1;
+  align-content: start;
 }
 
 .skill-group {
@@ -1097,7 +1182,6 @@
   border: 1px solid var(--border-subtle);
   border-radius: 10px;
   border-left: 4px solid var(--accent-green);
-  flex: 1;
 }
 
 .skill-group:hover {
@@ -1502,7 +1586,6 @@
   
   .skills-compact {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
   }
   
   .social-cards-grid {
@@ -2066,7 +2149,6 @@
   
   .skills-compact {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
   }
 }
 
@@ -2218,7 +2300,6 @@
   
   .skills-compact {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
   }
   
   .skill-group {
@@ -2850,6 +2931,7 @@
 
 .social-card-fun,
 .skill-group,
+.about-card,
 .exp-card,
 .edu-item,
 .achieve-item,
@@ -3087,6 +3169,35 @@
 [data-theme='arcade-light'] .view-all-btn:active {
   transform: translate(4px, 4px);
   box-shadow: 0px 0px 0px 0px transparent;
+}
+
+/* About card - vibrant purple border */
+[data-theme='arcade-dark'] .about-card,
+[data-theme='arcade-light'] .about-card {
+  border: var(--arcade-border);
+  border-radius: 14px;
+  box-shadow: var(--arcade-shadow);
+}
+
+[data-theme='arcade-dark'] .about-card {
+  border-color: #C9A0DC;
+  box-shadow: 3px 3px 0px 0px #C9A0DC;
+}
+
+[data-theme='arcade-dark'] .about-cta {
+  color: #C9A0DC;
+}
+
+[data-theme='arcade-light'] .about-cta {
+  color: var(--accent-purple);
+}
+
+[data-theme='arcade-dark'] .about-points li::before {
+  color: #C9A0DC;
+}
+
+[data-theme='arcade-light'] .about-points li::before {
+  color: var(--accent-purple);
 }
 
 /* Skill chips */
@@ -3705,6 +3816,12 @@
 
 [data-theme='arcade-dark'] .exp-card,
 [data-theme='arcade-light'] .exp-card {
+  padding: clamp(10px, 1.2vmin, 14px);
+  gap: clamp(6px, 0.8vmin, 10px);
+}
+
+[data-theme='arcade-dark'] .about-card,
+[data-theme='arcade-light'] .about-card {
   padding: clamp(10px, 1.2vmin, 14px);
   gap: clamp(6px, 0.8vmin, 10px);
 }
