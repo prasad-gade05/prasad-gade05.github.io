@@ -872,6 +872,10 @@
   scrollbar-width: none;
 }
 
+[data-theme='light'] .projects-pane {
+  background: #d0d0d1;
+}
+
 .projects-pane::-webkit-scrollbar {
   display: none;
 }
@@ -3762,6 +3766,10 @@
 [data-theme='arcade-dark'] .hero {
   background-image: radial-gradient(rgba(139, 159, 255, 0.06) 1px, transparent 1px);
   background-size: 20px 20px;
+}
+
+[data-theme='arcade-light'] .projects-pane {
+  background: #d9d9d9;
 }
 
 /* Reduced spacing for projects grid in arcade themes */
