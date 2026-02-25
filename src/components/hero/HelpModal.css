@@ -345,6 +345,17 @@
 }
 
 /* ============================================
+   DARK THEME - Subtle colored borders per section
+   ============================================ */
+.help-modal-content .help-section:nth-child(1) { border-color: rgba(0, 229, 255, 0.18); }
+.help-modal-content .help-section:nth-child(2) { border-color: rgba(41, 121, 255, 0.18); }
+.help-modal-content .help-section:nth-child(3) { border-color: rgba(0, 230, 118, 0.18); }
+.help-modal-content .help-section:nth-child(4) { border-color: rgba(213, 0, 249, 0.18); }
+.help-modal-content .help-section:nth-child(5) { border-color: rgba(255, 171, 0, 0.18); }
+.help-modal-content .help-section:nth-child(6) { border-color: rgba(29, 233, 182, 0.18); }
+.help-modal-content .help-section:nth-child(7) { border-color: rgba(245, 0, 87, 0.18); }
+
+/* ============================================
    LIGHT THEME STYLES
    ============================================ */
 
@@ -381,6 +392,15 @@
 [data-theme='light'] .help-modal-close:hover {
   background: rgba(239, 68, 68, 0.1);
 }
+
+/* Light theme - subtle colored borders per section */
+[data-theme='light'] .help-modal-content .help-section:nth-child(1) { border-color: rgba(0, 123, 181, 0.22); }
+[data-theme='light'] .help-modal-content .help-section:nth-child(2) { border-color: rgba(37, 99, 235, 0.22); }
+[data-theme='light'] .help-modal-content .help-section:nth-child(3) { border-color: rgba(0, 143, 76, 0.22); }
+[data-theme='light'] .help-modal-content .help-section:nth-child(4) { border-color: rgba(147, 51, 234, 0.22); }
+[data-theme='light'] .help-modal-content .help-section:nth-child(5) { border-color: rgba(245, 158, 11, 0.28); }
+[data-theme='light'] .help-modal-content .help-section:nth-child(6) { border-color: rgba(13, 148, 136, 0.28); }
+[data-theme='light'] .help-modal-content .help-section:nth-child(7) { border-color: rgba(219, 39, 119, 0.22); }
 
 /* Arcade theme overrides for Help modal */
 [data-theme='arcade-dark'] .help-modal-card,
@@ -448,6 +468,21 @@
 [data-theme='arcade-dark'] .help-modal-close {
   background: var(--accent-red);
   color: #121212;
+}
+
+/* Arcade dark - colored 3D shadow per section */
+[data-theme='arcade-dark'] .help-modal-content .help-section:nth-child(1) { border-color: #8B9FFF; box-shadow: 3px 3px 0px 0px #8B9FFF; }
+[data-theme='arcade-dark'] .help-modal-content .help-section:nth-child(2) { border-color: #FF7B6B; box-shadow: 3px 3px 0px 0px #FF7B6B; }
+[data-theme='arcade-dark'] .help-modal-content .help-section:nth-child(3) { border-color: #FFD666; box-shadow: 3px 3px 0px 0px #FFD666; }
+[data-theme='arcade-dark'] .help-modal-content .help-section:nth-child(4) { border-color: #C9A0DC; box-shadow: 3px 3px 0px 0px #C9A0DC; }
+[data-theme='arcade-dark'] .help-modal-content .help-section:nth-child(5) { border-color: #6EDCB1; box-shadow: 3px 3px 0px 0px #6EDCB1; }
+[data-theme='arcade-dark'] .help-modal-content .help-section:nth-child(6) { border-color: #FF6B85; box-shadow: 3px 3px 0px 0px #FF6B85; }
+[data-theme='arcade-dark'] .help-modal-content .help-section:nth-child(7) { border-color: #A8D4FF; box-shadow: 3px 3px 0px 0px #A8D4FF; }
+[data-theme='arcade-dark'] .help-section-easter { border-color: #C9A0DC !important; box-shadow: 3px 3px 0px 0px #C9A0DC !important; }
+
+/* Arcade light - reset any colored border-color back to the default black 3D border */
+[data-theme='arcade-light'] .help-modal-content .help-section {
+  border-color: #1a1a2e;
 }
 
 [data-theme='arcade-light'] .help-modal-close {
