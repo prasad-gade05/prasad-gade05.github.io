@@ -877,6 +877,24 @@
   background: #d0d0d1;
 }
 
+/* Light theme minecraft button */
+[data-theme='light'] .minecraft-clickable {
+  background: linear-gradient(135deg, rgba(0, 143, 76, 0.06) 0%, rgba(0, 123, 181, 0.06) 100%) !important;
+  border: 1px solid rgba(0, 143, 76, 0.2) !important;
+  border-left: 3px solid var(--accent-green) !important;
+}
+
+[data-theme='light'] .minecraft-clickable:hover {
+  background: linear-gradient(135deg, rgba(0, 143, 76, 0.14) 0%, rgba(0, 123, 181, 0.14) 100%) !important;
+  border-color: var(--accent-green) !important;
+  border-left-color: var(--accent-green) !important;
+  box-shadow: 0 2px 12px rgba(0, 143, 76, 0.15);
+}
+
+[data-theme='light'] .minecraft-clickable::before {
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 143, 76, 0.05) 50%, transparent 100%);
+}
+
 .projects-pane::-webkit-scrollbar {
   display: none;
 }
@@ -2037,28 +2055,59 @@
 .minecraft-clickable {
   cursor: pointer;
   position: relative;
-  border-style: dashed;
+  background: linear-gradient(135deg, rgba(0, 230, 118, 0.08) 0%, rgba(0, 229, 255, 0.08) 100%) !important;
+  border: 1px solid rgba(0, 230, 118, 0.25) !important;
+  border-left: 3px solid var(--accent-green) !important;
+  overflow: hidden;
+  animation: mc-subtle-pulse 3s ease-in-out infinite;
 }
 
 .minecraft-clickable:hover {
-  background: rgba(52, 211, 153, 0.15) !important;
+  background: linear-gradient(135deg, rgba(0, 230, 118, 0.18) 0%, rgba(0, 229, 255, 0.18) 100%) !important;
   border-color: var(--accent-green) !important;
+  border-left-color: var(--accent-green) !important;
+  transform: translateX(4px) !important;
+  box-shadow: 0 2px 12px rgba(0, 230, 118, 0.2);
+}
+
+.minecraft-clickable::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 230, 118, 0.06) 50%, transparent 100%);
+  transform: translateX(-100%);
+  animation: mc-shimmer 4s ease-in-out infinite;
+}
+
+.minecraft-clickable:hover::before {
+  animation: none;
+  background: none;
 }
 
 .minecraft-clickable::after {
-  content: 'View 3D Skin';
+  content: 'Click to View 3D ▸';
   position: absolute;
   right: 10px;
   font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
   color: var(--accent-green);
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: all 0.2s ease;
+  opacity: 0.7;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .minecraft-clickable:hover::after {
   opacity: 1;
-  transform: translateX(0);
+}
+
+@keyframes mc-shimmer {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+@keyframes mc-subtle-pulse {
+  0%, 100% { border-left-color: var(--accent-green); }
+  50% { border-left-color: transparent; }
 }
 
 .hobby-activity-item svg {
@@ -2337,6 +2386,17 @@
     padding: 8px 10px;
     font-size: 12px;
   }
+
+  .minecraft-clickable {
+    flex-wrap: wrap;
+  }
+
+  .minecraft-clickable::after {
+    position: static;
+    width: 100%;
+    font-size: 9px;
+    margin-top: -2px;
+  }
   
   .book-title {
     font-size: 12px;
@@ -2568,6 +2628,17 @@
   .hobby-activity-item {
     padding: 6px 8px;
     font-size: 11px;
+  }
+
+  .minecraft-clickable {
+    flex-wrap: wrap;
+  }
+
+  .minecraft-clickable::after {
+    position: static;
+    width: 100%;
+    font-size: 8px;
+    margin-top: -2px;
   }
   
   .hobby-activity-item svg {
@@ -3751,10 +3822,54 @@
 /* Hobby minecraft clickable */
 [data-theme='arcade-dark'] .minecraft-clickable,
 [data-theme='arcade-light'] .minecraft-clickable {
-  border: var(--arcade-border);
+  border: var(--arcade-border) !important;
+  border-left: 3px solid var(--accent-green) !important;
   border-radius: 8px;
   box-shadow: var(--arcade-shadow);
   padding: 4px 8px;
+  animation: mc-subtle-pulse 3s ease-in-out infinite, mc-arcade-bounce 2.5s ease-in-out infinite;
+}
+
+[data-theme='arcade-dark'] .minecraft-clickable:hover,
+[data-theme='arcade-light'] .minecraft-clickable:hover {
+  box-shadow: var(--arcade-shadow-lg);
+  transform: translate(-2px, -2px) !important;
+}
+
+[data-theme='arcade-dark'] .minecraft-clickable {
+  background: linear-gradient(135deg, rgba(255, 214, 102, 0.1) 0%, rgba(139, 159, 255, 0.1) 100%) !important;
+}
+
+[data-theme='arcade-dark'] .minecraft-clickable:hover {
+  background: linear-gradient(135deg, rgba(255, 214, 102, 0.2) 0%, rgba(139, 159, 255, 0.2) 100%) !important;
+}
+
+[data-theme='arcade-dark'] .minecraft-clickable::before {
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 214, 102, 0.08) 50%, transparent 100%);
+}
+
+[data-theme='arcade-light'] .minecraft-clickable {
+  background: linear-gradient(135deg, rgba(212, 160, 23, 0.08) 0%, rgba(92, 111, 255, 0.08) 100%) !important;
+}
+
+[data-theme='arcade-light'] .minecraft-clickable:hover {
+  background: linear-gradient(135deg, rgba(212, 160, 23, 0.18) 0%, rgba(92, 111, 255, 0.18) 100%) !important;
+}
+
+[data-theme='arcade-light'] .minecraft-clickable::before {
+  background: linear-gradient(90deg, transparent 0%, rgba(212, 160, 23, 0.08) 50%, transparent 100%);
+}
+
+[data-theme='arcade-dark'] .minecraft-clickable::after,
+[data-theme='arcade-light'] .minecraft-clickable::after {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@keyframes mc-arcade-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1px); }
 }
 
 /* Arcade light specific background pattern (dot grid notebook) */

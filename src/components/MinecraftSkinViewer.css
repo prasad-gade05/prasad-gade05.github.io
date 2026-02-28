@@ -160,30 +160,7 @@
 }
 
 /* Clickable Minecraft button in hobbies */
-.hobby-activity-item.minecraft-clickable {
-  cursor: pointer;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.hobby-activity-item.minecraft-clickable:hover {
-  background: rgba(98, 181, 98, 0.15);
-  border-color: rgba(98, 181, 98, 0.4);
-  transform: translateY(-2px);
-}
-
-.hobby-activity-item.minecraft-clickable::after {
-  content: '👆';
-  position: absolute;
-  right: 8px;
-  font-size: 10px;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.hobby-activity-item.minecraft-clickable:hover::after {
-  opacity: 1;
-}
+/* minecraft-clickable styles are in Hero.css */
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
