@@ -157,6 +157,7 @@ export const projectIcons = {
   "Attendance Tracker": BarChart3,
   "Habit Tracker": Zap,
   NutriSnap: Globe,
+  "UPI Analytics": BarChart3,
 };
 
 export const skills = {
@@ -270,6 +271,17 @@ export const certifications = [
 ];
 
 export const projects = [
+  {
+    title: "UPI Analytics",
+    subtitle: "Data Engineering & Analytics Platform",
+    category: "Data",
+    stats: "9,026 Files",
+    description:
+      "Full-stack data platform analyzing India's UPI payments across 788 districts with medallion architecture and 11-tab Streamlit dashboard.",
+    tech: ["Python", "DuckDB", "Streamlit", "Plotly"],
+    github: "https://github.com/prasad-gade05/UPI_DS_Project",
+    demo: "https://upi-analytics.streamlit.app/",
+  },
   {
     title: "Lex Simulacra",
     subtitle: "AI Legal Courtroom Simulator",
