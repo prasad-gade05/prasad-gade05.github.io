@@ -326,6 +326,17 @@ export const projects = [
       "https://github.com/prasad-gade05/KindHearts-Multi-Role-Donation-Management-Platform",
   },
   {
+    title: "Portfolio",
+    subtitle: "Personal Developer Portfolio",
+    category: "Web",
+    stats: "4 Themes",
+    description:
+      "Interactive portfolio with multi-theme support, 3D elements, and responsive design.",
+    tech: ["React", "Three.js", "Framer Motion", "Vite"],
+    github: "https://github.com/prasad-gade05/prasad-gade05.github.io",
+    demo: "https://prasadgade.dev",
+  },
+  {
     title: "Audio Visualizer",
     subtitle: "Real-Time Music Viz",
     category: "Web",

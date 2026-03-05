@@ -48,7 +48,7 @@ const getOptimalCols = (count, maxCols) => {
   if (count <= 0 || maxCols <= 1) return maxCols;
   if (count <= maxCols) return maxCols;
 
-  const minCols = Math.max(3, maxCols - 1);
+  const minCols = Math.max(3, maxCols - 2);
 
   for (let cols = maxCols; cols >= minCols; cols--) {
     if (count % cols === 0) return cols;
@@ -74,7 +74,8 @@ const getMaxColsForWidth = () => {
   if (w <= 480) return 2;
   if (w <= 900) return 2;
   if (w <= 1100) return 3;
-  return 4;
+  if (w <= 1400) return 4;
+  return 5;
 };
 
 const ContentTabs = ({ onOpenMinecraft }) => {
@@ -104,6 +105,9 @@ const ContentTabs = ({ onOpenMinecraft }) => {
   const adaptiveGridStyle = {
     gridTemplateColumns: `repeat(${optimalCols}, 1fr)`,
   };
+  const lastRowCount = projects.length % optimalCols;
+  const lastRowStartIdx = lastRowCount > 0 ? projects.length - lastRowCount : -1;
+  const lastRowOffset = lastRowCount > 0 ? Math.floor((optimalCols - lastRowCount) / 2) + 1 : 0;
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -346,6 +350,7 @@ const ContentTabs = ({ onOpenMinecraft }) => {
                     <div
                       key={i}
                       className="project-card"
+                      style={i === lastRowStartIdx ? { gridColumnStart: lastRowOffset } : undefined}
                       onMouseMove={handleCardTilt}
                       onMouseLeave={handleCardTiltReset}
                     >
