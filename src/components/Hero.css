@@ -341,7 +341,7 @@
   border-radius: 12px;
   border: 1px solid var(--border-subtle);
   overflow: hidden;
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
@@ -2861,6 +2861,17 @@
   .hero {
     max-width: 1800px;
     margin: 0 auto;
+  }
+}
+
+/* Cap height for extremely tall viewports (desktop mode on mobile) */
+@media (min-width: 769px) {
+  .hero {
+    align-items: center;
+  }
+
+  .hero-grid {
+    max-height: min(100dvh, 1200px);
   }
 }
 
