@@ -43,26 +43,27 @@ import {
   webShows
 } from "../../data/portfolioData";
 
-// Computes optimal column count to minimize orphan items in the last row
+// Finds the column count (within range) that creates the most balanced grid
+// with the fewest empty slots in the last row.
+// e.g. 10→5cols(2×5), 9→3cols(3×3), 11→4cols(4,4,3), 12→4cols(3×4)
 const getOptimalCols = (count, maxCols) => {
   if (count <= 0 || maxCols <= 1) return maxCols;
-  if (count <= maxCols) return maxCols;
+  if (count <= maxCols) return count;
 
   const minCols = Math.max(3, maxCols - 2);
-
-  for (let cols = maxCols; cols >= minCols; cols--) {
-    if (count % cols === 0) return cols;
-  }
+  if (minCols > maxCols) return maxCols;
 
   let bestCols = maxCols;
-  let bestRemainder = count % maxCols;
+  let bestEmpty = count % maxCols === 0 ? 0 : maxCols - (count % maxCols);
 
-  for (let cols = maxCols - 1; cols >= minCols; cols--) {
+  for (let cols = maxCols; cols >= minCols; cols--) {
     const remainder = count % cols;
-    if (remainder > bestRemainder) {
-      bestRemainder = remainder;
+    const empty = remainder === 0 ? 0 : cols - remainder;
+    if (empty < bestEmpty) {
+      bestEmpty = empty;
       bestCols = cols;
     }
+    if (empty === 0) break;
   }
 
   return bestCols;
@@ -74,7 +75,6 @@ const getMaxColsForWidth = () => {
   if (w <= 480) return 2;
   if (w <= 900) return 2;
   if (w <= 1100) return 3;
-  if (w <= 1400) return 4;
   return 5;
 };
 
