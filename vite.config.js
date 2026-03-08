@@ -6,14 +6,18 @@ export default defineConfig({
   plugins: [react()],
   base: '/',
   resolve: {
-    dedupe: ['three', 'react', 'react-dom']
+    dedupe: ['react', 'react-dom']
   },
   build: {
     rollupOptions: {
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            if (id.includes('three') || id.includes('@react-three') || id.includes('skinview3d')) {
+            // @react-three must stay with React to avoid initialization order issues
+            if (id.includes('@react-three')) {
+              return 'vendor';
+            }
+            if (id.includes('three') || id.includes('skinview3d')) {
               return 'three-vendor';
             }
             if (id.includes('react-pdf') || id.includes('pdfjs-dist')) {
