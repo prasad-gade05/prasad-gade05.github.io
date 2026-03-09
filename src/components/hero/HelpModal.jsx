@@ -119,6 +119,19 @@ const HelpModal = ({ onClose }) => {
             </p>
           </section>
 
+          {/* Paper Playground / Doodle */}
+          <section className="help-section">
+            <div className="help-section-title">
+              <Sparkles size={16} />
+              <h3>Paper Playground</h3>
+            </div>
+            <p>
+              Head to the <strong>Hobbies</strong> tab and click <strong>Paper Playground</strong> — 
+              it captures the page and turns it into a draggable tissue paper with real-time physics! 
+              Pin it, fold it, drag it around, and press <kbd>Esc</kbd> to return.
+            </p>
+          </section>
+
           {/* Easter egg hint for nerds */}
           <section className="help-section help-section-easter">
             <div className="help-section-title">
