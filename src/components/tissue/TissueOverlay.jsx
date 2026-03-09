@@ -1,11 +1,39 @@
-import { Suspense, useState, useCallback } from 'react'
+import { Suspense, useState, useCallback, useEffect } from 'react'
 import { Canvas } from '@react-three/fiber'
 import TissuePaper from './TissuePaper'
 import './TissueOverlay.css'
 
 const TOTAL_PINS = 4
 
+const CANVAS_BG_BY_THEME = {
+  'dark':         '#d4d4d4',
+  'light':        '#0a0a0a',
+  'arcade-dark':  '#d4d4d4',
+  'arcade-light': '#0a0a0a',
+}
+const DEFAULT_CANVAS_BG = '#0a0a0a'
+
+function useCurrentTheme() {
+  const [theme, setTheme] = useState(
+    () => document.documentElement.getAttribute('data-theme') || 'dark'
+  )
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      const t = document.documentElement.getAttribute('data-theme') || 'dark'
+      setTheme(t)
+    })
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+    return () => observer.disconnect()
+  }, [])
+
+  return theme
+}
+
 const TissueOverlay = ({ textureUrl, onExit }) => {
+  const currentTheme = useCurrentTheme()
+  const canvasBg = CANVAS_BG_BY_THEME[currentTheme] || DEFAULT_CANVAS_BG
+
   const [availablePins, setAvailablePins] = useState(TOTAL_PINS)
   const [isPinMode, setIsPinMode] = useState(false)
   const [resetKey, setResetKey] = useState(0)
@@ -33,9 +61,10 @@ const TissueOverlay = ({ textureUrl, onExit }) => {
     <div className="tissue-overlay">
       <Canvas
         camera={{ position: [0, 0, 10], fov: 45 }}
-        style={{ background: '#0a0a0a' }}
+        style={{ background: canvasBg }}
         gl={{ antialias: true, alpha: false }}
       >
+        <color attach="background" args={[canvasBg]} />
         <ambientLight intensity={0.85} />
         <directionalLight position={[5, 5, 5]} intensity={0.5} />
         <directionalLight position={[-3, -2, 4]} intensity={0.2} />
