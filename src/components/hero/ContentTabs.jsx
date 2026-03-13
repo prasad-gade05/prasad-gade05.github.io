@@ -21,6 +21,7 @@ import {
   User,
 } from "lucide-react";
 import { FaGithub, FaSpotify } from "react-icons/fa";
+import { SiHuggingface } from "react-icons/si";
 import { GiCricketBat, GiBookCover } from "react-icons/gi";
 import { MdMovie } from "react-icons/md";
 import { TbBrandMinecraft } from "react-icons/tb";
@@ -407,6 +408,17 @@ const ContentTabs = ({ onOpenMinecraft, onStartDoodle }) => {
                               className="project-card-link demo"
                             >
                               <ExternalLink size={14} />
+                            </a>
+                          )}
+                          {project.dataset && (
+                            <a
+                              href={project.dataset}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="project-card-link"
+                              title="Hugging Face Dataset"
+                            >
+                              <SiHuggingface size={14} />
                             </a>
                           )}
                         </div>
