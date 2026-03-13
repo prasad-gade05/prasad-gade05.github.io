@@ -76,7 +76,7 @@ const getMaxColsForWidth = () => {
   if (w <= 480) return 2;
   if (w <= 900) return 2;
   if (w <= 1100) return 3;
-  return 5;
+  return 4;
 };
 
 const ContentTabs = ({ onOpenMinecraft, onStartDoodle }) => {

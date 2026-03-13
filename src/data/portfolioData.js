@@ -176,6 +176,7 @@ export const skillIcons = {
 };
 
 export const projectIcons = {
+  "IPL Analytics Platform": BarChart3,
   "Lex Simulacra": Brain,
   "Intrusion Detection": Shield,
   "Celestial Classifier": Star,
@@ -298,6 +299,17 @@ export const certifications = [
 ];
 
 export const projects = [
+  {
+    title: "IPL Analytics Platform",
+    subtitle: "Interactive Cricket Data Dashboard",
+    category: "Data",
+    stats: "18 Seasons",
+    description:
+      "3-stage pipeline over 278K ball-by-ball records with 14 dashboard pages, custom SQL query builder, and validated IPL aggregates.",
+    tech: ["Python", "Streamlit", "DuckDB", "Plotly"],
+    github: "https://github.com/prasad-gade05/IPL_Analysis",
+    demo: "https://analytics-ipl.streamlit.app/",
+  },
   {
     title: "UPI Analytics",
     subtitle: "Data Engineering & Analytics Platform",
