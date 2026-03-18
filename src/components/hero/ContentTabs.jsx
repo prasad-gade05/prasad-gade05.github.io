@@ -198,6 +198,12 @@ const ContentTabs = ({ onOpenMinecraft, onStartDoodle }) => {
     });
   };
 
+  const getAchievementLinkIcon = (platform) => {
+    if (platform === "kaggle") return <FaKaggle size={11} />;
+    if (platform === "huggingface") return <SiHuggingface size={11} />;
+    return <ExternalLink size={10} />;
+  };
+
   const tabs = [
     { id: "projects", label: "Projects", icon: Folder },
     {
@@ -637,33 +643,50 @@ const ContentTabs = ({ onOpenMinecraft, onStartDoodle }) => {
                 <span>Achievements</span>
               </div>
               <div className="achieve-list">
-                {achievements.map((ach, i) => (
-                  <div
-                    key={i}
-                    className="achieve-item"
-                    style={{ "--accent": ach.color }}
-                    onMouseMove={handleCardTilt}
-                    onMouseLeave={handleCardTiltReset}
-                  >
-                    <div className="achieve-dot"></div>
-                    <div className="achieve-content">
-                      <h3>{ach.title}</h3>
-                      <p>{ach.desc}</p>
-                      {ach.link && (
-                        <a
-                          href={ach.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="achieve-link"
-                        >
-                          <ExternalLink size={10} />
-                          {ach.linkText || "View Certificate"}
-                        </a>
-                      )}
+                {achievements.map((ach, i) => {
+                  const achievementLinks = ach.links ?? (
+                    ach.link
+                      ? [{
+                        href: ach.link,
+                        text: ach.linkText || "View Certificate",
+                        platform: "external",
+                      }]
+                      : []
+                  );
+
+                  return (
+                    <div
+                      key={i}
+                      className={`achieve-item ${achievementLinks.length > 1 ? "multi-link" : ""}`}
+                      style={{ "--accent": ach.color }}
+                      onMouseMove={handleCardTilt}
+                      onMouseLeave={handleCardTiltReset}
+                    >
+                      <div className="achieve-dot"></div>
+                      <div className="achieve-content">
+                        <h3>{ach.title}</h3>
+                        <p>{ach.desc}</p>
+                        {achievementLinks.length > 0 && (
+                          <div className="achieve-links">
+                            {achievementLinks.map((link, linkIndex) => (
+                              <a
+                                key={`${ach.title}-${link.href}-${linkIndex}`}
+                                href={link.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`achieve-link ${link.platform ? `platform-${link.platform}` : ""}`}
+                              >
+                                {getAchievementLinkIcon(link.platform)}
+                                {link.text}
+                              </a>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                      <span className="achieve-date">{ach.date}</span>
                     </div>
-                    <span className="achieve-date">{ach.date}</span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </motion.div>
           )}

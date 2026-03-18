@@ -242,6 +242,34 @@ export const education = [
 
 export const achievements = [
   {
+    title: "Open-Source Dataset Contributor",
+    desc: "Published IPL + India UPI datasets on Kaggle and Hugging Face",
+    date: "2025",
+    color: "#3fb950",
+    links: [
+      {
+        href: "https://www.kaggle.com/datasets/prasadgade/ipl-2008-2025-enriched-dataset",
+        text: "Kaggle • IPL",
+        platform: "kaggle",
+      },
+      {
+        href: "https://huggingface.co/datasets/prasad-gade05/ipl-enriched-2008-2025",
+        text: "Hugging Face • IPL",
+        platform: "huggingface",
+      },
+      {
+        href: "https://www.kaggle.com/datasets/prasadgade/india-upi-ecosystem-2018-2025",
+        text: "Kaggle • India UPI",
+        platform: "kaggle",
+      },
+      {
+        href: "https://huggingface.co/datasets/prasad-gade05/india-upi-ecosystem-2018-2025",
+        text: "Hugging Face • India UPI",
+        platform: "huggingface",
+      },
+    ],
+  },
+  {
     title: "1st Place - Tech Horizon Hackathon",
     desc: "80+ teams",
     date: "Mar 2025",
