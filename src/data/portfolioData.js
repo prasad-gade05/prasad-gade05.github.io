@@ -625,7 +625,7 @@ export const profileData = {
   name: "Prasad Gade",
   status: "Open to Work",
   location: "Mumbai, India",
-  profileImage: "profile.png",
+  profileImage: "profile.jpg",
   typingRoles: [
     "Data Scientist",
     2000,
