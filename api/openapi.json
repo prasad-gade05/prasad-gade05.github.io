@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Prasad Gade Portfolio API",
-    "description": "Static JSON API serving structured data about Prasad Gade — data scientist and computer engineer from Mumbai, India. Includes a primary slim resume, a detailed master resume, a public 11-project portfolio set, strict MAIN_RESUME skills, social links, and personal profile data.",
+    "description": "Static JSON API serving structured data about Prasad Gade — data scientist and computer engineer from Mumbai, India. Includes a primary slim resume, a detailed master resume, a public 12-project portfolio set, strict MAIN_RESUME skills, social links, and personal profile data.",
     "version": "2.0.0",
     "contact": {
       "name": "Prasad Gade",
@@ -24,7 +24,7 @@
     "/api/resume.json": {
       "get": {
         "summary": "Primary slim resume",
-        "description": "Returns the primary slim resume as JSON. This is the default agent-facing resume and uses the MAIN_RESUME skill taxonomy plus the full 11-project public portfolio set.",
+        "description": "Returns the primary slim resume as JSON. This is the default agent-facing resume and uses the MAIN_RESUME skill taxonomy plus the full 12-project public portfolio set.",
         "operationId": "getResume",
         "tags": ["Professional"],
         "responses": {
@@ -76,7 +76,7 @@
     "/api/resume-master.json": {
       "get": {
         "summary": "Detailed master resume",
-        "description": "Returns the detailed master resume as JSON. It adds diploma education, the current TA/research role, broader certifications, publications, leadership, and richer project detail while keeping the same 11 public projects and strict MAIN_RESUME skills.",
+        "description": "Returns the detailed master resume as JSON. It adds diploma education, the current TA/research role, broader certifications, publications, leadership, and richer project detail while keeping the same 12 public projects and strict MAIN_RESUME skills.",
         "operationId": "getResumeMaster",
         "tags": ["Professional"],
         "responses": {
@@ -130,7 +130,7 @@
     "/api/projects.json": {
       "get": {
         "summary": "Public project portfolio",
-        "description": "Returns the 11 public portfolio projects as JSON with meta and data wrappers.",
+        "description": "Returns the 12 public portfolio projects as JSON with meta and data wrappers.",
         "operationId": "getProjects",
         "tags": ["Professional"],
         "responses": {

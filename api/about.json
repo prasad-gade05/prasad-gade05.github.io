@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "prasadgade.dev",
-    "generated": "2026-05-06",
+    "generated": "2026-06-07",
     "version": "1.0",
     "description": "Personality, hobbies, site philosophy, site features, nested keyboard shortcuts, and interests of Prasad Gade"
   },
@@ -99,9 +99,9 @@
         "description": "Privacy-first habit tracking with GitHub-style contribution charts and streaks"
       }
     ],
-    "movies_count": 56,
-    "web_shows_count": 16,
-    "favorite_movies": ["12th Fail", "Sam Bahadur", "American Sniper", "Hacksaw Ridge", "The Green Mile", "1917", "WALL-E", "Ratatouille", "Kung Fu Panda", "Toy Story", "The Wild Robot", "Coco", "Mai Atal Hoon", "Article 15", "Whiplash", "Tangled", "Mulan", "Brave", "Moana", "Inside Out", "Inside Out 2"],
-    "favorite_web_shows": ["Money Heist", "Squid Game", "The Family Man", "Special Ops", "Scam 1992", "WondLa"]
+    "movies_count": 58,
+    "web_shows_count": 19,
+    "favorite_movies": ["12th Fail", "Sam Bahadur", "American Sniper", "Hacksaw Ridge", "The Green Mile", "1917", "WALL-E", "Ratatouille", "Kung Fu Panda", "Toy Story", "The Wild Robot", "Hoppers", "Coco", "Mai Atal Hoon", "Article 15", "Whiplash", "The Intern", "Tangled", "Mulan", "Brave", "Moana", "Inside Out", "Inside Out 2"],
+    "favorite_web_shows": ["Money Heist", "Berlin and the Jewels of Paris", "Berlin and the Lady with an Ermine", "Squid Game", "Paradise", "The Family Man", "Special Ops", "Scam 1992", "Young Sheldon", "WondLa"]
   }
 }

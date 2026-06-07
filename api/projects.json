@@ -1,12 +1,30 @@
 {
   "meta": {
     "source": "prasadgade.dev",
-    "generated": "2026-04-20",
+    "generated": "2026-06-07",
     "version": "2.0",
-    "description": "11 public portfolio projects by Prasad Gade with descriptions, tech stacks, and links"
+    "description": "12 public portfolio projects by Prasad Gade with descriptions, tech stacks, and links"
   },
   "data": {
     "projects": [
+      {
+        "title": "GraphShield",
+        "subtitle": "Real-Data Graph ML for Financial Fraud Detection",
+        "category": "ML",
+        "stats": "3.7M Nodes",
+        "description": "Leakage-safe graph ML research pipeline on DGraphFin with a dual-path spectral GNN for financial fraud detection under extreme class imbalance.",
+        "detailed_description": [
+          "Built a leakage-safe graph ML research pipeline on DGraphFin with 3.7M nodes, 4.3M edges, 17 node features, and official supervised splits of 857,899 train, 183,862 validation, and 183,840 test nodes",
+          "Implemented and evaluated GraphShield, a dual-path spectral GNN with low-pass and high-pass graph filters, against GraphSAGE, logistic regression, XGBoost, and prior baselines",
+          "Ran 6-seed real-data ablations showing GraphShield reached 0.0415 AUC-PR and 0.7748 AUC-ROC; removing low-pass, high-pass, or graph structure reduced AUC-PR to 0.0215, 0.0274, and 0.0264",
+          "Added paired-bootstrap testing with 300 resamples, held-out conformal calibration, temporal/OOD drift diagnostics, and research-contract tests",
+          "Documented the mathematical basis for dual-path spectral filtering, focal loss, conformal prediction, and graph anomaly-detection assumptions"
+        ],
+        "tech": ["Python", "PyTorch", "PyTorch Geometric", "Scikit-learn", "XGBoost", "NumPy", "Pandas", "SciPy", "DGraphFin", "Graph Neural Networks", "Spectral Graph Filters", "Conformal Prediction", "Bootstrap Testing", "Pytest"],
+        "github": "https://github.com/prasad-gade05/GraphShield",
+        "demo": null,
+        "docs": ["archive_docs/README.md", "archive_docs/MATH_APPENDIX.md"]
+      },
       {
         "title": "IPL Analytics Platform",
         "subtitle": "Interactive Cricket Data Dashboard",
