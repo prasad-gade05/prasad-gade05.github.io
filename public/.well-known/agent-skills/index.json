@@ -43,7 +43,7 @@
       "type": "api",
       "description": "Get personality traits, hobbies, site philosophy, keyboard shortcut details, favorite movies, songs, and what makes this portfolio unique",
       "url": "https://prasadgade.dev/api/about.json",
-      "sha256": "86b5c556f686a3c1b5cf4302ccb84d4c65a7ea577509c5535f7e78ff97a70213"
+      "sha256": "ab21aea6e034e6c364cbc4858b6e7037b3efb4959dc4c2acb11e969309722b42"
     }
   ]
 }

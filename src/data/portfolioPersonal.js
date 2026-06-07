@@ -112,6 +112,7 @@ export const movies = [
     year: "2024",
     genre: "Animation, Adventure, Sci-Fi",
   },
+  { title: "Hoppers", year: "2026", genre: "Animation, Adventure, Comedy" },
   { title: "Up", year: "2009", genre: "Animation, Adventure, Comedy" },
   { title: "Coco", year: "2017", genre: "Animation, Adventure, Family" },
   { title: "Zootopia", year: "2016", genre: "Animation, Adventure, Comedy" },
@@ -123,6 +124,7 @@ export const movies = [
   { title: "Mai Atal Hoon", year: "2024", genre: "Biography, Drama" },
   { title: "Article 15", year: "2019", genre: "Crime, Drama, Thriller" },
   { title: "Whiplash", year: "2014", genre: "Drama, Music" },
+  { title: "The Intern", year: "2015", genre: "Comedy, Drama" },
   { title: "Tangled", year: "2010", genre: "Animation, Adventure, Comedy" },
   { title: "Mulan", year: "1998", genre: "Animation, Adventure, Family" },
   { title: "Brave", year: "2012", genre: "Animation, Adventure, Family" },
@@ -133,8 +135,10 @@ export const movies = [
 
 export const webShows = [
   { title: "Money Heist", seasons: 5, genre: "Action, Crime, Drama" },
-  { title: "Money Heist: Berlin", seasons: 1, genre: "Action, Crime, Drama" },
+  { title: "Berlin and the Jewels of Paris", seasons: 1, genre: "Action, Crime, Drama" },
+  { title: "Berlin and the Lady with an Ermine", seasons: 1, genre: "Action, Crime, Drama" },
   { title: "Squid Game", seasons: 3, genre: "Action, Drama, Thriller" },
+  { title: "Paradise", seasons: 2, genre: "Drama, Thriller, Sci-Fi" },
   { title: "The Family Man", seasons: 2, genre: "Action, Drama, Thriller" },
   { title: "Special Ops", seasons: 2, genre: "Action, Drama, Thriller" },
   { title: "Scam 1992", seasons: 1, genre: "Crime, Drama" },
@@ -147,6 +151,7 @@ export const webShows = [
   { title: "The Terminal List", seasons: 1, genre: "Action, Drama, Thriller" },
   { title: "Kaala Pani", seasons: 1, genre: "Drama, Thriller" },
   { title: "Bodyguard", seasons: 1, genre: "Crime, Drama, Thriller" },
+  { title: "Young Sheldon", seasons: 7, genre: "Comedy" },
   { title: "WondLa", seasons: 3, genre: "Animation, Adventure, Sci-Fi" },
 ];
 
