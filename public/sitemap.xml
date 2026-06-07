@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://prasadgade.dev/</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -38,7 +38,7 @@
   </url>
   <url>
     <loc>https://prasadgade.dev/agent/</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -62,13 +62,13 @@
   </url>
   <url>
     <loc>https://prasadgade.dev/llms.txt</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://prasadgade.dev/llms-full.txt</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -86,19 +86,19 @@
   </url>
   <url>
     <loc>https://prasadgade.dev/api/resume.json</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://prasadgade.dev/api/resume-master.json</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://prasadgade.dev/api/projects.json</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -122,37 +122,37 @@
   </url>
   <url>
     <loc>https://prasadgade.dev/openapi.json</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://prasadgade.dev/.well-known/openapi</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://prasadgade.dev/.well-known/agents.json</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://prasadgade.dev/agents.json</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://prasadgade.dev/.well-known/webmcp</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://prasadgade.dev/.well-known/webmcp.json</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -170,13 +170,13 @@
   </url>
   <url>
     <loc>https://prasadgade.dev/.well-known/agent-skills/index.json</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://prasadgade.dev/.well-known/agent.json</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>

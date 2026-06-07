@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "prasadgade.dev",
-    "generated": "2026-04-20",
+    "generated": "2026-06-07",
     "version": "2.0",
     "variant": "slim",
     "description": "Primary slim resume of Prasad Gade for agent consumption"
@@ -50,6 +50,18 @@
       }
     ],
     "projects": [
+      {
+        "name": "GraphShield",
+        "description": "Real-Data Graph ML for Financial Fraud Detection",
+        "date": "June 2026",
+        "highlights": [
+          "Built a leakage-safe graph ML research pipeline on DGraphFin with 3.7M nodes, 4.3M edges, 17 node features, and official supervised splits of 857,899 train, 183,862 validation, and 183,840 test nodes",
+          "Implemented GraphShield, a dual-path spectral GNN with low-pass and high-pass graph filters, and evaluated it against GraphSAGE, logistic regression, XGBoost, and prior baselines",
+          "Ran 6-seed real-data ablations showing GraphShield reached 0.0415 AUC-PR and 0.7748 AUC-ROC",
+          "Added paired-bootstrap testing with 300 resamples, held-out conformal calibration, temporal/OOD drift diagnostics, and research-contract tests"
+        ],
+        "url": "https://github.com/prasad-gade05/GraphShield"
+      },
       {
         "name": "IPL Analytics Platform",
         "description": "Interactive Cricket Data Dashboard",

@@ -99,6 +99,6 @@
     "agents": "https://prasadgade.dev/.well-known/agents.json",
     "mcp": "https://prasadgade.dev/.well-known/mcp.json",
     "sitemap": "https://prasadgade.dev/sitemap.xml",
-    "generated": "2026-04-20"
+    "generated": "2026-06-07"
   }
 }

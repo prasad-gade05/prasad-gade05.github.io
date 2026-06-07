@@ -53,7 +53,7 @@ Site features:
 ### Primary Slim Resume
 - Endpoint: https://prasadgade.dev/api/resume.json
 - Purpose: default agent-facing summary resume
-- Scope: MAIN_RESUME-aligned skills, primary education/work summary, and the full 11-project public portfolio set
+- Scope: MAIN_RESUME-aligned skills, primary education/work summary, and the full 12-project public portfolio set
 
 ### Master Detailed Resume
 - Endpoint: https://prasadgade.dev/api/resume-master.json
@@ -90,7 +90,15 @@ Site features:
 
 ## Projects
 
-The public agent-facing layer intentionally exposes these 11 projects and no more:
+The public agent-facing layer intentionally exposes these 12 projects and no more:
+
+### GraphShield - Real-Data Graph ML for Financial Fraud Detection
+- Built a leakage-safe graph ML research pipeline on DGraphFin with 3.7M nodes, 4.3M edges, 17 node features, and official supervised splits of 857,899 train, 183,862 validation, and 183,840 test nodes
+- Implemented and evaluated GraphShield, a dual-path spectral GNN with low-pass and high-pass graph filters, against GraphSAGE, logistic regression, XGBoost, and prior baselines under extreme fraud-class imbalance
+- Ran 6-seed real-data ablations showing GraphShield reached 0.0415 AUC-PR and 0.7748 AUC-ROC; removing low-pass, high-pass, or graph structure reduced AUC-PR to 0.0215, 0.0274, and 0.0264, respectively
+- Added paired-bootstrap testing with 300 resamples, held-out conformal calibration, temporal/OOD drift diagnostics, and research-contract tests
+- Tech: Python, PyTorch, PyTorch Geometric, Scikit-learn, XGBoost, NumPy, Pandas, SciPy, DGraphFin, Graph Neural Networks, Spectral Graph Filters, Conformal Prediction, Bootstrap Testing, Pytest
+- GitHub: https://github.com/prasad-gade05/GraphShield
 
 ### IPL Analytics Platform - Interactive Cricket Data Dashboard
 - Engineered a 3-stage IPL data pipeline over 278,205 ball-by-ball records from 18 seasons, producing a feature parquet plus 18 aggregate parquet datasets for fast analytics

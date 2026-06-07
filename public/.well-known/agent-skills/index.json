@@ -6,23 +6,23 @@
     {
       "name": "get_resume",
       "type": "api",
-      "description": "Get Prasad Gade's primary slim resume with the default public project set and MAIN_RESUME skills",
+      "description": "Get Prasad Gade's primary slim resume with the default 12-project public project set and MAIN_RESUME skills",
       "url": "https://prasadgade.dev/api/resume.json",
-      "sha256": "6c404a1be4cd022892b49ef43691e9be4bd1a371d8777a410abc1982bc370a7b"
+      "sha256": "2f1d75cec45290d3833581bb55ae116ba0ff435aaf766dc90319ddb1fb7cd125"
     },
     {
       "name": "get_resume_master",
       "type": "api",
-      "description": "Get Prasad Gade's detailed master resume with richer background, publications, leadership, and the same public project set",
+      "description": "Get Prasad Gade's detailed master resume with richer background, publications, leadership, and the same 12-project public project set",
       "url": "https://prasadgade.dev/api/resume-master.json",
-      "sha256": "467e1a9437642593350d0414d538471031bb91c2004b7adcdfeadc71d409cf0c"
+      "sha256": "d12c525cf593c14a5ecfd0bcb7ce6e5baf5a9c156600f4c02a2af7b424573a0a"
     },
     {
       "name": "get_projects",
       "type": "api",
-      "description": "Get all 11 public projects with descriptions, tech stacks, metrics, and links to demos and source code",
+      "description": "Get all 12 public projects with descriptions, tech stacks, metrics, and links to demos and source code",
       "url": "https://prasadgade.dev/api/projects.json",
-      "sha256": "4295b0b5fb8c1bdb9acecac7c65d00d19caf9b48057931bd777e434cdcc15711"
+      "sha256": "045894fc3fb36b36a8b88ab3373e81f27568edba708aea84c1f428322e17a2ab"
     },
     {
       "name": "get_skills",
@@ -43,7 +43,7 @@
       "type": "api",
       "description": "Get personality traits, hobbies, site philosophy, keyboard shortcut details, favorite movies, songs, and what makes this portfolio unique",
       "url": "https://prasadgade.dev/api/about.json",
-      "sha256": "56d08b3f51356ef6e88fba44892bd062e9c0422d51b7d19adbef0b85138da7ac"
+      "sha256": "86b5c556f686a3c1b5cf4302ccb84d4c65a7ea577509c5535f7e78ff97a70213"
     }
   ]
 }

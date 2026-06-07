@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 export const projectIcons = {
+  GraphShield: Shield,
   "IPL Analytics Platform": BarChart3,
   "Lex Simulacra": Brain,
   "Intrusion Detection": Shield,
@@ -23,6 +24,16 @@ export const projectIcons = {
 };
 
 export const projects = [
+  {
+    title: "GraphShield",
+    subtitle: "Real-Data Graph ML for Financial Fraud Detection",
+    category: "ML",
+    stats: "3.7M Nodes",
+    description:
+      "Leakage-safe DGraphFin research pipeline with a dual-path spectral GNN, 6-seed ablations, paired-bootstrap testing, and conformal calibration.",
+    tech: ["Python", "PyTorch", "PyG", "Scikit-learn", "XGBoost", "Pytest"],
+    github: "https://github.com/prasad-gade05/GraphShield",
+  },
   {
     title: "IPL Analytics Platform",
     subtitle: "Interactive Cricket Data Dashboard",
