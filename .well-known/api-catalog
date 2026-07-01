@@ -22,6 +22,14 @@
           "type": "text/plain"
         },
         {
+          "href": "https://prasadgade.dev/blogs/blogs.json",
+          "type": "application/json"
+        },
+        {
+          "href": "https://prasadgade.dev/blogs/rss.xml",
+          "type": "application/rss+xml"
+        },
+        {
           "href": "https://prasadgade.dev/.well-known/agents.json",
           "type": "application/json"
         },

@@ -3,7 +3,7 @@
     "source": "prasadgade.dev",
     "generated": "2026-06-07",
     "version": "1.0",
-    "description": "Personality, hobbies, site philosophy, site features, nested keyboard shortcuts, and interests of Prasad Gade"
+    "description": "Personality, hobbies, site philosophy, site features, nested keyboard shortcuts, blog pipeline architecture, and interests of Prasad Gade"
   },
   "data": {
     "who": "Prasad Gade is a computer engineer and a data analyst who builds software, works with data, and creates intelligent tools to solve real problems.",
@@ -60,6 +60,33 @@
       "note": "Shortcuts are ignored while typing inside inputs, textareas, selects, and contenteditable fields.",
       "focus_order_note": "Inside interactive tabs, focus moves through cards first and then their nested links or actions. About and Skills do not have in-tab interactive targets.",
       "modal_note": "Theme cycling stays available while the Start Here, movies, resume, or Minecraft modal is open. The Minecraft viewer responds to Space when it is focused."
+    },
+    "site_architecture": {
+      "hosting": "Static React portfolio hosted on GitHub Pages at prasadgade.dev",
+      "agent_surface": "Read-only machine-readable files live under public/, including llms.txt, llms-full.txt, OpenAPI, A2A, WebMCP, MCP discovery, API catalog, and static JSON endpoints.",
+      "shortcuts_system": {
+        "target_marker": "Interactive in-pane targets opt into keyboard navigation with data-shortcut-target=\"true\".",
+        "navigation_model": "Global shortcuts switch tabs and open overlays; active-tab navigation moves through visible shortcut targets, including nested card links/actions, blog filters, sort controls, blog cards, and share buttons.",
+        "input_safety": "Shortcuts are ignored while typing inside inputs, textareas, selects, and contenteditable fields."
+      },
+      "blog_pipeline": {
+        "source": "Each post lives in a numbered subfolder inside blog-posts/.",
+        "required_files": "Every post folder must contain exactly one Markdown file and one PNG thumbnail; extra non-ignorable files fail the sync.",
+        "frontmatter": ["title", "date", "thumbnail", "category or categories", "optional slug"],
+        "command": "npm run blogs:sync",
+        "outputs": [
+          "public/blogs/<slug>/index.html",
+          "public/blogs/assets/<thumbnail>.png",
+          "public/blogs/blogs.json",
+          "public/blogs/rss.xml",
+          "public/sitemap.xml blog entries",
+          "public/llms.txt blog section",
+          "public/llms-full.txt blog section"
+        ],
+        "caching": "Generated pages, thumbnails, and shared files are written only when their content changes; unchanged outputs are skipped on repeat runs.",
+        "stale_cleanup": "Generated blog folders and copied assets are pruned when the source post is deleted or renamed.",
+        "build_integration": "npm run build runs blogs:sync through the prebuild hook, and npm run deploy runs build before publishing."
+      }
     },
     "hobbies": {
       "sports": ["Cricket", "Minecraft"],
