@@ -4,27 +4,18 @@
 
 ---
 
-## Why is this repo named `prasad-gade05.github.io`?
+## Repository Name
 
-Intentional.
-
-GitHub Pages requires `<username>.github.io` to serve as the **root site** for a custom domain.  
-This allows:
+GitHub Pages uses `<username>.github.io` as the root site for a custom domain. This allows:
 
 - `https://prasadgade.dev` → Portfolio (root)
 - `https://prasadgade.dev/<project>` → Other hosted projects
-
-Clean and scalable GitHub Pages architecture.
-
----
 
 ## Other Projects Under This Setup
 
 - Audio Visualizer — https://prasadgade.dev/audio_visualizer_app/
 - Attendance Tracker — https://prasadgade.dev/attendance/
 - Habit Tracker — https://prasadgade.dev/Habit-Tracker/
-
-_(PS: You might’ve just learned something new about how GitHub Pages routing works)_
 
 ---
 
@@ -41,6 +32,18 @@ Keyboard shortcuts are available in the app. Press `?` to open the in-app guide.
 - `R` opens the resume
 - `T` cycles themes, even while the help, movies, resume, or Minecraft modal is open
 - `Esc` closes the current modal or overlay
+
+---
+
+## Blog Pipeline
+
+- Source posts live in numbered folders under `blog-posts\`
+- Each post folder must contain exactly one `.md` file and one `.png` thumbnail
+- `npm run blogs:sync` validates posts, renders `public\blogs\<slug>\index.html`, copies changed thumbnails, rebuilds `public\blogs\blogs.json`, `public\blogs\rss.xml`, sitemap blog URLs, and LLM blog sections
+- The pipeline uses write-if-changed caching, so unchanged pages, assets, and shared files are skipped
+- `npm run build` runs `blogs:sync` through `prebuild`; `npm run deploy` is enough to regenerate and publish blogs
+
+More detail: `docs\BLOG_PIPELINE.md`
 
 ---
 
@@ -68,12 +71,12 @@ public/
 │   ├── projects.json              # Projects Portfolio
 │   ├── skills.json                # Skills Taxonomy
 │   ├── social.json                # Contact & Social
-│   └── about.json                 # Personality & Hobbies
+│   └── about.json                 # Personality, Shortcuts, Blog Pipeline
 ├── blogs/
 │   ├── blogs.json                 # Blog Metadata
 │   ├── rss.xml                    # RSS Feed
-│   └── content/
-│       └── introduction-blogging-journey.md
+│   └── <slug>/
+│       └── index.html             # Generated Static Blog Page
 ├── openapi.json                   # OpenAPI Specification
 ├── agents.json                    # Root Agents Directory
 ├── llms.txt                       # LLM Summary

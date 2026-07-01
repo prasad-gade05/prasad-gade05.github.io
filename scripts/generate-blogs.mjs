@@ -278,7 +278,7 @@ function removeSitemapEntries(sitemap, urls) {
 }
 
 function updateLlmsFiles(paths, posts) {
-  const llmsBlogSection = `Prasad writes a personal blog at prasadgade.dev. All written content is 100% human-written. Thumbnails are AI-generated.
+  const llmsBlogSection = `Prasad writes a personal blog at prasadgade.dev. All written content is 100% human-written. Thumbnails are AI-generated. The blog pipeline reads strict source folders from blog-posts/, validates one Markdown file and one PNG per post, renders static pages, rebuilds blogs.json and RSS, updates sitemap and LLM files, prunes stale generated output, and skips unchanged pages/assets/shared files through write-if-changed caching.
 
 - Blog listing: ${SITE_URL}/?tab=blogs
 - Blog metadata (JSON): ${SITE_URL}/blogs/blogs.json
@@ -291,6 +291,13 @@ ${posts
   .join("\n")}`;
 
   const llmsFullBlogSection = `Prasad writes a personal blog at prasadgade.dev. All written content is 100% human-written. Thumbnails are AI-generated.
+
+Blog pipeline:
+- Source: one subfolder per post under blog-posts/, with exactly one Markdown file and one PNG file
+- Validation: npm run blogs:sync fails if a post folder has missing, extra, or mismatched files/frontmatter
+- Outputs: static post pages, public/blogs/blogs.json, public/blogs/rss.xml, sitemap blog URLs, and the blog sections in llms.txt and llms-full.txt
+- Caching: generated pages, thumbnails, and shared files are written only when their content changes; unchanged outputs are skipped and stale generated post folders/assets are pruned
+- Build hook: npm run build runs npm run blogs:sync first through prebuild, so npm run deploy publishes regenerated blog output
 
 - Blog listing: ${SITE_URL}/?tab=blogs
 - Blog metadata (JSON): ${SITE_URL}/blogs/blogs.json

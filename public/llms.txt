@@ -17,7 +17,7 @@ Keyboard shortcuts are available in-app. Press ? to open the shortcut guide. Use
 
 ## Blogs
 
-Prasad writes a personal blog at prasadgade.dev. All written content is 100% human-written. Thumbnails are AI-generated.
+Prasad writes a personal blog at prasadgade.dev. All written content is 100% human-written. Thumbnails are AI-generated. The blog pipeline reads strict source folders from blog-posts/, validates one Markdown file and one PNG per post, renders static pages, rebuilds blogs.json and RSS, updates sitemap and LLM files, prunes stale generated output, and skips unchanged pages/assets/shared files through write-if-changed caching.
 
 - Blog listing: https://prasadgade.dev/?tab=blogs
 - Blog metadata (JSON): https://prasadgade.dev/blogs/blogs.json
