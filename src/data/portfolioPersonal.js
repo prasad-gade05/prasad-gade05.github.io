@@ -131,6 +131,8 @@ export const movies = [
   { title: "Moana", year: "2016", genre: "Animation, Adventure, Comedy" },
   { title: "Inside Out", year: "2015", genre: "Animation, Adventure, Comedy" },
   { title: "Inside Out 2", year: "2024", genre: "Animation, Adventure, Comedy" },
+  { title: "Nuremberg", year: "2023", genre: "Drama, History, War" },
+  { title: "Fury", year: "2014", genre: "Action, Drama, War" },
 ];
 
 export const webShows = [
@@ -152,7 +154,8 @@ export const webShows = [
   { title: "Kaala Pani", seasons: 1, genre: "Drama, Thriller" },
   { title: "Bodyguard", seasons: 1, genre: "Crime, Drama, Thriller" },
   { title: "Young Sheldon", seasons: 7, genre: "Comedy" },
-  { title: "WondLa", seasons: 3, genre: "Animation, Adventure, Sci-Fi" },
+{ title: "WondLa", seasons: 3, genre: "Animation, Adventure, Sci-Fi" },
+  { title: "The Rookie", seasons: 8, genre: "Crime, Drama" },
 ];
 
 export const profileData = {
