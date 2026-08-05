@@ -17,13 +17,13 @@ export const education = [
     degree: "B.Tech Computer Engineering",
     school: "SPIT Mumbai",
     date: "Expected 2027",
-    grade: "9.26 CGPA",
+    grade: "9.37 CGPA",
   },
   {
     degree: "Minor in Management",
     school: "SPJIMR (SP Jain Institute of Management & Research)",
     date: "Expected 2027",
-    grade: "8.0 CGPA",
+    grade: "8.6 CGPA",
   },
   {
     degree: "Diploma in Computer Technology",

@@ -1,6 +1,6 @@
 # Prasad Gade
 
-> Data Scientist and Computer Engineer from Mumbai, India. B.Tech student at SPIT (CGPA 9.26/10). Builds data pipelines, ML models, dashboards, and interactive web apps.
+> Data Scientist and Computer Engineer from Mumbai, India. B.Tech student at SPIT (CGPA 9.37/10). Builds data pipelines, ML models, dashboards, and interactive web apps.
 
 This is Prasad Gade's personal portfolio at prasadgade.dev. It is a single-page React app with 4 visual themes, a 3D Minecraft skin viewer, a paper physics playground, hidden easter eggs, and in-app keyboard shortcuts with nested in-tab navigation.
 

@@ -1,6 +1,6 @@
 # Prasad Gade - Full Profile
 
-> Data Scientist and Computer Engineer from Mumbai, India. B.Tech student at Sardar Patel Institute of Technology (CGPA 9.26/10). Builds data pipelines, ML models, dashboards, and interactive web applications. Published researcher and hackathon winner.
+> Data Scientist and Computer Engineer from Mumbai, India. B.Tech student at Sardar Patel Institute of Technology (CGPA 9.37/10). Builds data pipelines, ML models, dashboards, and interactive web applications. Published researcher and hackathon winner.
 
 ## About This Site
 
@@ -65,7 +65,7 @@ Site features:
 ### B.Tech in Computer Engineering
 - Institution: Bhartiya Vidya Bhavan's Sardar Patel Institute of Technology (SPIT), Mumbai
 - Minor: Management from SPJIMR (S. P. Jain Institute of Management & Research)
-- CGPA: 9.26/10.0
+- CGPA: 9.37/10.0
 - Expected graduation: June 2027
 
 ### Diploma in Computer Technology
