@@ -133,6 +133,14 @@ export const movies = [
   { title: "Inside Out 2", year: "2024", genre: "Animation, Adventure, Comedy" },
   { title: "Nuremberg", year: "2023", genre: "Drama, History, War" },
   { title: "Fury", year: "2014", genre: "Action, Drama, War" },
+  { title: "Saving Private Ryan", year: "1998", genre: "Drama, War" },
+  {
+    title: "The Sheep Detectives",
+    year: "2026",
+    genre: "Comedy, Drama, Mystery",
+  },
+  { title: "Papillon", year: "2017", genre: "Adventure, Biography, Crime" },
+  { title: "The Shawshank Redemption", year: "1994", genre: "Drama" },
 ];
 
 export const webShows = [
