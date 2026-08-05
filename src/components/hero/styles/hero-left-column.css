@@ -410,6 +410,14 @@
   transition: background 0.2s ease, color 0.2s ease;
 }
 
+button.nb-menu-item {
+  background: transparent;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
 .nb-menu-item:hover {
   background: rgba(127, 127, 127, 0.18);
   color: var(--text-secondary);

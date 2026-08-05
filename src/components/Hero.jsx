@@ -127,7 +127,10 @@ const Hero = ({ onStartDoodle }) => {
             onCloseHelp={() => setShowHelpModal(false)}
             showHelpModal={showHelpModal}
           />
-          <CodeCard onOpenResume={() => setShowResumeModal(true)} />
+          <CodeCard
+            onOpenResume={() => setShowResumeModal(true)}
+            onOpenHelp={() => setShowHelpModal(true)}
+          />
           <SocialLinks />
         </div>
 

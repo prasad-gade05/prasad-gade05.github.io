@@ -114,8 +114,9 @@ describe('hero basics', () => {
 
   it('renders the code card and opens the resume callback when provided', () => {
     const onOpenResume = vi.fn()
+    const onOpenHelp = vi.fn()
 
-    render(<CodeCard onOpenResume={onOpenResume} />)
+    render(<CodeCard onOpenResume={onOpenResume} onOpenHelp={onOpenHelp} />)
 
     expect(screen.getByText(codeCardData.filename)).toBeInTheDocument()
     expect(screen.getByText('Resume')).toBeInTheDocument()
@@ -125,6 +126,9 @@ describe('hero basics', () => {
 
     fireEvent.click(screen.getByRole('link', { name: /resume/i }))
     expect(onOpenResume).toHaveBeenCalledTimes(1)
+
+    fireEvent.click(screen.getByRole('button', { name: 'Help' }))
+    expect(onOpenHelp).toHaveBeenCalledTimes(1)
   })
 
   it('handles the movies modal tabs and close behavior', () => {

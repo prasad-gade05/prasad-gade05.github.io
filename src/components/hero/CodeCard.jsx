@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { FileText, ExternalLink, Play, Plus, Save } from "lucide-react";
 import { codeCardData } from "../../data/portfolioData";
 
-const MENU_ITEMS = ["File", "Edit", "View", "Insert", "Cell", "Kernel", "Widgets", "Help"];
+const MENU_ITEMS = ["File", "Edit", "View", "Insert", "Cell", "Kernel", "Widgets"];
 
 const JupyterLogo = () => (
   <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
@@ -12,7 +12,7 @@ const JupyterLogo = () => (
   </svg>
 );
 
-const CodeCard = ({ onOpenResume }) => {
+const CodeCard = ({ onOpenResume, onOpenHelp }) => {
   return (
     <motion.div
       className="code-card"
@@ -21,16 +21,24 @@ const CodeCard = ({ onOpenResume }) => {
       transition={{ duration: 0.5, delay: 0.2 }}
     >
       <div className="code-header">
-        <div className="nb-menu" aria-hidden="true">
-          <span className="nb-logo">
+        <div className="nb-menu">
+          <span className="nb-logo" aria-hidden="true">
             <JupyterLogo />
           </span>
           {MENU_ITEMS.map((item) => (
-            <span key={item} className="nb-menu-item">
+            <span key={item} className="nb-menu-item" aria-hidden="true">
               {item}
             </span>
           ))}
-          <span className="nb-kernel">
+          <button
+            type="button"
+            className="nb-menu-item nb-menu-help"
+            onClick={onOpenHelp}
+            title="Keyboard shortcuts (?)"
+          >
+            Help
+          </button>
+          <span className="nb-kernel" aria-hidden="true">
             <span className="nb-kernel-dot" />
             Python 3
           </span>
