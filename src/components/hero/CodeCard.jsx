@@ -1,6 +1,16 @@
 import { motion } from "framer-motion";
-import { FileText, ExternalLink } from "lucide-react";
+import { FileText, ExternalLink, Play, Plus, Save } from "lucide-react";
 import { codeCardData } from "../../data/portfolioData";
+
+const MENU_ITEMS = ["File", "Edit", "View", "Insert", "Cell", "Kernel", "Widgets", "Help"];
+
+const JupyterLogo = () => (
+  <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+    <circle cx="12" cy="5.5" r="3.6" fill="#F37726" opacity="0.9" />
+    <circle cx="5.6" cy="17.5" r="3.6" fill="#2BB6E0" opacity="0.9" />
+    <circle cx="18.4" cy="17.5" r="3.6" fill="#9E5AC8" opacity="0.9" />
+  </svg>
+);
 
 const CodeCard = ({ onOpenResume }) => {
   return (
@@ -11,28 +21,51 @@ const CodeCard = ({ onOpenResume }) => {
       transition={{ duration: 0.5, delay: 0.2 }}
     >
       <div className="code-header">
-        <div className="code-dots">
-          <span className="dot red"></span>
-          <span className="dot yellow"></span>
-          <span className="dot green"></span>
+        <div className="nb-menu" aria-hidden="true">
+          <span className="nb-logo">
+            <JupyterLogo />
+          </span>
+          {MENU_ITEMS.map((item) => (
+            <span key={item} className="nb-menu-item">
+              {item}
+            </span>
+          ))}
+          <span className="nb-kernel">
+            <span className="nb-kernel-dot" />
+            Python 3
+          </span>
         </div>
-        <span className="code-filename">{codeCardData.filename}</span>
-        <a
-          href={codeCardData.resumeLink}
-          onClick={(e) => {
-            if (onOpenResume) {
-              e.preventDefault();
-              onOpenResume();
-            }
-          }}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="resume-btn"
-        >
-          <FileText size={12} />
-          Resume
-          <ExternalLink size={10} />
-        </a>
+        <div className="nb-toolbar">
+          <span className="nb-tool" aria-hidden="true" title="Run">
+            <Play size={12} />
+          </span>
+          <span className="nb-tool" aria-hidden="true" title="Insert cell below">
+            <Plus size={12} />
+          </span>
+          <span className="nb-tool" aria-hidden="true" title="Save notebook">
+            <Save size={12} />
+          </span>
+          <span className="nb-filename">
+            <FileText size={11} aria-hidden="true" />
+            {codeCardData.filename}
+          </span>
+          <a
+            href={codeCardData.resumeLink}
+            onClick={(e) => {
+              if (onOpenResume) {
+                e.preventDefault();
+                onOpenResume();
+              }
+            }}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="resume-btn"
+          >
+            <FileText size={12} />
+            Resume
+            <ExternalLink size={10} />
+          </a>
+        </div>
       </div>
       <pre className="code-content">
         <code>
