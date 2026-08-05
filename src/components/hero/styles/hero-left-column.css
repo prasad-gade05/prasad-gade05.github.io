@@ -433,6 +433,18 @@ button.nb-menu-item {
   font-size: clamp(8px, 1vmin, 10px);
 }
 
+button.nb-kernel {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.nb-kernel-status {
+  opacity: 0.7;
+}
+
 .nb-kernel-dot {
   width: clamp(6px, 0.8vmin, 8px);
   height: clamp(6px, 0.8vmin, 8px);
@@ -446,6 +458,58 @@ button.nb-menu-item {
   0%,
   100% { opacity: 1; }
   50% { opacity: 0.4; }
+}
+
+.nb-kernel.busy .nb-kernel-dot {
+  background: #ff9800;
+  box-shadow: 0 0 clamp(4px, 0.7vmin, 7px) rgba(255, 152, 0, 0.8);
+  animation: nb-kernel-busy 0.6s ease-in-out infinite;
+}
+
+@keyframes nb-kernel-busy {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+}
+
+/* Kernel menu dropdown */
+.nb-dropdown {
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  min-width: clamp(120px, 16vmin, 150px);
+  padding: clamp(3px, 0.5vmin, 5px);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-separator);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  font-family: var(--font-mono);
+  font-size: clamp(9px, 1.1vmin, 11px);
+}
+
+.nb-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: clamp(4px, 0.6vmin, 6px) clamp(6px, 0.8vmin, 8px);
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  font: inherit;
+  color: var(--text-secondary);
+  text-align: left;
+  cursor: pointer;
+}
+
+.nb-dropdown-item:hover {
+  background: rgba(127, 127, 127, 0.18);
+  color: var(--text-secondary);
 }
 
 /* JupyterLab toolbar */
@@ -466,6 +530,18 @@ button.nb-menu-item {
   color: var(--text-muted);
   cursor: default;
   transition: all 0.2s ease;
+}
+
+button.nb-tool {
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.nb-tool:disabled {
+  opacity: 0.4;
+  cursor: default;
 }
 
 .nb-tool:hover {
@@ -577,6 +653,7 @@ button.nb-menu-item {
 [data-theme='light'] .code-content .cm { color: #007200; }
 [data-theme='light'] .code-content .nb-prompt { color: #005f8d; }
 [data-theme='light'] .code-content .nb-prompt.out { color: #9a3412; }
+[data-theme='light'] .code-content .nb-prompt.busy { color: #9a3412; }
 
 [data-theme='arcade-light'] .code-content .kw,
 [data-theme='arcade-light'] .code-content .p { color: #7a4e99; }
@@ -587,6 +664,7 @@ button.nb-menu-item {
 [data-theme='arcade-light'] .code-content .cm { color: #276b52; }
 [data-theme='arcade-light'] .code-content .nb-prompt { color: #3d4fd6; }
 [data-theme='arcade-light'] .code-content .nb-prompt.out { color: #c23a28; }
+[data-theme='arcade-light'] .code-content .nb-prompt.busy { color: #c23a28; }
 
 /* Jupyter notebook cells */
 .code-content .nb-cell {
@@ -625,6 +703,17 @@ button.nb-menu-item {
 
 .code-content .nb-prompt.out {
   color: var(--accent-orange);
+}
+
+.code-content .nb-prompt.busy {
+  color: var(--accent-orange);
+  animation: nb-busy-blink 0.8s ease-in-out infinite;
+}
+
+@keyframes nb-busy-blink {
+  0%,
+  100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 
 .code-content .nb-input {

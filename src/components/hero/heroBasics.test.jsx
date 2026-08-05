@@ -9,6 +9,14 @@ import HelpModal from './HelpModal'
 import MoviesModal from './MoviesModal'
 import SocialLinks from './SocialLinks'
 
+const { confettiMock } = vi.hoisted(() => ({
+  confettiMock: vi.fn(),
+}))
+
+vi.mock('canvas-confetti', () => ({
+  default: confettiMock,
+}))
+
 vi.mock('framer-motion', async () => {
   const React = await vi.importActual('react')
 
@@ -40,6 +48,7 @@ describe('hero basics', () => {
 
   afterEach(() => {
     vi.restoreAllMocks()
+    vi.useRealTimers()
   })
 
   it('renders the help modal content and closes correctly', async () => {
@@ -129,6 +138,64 @@ describe('hero basics', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Help' }))
     expect(onOpenHelp).toHaveBeenCalledTimes(1)
+  })
+
+  it('runs the notebook cells with busy prompts and fires confetti on completion', () => {
+    vi.useFakeTimers()
+    confettiMock.mockReset()
+
+    render(<CodeCard />)
+
+    fireEvent.click(screen.getByRole('button', { name: 'Run all cells' }))
+    act(() => {
+      vi.advanceTimersByTime(0)
+    })
+    expect(screen.getByText('In [*]:')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /Python 3/ })).toHaveClass('busy')
+
+    act(() => {
+      vi.advanceTimersByTime(700)
+    })
+    expect(screen.getByText('In [*]:')).toBeInTheDocument()
+
+    act(() => {
+      vi.advanceTimersByTime(700)
+    })
+    expect(screen.queryByText('In [*]:')).not.toBeInTheDocument()
+    expect(screen.getByText('In [1]:')).toBeInTheDocument()
+    expect(screen.getByText('In [2]:')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /Python 3/ })).not.toHaveClass('busy')
+    expect(confettiMock).toHaveBeenCalledTimes(1)
+  })
+
+  it('restarts the kernel from the kernel menu and cancels a pending run', () => {
+    vi.useFakeTimers()
+    confettiMock.mockReset()
+
+    render(<CodeCard />)
+
+    fireEvent.click(screen.getByRole('button', { name: 'Run all cells' }))
+    act(() => {
+      vi.advanceTimersByTime(0)
+    })
+    expect(screen.getByText('In [*]:')).toBeInTheDocument()
+
+    const kernelBtn = screen.getByRole('button', { name: 'Kernel' })
+    Object.defineProperty(kernelBtn, 'getBoundingClientRect', {
+      value: () => ({ left: 100, top: 50, width: 50, height: 20, bottom: 70, right: 150 }),
+      configurable: true,
+    })
+    fireEvent.click(kernelBtn)
+    fireEvent.click(screen.getByRole('menuitem', { name: 'Restart' }))
+
+    expect(screen.queryByText('In [*]:')).not.toBeInTheDocument()
+    expect(screen.getByText('In [1]:')).toBeInTheDocument()
+
+    act(() => {
+      vi.advanceTimersByTime(5000)
+    })
+    expect(confettiMock).not.toHaveBeenCalled()
+    expect(screen.getByRole('button', { name: /Python 3/ })).not.toHaveClass('busy')
   })
 
   it('handles the movies modal tabs and close behavior', () => {
