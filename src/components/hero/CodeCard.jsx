@@ -36,14 +36,40 @@ const CodeCard = ({ onOpenResume }) => {
       </div>
       <pre className="code-content">
         <code>
-          {codeCardData.codeLines.map((line) => (
-            <span key={line.lineNum} className="line">
-              {line.lineNum && <span className="ln">{line.lineNum}</span>}
-              {line.tokens.map((token, i) => (
-                <span key={i} className={token.type}>
-                  {token.content}
+          {codeCardData.cells.map((cell) => (
+            <span key={cell.id} className="nb-cell">
+              <span className="nb-row">
+                <span className="nb-prompt">In [{cell.executionCount}]:</span>
+                <span className="nb-input">
+                  {cell.lines.map((line, li) => (
+                    <span key={li} className="line">
+                      {line.tokens.map((token, i) => (
+                        <span key={i} className={token.type}>
+                          {token.content}
+                        </span>
+                      ))}
+                    </span>
+                  ))}
                 </span>
-              ))}
+              </span>
+              {cell.output && (
+                <span className="nb-row">
+                  <span className="nb-prompt out">
+                    Out[{cell.executionCount}]:
+                  </span>
+                  <span className="nb-output">
+                    {cell.output.map((line, li) => (
+                      <span key={li} className="line">
+                        {line.tokens.map((token, i) => (
+                          <span key={i} className={token.type}>
+                            {token.content}
+                          </span>
+                        ))}
+                      </span>
+                    ))}
+                  </span>
+                </span>
+              )}
             </span>
           ))}
         </code>

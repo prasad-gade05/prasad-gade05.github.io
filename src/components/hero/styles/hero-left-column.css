@@ -447,6 +447,7 @@
 .code-content code {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   height: 100%;
   font-size: clamp(7px, min(4.2cqh, 2.5cqw), 14px);
 }
@@ -480,6 +481,61 @@
 .code-content .op { color: var(--text-secondary); }
 .code-content .p { color: var(--accent-purple); }
 .code-content .cm { color: #6a9955; font-style: italic; }
+
+/* Jupyter notebook cells */
+.code-content .nb-cell {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2px, 0.8cqh, 6px);
+  min-height: 0;
+}
+
+.code-content .nb-row {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(6px, 1.6cqw, 10px);
+}
+
+.code-content .nb-prompt {
+  flex-shrink: 0;
+  width: clamp(40px, 13cqw, 54px);
+  padding-top: clamp(3px, 0.8cqh, 6px);
+  text-align: right;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  white-space: pre;
+  user-select: none;
+}
+
+.code-content .nb-prompt.out {
+  color: var(--accent-orange);
+}
+
+.code-content .nb-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(3px, 0.8cqh, 6px) clamp(6px, 1.6cqw, 10px);
+  background: rgba(127, 127, 127, 0.08);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--accent-cyan);
+  border-radius: 6px;
+}
+
+.code-content .nb-output {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0 clamp(6px, 1.6cqw, 10px);
+}
+
+.code-content .nb-cell .line {
+  flex: 0 0 auto;
+  min-height: 1.3em;
+}
 
 /* Social Section - IMPROVED DESIGN */
 .social-section {

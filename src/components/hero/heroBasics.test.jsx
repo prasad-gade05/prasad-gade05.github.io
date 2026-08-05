@@ -119,7 +119,9 @@ describe('hero basics', () => {
 
     expect(screen.getByText(codeCardData.filename)).toBeInTheDocument()
     expect(screen.getByText('Resume')).toBeInTheDocument()
-    expect(screen.getByText('ComputerEngineer')).toBeInTheDocument()
+    expect(screen.getAllByText('ComputerEngineer').length).toBeGreaterThan(0)
+    expect(screen.getByText('In [1]:')).toBeInTheDocument()
+    expect(screen.getByText('Out[2]:')).toBeInTheDocument()
 
     fireEvent.click(screen.getByRole('link', { name: /resume/i }))
     expect(onOpenResume).toHaveBeenCalledTimes(1)

@@ -200,160 +200,176 @@ export const profileData = {
 };
 
 export const codeCardData = {
-  filename: "prasad_gade.py",
+  filename: "prasad_gade.ipynb",
   resumeLink:
     "https://drive.google.com/file/d/134zdT9FaQX6siuHMxnICxBqZrK_R3YXV/view?usp=sharing",
-  codeLines: [
+  cells: [
     {
-      lineNum: 1,
-      tokens: [
-        { type: "kw", content: "class" },
-        { type: "text", content: " " },
-        { type: "cls", content: "ComputerEngineer" },
-        { type: "p", content: ":" },
+      id: 1,
+      executionCount: 1,
+      lines: [
+        {
+          tokens: [
+            { type: "kw", content: "class" },
+            { type: "text", content: " " },
+            { type: "cls", content: "ComputerEngineer" },
+            { type: "p", content: ":" },
+          ],
+        },
+        {
+          tokens: [
+            { type: "text", content: "    " },
+            { type: "cm", content: '"""DS | DA | ML | Cross-Platform Apps"""' },
+          ],
+        },
+        { tokens: [] },
+        {
+          tokens: [
+            { type: "text", content: "    " },
+            { type: "pr", content: "mindset" },
+            { type: "op", content: " = " },
+            { type: "st", content: '"product-first"' },
+            { type: "cm", content: "  # clean code, sound design" },
+          ],
+        },
+        { tokens: [] },
+        {
+          tokens: [
+            { type: "text", content: "    " },
+            { type: "kw", content: "def" },
+            { type: "text", content: " " },
+            { type: "fn", content: "pipeline" },
+            { type: "p", content: "(" },
+            { type: "sf", content: "self" },
+            { type: "p", content: ", " },
+            { type: "pm", content: "raw_data" },
+            { type: "p", content: "):" },
+          ],
+        },
+        {
+          tokens: [
+            { type: "text", content: "        " },
+            { type: "pr", content: "data" },
+            { type: "op", content: " = " },
+            { type: "sf", content: "self" },
+            { type: "p", content: "." },
+            { type: "fn", content: "transform" },
+            { type: "p", content: "(" },
+            { type: "pm", content: "raw_data" },
+            { type: "p", content: ")" },
+            { type: "cm", content: "  # Python & SQL" },
+          ],
+        },
+        {
+          tokens: [
+            { type: "text", content: "        " },
+            { type: "pr", content: "dash" },
+            { type: "op", content: " = " },
+            { type: "sf", content: "self" },
+            { type: "p", content: "." },
+            { type: "fn", content: "visualize" },
+            { type: "p", content: "(" },
+            { type: "pm", content: "data" },
+            { type: "p", content: ")" },
+            { type: "cm", content: "      # Power BI" },
+          ],
+        },
+        {
+          tokens: [
+            { type: "text", content: "        " },
+            { type: "kw", content: "return" },
+            { type: "text", content: " " },
+            { type: "sf", content: "self" },
+            { type: "p", content: "." },
+            { type: "fn", content: "predict" },
+            { type: "p", content: "(" },
+            { type: "pm", content: "dash" },
+            { type: "p", content: ")" },
+            { type: "cm", content: "        # ML models" },
+          ],
+        },
+        { tokens: [] },
+        {
+          tokens: [
+            { type: "text", content: "    " },
+            { type: "kw", content: "def" },
+            { type: "text", content: " " },
+            { type: "fn", content: "build" },
+            { type: "p", content: "(" },
+            { type: "sf", content: "self" },
+            { type: "p", content: ", " },
+            { type: "pm", content: "raw_data" },
+            { type: "p", content: "):" },
+          ],
+        },
+        {
+          tokens: [
+            { type: "text", content: "        " },
+            { type: "cm", content: "# Scalable, insight-driven solutions" },
+          ],
+        },
+        {
+          tokens: [
+            { type: "text", content: "        " },
+            { type: "sf", content: "self" },
+            { type: "p", content: "." },
+            { type: "fn", content: "pipeline" },
+            { type: "p", content: "(" },
+            { type: "pm", content: "raw_data" },
+            { type: "p", content: ")" },
+          ],
+        },
+        {
+          tokens: [
+            { type: "text", content: "        " },
+            { type: "kw", content: "return" },
+            { type: "text", content: " " },
+            { type: "p", content: "{" },
+            { type: "st", content: '"quality"' },
+            { type: "p", content: ", " },
+            { type: "st", content: '"performance"' },
+            { type: "p", content: ", " },
+            { type: "st", content: '"impact"' },
+            { type: "p", content: "}" },
+          ],
+        },
       ],
     },
     {
-      lineNum: 2,
-      tokens: [
-        { type: "text", content: "    " },
-        { type: "cm", content: '"""DS | DA | ML | Cross-Platform Apps"""' },
+      id: 2,
+      executionCount: 2,
+      lines: [
+        {
+          tokens: [
+            { type: "pr", content: "prasad" },
+            { type: "op", content: " = " },
+            { type: "cls", content: "ComputerEngineer" },
+            { type: "p", content: "()" },
+          ],
+        },
+        {
+          tokens: [
+            { type: "pr", content: "prasad" },
+            { type: "p", content: "." },
+            { type: "fn", content: "build" },
+            { type: "p", content: "(" },
+            { type: "pm", content: "raw_data" },
+            { type: "p", content: ")" },
+          ],
+        },
       ],
-    },
-    {
-      lineNum: 3,
-      tokens: [],
-    },
-    {
-      lineNum: 4,
-      tokens: [
-        { type: "text", content: "    " },
-        { type: "kw", content: "def" },
-        { type: "text", content: " " },
-        { type: "fn", content: "pipeline" },
-        { type: "p", content: "(" },
-        { type: "sf", content: "self" },
-        { type: "p", content: ", " },
-        { type: "pm", content: "raw_data" },
-        { type: "p", content: "):" },
-      ],
-    },
-    {
-      lineNum: 5,
-      tokens: [
-        { type: "text", content: "        " },
-        { type: "cm", content: "# Clean & transform with Python & SQL" },
-      ],
-    },
-    {
-      lineNum: 6,
-      tokens: [
-        { type: "text", content: "        " },
-        { type: "pr", content: "clean_data" },
-        { type: "text", content: " " },
-        { type: "op", content: "=" },
-        { type: "text", content: " " },
-        { type: "sf", content: "self" },
-        { type: "p", content: "." },
-        { type: "fn", content: "transform" },
-        { type: "p", content: "(" },
-        { type: "pm", content: "raw_data" },
-        { type: "p", content: ")" },
-      ],
-    },
-    {
-      lineNum: 7,
-      tokens: [
-        { type: "text", content: "        " },
-        { type: "cm", content: "# Interactive dashboards in Power BI" },
-      ],
-    },
-    {
-      lineNum: 8,
-      tokens: [
-        { type: "text", content: "        " },
-        { type: "sf", content: "self" },
-        { type: "p", content: "." },
-        { type: "fn", content: "visualize" },
-        { type: "p", content: "(" },
-        { type: "pr", content: "clean_data" },
-        { type: "p", content: ")" },
-      ],
-    },
-    {
-      lineNum: 9,
-      tokens: [
-        { type: "text", content: "        " },
-        { type: "cm", content: "# ML: prediction & classification" },
-      ],
-    },
-    {
-      lineNum: 10,
-      tokens: [
-        { type: "text", content: "        " },
-        { type: "kw", content: "return" },
-        { type: "text", content: " " },
-        { type: "sf", content: "self" },
-        { type: "p", content: "." },
-        { type: "fn", content: "predict" },
-        { type: "p", content: "(" },
-        { type: "pr", content: "clean_data" },
-        { type: "p", content: ")" },
-      ],
-    },
-    {
-      lineNum: 11,
-      tokens: [],
-    },
-    {
-      lineNum: 12,
-      tokens: [
-        { type: "text", content: "    " },
-        { type: "kw", content: "def" },
-        { type: "text", content: " " },
-        { type: "fn", content: "build" },
-        { type: "p", content: "(" },
-        { type: "sf", content: "self" },
-        { type: "p", content: "):" },
-      ],
-    },
-    {
-      lineNum: 13,
-      tokens: [
-        { type: "text", content: "        " },
-        { type: "cm", content: "# Scalable, insight-driven solutions" },
-      ],
-    },
-    {
-      lineNum: 14,
-      tokens: [
-        { type: "text", content: "        " },
-        { type: "cm", content: "# Product mindset + clean code" },
-      ],
-    },
-    {
-      lineNum: 15,
-      tokens: [
-        { type: "text", content: "        " },
-        { type: "kw", content: "return" },
-        { type: "text", content: " " },
-        { type: "p", content: "{" },
-        { type: "st", content: '"quality"' },
-        { type: "p", content: ", " },
-        { type: "st", content: '"performance"' },
-        { type: "p", content: ", " },
-        { type: "st", content: '"impact"' },
-        { type: "p", content: "}" },
-      ],
-    },
-    {
-      lineNum: 16,
-      tokens: [],
-    },
-    {
-      lineNum: 17,
-      tokens: [
-        { type: "cm", content: "# Open to: DA | DS | App Dev opportunities" },
+      output: [
+        {
+          tokens: [
+            { type: "p", content: "{" },
+            { type: "st", content: "'quality'" },
+            { type: "p", content: ", " },
+            { type: "st", content: "'performance'" },
+            { type: "p", content: ", " },
+            { type: "st", content: "'impact'" },
+            { type: "p", content: "}" },
+          ],
+        },
       ],
     },
   ],

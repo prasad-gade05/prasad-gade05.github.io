@@ -56,6 +56,6 @@ describe('portfolio data modules', () => {
     expect(movies[0]).toMatchObject({ title: expect.any(String) })
     expect(webShows[0]).toMatchObject({ title: expect.any(String) })
     expect(profileData.typingRoles.length).toBeGreaterThan(0)
-    expect(codeCardData.codeLines.length).toBeGreaterThan(0)
+    expect(codeCardData.cells.length).toBeGreaterThan(0)
   })
 })

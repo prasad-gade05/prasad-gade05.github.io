@@ -184,7 +184,7 @@ const HelpModal = ({ onClose }) => {
             </div>
             <ul className="help-list">
               <li><strong>My photo</strong>: click to enlarge</li>
-              <li><strong>prasad_gade.py</strong>: my intro in code style (for fun!)</li>
+              <li><strong>prasad_gade.ipynb</strong>: my intro in code style (for fun!)</li>
               <li><strong>Resume button</strong>: view or download my resume</li>
               <li><strong>See All Movies</strong>: my personal watchlist</li>
             </ul>
