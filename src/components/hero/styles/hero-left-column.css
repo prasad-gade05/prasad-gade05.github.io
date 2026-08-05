@@ -392,6 +392,8 @@
   user-select: none;
   white-space: nowrap;
   overflow: hidden;
+  padding-bottom: clamp(3px, 0.5vmin, 5px);
+  border-bottom: 1px solid rgba(127, 127, 127, 0.18);
 }
 
 .nb-logo {
@@ -443,6 +445,7 @@
   display: flex;
   align-items: center;
   gap: clamp(4px, 0.6vmin, 7px);
+  padding-top: clamp(2px, 0.3vmin, 3px);
 }
 
 .nb-tool {
