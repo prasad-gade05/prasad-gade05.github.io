@@ -248,6 +248,53 @@ describe('hero content tabs', () => {
     })
   })
 
+  it('flips a project card like a coin when dragged and settles it back to rest', () => {
+    const rafQueue = []
+    vi.stubGlobal('requestAnimationFrame', (cb) => {
+      rafQueue.push(cb)
+      return rafQueue.length
+    })
+    vi.stubGlobal('cancelAnimationFrame', vi.fn())
+
+    render(<ProjectsPane />)
+    const card = screen.getAllByRole('group', { name: /project card/i })[0]
+
+    fireEvent.pointerDown(card, { pointerId: 1, button: 0, clientX: 120, clientY: 120 })
+    expect(card.classList.contains('is-flipping')).toBe(true)
+
+    fireEvent.pointerMove(card, { pointerId: 1, clientX: 120, clientY: 60 })
+    expect(card.style.transform).toContain('rotateX(-216deg)')
+    expect(card.style.transform).toContain('rotateY(0deg)')
+
+    fireEvent.pointerUp(card, { pointerId: 1 })
+
+    let frames = 0
+    while (rafQueue.length && frames < 600) {
+      rafQueue.shift()()
+      frames += 1
+    }
+
+    expect(card.style.transform).toBe('')
+    expect(card.classList.contains('is-flipping')).toBe(false)
+    vi.unstubAllGlobals()
+  })
+
+  it('keeps hover tilt on project cards when they are not being dragged', () => {
+    render(<ProjectsPane />)
+    const card = screen.getAllByRole('group', { name: /project card/i })[0]
+
+    Object.defineProperty(card, 'getBoundingClientRect', {
+      value: () => ({ left: 0, top: 0, width: 200, height: 200 }),
+      configurable: true,
+    })
+
+    fireEvent.pointerMove(card, { clientX: 150, clientY: 50 })
+    expect(card.style.transform).toContain('perspective(600px)')
+
+    fireEvent.pointerLeave(card)
+    expect(card.style.transform).toBe('')
+  })
+
   it('opens the blogs tab from the url param and closes the movies modal on escape', async () => {
     const onBlogsActiveChange = vi.fn()
 

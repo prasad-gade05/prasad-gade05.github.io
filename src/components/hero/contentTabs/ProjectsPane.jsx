@@ -2,7 +2,13 @@ import { motion } from "framer-motion";
 import { ExternalLink, Folder } from "lucide-react";
 import { FaGithub, FaKaggle } from "react-icons/fa";
 import { SiHuggingface } from "react-icons/si";
-import { handleCardTilt, resetCardTilt } from "../../../utils/cardTilt";
+import {
+  startCardFlip,
+  moveCardFlip,
+  endCardFlip,
+  cancelCardFlip,
+  leaveCardFlip,
+} from "../../../utils/cardFlip";
 import { projectIcons, projects } from "../../../data/portfolioData";
 import { getListItemKey, getRenderableListValues } from "../../../utils/listRendering";
 import { tabPaneMotionProps } from "./motion";
@@ -27,89 +33,99 @@ const ProjectsPane = () => {
               role="group"
               tabIndex={-1}
               style={index === lastRowStartIdx ? { gridColumnStart: lastRowOffset } : undefined}
-              onMouseMove={handleCardTilt}
-              onMouseLeave={resetCardTilt}
+              onPointerDown={startCardFlip}
+              onPointerMove={moveCardFlip}
+              onPointerUp={endCardFlip}
+              onPointerCancel={cancelCardFlip}
+              onPointerLeave={leaveCardFlip}
             >
-              {project.badge && (
-                <span className={`project-badge${project.badge === "1st Place" ? " first-place" : ""}`}>
-                  {project.badge}
-                </span>
-              )}
-              <div className="project-header">
-                <ProjectIcon size={20} />
+              <div className="project-card-front">
+                {project.badge && (
+                  <span className={`project-badge${project.badge === "1st Place" ? " first-place" : ""}`}>
+                    {project.badge}
+                  </span>
+                )}
+                <div className="project-header">
+                  <ProjectIcon size={20} />
+                </div>
+                <div className="project-body">
+                  <div className="project-meta">
+                    <span className="project-cat">{project.category}</span>
+                    <span className="project-stats">{project.stats}</span>
+                  </div>
+                  <h3 className="project-title">{project.title}</h3>
+                  <p className="project-subtitle">{project.subtitle}</p>
+                  {project.description && <p className="project-desc">{project.description}</p>}
+                  <div className="project-tech">
+                    {techTags.map((tech, techIndex) => (
+                      <span
+                        key={getListItemKey(`${project.title || "project"}-tech`, tech, techIndex)}
+                        className="tech-tag"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="project-card-links">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-card-link"
+                        data-shortcut-target="true"
+                        aria-label={`${project.title} GitHub`}
+                        title={`${project.title} GitHub`}
+                      >
+                        <FaGithub size={14} />
+                      </a>
+                    )}
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-card-link demo"
+                        data-shortcut-target="true"
+                        aria-label={`${project.title} live demo`}
+                        title={`${project.title} live demo`}
+                      >
+                        <ExternalLink size={14} />
+                      </a>
+                    )}
+                    {project.dataset && (
+                      <a
+                        href={project.dataset}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-card-link"
+                        title="Hugging Face Dataset"
+                        data-shortcut-target="true"
+                        aria-label={`${project.title} Hugging Face dataset`}
+                      >
+                        <SiHuggingface size={14} />
+                      </a>
+                    )}
+                    {project.kaggleDataset && (
+                      <a
+                        href={project.kaggleDataset}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-card-link"
+                        title="Kaggle Dataset"
+                        data-shortcut-target="true"
+                        aria-label={`${project.title} Kaggle dataset`}
+                      >
+                        <FaKaggle size={14} />
+                      </a>
+                    )}
+                  </div>
+                </div>
               </div>
-              <div className="project-body">
-                <div className="project-meta">
-                  <span className="project-cat">{project.category}</span>
-                  <span className="project-stats">{project.stats}</span>
-                </div>
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-subtitle">{project.subtitle}</p>
-                {project.description && <p className="project-desc">{project.description}</p>}
-                <div className="project-tech">
-                  {techTags.map((tech, techIndex) => (
-                    <span
-                      key={getListItemKey(`${project.title || "project"}-tech`, tech, techIndex)}
-                      className="tech-tag"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div className="project-card-links">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-card-link"
-                      data-shortcut-target="true"
-                      aria-label={`${project.title} GitHub`}
-                      title={`${project.title} GitHub`}
-                    >
-                      <FaGithub size={14} />
-                    </a>
-                  )}
-                  {project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-card-link demo"
-                      data-shortcut-target="true"
-                      aria-label={`${project.title} live demo`}
-                      title={`${project.title} live demo`}
-                    >
-                      <ExternalLink size={14} />
-                    </a>
-                  )}
-                  {project.dataset && (
-                    <a
-                      href={project.dataset}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-card-link"
-                      title="Hugging Face Dataset"
-                      data-shortcut-target="true"
-                      aria-label={`${project.title} Hugging Face dataset`}
-                    >
-                      <SiHuggingface size={14} />
-                    </a>
-                  )}
-                  {project.kaggleDataset && (
-                    <a
-                      href={project.kaggleDataset}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-card-link"
-                      title="Kaggle Dataset"
-                      data-shortcut-target="true"
-                      aria-label={`${project.title} Kaggle dataset`}
-                    >
-                      <FaKaggle size={14} />
-                    </a>
-                  )}
-                </div>
+              <div className="project-card-back" aria-hidden="true">
+                <ProjectIcon size={26} />
+                <span className="project-card-back-title">{project.title}</span>
+                <span className="project-card-back-hint">the flip side</span>
               </div>
             </div>
           );

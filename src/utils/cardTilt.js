@@ -1,4 +1,4 @@
-const MAX_ROTATION = 25;
+export const MAX_ROTATION = 25;
 const PERSPECTIVE = 600;
 const SCALE = 1.03;
 
