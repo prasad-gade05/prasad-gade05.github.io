@@ -482,6 +482,25 @@
 .code-content .p { color: var(--accent-purple); }
 .code-content .cm { color: #6a9955; font-style: italic; }
 
+/* Light theme: readable syntax colors for the code card */
+[data-theme='light'] .code-content .cls,
+[data-theme='light'] .code-content .st { color: #00703c; }
+[data-theme='light'] .code-content .fn { color: #005f8d; }
+[data-theme='light'] .code-content .pm { color: #9a3412; }
+[data-theme='light'] .code-content .cm { color: #007200; }
+[data-theme='light'] .code-content .nb-prompt { color: #005f8d; }
+[data-theme='light'] .code-content .nb-prompt.out { color: #9a3412; }
+
+[data-theme='arcade-light'] .code-content .kw,
+[data-theme='arcade-light'] .code-content .p { color: #7a4e99; }
+[data-theme='arcade-light'] .code-content .cls,
+[data-theme='arcade-light'] .code-content .st { color: #7d5c08; }
+[data-theme='arcade-light'] .code-content .fn { color: #3d4fd6; }
+[data-theme='arcade-light'] .code-content .pm { color: #c23a28; }
+[data-theme='arcade-light'] .code-content .cm { color: #276b52; }
+[data-theme='arcade-light'] .code-content .nb-prompt { color: #3d4fd6; }
+[data-theme='arcade-light'] .code-content .nb-prompt.out { color: #c23a28; }
+
 /* Jupyter notebook cells */
 .code-content .nb-cell {
   flex: 0 0 auto;
@@ -519,7 +538,7 @@
   flex-direction: column;
   padding: clamp(3px, 0.8cqh, 6px) clamp(6px, 1.6cqw, 10px);
   background: rgba(127, 127, 127, 0.08);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-separator);
   border-left: 3px solid var(--accent-cyan);
   border-radius: 6px;
 }
