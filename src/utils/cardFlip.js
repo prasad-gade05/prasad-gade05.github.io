@@ -33,6 +33,9 @@ const getState = (card) => {
       lastMoveAt: 0,
       dist: 0,
       dragging: false,
+      flipping: false,
+      pressedLink: false,
+      transformed: false,
       mode: "idle",
       raf: 0,
     };
@@ -42,6 +45,7 @@ const getState = (card) => {
 };
 
 const applyTransform = (card, state) => {
+  state.transformed = true;
   const lifted = state.mode === "hold";
   const scale = lifted ? HOLD_SCALE : 1;
   const lift = lifted ? LIFT_PX : 0;
@@ -53,10 +57,14 @@ const settle = (card, state) => {
   state.rotY = 0;
   state.velX = 0;
   state.velY = 0;
+  state.flipping = false;
   state.mode = "idle";
   state.raf = 0;
-  card.style.transform = "";
-  card.classList.remove("is-flipping");
+  if (state.transformed) {
+    state.transformed = false;
+    card.style.transform = "";
+    card.classList.remove("is-flipping");
+  }
 };
 
 const frame = (card, state) => {
@@ -102,12 +110,18 @@ const release = (card, state, pointerId) => {
   }
   if (state.dist <= DRAG_THRESHOLD) {
     if (state.rotX === 0 && state.rotY === 0) {
-      settle(card, state);
+      if (state.transformed) {
+        settle(card, state);
+      } else {
+        state.mode = "idle";
+        state.raf = 0;
+      }
       return;
     }
     state.mode = "spin";
     state.velX = 0;
     state.velY = 0;
+    state.flipping = false;
     card.classList.remove("is-flipping");
     state.raf = requestAnimationFrame(() => frame(card, state));
     return;
@@ -138,9 +152,11 @@ export const startCardFlip = (event) => {
   state.dragging = true;
   state.mode = "hold";
   state.dist = 0;
+  state.flipping = false;
   state.lastX = event.clientX;
   state.lastY = event.clientY;
-  if (previousMode === "idle") {
+  state.pressedLink = event.target.closest?.(".project-card-link") != null;
+  if (previousMode === "idle" && !state.pressedLink) {
     const rect = card.getBoundingClientRect();
     if (rect.width > 0 && rect.height > 0) {
       const x = event.clientX - rect.left;
@@ -151,16 +167,9 @@ export const startCardFlip = (event) => {
       state.rotY = ((x - centerX) / centerX) * MAX_ROTATION;
     }
   }
-  event.preventDefault();
-  card.classList.add("is-flipping");
-  if (typeof card.setPointerCapture === "function") {
-    try {
-      card.setPointerCapture(event.pointerId);
-    } catch {
-      // pointer is already captured
-    }
+  if (previousMode !== "idle" || !state.pressedLink) {
+    applyTransform(card, state);
   }
-  applyTransform(card, state);
 };
 
 export const moveCardFlip = (event) => {
@@ -178,6 +187,18 @@ export const moveCardFlip = (event) => {
   state.lastMoveAt = performance.now();
   state.dist += Math.abs(dx) + Math.abs(dy);
   if (state.dist > DRAG_THRESHOLD) {
+    if (!state.flipping) {
+      state.flipping = true;
+      card.classList.add("is-flipping");
+      event.preventDefault();
+      if (typeof card.setPointerCapture === "function") {
+        try {
+          card.setPointerCapture(event.pointerId);
+        } catch {
+          // pointer is already captured
+        }
+      }
+    }
     const stepX = dy * DEGREES_PER_PX;
     const stepY = dx * DEGREES_PER_PX;
     state.velX = state.velX * VELOCITY_SMOOTHING + stepX * (1 - VELOCITY_SMOOTHING);
@@ -185,7 +206,9 @@ export const moveCardFlip = (event) => {
     state.rotX += stepX;
     state.rotY += stepY;
   }
-  applyTransform(card, state);
+  if (state.flipping || !state.pressedLink) {
+    applyTransform(card, state);
+  }
 };
 
 export const endCardFlip = (event) => {

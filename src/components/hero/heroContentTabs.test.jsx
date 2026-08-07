@@ -1,4 +1,4 @@
-import { act, fireEvent, render, renderHook, screen, waitFor } from '@testing-library/react'
+import { act, fireEvent, render, renderHook, screen, waitFor, within } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { projects } from '../../data/portfolioData'
@@ -260,9 +260,10 @@ describe('hero content tabs', () => {
     const card = screen.getAllByRole('group', { name: /project card/i })[0]
 
     fireEvent.pointerDown(card, { pointerId: 1, button: 0, clientX: 120, clientY: 120 })
-    expect(card.classList.contains('is-flipping')).toBe(true)
+    expect(card.classList.contains('is-flipping')).toBe(false)
 
     fireEvent.pointerMove(card, { pointerId: 1, clientX: 120, clientY: 60 })
+    expect(card.classList.contains('is-flipping')).toBe(true)
     expect(card.style.transform).toContain('rotateX(-216deg)')
     expect(card.style.transform).toContain('rotateY(0deg)')
 
@@ -277,6 +278,20 @@ describe('hero content tabs', () => {
     expect(card.style.transform).toBe('')
     expect(card.classList.contains('is-flipping')).toBe(false)
     vi.unstubAllGlobals()
+  })
+
+  it('keeps project links clickable when pressed without dragging', () => {
+    render(<ProjectsPane />)
+    const card = screen.getAllByRole('group', { name: /project card/i })[0]
+    const link = within(card).getAllByRole('link')[0]
+
+    fireEvent.pointerDown(link, { pointerId: 1, button: 0, clientX: 120, clientY: 120 })
+    expect(card.classList.contains('is-flipping')).toBe(false)
+    expect(card.style.transform).toBe('')
+
+    fireEvent.pointerUp(link, { pointerId: 1 })
+    expect(card.classList.contains('is-flipping')).toBe(false)
+    expect(card.style.transform).toBe('')
   })
 
   it('keeps hover tilt on project cards when they are not being dragged', () => {
