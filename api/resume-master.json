@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "prasadgade.dev",
-    "generated": "2026-06-07",
+    "generated": "2026-08-09",
     "version": "2.0",
     "variant": "master",
     "description": "Detailed master resume of Prasad Gade for agent consumption"
@@ -17,7 +17,7 @@
         "city": "Mumbai",
         "country": "India"
       },
-      "summary": "Data Scientist and Computer Engineer from Mumbai, India. B.Tech student at Sardar Patel Institute of Technology (CGPA 9.37/10), published researcher, and hackathon winner. Builds data pipelines, ML systems, dashboards, and interactive web applications.",
+      "summary": "Data Scientist and Computer Engineer from Mumbai, India. B.Tech student at Sardar Patel Institute of Technology (CGPA 9.26/10), published researcher, and hackathon winner. Builds data pipelines, ML systems, dashboards, and interactive web applications.",
       "profiles": [
         { "network": "GitHub", "username": "prasad-gade05", "url": "https://github.com/prasad-gade05" },
         { "network": "LinkedIn", "username": "prasad-gade05", "url": "https://www.linkedin.com/in/prasad-gade05/" },
@@ -31,7 +31,7 @@
         "area": "Computer Engineering",
         "studyType": "B.Tech",
         "minor": "Management from SPJIMR (S. P. Jain Institute of Management & Research)",
-        "gpa": "9.37/10.0",
+        "gpa": "9.26/10.0",
         "location": "Mumbai, India",
         "endDate": "Expected June 2027"
       },
@@ -47,15 +47,29 @@
     ],
     "work": [
       {
+        "company": "Confidential Client (NDA-Protected)",
+        "position": "Independent AI & Software Developer",
+        "location": "Remote, India",
+        "startDate": "2026-04",
+        "endDate": "Present",
+        "highlights": [
+          "Architected and developed an end-to-end data-intelligence pipeline using Python, delivering a functional MVP that consolidates unstructured document, web, and structured-data workflows into reproducible JSON, CSV, and Markdown outputs",
+          "Achieved 91.7% correctness on manually verified answer-bearing document extractions by combining Docling page-level provenance, section-aware retrieval, local Ollama inference, deterministic Python post-processing, and automated validation",
+          "Engineered a citation-grounded research agent using LangGraph, Pydantic, DDGS/SearXNG, Trafilatura, Playwright, pypdf, and Ollama, implementing query rewriting, source ranking, caching, bounded retries, and quote-level verification with zero pipeline errors",
+          "Automated the ingestion and normalization of heterogeneous CSV, XLSX, DOC, PDF, and HTML inputs using Python and Openpyxl, producing auditable outputs with strict evidence provenance, missing-data classification, and validation logs"
+        ]
+      },
+      {
         "company": "Department of Computer Engineering, SPIT",
         "position": "Undergraduate Research & Teaching Assistant",
         "location": "Mumbai, India",
         "startDate": "2025-02",
         "endDate": "Present",
         "highlights": [
-          "Performed statistical analysis on student performance data and course feedback to generate reports for faculty",
-          "Accelerated publication workflows by conducting literature reviews and migrating manuscripts from Word to LaTeX",
-          "Created academic posters that translated technical research into accessible visual formats"
+          "Built automated ETL workflows using Python (Pandas, Openpyxl) and PowerShell to ingest, clean, and classify unstructured institutional data, generating 50+ faculty-specific PDF reports for departmental review",
+          "Spearheaded advanced academic typesetting by compiling a 130-page Ph.D. thesis on Quantum-Inspired Machine Learning and Hyperspectral Imagery using LaTeX and TikZ, managing modular chapter builds and strict version control",
+          "Architected a scalable student achievement analytics system, transforming raw survey datasets into dynamic Excel dashboards, automated Markdown portfolios, and actionable KPIs for departmental review",
+          "Streamlined academic compliance by managing complex Outcome-Based Education (OBE) frameworks, mapping CO-PO correlations, and accelerating research publication workflows via custom VBA macros for IEEE and IJETT journals"
         ],
         "certificates": [
           "https://drive.google.com/file/d/1ONZfT7_F0Yyn33lC7b8z9hD7ZCoUgVBa/view?usp=sharing",
@@ -69,8 +83,8 @@
         "startDate": "2023-06",
         "endDate": "2023-07",
         "highlights": [
-          "Learned Data Analysis and Business Intelligence using Power BI",
-          "Delivered a sales dashboard for North Wind Traders, improving data visibility by 70%"
+          "Worked on data analysis and business intelligence workflows using Power BI, including data cleaning, visualization design, and dashboard development for business datasets",
+          "Built an interactive sales dashboard for the Northwind Traders dataset by analyzing sales, customer, product, and regional trends, enabling clearer business performance tracking in Power BI"
         ],
         "certificate": "https://drive.google.com/file/d/1EOCFG5pNmzG_RJHsZO940SjWBfEEto5x/view?usp=sharing"
       }
@@ -82,7 +96,7 @@
         "date": "June 2026",
         "highlights": [
           "Built a leakage-safe graph ML research pipeline on DGraphFin with 3.7M nodes, 4.3M edges, 17 node features, and official supervised splits of 857,899 train, 183,862 validation, and 183,840 test nodes",
-          "Implemented and evaluated GraphShield, a dual-path spectral GNN with low-pass and high-pass graph filters, against GraphSAGE, logistic regression, XGBoost, and prior baselines under extreme fraud-class imbalance",
+          "Implemented and evaluated GraphShield, a dual-path spectral GNN with low-pass/high-pass graph filters, against GraphSAGE, logistic regression, XGBoost, and prior baselines under extreme fraud-class imbalance",
           "Ran 6-seed real-data ablations showing GraphShield reached 0.0415 AUC-PR and 0.7748 AUC-ROC; removing low-pass, high-pass, or graph structure reduced AUC-PR to 0.0215, 0.0274, and 0.0264, respectively",
           "Added paired-bootstrap testing with 300 resamples, held-out conformal calibration, temporal/OOD drift diagnostics, and research-contract tests to prevent synthetic data, split leakage, and test-threshold selection"
         ],
@@ -112,9 +126,9 @@
         "description": "Data Engineering & Analytics Dashboard",
         "date": "March 2026",
         "highlights": [
-          "Processed 9,026 JSON files from 3 sources across 788 districts and 42 months using a 4-stage medallion pipeline into a DuckDB star schema",
-          "Quantified market duopoly via HHI, measured geographic inequality using Gini coefficients, and segmented adoption tiers with K-Means",
-          "Forecasted UPI volumes using Prophet and ARIMA; delivered 68 visualizations across Streamlit and Power BI dashboards, validated by 83 tests"
+          "Processed 9,026 JSON files from 3 sources across 788 districts and 42 months using a 4-stage medallion pipeline into a DuckDB star schema (4 dim + 4 fact tables)",
+          "Quantified market duopoly via HHI, measured geographic inequality using Gini coefficients, and segmented adoption tiers with K-Means across 788 districts",
+          "Forecasted UPI volumes using Prophet and ARIMA; delivered 68 visualizations across 11-tab Streamlit and Power BI dashboards, validated by 83 tests via GitHub Actions CI/CD"
         ],
         "tech": ["Python", "DuckDB", "Pandas", "Plotly", "Streamlit", "Power BI", "Prophet", "ARIMA", "Scikit-learn", "K-Means", "BeautifulSoup4", "PyArrow", "GitHub Actions"],
         "github": "https://github.com/prasad-gade05/UPI_DS_Project",
@@ -127,9 +141,9 @@
         "description": "AI Legal Courtroom Simulator",
         "date": "November 2025",
         "highlights": [
-          "Built an 8-agent legal simulation achieving 99% citation accuracy via a LangGraph workflow with state management and iterative debate",
-          "Reduced legal research time by 75% across 100K+ documents with BM25 reranking and ChromaDB vector indexing",
-          "Achieved 3.2x context relevance gain and 60% engagement boost via context compression, hallucination detection, and real-time Streamlit UI with FastAPI SSE"
+          "Built an 8-agent legal courtroom simulator using LangGraph, modeling judge, prosecutor, defense, legal researcher, citation verifier, evidence reviewer, summarizer, and witness-style workflows with stateful multi-turn debate",
+          "Designed a retrieval-augmented generation pipeline over 100K+ legal documents using BM25 re-ranking and ChromaDB vector indexing to retrieve case-relevant context and generate citation-grounded responses",
+          "Improved context relevance by 3.2x through query refinement, context compression, hallucination checks, and citation validation, exposed through a real-time Streamlit interface with FastAPI SSE"
         ],
         "tech": ["Python", "LangChain", "LangGraph", "FastAPI", "Streamlit", "ChromaDB", "Sentence-Transformers", "Ollama LLM", "Kanoon API", "BM25", "NLTK", "Scikit-learn"],
         "github": "https://github.com/prasad-gade05/Law_Courtroom_Simulator",
@@ -140,9 +154,10 @@
         "description": "TII-SSRC-23 Analysis",
         "date": "October 2025",
         "highlights": [
-          "Achieved 99.99% recall and 100% precision by benchmarking 6 models on the 8.6M-sample TII-SSRC-23 dataset",
-          "Demonstrated tree models were 12.8x faster with 20x inference throughput and full SHAP interpretability",
-          "Reduced classification errors by 30% via hybrid SMOTE-undersampling for extreme class imbalance"
+          "Benchmarked 6 ML/DL models (Decision Tree, XGBoost, Transformer, Autoencoder, Logistic Regression, Naive Bayes) on the 8.6M-sample TII-SSRC-23 intrusion detection dataset using a leakage-safe stratified train-test split",
+          "Achieved 99.99% test accuracy, 99.99% precision, and 100.00% rounded recall with the best Decision Tree model, reducing missed attacks to 13 false negatives on a 1.29M-sample test set",
+          "Handled extreme 1:6653 class imbalance using stratified evaluation, threshold tuning, and SMOTE-based resampling for selected baseline models such as Logistic Regression and Naive Bayes",
+          "Showed that the Decision Tree trained 12.8x faster than the Transformer baseline (4.7 vs 60 min) while delivering 20x higher inference throughput and stronger interpretability through SHAP and decision-path analysis"
         ],
         "tech": ["Python", "Scikit-learn", "XGBoost", "PyTorch", "TensorFlow", "SHAP", "Pandas", "NumPy", "Imbalanced-learn"],
         "github": "https://github.com/prasad-gade05/IDS_on_TII-SSRC-23",
@@ -153,9 +168,9 @@
         "description": "Donation Platform",
         "date": "March 2025",
         "highlights": [
-          "Secured 1st place out of 80+ national teams at Tech Horizon National Hackathon",
-          "Reduced donation request processing time by 60% with modular dashboards and protected routing",
-          "Added real-time request tracking, MetaMask-based crypto payments, and impact reporting"
+          "Reduced donation request processing time by 60% by building a modular SPA with dedicated dashboards and protected routing",
+          "Boosted platform engagement by 45% by integrating real-time request tracking, MetaMask-based crypto payments, and impact reporting",
+          "Enhanced operational efficiency by implementing a Kanban-style system for shopkeepers and comprehensive admin controls"
         ],
         "tech": ["React", "TypeScript", "MongoDB", "Vite", "Tailwind CSS", "React Router", "ESLint", "Context API"],
         "github": "https://github.com/prasad-gade05/KindHearts-Multi-Role-Donation-Management-Platform",
@@ -166,12 +181,25 @@
         "description": "SDSS Dataset Analysis",
         "date": "November 2024",
         "highlights": [
-          "Achieved 99.07% accuracy classifying 10,000 celestial objects into stars, galaxies, and quasars",
-          "Improved neural-network accuracy from 95.13% to 98.78% using Keras Tuner across 10 trials",
-          "Benchmarked 4 classifiers on 3,000 test samples via 5-fold cross-validation and 960+ fits"
+          "Achieved 99.07% accuracy (0.99 F1) classifying 10,000 celestial objects into stars, galaxies, and quasars by engineering 10 features with color-indices and log-redshift",
+          "Improved Neural Network accuracy from 95.13% to 98.78% using Keras Tuner across 10 trials, optimizing a 96-32-16-3 architecture with tuned hyperparameters",
+          "Benchmarked 4 classifiers (DT: 87.75%, KNN: 94%, NN: 99%, RF: 99.07%) on 3,000 test samples via GridSearchCV with 5-fold CV and 960+ fits"
         ],
         "tech": ["Python", "Scikit-learn", "Keras", "Keras Tuner", "Pandas", "NumPy", "Matplotlib"],
         "github": "https://github.com/prasad-gade05/Celestial-Object-Classifier-using-Solana-Digital-Sky-Survey-Dataset",
+        "demo": null
+      },
+      {
+        "name": "AI Text Summarizer, Translator, and Extractor",
+        "description": "Web app for text summarization, translation, and extraction",
+        "date": "February 2024",
+        "highlights": [
+          "Achieved seamless text summarization, translation, and extraction functionalities",
+          "Developed a web application using Python and Eel, integrating Hugging Face, GoogleTrans, and OCR technologies",
+          "Enhanced productivity and user engagement with an intuitive GUI and animations"
+        ],
+        "tech": ["Python", "HTML", "CSS", "JavaScript", "Eel", "Pytesseract", "Googletrans", "Pypdf2"],
+        "github": "https://github.com/prasad-gade05/AI-Text-Summarizer-Translator-and-Extractor",
         "demo": null
       },
       {
@@ -179,9 +207,9 @@
         "description": "AI Nutrition Tracker",
         "date": "August 2025",
         "highlights": [
-          "Integrated Gemini API to analyze food images or manual entries with 95% accurate nutrient estimates",
-          "Implemented daily calorie and macro goals with interactive dashboards",
-          "Supported dual input modes with local SQLite storage"
+          "Enabled 85% faster logging experience and 95% accurate nutrient estimates by integrating Gemini API to analyze food images or manual entries",
+          "Implemented daily calorie and macro goals with interactive dashboards and visual trend analytics",
+          "Supported dual input modes (image/manual) with local SQLite storage"
         ],
         "tech": ["Flask", "Python", "HTML", "CSS", "JavaScript", "Gemini API", "SQLite", "Pandas", "OpenCV", "Google Colab"],
         "github": "https://github.com/prasad-gade05/nutrition_tracker",
@@ -192,8 +220,8 @@
         "description": "Real-Time Music Visualization Tool",
         "date": "August 2025",
         "highlights": [
-          "Built a real-time audio visualization web app using the Web Audio API",
-          "Added multiple visualization modes with customizable color schemes",
+          "Built a real-time audio visualization web app using the Web Audio API, improving playback responsiveness by 70%",
+          "Added multiple dynamic visualization modes (bars, radial waves, scatter plots) with customizable color schemes, boosting engagement by 55%",
           "Deployed a fully client-side solution on GitHub Pages with file upload and microphone input support"
         ],
         "tech": ["TypeScript", "Web Audio API", "HTML5 Canvas", "shadcn/ui", "CSS3"],
@@ -205,9 +233,9 @@
         "description": "Feature-Rich Attendance PWA",
         "date": "October 2025",
         "highlights": [
-          "Built subject-wise reports, student-wise analysis, editable records, and filtering tools",
-          "Implemented offline-first data handling with IndexedDB and Dexie.js",
-          "Added import, export, backup, and local storage management support"
+          "Built subject-wise reports, student-wise analysis, editable records, and real-time visualization for attendance trends and percentage summaries",
+          "Implemented offline-first architecture using IndexedDB (Dexie.js) with seamless sync after reconnection",
+          "Added import/export of records, data backups, and secure local storage management"
         ],
         "tech": ["React", "TypeScript", "Vite", "Tailwind CSS", "Zustand", "Dexie.js", "Recharts"],
         "github": "https://github.com/prasad-gade05/attendance",
@@ -219,12 +247,63 @@
         "date": "September 2025",
         "highlights": [
           "Built streaks, calendar views, analytics, and contribution-style visualizations",
-          "Kept the app fully client-side and privacy-first with IndexedDB storage",
-          "Used Zustand and modern UI tooling for maintainability and scale"
+          "Leveraged IndexedDB (via Dexie.js) for persistent offline storage, ensuring data privacy without server dependency",
+          "Applied shadcn/ui and Tailwind with Zustand for state management, ensuring scalability and maintainability"
         ],
         "tech": ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "Zustand", "Dexie.js", "Recharts", "date-fns"],
         "github": "https://github.com/prasad-gade05/Habit-Tracker",
         "demo": "https://prasadgade.dev/Habit-Tracker/"
+      },
+      {
+        "name": "Real-time Image & Audio Classification App",
+        "description": "Android app with Google ML Kit and TensorFlow YAMNet",
+        "date": "January 2024",
+        "highlights": [
+          "Achieved real-time image labeling and audio classification",
+          "Developed an Android app with Google ML Kit and TensorFlow's YAMNet model",
+          "Enabled efficient media categorization with a user-friendly interface"
+        ],
+        "tech": ["Android", "Java", "Google ML Kit", "TensorFlow YAMNet"],
+        "github": "https://github.com/prasad-gade05/Real-time-audio-and-image-classification",
+        "demo": null
+      },
+      {
+        "name": "Encrypted File Sharing Application",
+        "description": "RSA-encrypted file sharing over networks",
+        "date": "October 2023",
+        "highlights": [
+          "Achieved secure file sharing over networks using RSA encryption",
+          "Built a Windows-based GUI application with a handshake mechanism for key distribution",
+          "Ensured data confidentiality and integrity during file transfers"
+        ],
+        "tech": ["Java", "RSA"],
+        "github": "https://github.com/prasad-gade05/End-to-End-Encrypted-Chatting-Application",
+        "demo": null
+      },
+      {
+        "name": "Face Recognition Web App",
+        "description": "Face recognition and similarity detection using Face-API.js",
+        "date": "August 2023",
+        "highlights": [
+          "Achieved accurate facial recognition and similarity detection",
+          "Developed a web app using Face-API.js and added facial records of colleagues"
+        ],
+        "tech": ["HTML", "CSS", "JavaScript", "Face-API.js"],
+        "github": "https://github.com/prasad-gade05/Face-Recognition-Web-App",
+        "demo": null
+      },
+      {
+        "name": "Multiplexer Simulator",
+        "description": "Interactive 8:1 multiplexer simulation from scratch in C++",
+        "date": "January 2023",
+        "highlights": [
+          "Achieved an interactive simulation of an 8:1 multiplexer",
+          "Created a Windows-based GUI application using graphics programming and mouse handling",
+          "Provided an educational tool for learning multiplexing operations"
+        ],
+        "tech": ["C++", "graphics.h"],
+        "github": null,
+        "demo": null
       },
       {
         "name": "Portfolio",
@@ -241,12 +320,15 @@
       }
     ],
     "skills": {
-      "Languages": ["Python", "C", "C++", "Java", "JavaScript"],
-      "Frameworks": ["Flask", "Django"],
-      "Data-Science/ML": ["Pandas", "NumPy", "Matplotlib", "Seaborn", "PyTorch", "Scikit-Learn", "TensorFlow", "Hugging Face", "Keras", "OpenCV"],
-      "Databases/DevOps": ["SQL", "MongoDB", "Firebase", "Git", "GitHub"],
-      "Business Intelligence Tools": ["Power BI"],
-      "Soft Skills": ["Leadership", "Time Management", "Public Speaking", "Writing", "Communication"]
+      "Languages": ["C", "C++", "Java", "Python", "HTML", "JavaScript", "PHP", "VB.net", "Assembly (x86)"],
+      "Frameworks": ["React", "Node.js", "Flask", "Eel", "Django"],
+      "Data-Science/ML": ["Pandas", "NumPy", "PyTorch", "Scikit-Learn", "TensorFlow", "Hugging Face", "Keras", "OpenCV", "Google ML Kit", "Matplotlib", "Seaborn"],
+      "Databases": ["SQL", "Oracle", "MongoDB", "SQLite", "Firebase"],
+      "DevOps": ["Git", "GitHub", "Linux"],
+      "Developer Tools": ["Arduino", "Jupyter Notebook", "Google Colab", "VS Code", "Vim", "Eclipse", "Android Studio", "IntelliJ"],
+      "Business Analytics Tools": ["Power BI", "Tableau"],
+      "Project Management Methodologies": ["Agile", "Scrum", "Waterfall"],
+      "Soft Skills": ["Leadership (General Secretary, Student Council)", "Time Management", "Public Speaking", "Writing", "Communication"]
     },
     "certifications": [
       {
@@ -295,7 +377,7 @@
     "achievements": [
       {
         "title": "Winner — Tech Horizon National Hackathon",
-        "description": "Secured 1st place out of 80+ national teams in a 36-hour hackathon by designing KindHearts, a full-stack donation platform.",
+        "description": "Secured 1st place out of 80+ national teams in a 36-hour hackathon by designing a full-stack donation platform that eliminated fund misuse via automated supplier-based routing and LLM-driven donor-NGO matchmaking. Built a transparent end-to-end ecosystem where funds reach verified vendors through smart request tracking and fraud-prevention logic, earning top recognition from industry judges across multiple evaluation rounds.",
         "date": "March 2025",
         "url": "https://github.com/prasad-gade05/KindHearts-Multi-Role-Donation-Management-Platform",
         "certificate": "https://drive.google.com/file/d/19EXpm1wVqM35qLiHvbcFzmwwwEiFSr_4/view?usp=sharing"
