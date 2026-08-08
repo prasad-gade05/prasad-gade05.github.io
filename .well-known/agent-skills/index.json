@@ -8,14 +8,14 @@
       "type": "api",
       "description": "Get Prasad Gade's primary slim resume with the default 12-project public project set and MAIN_RESUME skills",
       "url": "https://prasadgade.dev/api/resume.json",
-      "sha256": "2f1d75cec45290d3833581bb55ae116ba0ff435aaf766dc90319ddb1fb7cd125"
+      "sha256": "20216bc52f99a99cbb646f2f56b39da0b54fc85408ecb5cefc3ceefa401a2f48"
     },
     {
       "name": "get_resume_master",
       "type": "api",
       "description": "Get Prasad Gade's detailed master resume with richer background, publications, leadership, and the same 12-project public project set",
       "url": "https://prasadgade.dev/api/resume-master.json",
-      "sha256": "d12c525cf593c14a5ecfd0bcb7ce6e5baf5a9c156600f4c02a2af7b424573a0a"
+      "sha256": "0ad40576215d107f445f44ff20aa322832e258377dbaa68a48a33a6ce134da5d"
     },
     {
       "name": "get_projects",
@@ -29,7 +29,7 @@
       "type": "api",
       "description": "Get technical skills using the strict MAIN_RESUME taxonomy across 6 categories",
       "url": "https://prasadgade.dev/api/skills.json",
-      "sha256": "11e73d391a9a45f5144ce7db9a46b2bead563577659dba865613550da1f58af7"
+      "sha256": "4c8e9fb6ef634ce140f04a4b662d6110f28f6d0edf48a68f9ed50e9a0925b4db"
     },
     {
       "name": "get_social",

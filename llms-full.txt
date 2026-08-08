@@ -58,7 +58,7 @@ Site features:
 ### Master Detailed Resume
 - Endpoint: https://prasadgade.dev/api/resume-master.json
 - Purpose: detailed agent-facing profile
-- Scope: adds diploma education, current TA/research role, publications, leadership, broader certifications, and richer project detail
+- Scope: adds the independent AI development role, diploma education, TA/research role, publications, leadership, broader certifications, and richer project detail
 
 ## Education
 
@@ -75,18 +75,27 @@ Site features:
 
 ## Experience
 
+### Independent AI & Software Developer
+- Organization: Confidential Client (NDA-Protected), Remote, India
+- Duration: April 2026 to present
+- Architected an end-to-end data-intelligence pipeline using Python, consolidating unstructured document, web, and structured-data workflows into reproducible JSON, CSV, and Markdown outputs
+- Achieved 91.7% correctness on manually verified answer-bearing document extractions using Docling page-level provenance, section-aware retrieval, local Ollama inference, deterministic Python post-processing, and automated validation
+- Engineered a citation-grounded research agent using LangGraph, Pydantic, DDGS/SearXNG, Trafilatura, Playwright, pypdf, and Ollama with query rewriting, source ranking, caching, bounded retries, and quote-level verification (zero pipeline errors)
+- Automated ingestion and normalization of heterogeneous CSV, XLSX, DOC, PDF, and HTML inputs using Python and Openpyxl with strict evidence provenance and validation logs
+
 ### Undergraduate Research & Teaching Assistant
 - Organization: Department of Computer Engineering, SPIT, Mumbai
 - Duration: February 2025 to present
-- Performed statistical analysis on student performance data and course feedback to generate reports for faculty
-- Conducted literature reviews and migrated manuscripts from Word to LaTeX for research publications
-- Created academic posters translating technical research into accessible visual formats
+- Built automated ETL workflows using Python (Pandas, Openpyxl) and PowerShell, generating 50+ faculty-specific PDF reports and actionable KPI dashboards
+- Typeset a 130-page Ph.D. thesis on Quantum-Inspired Machine Learning using LaTeX and TikZ with modular chapter builds and strict version control
+- Architected a student achievement analytics system with dynamic Excel dashboards, automated Markdown portfolios, and actionable KPIs
+- Streamlined academic compliance by mapping CO-PO correlations and accelerating publication workflows via custom VBA macros for IEEE and IJETT journals
 
 ### Data Analyst Intern (Summer Internship)
 - Organization: R3 Systems India Pvt. Ltd., Nashik
 - Duration: June 2023 to July 2023
-- Learned Data Analysis and Business Intelligence using Power BI
-- Delivered a sales dashboard for North Wind Traders, improving data visibility by 70%
+- Worked on data analysis and business intelligence workflows using Power BI, including data cleaning, visualization design, and dashboard development
+- Built an interactive sales dashboard for the Northwind Traders dataset analyzing sales, customer, product, and regional trends
 
 ## Projects
 
@@ -110,47 +119,47 @@ The public agent-facing layer intentionally exposes these 12 projects and no mor
 - GitHub: https://github.com/prasad-gade05/IPL_Analysis
 
 ### UPI Analytics Platform - Data Engineering & Analytics Dashboard
-- Processed 9,026 JSON files from 3 sources across 788 districts and 42 months
-- Quantified market duopoly via HHI, inequality via Gini coefficients, and adoption tiers with K-Means
-- Delivered 68 visualizations across Streamlit and Power BI dashboards, validated by 83 tests
+- Processed 9,026 JSON files from 3 sources across 788 districts and 42 months using a 4-stage medallion pipeline into a DuckDB star schema
+- Quantified market duopoly via HHI, measured geographic inequality via Gini coefficients, and segmented adoption tiers with K-Means
+- Forecasted UPI volumes using Prophet and ARIMA; delivered 68 visualizations across 11-tab Streamlit and Power BI dashboards, validated by 83 tests via GitHub Actions CI/CD
 - Demo: https://upi-analytics.streamlit.app/
 - GitHub: https://github.com/prasad-gade05/UPI_DS_Project
 
 ### Lex Simulacra - AI Legal Courtroom Simulator
-- Built an 8-agent legal simulation with 99% citation accuracy
-- Reduced legal research time by 75% across 100K+ documents
-- Improved context relevance by 3.2x with compression and hallucination detection
+- Built an 8-agent legal courtroom simulator using LangGraph with stateful multi-turn debate, exposed through a real-time Streamlit UI and FastAPI SSE
+- Designed a RAG pipeline over 100K+ legal documents using BM25 re-ranking and ChromaDB vector indexing for citation-grounded responses
+- Improved context relevance by 3.2x through query refinement, context compression, and hallucination checks
 - GitHub: https://github.com/prasad-gade05/Law_Courtroom_Simulator
 
 ### Intrusion Detection - TII-SSRC-23 Analysis
-- Benchmarked 6 ML/DL models on an 8.6M-sample dataset
-- Achieved 99.99% recall and 100% precision
-- Improved throughput and reduced false negatives with tree-based models
+- Benchmarked 6 ML/DL models on the 8.6M-sample TII-SSRC-23 dataset using a leakage-safe stratified train-test split
+- Achieved 99.99% test accuracy, 99.99% precision, and 100.00% rounded recall with the best Decision Tree model, reducing missed attacks to 13 false negatives on a 1.29M-sample test set
+- Handled extreme 1:6653 class imbalance with threshold tuning and SMOTE-based resampling
 - GitHub: https://github.com/prasad-gade05/IDS_on_TII-SSRC-23
 
 ### KindHearts - Donation Platform
-- 1st place at Tech Horizon National Hackathon
-- Reduced donation request processing time by 60%
-- Added real-time tracking, transparency, and admin workflows
+- 1st place at Tech Horizon National Hackathon (80+ teams)
+- Reduced donation request processing time by 60% with a modular SPA, dedicated dashboards, and protected routing
+- Boosted engagement by 45% via real-time request tracking, MetaMask-based crypto payments, and impact reporting
 - GitHub: https://github.com/prasad-gade05/KindHearts-Multi-Role-Donation-Management-Platform
 
 ### Celestial Classifier - SDSS Dataset Analysis
-- Achieved 99.07% accuracy classifying celestial objects
-- Tuned the neural network from 95.13% to 98.78% accuracy
-- Benchmarked 4 classifiers with 5-fold CV
+- Achieved 99.07% accuracy (0.99 F1) classifying 10,000 celestial objects using 10 engineered features
+- Improved Neural Network accuracy from 95.13% to 98.78% using Keras Tuner across 10 trials
+- Benchmarked 4 classifiers (DT: 87.75%, KNN: 94%, NN: 99%, RF: 99.07%) via GridSearchCV with 5-fold CV and 960+ fits
 - GitHub: https://github.com/prasad-gade05/Celestial-Object-Classifier-using-Solana-Digital-Sky-Survey-Dataset
 
 ### NutriSnap - AI Nutrition Tracker
-- Uses Gemini API for image and manual meal analysis
-- Tracks calorie and macro goals with interactive dashboards
-- Supports local SQLite-backed tracking
+- 85% faster logging and 95% accurate nutrient estimates via Gemini API for image or manual meal analysis
+- Daily calorie and macro goals with interactive dashboards and visual trend analytics
+- Dual input modes (image/manual) with local SQLite storage
 - Demo: https://prasadsnutritiontracker.netlify.app/
 - GitHub: https://github.com/prasad-gade05/nutrition_tracker
 
 ### Audio Visualizer - Real-Time Music Visualization Tool
-- Real-time audio visualization with multiple dynamic modes
-- Fully client-side deployment with file upload and microphone input
-- Reached 1000+ unique visitors in the first month
+- Real-time audio visualization via the Web Audio API with multiple dynamic modes, improving playback responsiveness by 70%
+- Multiple visualization modes (bars, radial waves, scatter plots) with customizable color schemes
+- Fully client-side deployment on GitHub Pages with file upload and microphone input, 1000+ unique visitors in the first month
 - Demo: https://prasadgade.dev/audio_visualizer_app/
 - GitHub: https://github.com/prasad-gade05/audio_visualizer_app
 
@@ -177,7 +186,7 @@ The public agent-facing layer intentionally exposes these 12 projects and no mor
 These categories intentionally follow MAIN_RESUME strictly.
 
 ### Languages
-Python, C, C++, Java, JavaScript
+Python, C, C++, Java, JavaScript, SQL
 
 ### Frameworks
 Flask, Django
@@ -186,10 +195,10 @@ Flask, Django
 Pandas, NumPy, Matplotlib, Seaborn, PyTorch, Scikit-Learn, TensorFlow, Hugging Face, Keras, OpenCV
 
 ### Databases/DevOps
-SQL, MongoDB, Firebase, Git, GitHub
+PostgreSQL, MySQL, MongoDB, DuckDB, ChromaDB, Redis, Git, Docker, Kubernetes, CI/CD (GitHub Actions)
 
 ### Business Intelligence Tools
-Power BI
+Power BI, Tableau
 
 ### Soft Skills
 Leadership (served as General Secretary, Student Council), Time Management, Public Speaking, Writing, Communication
