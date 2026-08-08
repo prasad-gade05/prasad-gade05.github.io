@@ -17,7 +17,7 @@
         "city": "Mumbai",
         "country": "India"
       },
-      "summary": "Data Scientist and Computer Engineer from Mumbai, India. B.Tech student at Sardar Patel Institute of Technology (CGPA 9.26/10), published researcher, and hackathon winner. Builds data pipelines, ML systems, dashboards, and interactive web applications.",
+      "summary": "Data Scientist and Computer Engineer from Mumbai, India. B.Tech student at Sardar Patel Institute of Technology (CGPA 9.37/10), published researcher, and hackathon winner. Builds data pipelines, ML systems, dashboards, and interactive web applications.",
       "profiles": [
         { "network": "GitHub", "username": "prasad-gade05", "url": "https://github.com/prasad-gade05" },
         { "network": "LinkedIn", "username": "prasad-gade05", "url": "https://www.linkedin.com/in/prasad-gade05/" },
@@ -31,7 +31,7 @@
         "area": "Computer Engineering",
         "studyType": "B.Tech",
         "minor": "Management from SPJIMR (S. P. Jain Institute of Management & Research)",
-        "gpa": "9.26/10.0",
+        "gpa": "9.37/10.0",
         "location": "Mumbai, India",
         "endDate": "Expected June 2027"
       },
@@ -190,19 +190,6 @@
         "demo": null
       },
       {
-        "name": "AI Text Summarizer, Translator, and Extractor",
-        "description": "Web app for text summarization, translation, and extraction",
-        "date": "February 2024",
-        "highlights": [
-          "Achieved seamless text summarization, translation, and extraction functionalities",
-          "Developed a web application using Python and Eel, integrating Hugging Face, GoogleTrans, and OCR technologies",
-          "Enhanced productivity and user engagement with an intuitive GUI and animations"
-        ],
-        "tech": ["Python", "HTML", "CSS", "JavaScript", "Eel", "Pytesseract", "Googletrans", "Pypdf2"],
-        "github": "https://github.com/prasad-gade05/AI-Text-Summarizer-Translator-and-Extractor",
-        "demo": null
-      },
-      {
         "name": "NutriSnap",
         "description": "AI Nutrition Tracker",
         "date": "August 2025",
@@ -253,57 +240,6 @@
         "tech": ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "Zustand", "Dexie.js", "Recharts", "date-fns"],
         "github": "https://github.com/prasad-gade05/Habit-Tracker",
         "demo": "https://prasadgade.dev/Habit-Tracker/"
-      },
-      {
-        "name": "Real-time Image & Audio Classification App",
-        "description": "Android app with Google ML Kit and TensorFlow YAMNet",
-        "date": "January 2024",
-        "highlights": [
-          "Achieved real-time image labeling and audio classification",
-          "Developed an Android app with Google ML Kit and TensorFlow's YAMNet model",
-          "Enabled efficient media categorization with a user-friendly interface"
-        ],
-        "tech": ["Android", "Java", "Google ML Kit", "TensorFlow YAMNet"],
-        "github": "https://github.com/prasad-gade05/Real-time-audio-and-image-classification",
-        "demo": null
-      },
-      {
-        "name": "Encrypted File Sharing Application",
-        "description": "RSA-encrypted file sharing over networks",
-        "date": "October 2023",
-        "highlights": [
-          "Achieved secure file sharing over networks using RSA encryption",
-          "Built a Windows-based GUI application with a handshake mechanism for key distribution",
-          "Ensured data confidentiality and integrity during file transfers"
-        ],
-        "tech": ["Java", "RSA"],
-        "github": "https://github.com/prasad-gade05/End-to-End-Encrypted-Chatting-Application",
-        "demo": null
-      },
-      {
-        "name": "Face Recognition Web App",
-        "description": "Face recognition and similarity detection using Face-API.js",
-        "date": "August 2023",
-        "highlights": [
-          "Achieved accurate facial recognition and similarity detection",
-          "Developed a web app using Face-API.js and added facial records of colleagues"
-        ],
-        "tech": ["HTML", "CSS", "JavaScript", "Face-API.js"],
-        "github": "https://github.com/prasad-gade05/Face-Recognition-Web-App",
-        "demo": null
-      },
-      {
-        "name": "Multiplexer Simulator",
-        "description": "Interactive 8:1 multiplexer simulation from scratch in C++",
-        "date": "January 2023",
-        "highlights": [
-          "Achieved an interactive simulation of an 8:1 multiplexer",
-          "Created a Windows-based GUI application using graphics programming and mouse handling",
-          "Provided an educational tool for learning multiplexing operations"
-        ],
-        "tech": ["C++", "graphics.h"],
-        "github": null,
-        "demo": null
       },
       {
         "name": "Portfolio",

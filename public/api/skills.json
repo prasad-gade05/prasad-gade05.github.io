@@ -1,18 +1,18 @@
 {
   "meta": {
     "source": "prasadgade.dev",
-    "generated": "2026-04-20",
+    "generated": "2026-08-09",
     "version": "2.0",
     "description": "Technical skills of Prasad Gade using the strict MAIN_RESUME taxonomy"
   },
   "data": {
     "categories": {
-      "Languages": ["Python", "C", "C++", "Java", "JavaScript"],
+      "Languages": ["Python", "C", "C++", "Java", "JavaScript", "SQL"],
       "Frameworks": ["Flask", "Django"],
       "Data-Science/ML": ["Pandas", "NumPy", "Matplotlib", "Seaborn", "PyTorch", "Scikit-Learn", "TensorFlow", "Hugging Face", "Keras", "OpenCV"],
-      "Databases/DevOps": ["SQL", "MongoDB", "Firebase", "Git", "GitHub"],
-      "Business Intelligence Tools": ["Power BI"],
-      "Soft Skills": ["Leadership", "Time Management", "Public Speaking", "Writing", "Communication"]
+      "Databases/DevOps": ["PostgreSQL", "MySQL", "MongoDB", "DuckDB", "ChromaDB", "Redis", "Git", "Docker", "Kubernetes", "CI/CD (GitHub Actions)"],
+      "Business Intelligence Tools": ["Power BI", "Tableau"],
+      "Soft Skills": ["Leadership (General Secretary, Student Council)", "Time Management", "Public Speaking", "Writing", "Communication"]
     }
   }
 }
