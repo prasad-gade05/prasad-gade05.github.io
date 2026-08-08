@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "prasadgade.dev",
-    "generated": "2026-06-07",
+    "generated": "2026-08-09",
     "version": "2.0",
     "variant": "slim",
     "description": "Primary slim resume of Prasad Gade for agent consumption"
@@ -17,7 +17,7 @@
         "city": "Mumbai",
         "country": "India"
       },
-      "summary": "Data Scientist and Computer Engineer from Mumbai, India. B.Tech student at Sardar Patel Institute of Technology (CGPA 9.37/10). Builds data pipelines, ML models, and interactive web applications.",
+      "summary": "Data Scientist and Computer Engineer from Mumbai, India. B.Tech student at Sardar Patel Institute of Technology (CGPA 9.26/10). Builds data pipelines, ML models, and interactive web applications.",
       "profiles": [
         { "network": "GitHub", "username": "prasad-gade05", "url": "https://github.com/prasad-gade05" },
         { "network": "LinkedIn", "username": "prasad-gade05", "url": "https://www.linkedin.com/in/prasad-gade05/" },
@@ -30,12 +30,36 @@
         "area": "Computer Engineering",
         "studyType": "B.Tech",
         "minor": "Management from SPJIMR (S. P. Jain Institute of Management & Research)",
-        "gpa": "9.37/10.0",
+        "gpa": "9.26/10.0",
         "location": "Mumbai, India",
         "endDate": "Expected June 2027"
       }
     ],
     "work": [
+      {
+        "company": "Confidential Client (NDA-Protected)",
+        "position": "Independent AI & Software Developer",
+        "location": "Remote, India",
+        "startDate": "2026-04",
+        "endDate": "Present",
+        "highlights": [
+          "Architected an end-to-end data pipeline using Python to ingest heterogeneous formats (PDF, HTML, XLSX) into reproducible JSON & Markdown with strict evidence provenance",
+          "Achieved 91.7% correctness in document extraction via Docling section-aware retrieval, local Ollama inference, and deterministic validation",
+          "Engineered a citation-grounded RAG agent using LangGraph, Pydantic, SearXNG, Playwright, & Ollama for query rewriting and quote-level verification with zero pipeline errors"
+        ]
+      },
+      {
+        "company": "Department of Computer Engineering, SPIT",
+        "position": "Undergraduate Research & Teaching Assistant",
+        "location": "Mumbai, India",
+        "startDate": "2025-02",
+        "endDate": "Present",
+        "highlights": [
+          "Built automated ETL workflows via Python (Pandas) & PowerShell to process raw institutional data, generating 50+ dynamic PDF reports and actionable KPI dashboards",
+          "Typeset a 130-page Ph.D. thesis on Quantum-Inspired Machine Learning using LaTeX & TikZ, managing modular chapter builds and strict version control",
+          "Streamlined academic compliance and CO-PO mapping for Outcome-Based Education (OBE) frameworks by developing custom VBA macros for IEEE & IJETT publications"
+        ]
+      },
       {
         "company": "R3 Systems India Pvt. Ltd.",
         "position": "Data Analyst Intern",
@@ -43,8 +67,7 @@
         "startDate": "2023-06",
         "endDate": "2023-07",
         "highlights": [
-          "Learned Data Analysis and Business Intelligence using Power BI",
-          "Delivered a sales dashboard for North Wind Traders, improving data visibility by 70%"
+          "Built Power BI dashboards for business datasets, including an interactive Northwind Traders sales dashboard covering sales, customer, product, and regional trends"
         ],
         "certificate": "https://drive.google.com/file/d/1EOCFG5pNmzG_RJHsZO940SjWBfEEto5x/view?usp=sharing"
       }
@@ -55,10 +78,8 @@
         "description": "Real-Data Graph ML for Financial Fraud Detection",
         "date": "June 2026",
         "highlights": [
-          "Built a leakage-safe graph ML research pipeline on DGraphFin with 3.7M nodes, 4.3M edges, 17 node features, and official supervised splits of 857,899 train, 183,862 validation, and 183,840 test nodes",
-          "Implemented GraphShield, a dual-path spectral GNN with low-pass and high-pass graph filters, and evaluated it against GraphSAGE, logistic regression, XGBoost, and prior baselines",
-          "Ran 6-seed real-data ablations showing GraphShield reached 0.0415 AUC-PR and 0.7748 AUC-ROC",
-          "Added paired-bootstrap testing with 300 resamples, held-out conformal calibration, temporal/OOD drift diagnostics, and research-contract tests"
+          "Engineered a dual-path spectral GNN evaluated against GraphSAGE on a 3.7M-node, 4.3M-edge DGraphFin dataset using strict leakage-safe splits",
+          "Validated robustness via 6-seed real-data ablations achieving 0.7748 AUC-ROC, integrating paired-bootstrap testing, conformal calibration, and temporal drift diagnostics"
         ],
         "url": "https://github.com/prasad-gade05/GraphShield"
       },
@@ -79,8 +100,8 @@
         "description": "Data Engineering & Analytics Dashboard",
         "date": "March 2026",
         "highlights": [
-          "Processed 9,026 JSON files across 788 districts and 42 months",
-          "Delivered 68 visualizations across Streamlit and Power BI dashboards"
+          "Processed 9,026 JSON files via a 4-stage medallion pipeline into a DuckDB star schema, deploying 68 visualizations on Streamlit & Power BI with GitHub Actions CI/CD",
+          "Quantified market duopoly via HHI & Gini coefficients, segmented adoption with K-Means, and forecasted transaction volumes using Prophet & ARIMA"
         ],
         "url": "https://upi-analytics.streamlit.app/"
       },
@@ -89,8 +110,8 @@
         "description": "AI Legal Courtroom Simulator",
         "date": "November 2025",
         "highlights": [
-          "Built an 8-agent legal simulation with 99% citation accuracy",
-          "Reduced legal research time by 75% across 100K+ documents"
+          "Architected an 8-agent courtroom simulator using LangGraph with stateful multi-turn debate, served via a real-time Streamlit UI and FastAPI SSE",
+          "Built a citation-grounded RAG pipeline over 100K+ legal documents using ChromaDB & BM25, boosting context relevance by 3.2x via hallucination checks and context compression"
         ],
         "url": "https://github.com/prasad-gade05/Law_Courtroom_Simulator"
       },
@@ -99,8 +120,8 @@
         "description": "TII-SSRC-23 Analysis",
         "date": "October 2025",
         "highlights": [
-          "Benchmarked 6 ML/DL models on an 8.6M-sample dataset",
-          "Achieved 99.99% recall and 100% precision"
+          "Benchmarked 6 ML/DL models on the 8.6M-sample TII-SSRC-23 dataset, achieving 99.99% accuracy, 99.99% precision, and 100% recall",
+          "Showed the Decision Tree trained 12.8x faster with 20x higher inference throughput and full SHAP interpretability"
         ],
         "url": "https://github.com/prasad-gade05/IDS_on_TII-SSRC-23"
       },
@@ -119,8 +140,9 @@
         "description": "SDSS Dataset Analysis",
         "date": "November 2024",
         "highlights": [
-          "Achieved 99.07% accuracy classifying 10,000 celestial objects",
-          "Benchmarked 4 classifiers with tuned neural-network performance"
+          "Achieved 99.07% accuracy (0.99 F1) classifying 10,000 celestial objects into stars, galaxies, and quasars",
+          "Improved neural-network accuracy from 95.13% to 98.78% using Keras Tuner across 10 trials",
+          "Benchmarked 4 classifiers on 3,000 test samples via 5-fold cross-validation and 960+ fits"
         ],
         "url": "https://github.com/prasad-gade05/Celestial-Object-Classifier-using-Solana-Digital-Sky-Survey-Dataset"
       },
@@ -176,12 +198,12 @@
       }
     ],
     "skills": {
-      "Languages": ["Python", "C", "C++", "Java", "JavaScript"],
+      "Languages": ["Python", "C", "C++", "Java", "JavaScript", "SQL"],
       "Frameworks": ["Flask", "Django"],
       "Data-Science/ML": ["Pandas", "NumPy", "Matplotlib", "Seaborn", "PyTorch", "Scikit-Learn", "TensorFlow", "Hugging Face", "Keras", "OpenCV"],
-      "Databases/DevOps": ["SQL", "MongoDB", "Firebase", "Git", "GitHub"],
-      "Business Intelligence Tools": ["Power BI"],
-      "Soft Skills": ["Leadership", "Time Management", "Public Speaking", "Writing", "Communication"]
+      "Databases/DevOps": ["PostgreSQL", "MySQL", "MongoDB", "DuckDB", "ChromaDB", "Redis", "Git", "Docker", "Kubernetes", "CI/CD (GitHub Actions)"],
+      "Business Intelligence Tools": ["Power BI", "Tableau"],
+      "Soft Skills": ["Leadership (General Secretary, Student Council)", "Time Management", "Public Speaking", "Writing", "Communication"]
     },
     "certifications": [
       {
@@ -218,7 +240,7 @@
     "achievements": [
       {
         "title": "Winner — Tech Horizon National Hackathon",
-        "description": "Secured 1st place out of 80+ national teams in a 36-hour hackathon by designing the KindHearts donation platform.",
+        "description": "Secured 1st place out of 80+ national teams in a 36-hour hackathon by engineering a full-stack donation platform featuring LLM-driven donor-NGO matchmaking and automated supplier-based routing.",
         "date": "March 2025",
         "url": "https://github.com/prasad-gade05/KindHearts-Multi-Role-Donation-Management-Platform",
         "certificate": "https://drive.google.com/file/d/19EXpm1wVqM35qLiHvbcFzmwwwEiFSr_4/view?usp=sharing"
