@@ -44,7 +44,7 @@ export const projects = [
     tech: ["Python", "DuckDB", "Pandas", "NumPy", "PyArrow", "Apache Parquet", "pytest"],
     github: "https://github.com/prasad-gade05/IPL_Analysis",
     demo: "https://analytics-ipl.streamlit.app/",
-    dataset: "https://huggingface.co/datasets/prasad-gade05/ipl-enriched-2008-2025",
+    dataset: "https://huggingface.co/datasets/prasad-gade05/ipl-enriched-dataset",
     kaggleDataset: "https://www.kaggle.com/datasets/prasadgade/ipl-2008-2025-enriched-dataset",
   },
   {

@@ -46,7 +46,7 @@ export const achievements = [
         platform: "kaggle",
       },
       {
-        href: "https://huggingface.co/datasets/prasad-gade05/ipl-enriched-2008-2025",
+        href: "https://huggingface.co/datasets/prasad-gade05/ipl-enriched-dataset",
         text: "Hugging Face • IPL",
         platform: "huggingface",
       },
