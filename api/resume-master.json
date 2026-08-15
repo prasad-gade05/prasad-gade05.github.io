@@ -118,7 +118,7 @@
         "tech": ["Python", "Streamlit", "DuckDB", "Plotly", "Pandas", "NumPy", "PyArrow", "Apache Parquet", "SQL", "pytest"],
         "github": "https://github.com/prasad-gade05/IPL_Analysis",
         "demo": "https://analytics-ipl.streamlit.app/",
-        "dataset": "https://huggingface.co/datasets/prasad-gade05/ipl-enriched-2008-2025",
+        "dataset": "https://huggingface.co/datasets/prasad-gade05/ipl-enriched-dataset",
         "kaggle_dataset": "https://www.kaggle.com/datasets/prasadgade/ipl-2008-2025-enriched-dataset"
       },
       {
@@ -330,7 +330,7 @@
         "date": "2025",
         "links": [
           "https://www.kaggle.com/datasets/prasadgade/ipl-2008-2025-enriched-dataset",
-          "https://huggingface.co/datasets/prasad-gade05/ipl-enriched-2008-2025",
+          "https://huggingface.co/datasets/prasad-gade05/ipl-enriched-dataset",
           "https://www.kaggle.com/datasets/prasadgade/india-upi-ecosystem-2018-2025",
           "https://huggingface.co/datasets/prasad-gade05/india-upi-ecosystem-2018-2025"
         ]
