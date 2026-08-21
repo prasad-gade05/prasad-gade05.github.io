@@ -17,6 +17,7 @@ export const projectIcons = {
   "Celestial Classifier": Star,
   KindHearts: Heart,
   "Audio Visualizer": Music,
+  "Music Player": Music,
   "Attendance Tracker": BarChart3,
   "Habit Tracker": Zap,
   NutriSnap: Globe,
@@ -38,7 +39,7 @@ export const projects = [
     title: "IPL Analytics Platform",
     subtitle: "Interactive Cricket Data Dashboard",
     category: "Data",
-    stats: "18 Seasons",
+    stats: "19 Seasons",
     description:
       "3-stage IPL data pipeline over 278,205 ball-by-ball records, a 15-page Streamlit app with 19 DuckDB views, deterministic SQL-backed semantic search, and 52 pytest checks.",
     tech: ["Python", "DuckDB", "Pandas", "NumPy", "PyArrow", "Apache Parquet", "pytest"],
@@ -113,6 +114,16 @@ export const projects = [
     tech: ["React", "Three.js", "Framer Motion", "Vite"],
     github: "https://github.com/prasad-gade05/prasad-gade05.github.io",
     demo: "https://prasadgade.dev",
+  },
+  {
+    title: "Music Player",
+    subtitle: "Offline Android Music Player",
+    category: "Mobile",
+    stats: "~2.6 MB APK",
+    description:
+      "Folder-based offline player with tag filters, queue control, and constraint-balanced smart shuffle on Media3.",
+    tech: ["Kotlin", "Jetpack Compose", "Media3 ExoPlayer", "Coil"],
+    github: "https://github.com/prasad-gade05/Music_Player",
   },
   {
     title: "Audio Visualizer",

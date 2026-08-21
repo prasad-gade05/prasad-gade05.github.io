@@ -54,5 +54,5 @@ Prasad writes a personal blog at prasadgade.dev. All written content is 100% hum
 
 ## Public Project Set
 
-- 12 public projects are exposed in the agent-facing layer, including GraphShield, a real-data graph ML research project on DGraphFin.
+- 13 public projects are exposed in the agent-facing layer, including GraphShield, a real-data graph ML research project on DGraphFin, and Music Player, an offline Android music player.
 - Five older projects are intentionally excluded from public agent files and remain only in the private LaTeX source history.
