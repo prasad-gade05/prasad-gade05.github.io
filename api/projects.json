@@ -3,7 +3,7 @@
     "source": "prasadgade.dev",
     "generated": "2026-06-07",
     "version": "2.0",
-    "description": "12 public portfolio projects by Prasad Gade with descriptions, tech stacks, and links"
+    "description": "13 public portfolio projects by Prasad Gade with descriptions, tech stacks, and links"
   },
   "data": {
     "projects": [
@@ -29,7 +29,7 @@
         "title": "IPL Analytics Platform",
         "subtitle": "Interactive Cricket Data Dashboard",
         "category": "Data",
-        "stats": "18 Seasons",
+        "stats": "19 Seasons",
         "description": "3-stage IPL data pipeline over 278,205 ball-by-ball records, a 15-page Streamlit app with 19 DuckDB views, deterministic SQL-backed semantic search, and 52 pytest checks.",
         "detailed_description": [
           "Engineered a 3-stage IPL data pipeline over 278,205 ball-by-ball records from 18 seasons, producing a feature parquet plus 18 aggregate parquet datasets for fast analytics",
@@ -196,6 +196,23 @@
         "tech": ["React", "Three.js", "Framer Motion", "Vite"],
         "github": "https://github.com/prasad-gade05/prasad-gade05.github.io",
         "demo": "https://prasadgade.dev"
+      },
+      {
+        "title": "Music Player",
+        "subtitle": "Offline Android Music Player",
+        "category": "Mobile",
+        "stats": "~2.6 MB APK",
+        "description": "Offline, folder-based Android music player with metadata caching, tag filters, queue control, constraint-balanced smart shuffle, and Media3 background playback.",
+        "detailed_description": [
+          "Folder library via the Storage Access Framework scans subfolders recursively; embedded title/artist/album metadata and album-art thumbnails are extracted once and cached",
+          "A scan snapshot restores the library instantly on relaunch while a background diff refresh picks up files added, removed, or changed since last time",
+          "Free-form song tags combine with AND logic and live match counts; search matches titles and artists case-insensitively",
+          "A three-phase smart shuffle planner spreads artists evenly, repairs same-artist/same-album adjacencies via validated swaps, and always terminates with a valid permutation (600 scripted test scenarios)",
+          "A foreground Media3 media service provides background playback with notification and lock-screen controls; R8-minified release APK is about 2.6 MB"
+        ],
+        "tech": ["Kotlin", "Jetpack Compose", "Material 3", "Media3 ExoPlayer", "MediaSessionService", "Coil", "SharedPreferences"],
+        "github": "https://github.com/prasad-gade05/Music_Player",
+        "demo": null
       }
     ]
   }

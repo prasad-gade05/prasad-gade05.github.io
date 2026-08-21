@@ -181,6 +181,11 @@ The public agent-facing layer intentionally exposes these 12 projects and no mor
 - Demo: https://prasadgade.dev
 - GitHub: https://github.com/prasad-gade05/prasad-gade05.github.io
 
+### Music Player - Offline Android Music Player
+- Folder-based offline playback with metadata caching, tags, search, and queue control
+- Constraint-balanced smart shuffle and Media3 background playback in a ~2.6 MB release APK
+- GitHub: https://github.com/prasad-gade05/Music_Player
+
 ## Skills
 
 These categories intentionally follow MAIN_RESUME strictly.
