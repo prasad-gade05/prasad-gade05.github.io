@@ -7,6 +7,7 @@ import {
   Zap,
   Globe,
   BarChart3,
+  Satellite,
 } from "lucide-react";
 
 export const projectIcons = {
@@ -22,6 +23,7 @@ export const projectIcons = {
   "Habit Tracker": Zap,
   NutriSnap: Globe,
   "UPI Analytics": BarChart3,
+  "Orbital Commons": Satellite,
 };
 
 export const projects = [
@@ -70,6 +72,20 @@ export const projects = [
       "Multi-agent legal simulation with LangGraph for realistic trial proceedings.",
     tech: ["LangChain", "FastAPI", "ChromaDB"],
     github: "https://github.com/prasad-gade05/Law_Courtroom_Simulator",
+  },
+  {
+    title: "Orbital Commons",
+    subtitle: "Satellite Traffic & Conjunction Risk Analytics",
+    category: "Data",
+    stats: "148,985 Events",
+    description:
+      "Medallion pipeline (Bronze → Silver → Gold in DuckDB) over CelesTrak's live catalog with SGP4 propagation, Foster/Chan Pc scoring, K-Means risk shells, and an 8-page Streamlit mission console.",
+    tech: ["Python", "DuckDB", "Streamlit", "SGP4", "Skyfield", "Scikit-learn", "pytest"],
+    github: "https://github.com/prasad-gade05/space_analytics",
+    demo: "https://space-analytics.streamlit.app/",
+    dataset: "https://huggingface.co/datasets/prasad-gade05/Satellite_Traffic_Conjunction_Risk",
+    kaggleDataset:
+      "https://www.kaggle.com/datasets/prasadgade/satellite-traffic-conjunction-risk",
   },
   {
     title: "Intrusion Detection",

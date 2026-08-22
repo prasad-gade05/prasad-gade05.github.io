@@ -99,7 +99,7 @@ Site features:
 
 ## Projects
 
-The public agent-facing layer intentionally exposes these 12 projects and no more:
+The public agent-facing layer intentionally exposes these 14 projects and no more:
 
 ### GraphShield - Real-Data Graph ML for Financial Fraud Detection
 - Built a leakage-safe graph ML research pipeline on DGraphFin with 3.7M nodes, 4.3M edges, 17 node features, and official supervised splits of 857,899 train, 183,862 validation, and 183,840 test nodes
@@ -130,6 +130,18 @@ The public agent-facing layer intentionally exposes these 12 projects and no mor
 - Designed a RAG pipeline over 100K+ legal documents using BM25 re-ranking and ChromaDB vector indexing for citation-grounded responses
 - Improved context relevance by 3.2x through query refinement, context compression, and hallucination checks
 - GitHub: https://github.com/prasad-gade05/Law_Courtroom_Simulator
+
+### Orbital Commons - Satellite Traffic & Conjunction Risk Analytics
+- Built a Bronze-Silver-Gold medallion pipeline in DuckDB over free, ungated CelesTrak feeds (GP OMM JSON for 13 groups, full SATCAT year sweep, SOCRATES Plus conjunction screens, catalog growth history) covering 70,355 cataloged space objects including the post-2026 six-digit NORAD IDs that legacy TLE pipelines silently drop
+- Propagated every object with SGP4 and transformed TEME to WGS84 geodetic coordinates via Skyfield; re-scored the top-N riskiest encounters with a custom Foster/Chan 2D collision-probability integrator benchmarked against SOCRATES-reported Pc
+- Modeled LEO congestion with HHI ownership concentration (450-500 km bands hold 9,000+ objects at HHI ≈ 0.92), Gini-scored debris inequality across nations, and K-Means risk clusters over 25 km altitude bands labeled Quiet/Moderate/Busy/Critical from a 148,985-event conjunction log
+- Shipped an ARIMA(1,1,1) weekly catalog-size forecast to 2031 with 95% CI and holdout MAPE, and quantified the catalog-overflow gap between the official counter (100,403) and ~70k publicly queryable records
+- Delivered an 8-page Streamlit mission console backed by a DuckDB star schema (4 dimensions + 4 facts + Foster top-N benchmark), validated by 29 pytest checks and refreshed nightly via GitHub Actions
+- Published the processed tables as a CC-BY-4.0 dataset on Hugging Face and Kaggle (245k+ rows across object, conjunction-event, growth, density, cluster, and forecast tables)
+- Demo: https://space-analytics.streamlit.app/
+- Dataset: https://huggingface.co/datasets/prasad-gade05/Satellite_Traffic_Conjunction_Risk
+- Kaggle dataset: https://www.kaggle.com/datasets/prasadgade/satellite-traffic-conjunction-risk
+- GitHub: https://github.com/prasad-gade05/space_analytics
 
 ### Intrusion Detection - TII-SSRC-23 Analysis
 - Benchmarked 6 ML/DL models on the 8.6M-sample TII-SSRC-23 dataset using a leakage-safe stratified train-test split
