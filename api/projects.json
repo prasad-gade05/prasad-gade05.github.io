@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "prasadgade.dev",
-    "generated": "2026-06-07",
+    "generated": "2026-08-22",
     "version": "2.0",
-    "description": "13 public portfolio projects by Prasad Gade with descriptions, tech stacks, and links"
+    "description": "14 public portfolio projects by Prasad Gade with descriptions, tech stacks, and links"
   },
   "data": {
     "projects": [
@@ -74,6 +74,25 @@
         "tech": ["Python", "LangChain", "LangGraph", "FastAPI", "Streamlit", "ChromaDB", "Sentence-Transformers", "Ollama LLM", "Kanoon API", "BM25", "NLTK", "Scikit-learn"],
         "github": "https://github.com/prasad-gade05/Law_Courtroom_Simulator",
         "demo": null
+      },
+      {
+        "title": "Orbital Commons",
+        "subtitle": "Satellite Traffic & Conjunction Risk Analytics",
+        "category": "Data",
+        "stats": "148,985 Events",
+        "description": "Medallion pipeline (Bronze → Silver → Gold in DuckDB) over CelesTrak's live catalog with SGP4 propagation, Foster/Chan Pc scoring, K-Means risk shells, and an 8-page Streamlit mission console.",
+        "detailed_description": [
+          "Built a Bronze-Silver-Gold medallion pipeline in DuckDB over free, ungated CelesTrak feeds (GP OMM JSON for 13 groups, full SATCAT year sweep, SOCRATES Plus conjunction screens, catalog growth history) covering 70,355 cataloged space objects including the post-2026 six-digit NORAD IDs that legacy TLE pipelines silently drop",
+          "Propagated every object with SGP4 and transformed TEME to WGS84 geodetic coordinates via Skyfield; re-scored the top-N riskiest encounters with a custom Foster/Chan 2D collision-probability integrator benchmarked against SOCRATES-reported Pc",
+          "Modeled LEO congestion with HHI ownership concentration (450-500 km bands hold 9,000+ objects at HHI ≈ 0.92), Gini-scored debris inequality across nations, and K-Means risk clusters over 25 km altitude bands labeled Quiet/Moderate/Busy/Critical from a 148,985-event conjunction log",
+          "Shipped an ARIMA(1,1,1) weekly catalog-size forecast to 2031 with 95% CI and holdout MAPE, and quantified the catalog-overflow gap between the official counter (100,403) and ~70k publicly queryable records",
+          "Delivered an 8-page Streamlit mission console backed by a DuckDB star schema (4 dimensions + 4 facts + Foster top-N benchmark), validated by 29 pytest checks and refreshed nightly via GitHub Actions"
+        ],
+        "tech": ["Python", "DuckDB", "Apache Parquet", "Streamlit", "SGP4", "Skyfield", "Scikit-learn", "Pytest"],
+        "github": "https://github.com/prasad-gade05/space_analytics",
+        "demo": "https://space-analytics.streamlit.app/",
+        "dataset": "https://huggingface.co/datasets/prasad-gade05/Satellite_Traffic_Conjunction_Risk",
+        "kaggle_dataset": "https://www.kaggle.com/datasets/prasadgade/satellite-traffic-conjunction-risk"
       },
       {
         "title": "Intrusion Detection",

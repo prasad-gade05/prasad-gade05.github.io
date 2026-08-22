@@ -20,9 +20,9 @@
     {
       "name": "get_projects",
       "type": "api",
-      "description": "Get all 13 public projects with descriptions, tech stacks, metrics, and links to demos and source code",
+      "description": "Get all 14 public projects with descriptions, tech stacks, metrics, and links to demos and source code",
       "url": "https://prasadgade.dev/api/projects.json",
-      "sha256": "a94b03ad12fa5aa1a71077f6d94c691f84ec384a15b7f831c7106d458d7e00b8"
+      "sha256": "e3e8f1dc030a3864bb0ffedece8bcb1d94eb84420e9dd7c291bfaa8a0f99af76"
     },
     {
       "name": "get_skills",

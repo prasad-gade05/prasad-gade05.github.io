@@ -1,6 +1,6 @@
 {
   "name": "Prasad Gade Portfolio",
-  "description": "Personal portfolio agent for Prasad Gade — data scientist and computer engineer from Mumbai, India. Provides structured access to slim and detailed resume data, the 13-project public portfolio set, strict MAIN_RESUME skills, contact information, personality data, keyboard shortcut details, and generated blog metadata via static endpoints.",
+  "description": "Personal portfolio agent for Prasad Gade — data scientist and computer engineer from Mumbai, India. Provides structured access to slim and detailed resume data, the 14-project public portfolio set, strict MAIN_RESUME skills, contact information, personality data, keyboard shortcut details, and generated blog metadata via static endpoints.",
   "url": "https://prasadgade.dev/agent/",
   "provider": {
     "organization": "Prasad Gade",
@@ -32,7 +32,7 @@
     {
       "id": "get_projects",
       "name": "Get Projects",
-      "description": "Retrieve all 13 public projects with descriptions, tech stacks, metrics, and links",
+      "description": "Retrieve all 14 public projects with descriptions, tech stacks, metrics, and links",
       "tags": ["projects", "portfolio", "code"],
       "examples": ["What projects has Prasad built?", "Show me public data science projects"]
     },
