@@ -424,6 +424,13 @@
   opacity: 0.5;
 }
 
+.blog-card-views {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-mono);
+}
+
 .blog-card-read-more {
   display: inline-flex;
   align-items: center;

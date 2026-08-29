@@ -131,6 +131,21 @@
   height: clamp(12px, 1.4vmin, 14px);
 }
 
+.site-views {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: clamp(11px, 1.4vmin, 13px);
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.site-views svg {
+  color: var(--accent-cyan);
+  width: clamp(12px, 1.4vmin, 14px);
+  height: clamp(12px, 1.4vmin, 14px);
+}
+
 .name-row {
   display: flex;
   align-items: center;

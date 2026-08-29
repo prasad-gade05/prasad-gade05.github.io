@@ -163,6 +163,8 @@
           <time datetime="2026-05-01">May 1, 2026</time>
           <span class="separator">·</span>
           <span>7 min read</span>
+          <span class="separator">·</span>
+          <span id="blog-views" class="blog-views" hidden></span>
         </div>
         <div class="blog-thumbnail">
           <img
@@ -313,6 +315,20 @@ That was the story behind the piece of creation that I call my <a href="https://
       const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       progressBar.style.width = Math.min(progress, 100) + '%';
     }, { passive: true });
+
+    (() => {
+      const viewsEl = document.getElementById('blog-views');
+      if (!viewsEl) return;
+      fetch('https://prasadgade05.goatcounter.com/counter/' + encodeURIComponent(location.pathname) + '.json')
+        .then((response) => (response.ok ? response.json() : null))
+        .then((data) => {
+          if (data && typeof data.count === 'string' && data.count) {
+            viewsEl.textContent = data.count + ' views';
+            viewsEl.hidden = false;
+          }
+        })
+        .catch(() => {});
+    })();
 
     const THEME_KEY = 'blog-theme';
     const PORTFOLIO_THEME_KEY = 'portfolio-theme';

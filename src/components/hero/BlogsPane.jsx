@@ -1,9 +1,10 @@
 import { useState, useMemo, useEffect, useRef } from "react";
-import { ExternalLink, Share2, Check, ChevronDown } from "lucide-react";
+import { ExternalLink, Share2, Check, ChevronDown, Eye } from "lucide-react";
 import blogsData from "../../../public/blogs/blogs.json";
 import "./BlogsPane.css";
 import { handleCardTilt, resetCardTilt } from "../../utils/cardTilt";
 import { getListItemKey, getRenderableListValues } from "../../utils/listRendering";
+import { useGoatCounterViews } from "./useGoatCounterViews";
 
 const formatDate = (dateStr) => {
   const d = new Date(dateStr);
@@ -18,6 +19,8 @@ const ALL_CATEGORIES = [
 const BlogCard = ({ blog }) => {
   const [copied, setCopied] = useState(false);
   const categories = getRenderableListValues(blog.categories);
+  const views = useGoatCounterViews(blog.url);
+  const blogViews = views[blog.url];
 
   const handleShare = (e) => {
     e.stopPropagation();
@@ -87,6 +90,15 @@ const BlogCard = ({ blog }) => {
           <time dateTime={blog.date}>{formatDate(blog.date)}</time>
           <span className="meta-dot">·</span>
           <span>{blog.readTime} min read</span>
+          {typeof blogViews === "string" && (
+            <>
+              <span className="meta-dot">·</span>
+              <span className="blog-card-views" title="All-time views">
+                <Eye size={11} />
+                {blogViews}
+              </span>
+            </>
+          )}
           <span className="blog-card-read-more">
             Read <ExternalLink size={11} />
           </span>

@@ -1,11 +1,12 @@
 import { useCallback, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import { MapPin, HelpCircle } from "lucide-react";
+import { MapPin, HelpCircle, Eye } from "lucide-react";
 import { profileData } from "../../data/portfolioData";
 import AnimatedName from "./AnimatedName";
 import CurrentTime from "./CurrentTime";
 import HelpModal from "./HelpModal";
+import { useGoatCounterViews } from "./useGoatCounterViews";
 import "./HelpModal.css";
 
 const ProfileSection = ({ onOpenHelp, onCloseHelp, showHelpModal }) => {
@@ -13,6 +14,8 @@ const ProfileSection = ({ onOpenHelp, onCloseHelp, showHelpModal }) => {
   const [internalShowHelpModal, setInternalShowHelpModal] = useState(false);
   const isHelpModalControlled = typeof showHelpModal === "boolean";
   const isHelpModalOpen = isHelpModalControlled ? showHelpModal : internalShowHelpModal;
+  const views = useGoatCounterViews("TOTAL");
+  const totalViews = views.TOTAL;
   const openHelpModal = useCallback(() => {
     if (onOpenHelp) {
       onOpenHelp();
@@ -58,6 +61,12 @@ const ProfileSection = ({ onOpenHelp, onCloseHelp, showHelpModal }) => {
           <MapPin size={12} />
           <span>{profileData.location}</span>
         </div>
+        {typeof totalViews === "string" && (
+          <div className="site-views" title="All-time page views">
+            <Eye size={12} />
+            <span>{totalViews}</span>
+          </div>
+        )}
         <CurrentTime />
         <button 
           className="help-button"

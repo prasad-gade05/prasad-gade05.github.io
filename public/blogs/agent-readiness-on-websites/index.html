@@ -160,6 +160,8 @@
           <time datetime="2026-04-26">April 26, 2026</time>
           <span class="separator">·</span>
           <span>4 min read</span>
+          <span class="separator">·</span>
+          <span id="blog-views" class="blog-views" hidden></span>
         </div>
         <div class="blog-thumbnail">
           <img
@@ -273,6 +275,20 @@ Ohh, well, that rings a bell to me, you can actually go to your favourite chatbo
       const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       progressBar.style.width = Math.min(progress, 100) + '%';
     }, { passive: true });
+
+    (() => {
+      const viewsEl = document.getElementById('blog-views');
+      if (!viewsEl) return;
+      fetch('https://prasadgade05.goatcounter.com/counter/' + encodeURIComponent(location.pathname) + '.json')
+        .then((response) => (response.ok ? response.json() : null))
+        .then((data) => {
+          if (data && typeof data.count === 'string' && data.count) {
+            viewsEl.textContent = data.count + ' views';
+            viewsEl.hidden = false;
+          }
+        })
+        .catch(() => {});
+    })();
 
     const THEME_KEY = 'blog-theme';
     const PORTFOLIO_THEME_KEY = 'portfolio-theme';
