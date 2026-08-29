@@ -36,7 +36,7 @@ export const education = [
 export const achievements = [
   {
     title: "Open-Source Dataset Contributor",
-    desc: "Published IPL + India UPI datasets on Kaggle and Hugging Face",
+    desc: "Published IPL, India UPI & Satellite Traffic datasets on Kaggle and Hugging Face",
     date: "2025",
     color: "#3fb950",
     links: [
@@ -58,6 +58,16 @@ export const achievements = [
       {
         href: "https://huggingface.co/datasets/prasad-gade05/india-upi-ecosystem-2018-2025",
         text: "Hugging Face • India UPI",
+        platform: "huggingface",
+      },
+      {
+        href: "https://www.kaggle.com/datasets/prasadgade/satellite-traffic-conjunction-risk",
+        text: "Kaggle • Satellite Traffic",
+        platform: "kaggle",
+      },
+      {
+        href: "https://huggingface.co/datasets/prasad-gade05/Satellite_Traffic_Conjunction_Risk",
+        text: "Hugging Face • Satellite Traffic",
         platform: "huggingface",
       },
     ],

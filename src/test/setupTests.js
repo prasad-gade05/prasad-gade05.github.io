@@ -1,6 +1,12 @@
 import '@testing-library/jest-dom/vitest'
 import { vi } from 'vitest'
 
+// Default network guard: component tests must never hit real endpoints.
+// Individual tests can override via vi.stubGlobal('fetch', ...).
+window.fetch = vi.fn(() =>
+  Promise.resolve({ ok: false, status: 0, json: async () => ({}) }),
+)
+
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: vi.fn().mockImplementation((query) => ({

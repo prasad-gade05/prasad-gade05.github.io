@@ -46,6 +46,14 @@ describe('portfolio data modules', () => {
     expect(certifications.every((item) => item.link)).toBe(true)
     expect(volunteering.some((item) => Array.isArray(item.certificateLinks))).toBe(true)
 
+    const contributor = achievements.find((item) => item.title === 'Open-Source Dataset Contributor')
+    expect(contributor.links.map((link) => link.href)).toEqual(
+      expect.arrayContaining([
+        'https://www.kaggle.com/datasets/prasadgade/satellite-traffic-conjunction-risk',
+        'https://huggingface.co/datasets/prasad-gade05/Satellite_Traffic_Conjunction_Risk',
+      ]),
+    )
+
     expect(projectIcons['IPL Analytics Platform']).toBeTruthy()
     expect(projects[0]).toMatchObject({
       title: expect.any(String),

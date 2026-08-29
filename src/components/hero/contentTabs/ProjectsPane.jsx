@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Folder } from "lucide-react";
+import { Download, ExternalLink, Folder } from "lucide-react";
 import { FaGithub, FaKaggle } from "react-icons/fa";
 import { SiHuggingface } from "react-icons/si";
 import {
@@ -13,9 +13,18 @@ import { projectIcons, projects } from "../../../data/portfolioData";
 import { getListItemKey, getRenderableListValues } from "../../../utils/listRendering";
 import { tabPaneMotionProps } from "./motion";
 import { useProjectGrid } from "./useProjectGrid";
+import {
+  extractHfRepoId,
+  extractKaggleRef,
+  formatDownloadCount,
+  useDatasetDownloads,
+  useKaggleDownloads,
+} from "./useDatasetDownloads";
 
 const ProjectsPane = () => {
   const { adaptiveGridStyle, lastRowOffset, lastRowStartIdx } = useProjectGrid(projects.length);
+  const hfDownloads = useDatasetDownloads(projects.map((project) => project.dataset));
+  const kaggleDownloads = useKaggleDownloads(projects.map((project) => project.kaggleDataset));
 
   return (
     <motion.div key="projects" className="tab-pane projects-pane" {...tabPaneMotionProps}>
@@ -23,6 +32,10 @@ const ProjectsPane = () => {
         {projects.map((project, index) => {
           const ProjectIcon = projectIcons[project.title] || Folder;
           const techTags = getRenderableListValues(project.tech);
+          const hfRepoId = project.dataset ? extractHfRepoId(project.dataset) : null;
+          const downloadCount = hfRepoId ? hfDownloads[hfRepoId] : null;
+          const kaggleRef = project.kaggleDataset ? extractKaggleRef(project.kaggleDataset) : null;
+          const kaggleCount = kaggleRef ? kaggleDownloads[kaggleRef] : null;
 
           return (
             <div
@@ -106,6 +119,15 @@ const ProjectsPane = () => {
                         <SiHuggingface size={14} />
                       </a>
                     )}
+                    {hfRepoId && typeof downloadCount === "number" && (
+                      <span
+                        className="project-dataset-downloads"
+                        title="All-time Hugging Face downloads"
+                      >
+                        <Download size={10} />
+                        {formatDownloadCount(downloadCount)}
+                      </span>
+                    )}
                     {project.kaggleDataset && (
                       <a
                         href={project.kaggleDataset}
@@ -118,6 +140,15 @@ const ProjectsPane = () => {
                       >
                         <FaKaggle size={14} />
                       </a>
+                    )}
+                    {kaggleRef && typeof kaggleCount === "number" && (
+                      <span
+                        className="project-dataset-downloads"
+                        title="All-time Kaggle downloads"
+                      >
+                        <Download size={10} />
+                        {formatDownloadCount(kaggleCount)}
+                      </span>
                     )}
                   </div>
                 </div>

@@ -1,9 +1,24 @@
 import { motion } from "framer-motion";
-import { Award, Briefcase, ExternalLink, GraduationCap, Heart, Trophy } from "lucide-react";
+import {
+  Award,
+  Briefcase,
+  Download,
+  ExternalLink,
+  GraduationCap,
+  Heart,
+  Trophy,
+} from "lucide-react";
 import { FaKaggle } from "react-icons/fa";
 import { SiHuggingface } from "react-icons/si";
 import { handleCardTilt, resetCardTilt } from "../../../utils/cardTilt";
 import { getListItemKey, getRenderableListValues } from "../../../utils/listRendering";
+import {
+  extractHfRepoId,
+  extractKaggleRef,
+  formatDownloadCount,
+  useDatasetDownloads,
+  useKaggleDownloads,
+} from "./useDatasetDownloads";
 import {
   achievements,
   certifications,
@@ -12,6 +27,35 @@ import {
   volunteering,
 } from "../../../data/portfolioData";
 import { tabPaneMotionProps } from "./motion";
+
+const HF_DATASET_LINKS = achievements
+  .flatMap((achievement) => achievement.links ?? [])
+  .filter((link) => link.platform === "huggingface");
+
+const HF_DATASET_URLS = [...new Set(HF_DATASET_LINKS.map((link) => link.href))];
+
+const KAGGLE_DATASET_URLS = [
+  ...new Set(
+    achievements
+      .flatMap((achievement) => achievement.links ?? [])
+      .filter((link) => link.platform === "kaggle")
+      .map((link) => link.href)
+  ),
+];
+
+const getHfDownloadCount = (link, hfDownloads) => {
+  if (link.platform !== "huggingface") return null;
+  const repoId = extractHfRepoId(link.href);
+  const count = repoId ? hfDownloads[repoId] : null;
+  return typeof count === "number" ? count : null;
+};
+
+const getKaggleDownloadCount = (link, kaggleDownloads) => {
+  if (link.platform !== "kaggle") return null;
+  const ref = extractKaggleRef(link.href);
+  const count = ref ? kaggleDownloads[ref] : null;
+  return typeof count === "number" ? count : null;
+};
 
 const getAchievementLinkIcon = (platform) => {
   if (platform === "kaggle") return <FaKaggle size={11} />;
@@ -106,69 +150,107 @@ export const EducationPane = ({ isSplit }) => (
   </motion.div>
 );
 
-export const AchievementsPane = ({ isSplit }) => (
-  <motion.div
-    key="achievements"
-    className={`tab-pane achievements-pane ${isSplit ? "split" : ""}`}
-    {...tabPaneMotionProps}
-  >
-    <div className="pane-header">
-      <Trophy size={16} />
-      <span>Achievements</span>
-    </div>
-    <div className="achieve-list">
-      {achievements.map((achievement, achievementIndex) => {
-        const achievementLinks = achievement.links ?? (
-          achievement.link
-            ? [{
-                href: achievement.link,
-                text: achievement.linkText || "View Certificate",
-                platform: "external",
-              }]
-            : []
-        );
+export const AchievementsPane = ({ isSplit }) => {
+  const hfDownloads = useDatasetDownloads(HF_DATASET_URLS);
+  const kaggleDownloads = useKaggleDownloads(KAGGLE_DATASET_URLS);
 
-        return (
-          <div
-            key={`${achievement.title || "achievement"}-${achievementIndex}`}
-            className={`achieve-item ${achievementLinks.length > 1 ? "multi-link" : ""}`}
-            data-shortcut-target="true"
-            aria-label={achievement.title}
-            role="group"
-            tabIndex={-1}
-            style={{ "--accent": achievement.color }}
-            onMouseMove={handleCardTilt}
-            onMouseLeave={resetCardTilt}
-          >
-            <div className="achieve-dot"></div>
-            <div className="achieve-content">
-              <h3>{achievement.title}</h3>
-              <p>{achievement.desc}</p>
-              {achievementLinks.length > 0 && (
-                <div className="achieve-links">
-                  {achievementLinks.map((link, index) => (
-                    <a
-                      key={`${achievement.title}-${link.href}-${index}`}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`achieve-link ${link.platform ? `platform-${link.platform}` : ""}`}
-                      data-shortcut-target="true"
-                    >
-                      {getAchievementLinkIcon(link.platform)}
-                      {link.text}
-                    </a>
-                  ))}
-                </div>
-              )}
+  return (
+    <motion.div
+      key="achievements"
+      className={`tab-pane achievements-pane ${isSplit ? "split" : ""}`}
+      {...tabPaneMotionProps}
+    >
+      <div className="pane-header">
+        <Trophy size={16} />
+        <span>Achievements</span>
+      </div>
+      <div className="achieve-list">
+        {achievements.map((achievement, achievementIndex) => {
+          const achievementLinks = achievement.links ?? (
+            achievement.link
+              ? [{
+                  href: achievement.link,
+                  text: achievement.linkText || "View Certificate",
+                  platform: "external",
+                }]
+              : []
+          );
+          const hfLinkCountByHref = new Map(
+            achievementLinks
+              .filter((link) => link.platform === "huggingface")
+              .map((link) => [link.href, getHfDownloadCount(link, hfDownloads)])
+          );
+          const kaggleLinkCountByHref = new Map(
+            achievementLinks
+              .filter((link) => link.platform === "kaggle")
+              .map((link) => [link.href, getKaggleDownloadCount(link, kaggleDownloads)])
+          );
+          const allLinkCounts = [
+            ...hfLinkCountByHref.values(),
+            ...kaggleLinkCountByHref.values(),
+          ];
+          const totalDownloads =
+            allLinkCounts.length > 0 && allLinkCounts.every((count) => count !== null)
+              ? formatDownloadCount(allLinkCounts.reduce((sum, count) => sum + count, 0))
+              : null;
+
+          return (
+            <div
+              key={`${achievement.title || "achievement"}-${achievementIndex}`}
+              className={`achieve-item ${achievementLinks.length > 1 ? "multi-link" : ""}`}
+              data-shortcut-target="true"
+              aria-label={achievement.title}
+              role="group"
+              tabIndex={-1}
+              style={{ "--accent": achievement.color }}
+              onMouseMove={handleCardTilt}
+              onMouseLeave={resetCardTilt}
+            >
+              <div className="achieve-dot"></div>
+              <div className="achieve-content">
+                <h3>{achievement.title}</h3>
+                <p>{achievement.desc}</p>
+                {achievementLinks.length > 0 && (
+                  <div className="achieve-links">
+                    {achievementLinks.map((link, index) => {
+                      const downloadCount =
+                        hfLinkCountByHref.get(link.href) ?? kaggleLinkCountByHref.get(link.href);
+                      return (
+                        <a
+                          key={`${achievement.title}-${link.href}-${index}`}
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`achieve-link ${link.platform ? `platform-${link.platform}` : ""}`}
+                          data-shortcut-target="true"
+                        >
+                          {getAchievementLinkIcon(link.platform)}
+                          {link.text}
+                          {typeof downloadCount === "number" && (
+                            <span className="achieve-link-count">
+                              {formatDownloadCount(downloadCount)}
+                            </span>
+                          )}
+                        </a>
+                      );
+                    })}
+                  </div>
+                )}
+                {totalDownloads && (
+                  <div className="achieve-downloads-total">
+                    <Download size={11} />
+                    <span>{totalDownloads} all-time downloads</span>
+                  </div>
+                )}
+              </div>
+              <span className="achieve-date">{achievement.date}</span>
             </div>
-            <span className="achieve-date">{achievement.date}</span>
-          </div>
-        );
-      })}
-    </div>
-  </motion.div>
-);
+          );
+        })}
+      </div>
+    </motion.div>
+  );
+};
 
 export const CertificationsPane = ({ isSplit }) => (
   <motion.div

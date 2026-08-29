@@ -647,6 +647,31 @@
   color: #ac7c00;
 }
 
+.achieve-link-count {
+  padding: 1px 7px;
+  background: rgba(255, 255, 255, 0.09);
+  border-radius: 999px;
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.achieve-downloads-total {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  font-size: clamp(10px, 1.2vmin, 12px);
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.achieve-downloads-total svg {
+  width: 11px;
+  height: 11px;
+}
+
 /* Certification Links */
 .cert-actions {
   display: flex;
