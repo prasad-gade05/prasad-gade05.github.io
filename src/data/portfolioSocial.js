@@ -7,6 +7,7 @@ import {
   FaKeyboard,
   FaSpotify,
   FaReddit,
+  FaGitlab,
 } from "react-icons/fa";
 import { SiLeetcode, SiStreamlit, SiHuggingface } from "react-icons/si";
 import { HiMail } from "react-icons/hi";
@@ -95,5 +96,13 @@ export const socialLinks = [
     label: "Spotify",
     handle: "prasad_gade",
     vibe: "spotify",
+  },
+  {
+    icon: FaGitlab,
+    href: "https://gitlab.com/prasad_gade05",
+    label: "GitLab",
+    handle: "prasad_gade05",
+    vibe: "gitlab",
+    wide: true,
   },
 ];

@@ -18,7 +18,7 @@ const SocialLinks = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={link.label}
-            className={`social-card-fun social-${link.vibe}`}
+            className={`social-card-fun social-${link.vibe}${link.wide ? " social-card-wide" : ""}`}
             onMouseMove={handleCardTilt}
             onMouseLeave={resetCardTilt}
           >

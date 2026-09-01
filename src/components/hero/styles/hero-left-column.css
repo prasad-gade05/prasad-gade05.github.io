@@ -788,7 +788,7 @@ button.nb-tool {
 
 .social-cards-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
   gap: clamp(4px, 0.5vmin, 6px);
   flex: 1;
@@ -815,6 +815,10 @@ button.nb-tool {
 
 .social-card-fun:hover {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.social-card-wide {
+  grid-column: 1 / -1;
 }
 
 .social-card-content {
@@ -1016,6 +1020,17 @@ button.nb-tool {
   transform: translateY(-3px);
 }
 
+.social-gitlab {
+  border-color: rgba(252, 109, 38, 0.3);
+}
+.social-gitlab .social-icon { color: #fc6d26; }
+.social-gitlab .social-icon-wrap { background: rgba(252, 109, 38, 0.1); }
+.social-gitlab:hover {
+  background: rgba(252, 109, 38, 0.15);
+  border-color: #fc6d26;
+  transform: translateY(-3px);
+}
+
 [data-theme='light'] .social-leetcode .social-icon { color: #d48f00; }
 [data-theme='light'] .social-leetcode .social-icon-wrap { background: rgba(255, 161, 22, 0.12); }
 
@@ -1025,6 +1040,9 @@ button.nb-tool {
 [data-theme='light'] .social-huggingface .social-icon { color: #d4a800; }
 [data-theme='light'] .social-huggingface .social-icon-wrap { background: rgba(255, 210, 30, 0.12); }
 
+[data-theme='light'] .social-gitlab .social-icon { color: #e24329; }
+[data-theme='light'] .social-gitlab .social-icon-wrap { background: rgba(252, 109, 38, 0.12); }
+
 [data-theme='arcade-light'] .social-leetcode .social-icon { color: #d48f00; }
 [data-theme='arcade-light'] .social-leetcode .social-icon-wrap { background: rgba(255, 161, 22, 0.15); }
 
@@ -1033,4 +1051,7 @@ button.nb-tool {
 
 [data-theme='arcade-light'] .social-huggingface .social-icon { color: #d4a800; }
 [data-theme='arcade-light'] .social-huggingface .social-icon-wrap { background: rgba(255, 210, 30, 0.15); }
+
+[data-theme='arcade-light'] .social-gitlab .social-icon { color: #e24329; }
+[data-theme='arcade-light'] .social-gitlab .social-icon-wrap { background: rgba(252, 109, 38, 0.15); }
 
