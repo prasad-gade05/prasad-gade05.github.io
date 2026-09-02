@@ -683,38 +683,6 @@
   box-shadow: var(--arcade-shadow-lg);
 }
 
-/* Status badge */
-[data-theme='arcade-dark'] .status-badge,
-[data-theme='arcade-light'] .status-badge {
-  border: var(--arcade-border);
-  border-radius: var(--arcade-radius-pill);
-  box-shadow: var(--arcade-shadow);
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 700;
-}
-
-[data-theme='arcade-dark'] .status-badge {
-  background: var(--accent-green);
-  color: #181818;
-}
-
-[data-theme='arcade-light'] .status-badge {
-  background: var(--accent-green);
-  color: #181818;
-}
-
-[data-theme='arcade-dark'] .status-dot {
-  box-shadow: none;
-  background: #181818;
-}
-
-[data-theme='arcade-light'] .status-dot {
-  box-shadow: none;
-  background: #181818;
-}
-
 /* Code card header */
 [data-theme='arcade-dark'] .code-header,
 [data-theme='arcade-light'] .code-header {

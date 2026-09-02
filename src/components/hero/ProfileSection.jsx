@@ -53,10 +53,6 @@ const ProfileSection = ({ onOpenHelp, onCloseHelp, showHelpModal }) => {
       transition={{ duration: 0.5, delay: 0.1 }}
     >
       <div className="info-header">
-        <div className="status-badge">
-          <span className="status-dot"></span>
-          <span>{profileData.status}</span>
-        </div>
         <div className="location">
           <MapPin size={12} />
           <span>{profileData.location}</span>
