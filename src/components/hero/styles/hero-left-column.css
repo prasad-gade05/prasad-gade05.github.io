@@ -1004,6 +1004,23 @@ button.nb-tool {
   transform: translateY(-3px);
 }
 
+.social-tokscale {
+  border-color: rgba(139, 92, 246, 0.3);
+}
+.social-tokscale .social-icon { color: #8b5cf6; }
+.social-tokscale .social-icon-wrap { background: rgba(139, 92, 246, 0.1); }
+.social-tokscale:hover {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: #8b5cf6;
+  transform: translateY(-3px);
+}
+
+/* Last row — GitLab + TokScale share the row equally */
+.social-gitlab,
+.social-tokscale {
+  grid-column: span 2;
+}
+
 [data-theme='light'] .social-leetcode .social-icon { color: #d48f00; }
 [data-theme='light'] .social-leetcode .social-icon-wrap { background: rgba(255, 161, 22, 0.12); }
 
@@ -1015,6 +1032,8 @@ button.nb-tool {
 
 [data-theme='light'] .social-gitlab .social-icon { color: #e24329; }
 [data-theme='light'] .social-gitlab .social-icon-wrap { background: rgba(252, 109, 38, 0.12); }
+[data-theme='light'] .social-tokscale .social-icon { color: #7c3aed; }
+[data-theme='light'] .social-tokscale .social-icon-wrap { background: rgba(139, 92, 246, 0.12); }
 
 [data-theme='arcade-light'] .social-leetcode .social-icon { color: #d48f00; }
 [data-theme='arcade-light'] .social-leetcode .social-icon-wrap { background: rgba(255, 161, 22, 0.15); }
@@ -1027,4 +1046,6 @@ button.nb-tool {
 
 [data-theme='arcade-light'] .social-gitlab .social-icon { color: #e24329; }
 [data-theme='arcade-light'] .social-gitlab .social-icon-wrap { background: rgba(252, 109, 38, 0.15); }
+[data-theme='arcade-light'] .social-tokscale .social-icon { color: #7c3aed; }
+[data-theme='arcade-light'] .social-tokscale .social-icon-wrap { background: rgba(139, 92, 246, 0.15); }
 

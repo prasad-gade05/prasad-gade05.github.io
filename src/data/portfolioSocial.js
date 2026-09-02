@@ -8,6 +8,7 @@ import {
   FaSpotify,
   FaReddit,
   FaGitlab,
+  FaRocket,
 } from "react-icons/fa";
 import { SiLeetcode, SiStreamlit, SiHuggingface } from "react-icons/si";
 import { HiMail } from "react-icons/hi";
@@ -103,6 +104,12 @@ export const socialLinks = [
     label: "GitLab",
     handle: "prasad_gade05",
     vibe: "gitlab",
-    wide: true,
+  },
+  {
+    icon: FaRocket,
+    href: "https://tokscale.ai/u/prasad-gade05",
+    label: "TokScale",
+    handle: "prasad-gade05",
+    vibe: "tokscale",
   },
 ];
