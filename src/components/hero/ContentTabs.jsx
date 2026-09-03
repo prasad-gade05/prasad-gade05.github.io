@@ -10,7 +10,7 @@ import { focusShortcutBoundaryTarget, moveShortcutFocus } from "../../utils/keyb
 
 const MoviesModal = lazy(() => import("./MoviesModal"));
 
-const ContentTabs = ({ onOpenMinecraft, onStartDoodle, onBlogsActiveChange, onShortcutApiReady }) => {
+const ContentTabs = ({ onOpenMinecraft, onStartDoodle, onStartSmash, onBlogsActiveChange, onShortcutApiReady }) => {
   const [activeTabs, setActiveTabs] = useState(["projects"]);
   const [isMoviesModalOpen, setIsMoviesModalOpen] = useState(false);
   const contentRef = useRef(null);
@@ -128,6 +128,7 @@ const ContentTabs = ({ onOpenMinecraft, onStartDoodle, onBlogsActiveChange, onSh
         onOpenMinecraft={onOpenMinecraft}
         onOpenMovies={() => setIsMoviesModalOpen(true)}
         onStartDoodle={onStartDoodle}
+        onStartSmash={onStartSmash}
       />
 
       <Suspense fallback={null}>

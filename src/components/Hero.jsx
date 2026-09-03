@@ -19,7 +19,7 @@ import {
 const ResumeViewer = lazy(() => import("./ResumeViewer"));
 const MinecraftSkinViewer = lazy(() => import("./MinecraftSkinViewer"));
 
-const Hero = ({ onStartDoodle }) => {
+const Hero = ({ onStartDoodle, onStartSmash }) => {
   const [showMinecraftModal, setShowMinecraftModal] = useState(false);
   const [showResumeModal, setShowResumeModal] = useState(false);
   const [showHelpModal, setShowHelpModal] = useState(false);
@@ -138,6 +138,7 @@ const Hero = ({ onStartDoodle }) => {
         <ContentTabs
           onOpenMinecraft={() => setShowMinecraftModal(true)}
           onStartDoodle={onStartDoodle}
+          onStartSmash={onStartSmash}
           onBlogsActiveChange={setIsBlogsActive}
           onShortcutApiReady={(api) => {
             shortcutApiRef.current = api;

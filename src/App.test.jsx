@@ -2,8 +2,9 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
 
-const { captureDOMMock, confettiMock } = vi.hoisted(() => ({
+const { captureDOMMock, captureSmashSceneMock, confettiMock } = vi.hoisted(() => ({
   captureDOMMock: vi.fn(),
+  captureSmashSceneMock: vi.fn(),
   confettiMock: vi.fn(),
 }))
 
@@ -15,10 +16,15 @@ vi.mock('./utils/domCapture', () => ({
   captureDOM: captureDOMMock,
 }))
 
+vi.mock('./components/smash/elementCapture', () => ({
+  captureSmashScene: captureSmashSceneMock,
+}))
+
 vi.mock('./components/Hero', () => ({
-  default: ({ onStartDoodle }) => (
+  default: ({ onStartDoodle, onStartSmash }) => (
     <div>
       <button onClick={onStartDoodle}>Start doodle</button>
+      <button onClick={onStartSmash}>Start smash</button>
       <div>Hero mock</div>
     </div>
   ),
@@ -38,11 +44,22 @@ vi.mock('./components/tissue/TissueOverlay', () => ({
   ),
 }))
 
+vi.mock('./components/smash/SmashOverlay', () => ({
+  default: ({ scene, onExit }) => (
+    <div>
+      <span>Smash overlay mock</span>
+      <span>{scene?.backdrop}</span>
+      <button onClick={onExit}>Exit smash</button>
+    </div>
+  ),
+}))
+
 describe('App', () => {
   const originalGetElementById = document.getElementById.bind(document)
 
   beforeEach(() => {
     captureDOMMock.mockReset()
+    captureSmashSceneMock.mockReset()
     confettiMock.mockReset()
   })
 
@@ -72,6 +89,23 @@ describe('App', () => {
 
     await waitFor(() => {
       expect(screen.queryByText('Tissue overlay mock')).not.toBeInTheDocument()
+    })
+  })
+
+  it('opens smash mode after capturing the scene and closes on escape', async () => {
+    captureSmashSceneMock.mockResolvedValueOnce({ backdrop: 'bg.png', items: [] })
+
+    render(<App />)
+    fireEvent.click(screen.getByText('Start smash'))
+
+    expect(captureSmashSceneMock).toHaveBeenCalledTimes(1)
+    expect(await screen.findByText('Smash overlay mock')).toBeInTheDocument()
+    expect(screen.getByText('bg.png')).toBeInTheDocument()
+
+    fireEvent.keyDown(window, { key: 'Escape' })
+
+    await waitFor(() => {
+      expect(screen.queryByText('Smash overlay mock')).not.toBeInTheDocument()
     })
   })
 

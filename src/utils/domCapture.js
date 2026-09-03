@@ -8,14 +8,14 @@ const loadHtml2Canvas = async () => {
   return html2canvasPromise
 }
 
-export const captureDOM = async (element) => {
+export const captureDOM = async (element, opts = {}) => {
   if (!element) return null
 
   try {
     const html2canvas = await loadHtml2Canvas()
     const canvas = await html2canvas(element, {
       useCORS: true,
-      scale: 1,
+      scale: opts.scale ?? 1,
       backgroundColor: null,
       logging: false,
       allowTaint: true,
