@@ -10,6 +10,7 @@ import { captureDOM } from '../../utils/domCapture'
 
 /** Card/panel/button roots that become individual breakables. */
 export const BREAKABLE_SELECTORS = [
+  '.tabs-header',
   '.info-section',
   '.code-card',
   '.social-card-fun',

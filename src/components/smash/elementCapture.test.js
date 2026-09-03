@@ -78,7 +78,7 @@ describe('collectBreakables', () => {
   })
 
   it('exposes the real site selectors', () => {
-    for (const sel of ['.info-section', '.code-card', '.social-card-fun', '.project-card', '.hobby-card']) {
+    for (const sel of ['.tabs-header', '.info-section', '.code-card', '.social-card-fun', '.project-card', '.hobby-card']) {
       expect(BREAKABLE_SELECTORS).toContain(sel)
     }
   })
