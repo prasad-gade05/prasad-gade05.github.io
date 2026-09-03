@@ -963,11 +963,13 @@ const SmashScene = ({ scene, weapon, resetKey, onProgress }) => {
       target.vy += 1.2
       target.vz = 2.2
       target.vr += rand(-4, 4)
-      // Clear the card's whole silhouette off the wall — no ghost pixels
+      // Clear the card's whole silhouette off the wall — no ghost pixels.
+      // Backdrop pixels never move, so clear at the REST position even
+      // though the knocked card mesh is currently wobbled elsewhere.
       const wall = wallRef.current
       const { w, h } = paneSizeRef.current
       if (wall?.ctx && w > 0) {
-        const topLeft = paneToCanvas(cx - target.w / 2, cy + target.h / 2, w, h, wall.cw, wall.ch)
+        const topLeft = paneToCanvas(target.x - target.w / 2, target.y + target.h / 2, w, h, wall.cw, wall.ch)
         paintRectHole(
           wall.ctx,
           topLeft.px,

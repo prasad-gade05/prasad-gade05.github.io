@@ -11,6 +11,7 @@ import { captureDOM } from '../../utils/domCapture'
 /** Card/panel/button roots that become individual breakables. */
 export const BREAKABLE_SELECTORS = [
   '.tabs-header',
+  '.pane-header',
   '.info-section',
   '.code-card',
   '.social-card-fun',
@@ -26,7 +27,7 @@ export const BREAKABLE_SELECTORS = [
   '.blog-card',
 ]
 
-export const MAX_ITEMS = 28
+export const MAX_ITEMS = 40
 const MIN_SIDE_PX = 8
 
 const rectOf = (el) => {
