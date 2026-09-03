@@ -316,33 +316,207 @@ const GunMount = ({ mount, aimRef, flashRef, weapon, gunMuzzleRef, cannonMuzzleR
 
   return (
     <group>
-      {/* Gun */}
+      {/* M4-pattern carbine along +Z (muzzle forward for lookAt aiming):
+          round ribbed handguard, triangular front sight, birdcage hider,
+          curved STANAG mag, waffle stock. No emissives — pure iron. */}
       <group ref={gunRef} position={[mount.x, mount.y, mount.z]}>
+        {/* Receiver + flat-top rail */}
         <mesh>
-          <boxGeometry args={[0.5, 0.55, 1.1]} />
-          <meshStandardMaterial color="#1a1a22" roughness={0.35} metalness={0.6} />
+          <boxGeometry args={[0.3, 0.36, 1.1]} />
+          <meshStandardMaterial color="#1c1e23" roughness={0.52} metalness={0.88} />
         </mesh>
-        <mesh position={[0, 0, 1.0]} rotation={[Math.PI / 2, 0, 0]}>
-          <cylinderGeometry args={[0.09, 0.09, 1.3, 16]} />
-          <meshStandardMaterial color="#0c0c12" roughness={0.3} metalness={0.7} />
+        <mesh position={[0, 0.2, 0.3]}>
+          <boxGeometry args={[0.11, 0.05, 1.7]} />
+          <meshStandardMaterial color="#121316" roughness={0.5} metalness={0.88} />
         </mesh>
-        <mesh position={[0, 0, 1.62]}>
-          <cylinderGeometry args={[0.13, 0.13, 0.18, 16]} />
-          <meshStandardMaterial color="#2a2a35" roughness={0.4} metalness={0.6} emissive="#ff9a3c" emissiveIntensity={0.7} />
+        {[0, 1, 2, 3, 4, 5].map((i) => (
+          <mesh key={`rail-${i}`} position={[0, 0.245, -0.35 + i * 0.26]}>
+            <boxGeometry args={[0.13, 0.04, 0.08]} />
+            <meshStandardMaterial color="#191b20" roughness={0.55} metalness={0.82} />
+          </mesh>
+        ))}
+        {/* Flip-up rear sight: base + ears + aperture disc */}
+        <mesh position={[0, 0.27, -0.3]}>
+          <boxGeometry args={[0.15, 0.06, 0.2]} />
+          <meshStandardMaterial color="#14161a" roughness={0.5} metalness={0.85} />
         </mesh>
-        <mesh position={[0, -0.55, -0.25]} rotation={[0.25, 0, 0]}>
-          <boxGeometry args={[0.34, 0.7, 0.42]} />
-          <meshStandardMaterial color="#14141b" roughness={0.5} metalness={0.4} />
+        {[-0.065, 0.065].map((x) => (
+          <mesh key={`rear-${x}`} position={[x, 0.37, -0.3]}>
+            <boxGeometry args={[0.035, 0.15, 0.07]} />
+            <meshStandardMaterial color="#14161a" roughness={0.5} metalness={0.85} />
+          </mesh>
+        ))}
+        <mesh position={[0, 0.4, -0.3]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.045, 0.045, 0.03, 16]} />
+          <meshStandardMaterial color="#0a0b0e" roughness={0.5} metalness={0.8} />
         </mesh>
-        <mesh position={[0, 0.36, 0.1]}>
-          <boxGeometry args={[0.1, 0.16, 0.3]} />
-          <meshStandardMaterial color="#0c0c12" roughness={0.4} metalness={0.6} />
+        {/* Round ribbed handguard + delta ring + front cap */}
+        <mesh position={[0, 0, 1.02]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.15, 0.15, 0.95, 20]} />
+          <meshStandardMaterial color="#1e2126" roughness={0.8} metalness={0.08} />
         </mesh>
-        <mesh position={[0, 0.1, 1.8]} ref={flashMeshRef} visible={false}>
-          <sphereGeometry args={[0.24, 12, 10]} />
+        {[0.68, 0.9, 1.12, 1.34].map((z) => (
+          <mesh key={`rib-${z}`} position={[0, 0, z]}>
+            <torusGeometry args={[0.152, 0.018, 8, 24]} />
+            <meshStandardMaterial color="#16181d" roughness={0.85} metalness={0.05} />
+          </mesh>
+        ))}
+        <mesh position={[0, 0, 0.58]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.165, 0.165, 0.1, 20]} />
+          <meshStandardMaterial color="#14161a" roughness={0.5} metalness={0.85} />
+        </mesh>
+        <mesh position={[0, 0, 1.48]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.158, 0.158, 0.07, 20]} />
+          <meshStandardMaterial color="#14161a" roughness={0.5} metalness={0.85} />
+        </mesh>
+        {/* Government-profile barrel: thin visible section */}
+        <mesh position={[0, 0.01, 1.9]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.045, 0.045, 0.85, 14]} />
+          <meshStandardMaterial color="#0f1114" roughness={0.42} metalness={0.9} />
+        </mesh>
+        {/* Fixed front sight base + triangular wings + post */}
+        <mesh position={[0, 0.12, 1.95]}>
+          <boxGeometry args={[0.09, 0.24, 0.12]} />
+          <meshStandardMaterial color="#16181d" roughness={0.5} metalness={0.85} />
+        </mesh>
+        <mesh position={[-0.085, 0.32, 1.95]} rotation={[0, 0, 0.5]}>
+          <boxGeometry args={[0.045, 0.3, 0.07]} />
+          <meshStandardMaterial color="#16181d" roughness={0.5} metalness={0.85} />
+        </mesh>
+        <mesh position={[0.085, 0.32, 1.95]} rotation={[0, 0, -0.5]}>
+          <boxGeometry args={[0.045, 0.3, 0.07]} />
+          <meshStandardMaterial color="#16181d" roughness={0.5} metalness={0.85} />
+        </mesh>
+        <mesh position={[0, 0.3, 1.95]}>
+          <boxGeometry args={[0.032, 0.2, 0.032]} />
+          <meshStandardMaterial color="#0a0b0e" roughness={0.45} metalness={0.8} />
+        </mesh>
+        {/* A2 birdcage flash hider with slots */}
+        <mesh position={[0, 0.01, 2.45]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.075, 0.075, 0.3, 16]} />
+          <meshStandardMaterial color="#14161a" roughness={0.48} metalness={0.88} />
+        </mesh>
+        {[0, 1, 2, 3, 4].map((i) => {
+          const a = (i / 5) * Math.PI * 2
+          return (
+            <mesh
+              key={`slot-${i}`}
+              position={[Math.cos(a) * 0.072, 0.01 + Math.sin(a) * 0.072, 2.45]}
+              rotation={[0, 0, a]}
+            >
+              <boxGeometry args={[0.025, 0.05, 0.22]} />
+              <meshStandardMaterial color="#060708" roughness={0.6} metalness={0.7} />
+            </mesh>
+          )
+        })}
+        <mesh position={[0, 0.01, 2.3]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.078, 0.078, 0.04, 16]} />
+          <meshStandardMaterial color="#0a0b0e" roughness={0.5} metalness={0.85} />
+        </mesh>
+        {/* Curved 30-round magazine in three segments */}
+        <mesh position={[0, -0.42, 0.12]} rotation={[0.12, 0, 0]}>
+          <boxGeometry args={[0.24, 0.4, 0.32]} />
+          <meshStandardMaterial color="#1b1e25" roughness={0.55} metalness={0.8} />
+        </mesh>
+        <mesh position={[0, -0.72, 0.21]} rotation={[0.3, 0, 0]}>
+          <boxGeometry args={[0.22, 0.35, 0.3]} />
+          <meshStandardMaterial color="#1b1e25" roughness={0.55} metalness={0.8} />
+        </mesh>
+        <mesh position={[0, -0.97, 0.35]} rotation={[0.5, 0, 0]}>
+          <boxGeometry args={[0.2, 0.3, 0.28]} />
+          <meshStandardMaterial color="#1b1e25" roughness={0.55} metalness={0.8} />
+        </mesh>
+        <mesh position={[0, -1.12, 0.44]} rotation={[0.5, 0, 0]}>
+          <boxGeometry args={[0.24, 0.07, 0.32]} />
+          <meshStandardMaterial color="#101216" roughness={0.7} metalness={0.5} />
+        </mesh>
+        {/* Pistol grip */}
+        <mesh position={[0, -0.44, -0.38]} rotation={[0.35, 0, 0]}>
+          <boxGeometry args={[0.24, 0.48, 0.28]} />
+          <meshStandardMaterial color="#16171b" roughness={0.9} metalness={0.05} />
+        </mesh>
+        {/* Trigger guard + trigger */}
+        <mesh position={[0, -0.3, -0.12]}>
+          <boxGeometry args={[0.04, 0.04, 0.42]} />
+          <meshStandardMaterial color="#101216" roughness={0.5} metalness={0.8} />
+        </mesh>
+        <mesh position={[0, -0.22, 0.08]}>
+          <boxGeometry args={[0.04, 0.17, 0.04]} />
+          <meshStandardMaterial color="#101216" roughness={0.5} metalness={0.8} />
+        </mesh>
+        <mesh position={[0, -0.22, -0.32]}>
+          <boxGeometry args={[0.04, 0.17, 0.04]} />
+          <meshStandardMaterial color="#101216" roughness={0.5} metalness={0.8} />
+        </mesh>
+        <mesh position={[0, -0.25, -0.14]} rotation={[-0.2, 0, 0]}>
+          <boxGeometry args={[0.04, 0.14, 0.06]} />
+          <meshStandardMaterial color="#26292f" roughness={0.4} metalness={0.85} />
+        </mesh>
+        {/* Ejection port cover (closed) + rod + deflector + assist */}
+        <mesh position={[0.155, 0.03, 0.18]}>
+          <boxGeometry args={[0.015, 0.11, 0.28]} />
+          <meshStandardMaterial color="#101215" roughness={0.55} metalness={0.8} />
+        </mesh>
+        <mesh position={[0.155, -0.04, 0.18]}>
+          <boxGeometry args={[0.02, 0.03, 0.3]} />
+          <meshStandardMaterial color="#26292f" roughness={0.4} metalness={0.85} />
+        </mesh>
+        <mesh position={[0.16, 0.03, -0.05]}>
+          <boxGeometry args={[0.03, 0.09, 0.06]} />
+          <meshStandardMaterial color="#14161a" roughness={0.5} metalness={0.85} />
+        </mesh>
+        <mesh position={[0.17, 0.08, -0.28]} rotation={[0, 0, -0.4]}>
+          <cylinderGeometry args={[0.035, 0.045, 0.12, 10]} />
+          <meshStandardMaterial color="#16181d" roughness={0.5} metalness={0.85} />
+        </mesh>
+        {/* Charging handle + ambi selectors + mag release + bolt catch */}
+        <mesh position={[0, 0.18, -0.58]}>
+          <boxGeometry args={[0.2, 0.06, 0.12]} />
+          <meshStandardMaterial color="#14161a" roughness={0.5} metalness={0.85} />
+        </mesh>
+        {[-0.17, 0.17].map((x) => (
+          <mesh key={`sel-${x}`} position={[x, -0.04, -0.28]} rotation={[0, 0, Math.PI / 2]}>
+            <cylinderGeometry args={[0.045, 0.045, 0.04, 12]} />
+            <meshStandardMaterial color="#26292f" roughness={0.4} metalness={0.85} />
+          </mesh>
+        ))}
+        <mesh position={[0.17, -0.12, 0.02]}>
+          <boxGeometry args={[0.04, 0.08, 0.1]} />
+          <meshStandardMaterial color="#26292f" roughness={0.4} metalness={0.85} />
+        </mesh>
+        <mesh position={[-0.165, 0.0, -0.05]}>
+          <boxGeometry args={[0.02, 0.07, 0.22]} />
+          <meshStandardMaterial color="#26292f" roughness={0.4} metalness={0.85} />
+        </mesh>
+        {/* Collapsible waffle stock + castle nut + buttpad */}
+        <mesh position={[0, 0.02, -0.66]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.075, 0.075, 0.16, 12]} />
+          <meshStandardMaterial color="#14161a" roughness={0.5} metalness={0.85} />
+        </mesh>
+        <mesh position={[0, -0.03, -1.1]}>
+          <boxGeometry args={[0.28, 0.36, 0.7]} />
+          <meshStandardMaterial color="#16171b" roughness={0.85} metalness={0.08} />
+        </mesh>
+        {[-1.28, -1.12, -0.96].map((z) => (
+          <mesh key={`waffle-${z}`} position={[0, -0.03, z]}>
+            <boxGeometry args={[0.3, 0.38, 0.05]} />
+            <meshStandardMaterial color="#101216" roughness={0.9} metalness={0.05} />
+          </mesh>
+        ))}
+        <mesh position={[0, -0.16, -1.02]}>
+          <boxGeometry args={[0.2, 0.08, 0.3]} />
+          <meshStandardMaterial color="#101216" roughness={0.7} metalness={0.4} />
+        </mesh>
+        <mesh position={[0, -0.03, -1.48]}>
+          <boxGeometry args={[0.3, 0.4, 0.09]} />
+          <meshStandardMaterial color="#0c0d10" roughness={0.95} metalness={0.0} />
+        </mesh>
+        {/* Muzzle flash + bullet spawn point */}
+        <mesh position={[0, 0.01, 2.74]} ref={flashMeshRef} visible={false}>
+          <sphereGeometry args={[0.26, 12, 10]} />
           <meshBasicMaterial color="#ffe9b0" transparent opacity={0.95} toneMapped={false} depthWrite={false} />
         </mesh>
-        <object3D ref={gunMuzzleRef} position={[0, 0, 1.75]} />
+        <object3D ref={gunMuzzleRef} position={[0, 0.01, 2.62]} />
       </group>
       {/* Ball cannon */}
       <group ref={cannonRef} position={[mount.x, mount.y, mount.z]} visible={false}>
