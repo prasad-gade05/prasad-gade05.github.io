@@ -44,6 +44,7 @@
     flex-shrink: 0;
     width: 100%;
     min-width: 280px;
+    max-width: 100%;
   }
   
   .hero-left::-webkit-scrollbar {

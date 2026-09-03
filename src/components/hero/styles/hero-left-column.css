@@ -59,6 +59,10 @@
   gap: clamp(6px, 0.8vmin, 8px);
   height: 100%;
   min-height: 0;
+  /* Grid/flex items default to min-width:auto, which lets one long
+     unbreakable code line force the whole column off-screen. */
+  min-width: 0;
+  max-width: 100%;
   max-height: 100%;
   overflow: auto;
   scrollbar-width: none;
@@ -354,6 +358,8 @@
   border: 1px solid var(--border-subtle);
   overflow: hidden;
   flex: 1 1 auto;
+  min-width: 0;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
@@ -585,7 +591,11 @@ button.nb-tool {
   background: var(--bg-code);
   flex: 1 1 auto;
   min-height: 0;
-  overflow: hidden;
+  min-width: 0;
+  /* Taller-than-card content (e.g. wrapped lines) scrolls instead of
+     getting its last cell cut off at the bottom edge */
+  overflow-x: hidden;
+  overflow-y: auto;
   white-space: pre;
   scrollbar-width: none;
   container-type: size;
@@ -598,7 +608,9 @@ button.nb-tool {
 .code-content code {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  /* `safe` keeps the first cell reachable when content overflows —
+     plain space-evenly would push it out the top */
+  justify-content: safe space-evenly;
   height: 100%;
   font-size: clamp(7px, min(4.2cqh, 2.5cqw), 14px);
 }
@@ -675,6 +687,7 @@ button.nb-tool {
 .code-content .nb-row {
   display: flex;
   align-items: stretch;
+  min-width: 0;
   gap: clamp(6px, 1.6cqw, 10px);
 }
 
@@ -715,6 +728,14 @@ button.nb-tool {
   border: 1px solid var(--border-separator);
   border-radius: 5px;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15);
+  /* Long lines scroll inside the cell instead of painting past its border */
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.code-content .nb-input::-webkit-scrollbar {
+  display: none;
 }
 
 .code-content .nb-input::after {
@@ -743,11 +764,22 @@ button.nb-tool {
   background: rgba(127, 127, 127, 0.06);
   border-left: 2px solid var(--border-separator);
   color: var(--text-secondary);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.code-content .nb-output::-webkit-scrollbar {
+  display: none;
 }
 
 .code-content .nb-cell .line {
+  display: block;
   flex: 0 0 auto;
   min-height: 1.3em;
+  /* Wrap only when the line exceeds the cell — single line otherwise */
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 }
 
 /* Social Section - IMPROVED DESIGN */
