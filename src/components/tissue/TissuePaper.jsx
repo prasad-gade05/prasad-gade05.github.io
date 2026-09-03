@@ -61,12 +61,25 @@ const BoardPin = ({ position, onClick, waiting = false }) => {
     }
   })
 
+  // Stop pointer-down here so tapping a pin never starts a paper drag underneath.
+  // Critical on touch where the finger easily covers both pin and paper.
+  const stopDown = useCallback((e) => {
+    e.stopPropagation()
+  }, [])
+
+  const handleClick = useCallback((e) => {
+    e.stopPropagation()
+    onClick()
+  }, [onClick])
+
   return (
     <group position={position}>
       <pointLight ref={lightRef} color="#ff4444" intensity={0.6} distance={1.5} decay={2} />
+      {/* Visible pin head */}
       <mesh
         position={[0, 0, 0.08]}
-        onClick={(e) => { e.stopPropagation(); onClick() }}
+        onClick={handleClick}
+        onPointerDown={stopDown}
       >
         <sphereGeometry args={[0.1, 8, 6]} />
         <meshStandardMaterial
@@ -77,6 +90,15 @@ const BoardPin = ({ position, onClick, waiting = false }) => {
           roughness={0.35}
           toneMapped={false}
         />
+      </mesh>
+      {/* Larger invisible hit area — fat-finger friendly on mobile */}
+      <mesh
+        position={[0, 0, 0.08]}
+        onClick={handleClick}
+        onPointerDown={stopDown}
+      >
+        <sphereGeometry args={[0.28, 8, 6]} />
+        <meshBasicMaterial visible={false} />
       </mesh>
       <mesh position={[0, 0, 0.07]}>
         <ringGeometry args={[0.1, waiting ? 0.28 : 0.22, 12]} />
@@ -156,6 +178,7 @@ const TissuePaper = ({ textureUrl, isPinMode, onPinUsed, onPinReturned, resetKey
   const dragState = useRef({
     isDragging: false,
     particleIndex: -1,
+    activePointerId: null,
     dragPlane: new THREE.Plane(new THREE.Vector3(0, 0, 1), 0),
   })
   const mouseNDC = useRef(new THREE.Vector2())
@@ -171,34 +194,67 @@ const TissuePaper = ({ textureUrl, isPinMode, onPinUsed, onPinReturned, resetKey
     worldPinsRef.current = worldPins
   }, [worldPins])
 
+  // Sync NDC from a client (x, y) pair. Shared by pointerdown + pointermove
+  // so touch (which has no prior hover) starts dragging at the finger, not center.
+  const updateNDCFromClient = useCallback((clientX, clientY) => {
+    if (clientX == null || clientY == null) return false
+    const rect = gl.domElement.getBoundingClientRect()
+    if (!rect || rect.width === 0 || rect.height === 0) return false
+    mouseNDC.current.x = ((clientX - rect.left) / rect.width) * 2 - 1
+    mouseNDC.current.y = -((clientY - rect.top) / rect.height) * 2 + 1
+    return true
+  }, [gl])
+
+  const endDrag = useCallback(() => {
+    if (dragState.current.isDragging) {
+      const idx = dragState.current.particleIndex
+      if (idx >= 0 && !boardPinsRef.current.has(idx)) {
+        cloth.unpin(idx)
+      }
+      dragState.current.isDragging = false
+      dragState.current.particleIndex = -1
+      dragState.current.activePointerId = null
+    }
+  }, [cloth])
+
   useEffect(() => {
     const domElement = gl.domElement
 
     const onPointerMove = (e) => {
+      // Multi-touch guard: only the pointer that started the drag drives it
+      if (dragState.current.isDragging) {
+        const active = dragState.current.activePointerId
+        if (active != null && e.pointerId != null && e.pointerId !== active) return
+      }
+      if (e.clientX == null || e.clientY == null) return
       const rect = domElement.getBoundingClientRect()
+      if (!rect || rect.width === 0 || rect.height === 0) return
       mouseNDC.current.x = ((e.clientX - rect.left) / rect.width) * 2 - 1
       mouseNDC.current.y = -((e.clientY - rect.top) / rect.height) * 2 + 1
     }
 
-    const onPointerUp = () => {
-      if (dragState.current.isDragging) {
-        const idx = dragState.current.particleIndex
-        if (!boardPinsRef.current.has(idx)) {
-          cloth.unpin(idx)
-        }
-        dragState.current.isDragging = false
-        dragState.current.particleIndex = -1
-      }
+    const onPointerEnd = (e) => {
+      // Ignore other fingers lifting during a multi-touch drag
+      if (e && e.pointerId != null && dragState.current.activePointerId != null &&
+          e.pointerId !== dragState.current.activePointerId) return
+      endDrag()
     }
 
     domElement.addEventListener('pointermove', onPointerMove)
-    window.addEventListener('pointerup', onPointerUp)
+    // Window-level listeners catch moves/ups outside the canvas and on touch
+    // where the browser may retarget events. pointercancel is what fires when
+    // the browser steals a touch gesture — without it the particle stays pinned.
+    window.addEventListener('pointermove', onPointerMove)
+    window.addEventListener('pointerup', onPointerEnd)
+    window.addEventListener('pointercancel', onPointerEnd)
 
     return () => {
       domElement.removeEventListener('pointermove', onPointerMove)
-      window.removeEventListener('pointerup', onPointerUp)
+      window.removeEventListener('pointermove', onPointerMove)
+      window.removeEventListener('pointerup', onPointerEnd)
+      window.removeEventListener('pointercancel', onPointerEnd)
     }
-  }, [gl, cloth])
+  }, [gl, endDrag])
 
   // Tissue mesh click — pin directly on tissue OR start drag
   const onPointerDown = useCallback((e) => {
@@ -220,13 +276,33 @@ const TissuePaper = ({ textureUrl, isPinMode, onPinUsed, onPinReturned, resetKey
 
     if (boardPinsRef.current.has(nearestIdx)) return
 
+    // Touch has no hover: seed NDC from this event or the drag plane raycast
+    // in useFrame starts from stale (0,0) and the paper snaps away from the finger.
+    const clientX = e.clientX ?? e.nativeEvent?.clientX
+    const clientY = e.clientY ?? e.nativeEvent?.clientY
+    updateNDCFromClient(clientX, clientY)
+
+    const pointerId = e.pointerId ?? e.nativeEvent?.pointerId ?? null
+
     dragState.current.isDragging = true
     dragState.current.particleIndex = nearestIdx
+    dragState.current.activePointerId = pointerId
     cloth.pin(nearestIdx)
+
+    // Capture this pointer so moves keep flowing even if the finger drifts
+    // off the mesh (common on small screens).
+    try {
+      const captureTarget = e.target?.setPointerCapture ? e.target : gl.domElement
+      if (pointerId != null && captureTarget?.setPointerCapture) {
+        captureTarget.setPointerCapture(pointerId)
+      }
+    } catch {
+      // setPointerCapture can throw for mouse or in test envs — drag still works
+    }
 
     const normal = _planeNormal
     dragState.current.dragPlane.setFromNormalAndCoplanarPoint(normal, point)
-  }, [cloth, isPinMode, onPinUsed])
+  }, [cloth, isPinMode, onPinUsed, updateNDCFromClient, gl])
 
   // Canvas click — place a world pin (waiting for tissue)
   const onCanvasClick = useCallback((point) => {
@@ -234,6 +310,24 @@ const TissuePaper = ({ textureUrl, isPinMode, onPinUsed, onPinReturned, resetKey
     setWorldPins(prev => [...prev, { id, position: [point.x, point.y, point.z] }])
     onPinUsed?.()
   }, [onPinUsed])
+
+  // Mesh-level release as a safety net in case window listeners miss the event
+  // (e.g. pointer capture retargeting on touch). Matches active pointer only.
+  const onPointerUp = useCallback((e) => {
+    const pointerId = e?.pointerId ?? e?.nativeEvent?.pointerId
+    if (pointerId != null && dragState.current.activePointerId != null &&
+        pointerId !== dragState.current.activePointerId) return
+    try {
+      if (pointerId != null && e?.target?.releasePointerCapture) {
+        if (e.target.hasPointerCapture?.(pointerId)) {
+          e.target.releasePointerCapture(pointerId)
+        }
+      }
+    } catch {
+      // ignore — release is best-effort
+    }
+    endDrag()
+  }, [endDrag])
 
   const handleRemovePin = useCallback((particleIdx) => {
     cloth.unpin(particleIdx)
@@ -320,7 +414,12 @@ const TissuePaper = ({ textureUrl, isPinMode, onPinUsed, onPinReturned, resetKey
     <group>
       <CanvasClickPlane isPinMode={isPinMode} onCanvasClick={onCanvasClick} />
 
-      <mesh ref={meshRef} onPointerDown={onPointerDown}>
+      <mesh
+        ref={meshRef}
+        onPointerDown={onPointerDown}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+      >
         <planeGeometry args={[initialSize.current.w, initialSize.current.h, SEGMENTS, SEGMENTS]} />
         <meshStandardMaterial
           map={texture}

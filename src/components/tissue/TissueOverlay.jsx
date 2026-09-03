@@ -61,7 +61,7 @@ const TissueOverlay = ({ textureUrl, onExit }) => {
     <div className="tissue-overlay">
       <Canvas
         camera={{ position: [0, 0, 10], fov: 45 }}
-        style={{ background: canvasBg }}
+        style={{ background: canvasBg, touchAction: 'none' }}
         gl={{ antialias: true, alpha: false }}
       >
         <color attach="background" args={[canvasBg]} />
