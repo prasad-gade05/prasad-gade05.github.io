@@ -8,6 +8,15 @@ export const isAudioSupported = () =>
   typeof window !== 'undefined' &&
   (typeof window.AudioContext !== 'undefined' || typeof window.webkitAudioContext !== 'undefined')
 
+/** Module-level mute switch — the overlay toggles it, every player honors it. */
+let muted = false
+
+export const setMuted = (value) => {
+  muted = !!value
+}
+
+export const isMuted = () => muted
+
 const getContext = () => {
   const Ctor = window.AudioContext || window.webkitAudioContext
   if (!Ctor) return null
@@ -19,7 +28,7 @@ const getContext = () => {
 
 export const playSmashSound = (material = 'glass', intensity = 1) => {
   try {
-    if (!isAudioSupported()) return false
+    if (muted || !isAudioSupported()) return false
     const ctx = getContext()
     if (!ctx) return false
 
@@ -92,7 +101,7 @@ const playCrackLayer = (ctx, material, volume) => {
  */
 export const playGunshot = (intensity = 1) => {
   try {
-    if (!isAudioSupported()) return false
+    if (muted || !isAudioSupported()) return false
     const ctx = getContext()
     if (!ctx) return false
 

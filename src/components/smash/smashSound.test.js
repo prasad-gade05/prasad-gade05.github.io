@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { isAudioSupported, playGunshot, playSmashSound } from './smashSound'
+import { isAudioSupported, isMuted, playGunshot, playSmashSound, setMuted } from './smashSound'
 
 describe('smashSound', () => {
   it('reports unsupported and no-ops without WebAudio', () => {
@@ -7,5 +7,22 @@ describe('smashSound', () => {
     expect(playSmashSound('glass', 1)).toBe(false)
     expect(playSmashSound('wood', 0.5)).toBe(false)
     expect(playGunshot(1)).toBe(false)
+  })
+
+  it('mutes every player until unmuted', () => {
+    expect(isMuted()).toBe(false)
+    setMuted(true)
+    expect(isMuted()).toBe(true)
+    expect(playSmashSound('glass', 1)).toBe(false)
+    expect(playGunshot(1)).toBe(false)
+    setMuted(false)
+    expect(isMuted()).toBe(false)
+  })
+
+  it('coerces the mute flag to boolean', () => {
+    setMuted(1)
+    expect(isMuted()).toBe(true)
+    setMuted(0)
+    expect(isMuted()).toBe(false)
   })
 })

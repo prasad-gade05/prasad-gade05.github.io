@@ -1,7 +1,8 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import SmashOverlay from './SmashOverlay'
+import { isMuted } from './smashSound'
 
 vi.mock('@react-three/fiber', () => ({
   Canvas: ({ children, style }) => (
@@ -28,7 +29,11 @@ vi.mock('./SmashScene', () => ({
 }))
 
 describe('SmashOverlay', () => {
-  it('shows only gun, balls, and rebuild icon buttons plus exit handling', async () => {
+  afterEach(() => {
+    window.localStorage.clear()
+  })
+
+  it('shows gun, balls, mute, and rebuild icon buttons plus exit handling', async () => {
     document.documentElement.setAttribute('data-theme', 'light')
     const onExit = vi.fn()
     render(<SmashOverlay scene={{ backdrop: 'bg.png', items: [{}, {}] }} onExit={onExit} />)
@@ -39,12 +44,13 @@ describe('SmashOverlay', () => {
     expect(screen.getByText('items:2')).toBeInTheDocument()
     expect(screen.getByText('weapon:gun')).toBeInTheDocument()
 
-    // Exactly three panel buttons — icon-only, no text clutter
+    // Exactly four panel buttons — icon-only, no text clutter
     const panel = screen.getByRole('group', { name: 'Smash controls' })
     const buttons = panel.querySelectorAll('button')
-    expect(buttons).toHaveLength(3)
+    expect(buttons).toHaveLength(4)
     expect(screen.getByRole('button', { name: 'Gun' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Balls' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Mute' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Rebuild' })).toBeInTheDocument()
     expect(screen.queryByTestId('smash-demolished')).not.toBeInTheDocument()
 
@@ -68,5 +74,44 @@ describe('SmashOverlay', () => {
 
     fireEvent.click(screen.getByRole('button', { name: '✕' }))
     expect(onExit).toHaveBeenCalledTimes(1)
+  })
+
+  it('switches weapons and rebuilds from the keyboard', () => {
+    render(<SmashOverlay scene={{ backdrop: 'bg.png', items: [] }} onExit={() => {}} />)
+
+    fireEvent.keyDown(window, { key: '2' })
+    expect(screen.getByText('weapon:ball')).toBeInTheDocument()
+
+    fireEvent.keyDown(window, { key: '1' })
+    expect(screen.getByText('weapon:gun')).toBeInTheDocument()
+
+    fireEvent.keyDown(window, { key: 'r' })
+    expect(screen.getByText('reset:1')).toBeInTheDocument()
+
+    // Modifiers and editable fields never trigger room shortcuts
+    fireEvent.keyDown(window, { key: '2', ctrlKey: true })
+    expect(screen.getByText('weapon:gun')).toBeInTheDocument()
+  })
+
+  it('toggles mute from the button or the M key and persists it', () => {
+    render(<SmashOverlay scene={{ backdrop: 'bg.png', items: [] }} onExit={() => {}} />)
+
+    fireEvent.click(screen.getByRole('button', { name: 'Mute' }))
+    expect(screen.getByRole('button', { name: 'Unmute' })).toBeInTheDocument()
+    expect(window.localStorage.getItem('smash-muted')).toBe('1')
+    expect(isMuted()).toBe(true)
+
+    fireEvent.keyDown(window, { key: 'm' })
+    expect(screen.getByRole('button', { name: 'Mute' })).toBeInTheDocument()
+    expect(window.localStorage.getItem('smash-muted')).toBe('0')
+    expect(isMuted()).toBe(false)
+  })
+
+  it('restores a persisted mute on mount', () => {
+    window.localStorage.setItem('smash-muted', '1')
+    render(<SmashOverlay scene={{ backdrop: 'bg.png', items: [] }} onExit={() => {}} />)
+
+    expect(screen.getByRole('button', { name: 'Unmute' })).toBeInTheDocument()
+    expect(isMuted()).toBe(true)
   })
 })

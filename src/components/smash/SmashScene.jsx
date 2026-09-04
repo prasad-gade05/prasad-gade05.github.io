@@ -16,6 +16,7 @@ import {
 } from './shatterPhysics'
 import { paintImpact, paintRectHole, paneToCanvas, radiusToCanvas } from './damageCanvas'
 import { playGunshot, playSmashSound } from './smashSound'
+import { shouldHoldRepeat } from './holdFire'
 
 const BALL_RADIUS = 0.34
 const MAX_SHARDS = 260
@@ -578,6 +579,7 @@ const SmashScene = ({ scene, weapon, resetKey, onProgress }) => {
   const mountRef = useRef({ x: 0, y: -3, z: 2.6 })
   const paneSizeRef = useRef({ w: 0, h: 0 })
   const clickRef = useRef(null)
+  const holdRef = useRef(null) // press timestamp while the pointer is held down
   const shakeRef = useRef(0)
   const flashState = useRef({ t: 0, x: 0, y: 0 })
   const lastBallRef = useRef(0)
@@ -614,6 +616,24 @@ const SmashScene = ({ scene, weapon, resetKey, onProgress }) => {
     aimRef.current.y = point.y
     aimRef.current.z = 0
   }
+
+  /* Hold-to-fire bookkeeping: a press starts the hold clock, any release
+   * (even off-canvas) stops it so the gun can never stick on. */
+  const beginHold = () => {
+    holdRef.current = performance.now()
+  }
+  const endHold = () => {
+    holdRef.current = null
+  }
+
+  useEffect(() => {
+    window.addEventListener('pointerup', endHold)
+    window.addEventListener('pointercancel', endHold)
+    return () => {
+      window.removeEventListener('pointerup', endHold)
+      window.removeEventListener('pointercancel', endHold)
+    }
+  }, [])
 
   /* Build the room from real captures: backdrop wall + seamless card planes */
   useEffect(() => {
@@ -715,11 +735,20 @@ const SmashScene = ({ scene, weapon, resetKey, onProgress }) => {
             e.stopPropagation()
             updateAim(e.point)
             clickRef.current = { t: performance.now() }
+            if (weaponRef.current === 'gun') {
+              // Instant first shot, then automatic while held (see useFrame)
+              beginHold()
+              fireWeapon(e.point)
+            }
           }
           target.onUp = (e) => {
             const down = clickRef.current
             clickRef.current = null
-            if (down && performance.now() - down.t < CLICK_FIRE_MS) fireWeapon(e.point)
+            endHold()
+            // Gun already fired on press; balls stay click-to-lob
+            if (weaponRef.current !== 'gun' && down && performance.now() - down.t < CLICK_FIRE_MS) {
+              fireWeapon(e.point)
+            }
           }
           target.onMove = (e) => {
             updateAim(e.point)
@@ -1003,11 +1032,18 @@ const SmashScene = ({ scene, weapon, resetKey, onProgress }) => {
     e.stopPropagation()
     updateAim(e.point)
     clickRef.current = { t: performance.now() }
+    if (weaponRef.current === 'gun') {
+      beginHold()
+      fireWeapon(e.point)
+    }
   }
   const onWallUp = (e) => {
     const down = clickRef.current
     clickRef.current = null
-    if (down && performance.now() - down.t < CLICK_FIRE_MS) fireWeapon(e.point)
+    endHold()
+    if (weaponRef.current !== 'gun' && down && performance.now() - down.t < CLICK_FIRE_MS) {
+      fireWeapon(e.point)
+    }
   }
   const onWallMove = (e) => {
     updateAim(e.point)
@@ -1017,6 +1053,12 @@ const SmashScene = ({ scene, weapon, resetKey, onProgress }) => {
     const dt = Math.min(0.05, Math.max(0, dtRaw))
     const { w, h } = paneSizeRef.current
     if (!ready || w === 0) return
+
+    /* Hold-to-fire: past the tap delay the gun keeps spraying at the
+     * live aim point. fireBullet's cooldown still rate-limits the stream. */
+    if (shouldHoldRepeat(holdRef.current, performance.now(), weaponRef.current)) {
+      fireWeapon(aimRef.current)
+    }
 
     /* Projectiles */
     let projsChanged = false
