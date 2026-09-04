@@ -1,10 +1,14 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
 import SmashOverlay from './SmashOverlay'
 
 vi.mock('@react-three/fiber', () => ({
-  Canvas: ({ children }) => <div data-testid="smash-canvas">{children}</div>,
+  Canvas: ({ children, style }) => (
+    <div data-testid="smash-canvas" style={style}>
+      {children}
+    </div>
+  ),
 }))
 
 vi.mock('./SmashScene', () => ({
@@ -24,12 +28,14 @@ vi.mock('./SmashScene', () => ({
 }))
 
 describe('SmashOverlay', () => {
-  it('shows only gun, balls, and rebuild icon buttons plus exit handling', () => {
+  it('shows only gun, balls, and rebuild icon buttons plus exit handling', async () => {
+    document.documentElement.setAttribute('data-theme', 'light')
     const onExit = vi.fn()
     render(<SmashOverlay scene={{ backdrop: 'bg.png', items: [{}, {}] }} onExit={onExit} />)
 
     expect(screen.getByTestId('smash-overlay')).toBeInTheDocument()
     expect(screen.getByTestId('smash-canvas')).toBeInTheDocument()
+    expect(screen.getByTestId('smash-canvas')).toHaveStyle({ background: '#0a0a0a' })
     expect(screen.getByText('items:2')).toBeInTheDocument()
     expect(screen.getByText('weapon:gun')).toBeInTheDocument()
 
@@ -53,6 +59,12 @@ describe('SmashOverlay', () => {
     // Rebuild bumps the scene key (scene reports fresh progress itself)
     fireEvent.click(screen.getByRole('button', { name: 'Rebuild' }))
     expect(screen.getByText('reset:1')).toBeInTheDocument()
+
+    // Background follows the site theme, like the paper playground
+    document.documentElement.setAttribute('data-theme', 'dark')
+    await waitFor(() => {
+      expect(screen.getByTestId('smash-canvas')).toHaveStyle({ background: '#d4d4d4' })
+    })
 
     fireEvent.click(screen.getByRole('button', { name: '✕' }))
     expect(onExit).toHaveBeenCalledTimes(1)

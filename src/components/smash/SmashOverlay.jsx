@@ -1,12 +1,37 @@
-import { Suspense, useCallback, useRef, useState } from 'react'
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { CircleDot, Crosshair, RotateCcw } from 'lucide-react'
 import SmashScene from './SmashScene'
 import './SmashOverlay.css'
 
-const CANVAS_BG = '#0b0d12'
+const CANVAS_BG_BY_THEME = {
+  'dark':         '#d4d4d4',
+  'light':        '#0a0a0a',
+  'arcade-dark':  '#d4d4d4',
+  'arcade-light': '#0a0a0a',
+}
+const DEFAULT_CANVAS_BG = '#0a0a0a'
+
+function useCurrentTheme() {
+  const [theme, setTheme] = useState(
+    () => document.documentElement.getAttribute('data-theme') || 'dark'
+  )
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      const t = document.documentElement.getAttribute('data-theme') || 'dark'
+      setTheme(t)
+    })
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+    return () => observer.disconnect()
+  }, [])
+
+  return theme
+}
 
 const SmashOverlay = ({ scene, onExit }) => {
+  const currentTheme = useCurrentTheme()
+  const canvasBg = CANVAS_BG_BY_THEME[currentTheme] || DEFAULT_CANVAS_BG
   const [weapon, setWeapon] = useState('gun')
   const [progress, setProgress] = useState({ integrity: 100, hits: 0, shots: 0, left: 0, total: 0 })
   const [resetKey, setResetKey] = useState(0)
@@ -44,10 +69,10 @@ const SmashOverlay = ({ scene, onExit }) => {
     >
       <Canvas
         camera={{ position: [0, 0, 10], fov: 45 }}
-        style={{ background: CANVAS_BG, touchAction: 'none', cursor: isGun ? 'none' : 'crosshair' }}
+        style={{ background: canvasBg, touchAction: 'none', cursor: isGun ? 'none' : 'crosshair' }}
         gl={{ antialias: true, alpha: false }}
       >
-        <color attach="background" args={[CANVAS_BG]} />
+        <color attach="background" args={[canvasBg]} />
         <ambientLight intensity={0.85} />
         <directionalLight position={[5, 5, 5]} intensity={0.7} />
         <directionalLight position={[-4, -3, 4]} intensity={0.3} />
