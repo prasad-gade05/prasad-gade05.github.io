@@ -2,9 +2,10 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
 
-const { captureDOMMock, captureSmashSceneMock, confettiMock } = vi.hoisted(() => ({
+const { captureDOMMock, captureSmashSceneMock, prefetchSmashRoomMock, confettiMock } = vi.hoisted(() => ({
   captureDOMMock: vi.fn(),
   captureSmashSceneMock: vi.fn(),
+  prefetchSmashRoomMock: vi.fn(),
   confettiMock: vi.fn(),
 }))
 
@@ -18,6 +19,7 @@ vi.mock('./utils/domCapture', () => ({
 
 vi.mock('./components/smash/elementCapture', () => ({
   captureSmashScene: captureSmashSceneMock,
+  prefetchSmashRoom: prefetchSmashRoomMock,
 }))
 
 vi.mock('./components/Hero', () => ({
@@ -60,6 +62,7 @@ describe('App', () => {
   beforeEach(() => {
     captureDOMMock.mockReset()
     captureSmashSceneMock.mockReset()
+    prefetchSmashRoomMock.mockReset()
     confettiMock.mockReset()
   })
 
@@ -99,6 +102,7 @@ describe('App', () => {
     fireEvent.click(screen.getByText('Start smash'))
 
     expect(captureSmashSceneMock).toHaveBeenCalledTimes(1)
+    expect(prefetchSmashRoomMock).toHaveBeenCalledTimes(1)
     expect(await screen.findByText('Smash overlay mock')).toBeInTheDocument()
     expect(screen.getByText('bg.png')).toBeInTheDocument()
 

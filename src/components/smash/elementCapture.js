@@ -6,7 +6,7 @@
  * while every element breaks independently.
  */
 
-import { captureDOM } from '../../utils/domCapture'
+import { captureDOMCanvas, preloadCaptureLibrary } from '../../utils/domCapture'
 
 /** Card/panel/button roots that become individual breakables. */
 export const BREAKABLE_SELECTORS = [
@@ -103,19 +103,65 @@ export const collectBreakables = (root) => {
 }
 
 /**
- * Capture the smash scene: full-page backdrop + one screenshot per
- * breakable element. Failures are skipped individually so one bad card
- * never blocks the room. Returns { backdrop, items } where items are
- * [{ id, rect, image }].
+ * Capture the smash scene with ONE html2canvas pass, then slice each
+ * breakable out of that same bitmap with synchronous canvas crops.
+ *
+ * The old approach ran html2canvas once per card (up to 40 passes over
+ * the DOM plus 40 PNG encodes, in batches of 4) — that was the entire
+ * "Capturing the site for the arena…" wait. Crops are pixel-perfect by
+ * construction (same source bitmap as the backdrop) and cost ~ms each.
+ *
+ * Returns { backdrop, items } where items are [{ id, rect, image }].
+ * Individual crop failures are skipped so one bad card never blocks
+ * the room. Without a backdrop the room cannot align anything, so a
+ * failed backdrop means an empty scene.
  *
  * Motion freeze: framer-motion / tilt transforms on the live page would
  * otherwise bake into element rects but not their screenshots, producing
  * doubled, offset ghosts. Transforms, transitions, animations, and
  * filters are neutralized for the duration of the capture, then restored.
- *
- * Speed: element captures run in parallel batches instead of one by one.
  */
-export const CAPTURE_BATCH_SIZE = 4
+export const CAPTURE_BATCH_SIZE = 4 // kept for compat; captures are no longer batched
+
+/** Backdrop is downscaled to this max width — the 3D wall is 1024px
+ *  wide anyway, so full-res captures only burn raster + encode time. */
+export const MAX_CAPTURE_WIDTH = 1280
+const ITEM_MIME = 'image/jpeg'
+const ITEM_QUALITY = 0.85
+
+/**
+ * Warm up everything the click needs while the user is still hovering:
+ * the html2canvas chunk and the SmashOverlay lazy chunk. Both are
+ * cached, so the real click only pays for the single screenshot.
+ */
+export const prefetchSmashRoom = () => {
+  try {
+    preloadCaptureLibrary()
+  } catch {
+    // ignore — the real capture loads on demand
+  }
+  try {
+    import('./SmashOverlay').catch(() => {})
+  } catch {
+    // ignore — React.lazy will fetch on render
+  }
+}
+
+/** Crop one item bitmap out of the shared capture. Null on any failure. */
+const cropToDataURL = (source, sx, sy, sw, sh) => {
+  try {
+    if (!source || sw < 2 || sh < 2) return null
+    const canvas = document.createElement('canvas')
+    canvas.width = Math.round(sw)
+    canvas.height = Math.round(sh)
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return null
+    ctx.drawImage(source, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height)
+    return canvas.toDataURL(ITEM_MIME, ITEM_QUALITY)
+  } catch {
+    return null
+  }
+}
 
 const freezeMotion = () => {
   if (typeof document === 'undefined') return () => {}
@@ -134,23 +180,49 @@ export const captureSmashScene = async (rootEl) => {
   if (!rootEl) return { backdrop: null, items: [] }
   const unfreeze = freezeMotion()
   try {
-    const backdrop = await captureDOM(rootEl).catch(() => null)
     const breakables = collectBreakables(rootEl)
-    const results = []
-    for (let i = 0; i < breakables.length; i += CAPTURE_BATCH_SIZE) {
-      const batch = breakables.slice(i, i + CAPTURE_BATCH_SIZE)
-      const images = await Promise.all(
-        batch.map(({ el }) => captureDOM(el).then(
-          (image) => image,
-          () => null,
-        )),
-      )
-      images.forEach((image, j) => {
-        if (image) results.push({ el: batch[j].el, rect: batch[j].rect, image })
-      })
+    const rootRect = typeof rootEl.getBoundingClientRect === 'function'
+      ? rootEl.getBoundingClientRect()
+      : { x: 0, y: 0, width: 0, height: 0 }
+    const rootW = rootRect.width ?? rootRect.w ?? 0
+    const rootH = rootRect.height ?? rootRect.h ?? 0
+    if (!(rootW > 0) || !(rootH > 0)) return { backdrop: null, items: [] }
+
+    // One screenshot for the whole room; smaller bitmap = faster raster.
+    const scale = Math.min(1, MAX_CAPTURE_WIDTH / rootW)
+    const source = await captureDOMCanvas(rootEl, { scale }).catch(() => null)
+    if (!source?.width || !source?.height) return { backdrop: null, items: [] }
+
+    let backdrop = null
+    try {
+      backdrop = source.toDataURL(ITEM_MIME, ITEM_QUALITY)
+    } catch {
+      return { backdrop: null, items: [] }
     }
-    // DOM order is preserved by sequential batches — ids follow it
-    const items = results.map(({ rect, image }, n) => ({ id: `target-${n}`, rect, image }))
+    if (!backdrop) return { backdrop: null, items: [] }
+
+    // Map viewport CSS px to bitmap px with the measured (not requested)
+    // ratio, so html2canvas rounding can't drift the crops.
+    const kx = source.width / rootW
+    const ky = source.height / rootH
+    const items = []
+    for (const { rect } of breakables) {
+      const rw = rect.w ?? rect.width ?? 0
+      const rh = rect.h ?? rect.height ?? 0
+      if (!(rw > 0) || !(rh > 0)) continue
+      const sx = Math.round(((rect.x ?? 0) - (rootRect.x ?? 0)) * kx)
+      const sy = Math.round(((rect.y ?? 0) - (rootRect.y ?? 0)) * ky)
+      const sw = Math.round(rw * kx)
+      const sh = Math.round(rh * ky)
+      // Clamp to the bitmap — partly offscreen cards still slice cleanly.
+      const cx = Math.max(0, Math.min(source.width - 1, sx))
+      const cy = Math.max(0, Math.min(source.height - 1, sy))
+      const cw = Math.max(0, Math.min(sw - (cx - sx), source.width - cx))
+      const ch = Math.max(0, Math.min(sh - (cy - sy), source.height - cy))
+      const image = cropToDataURL(source, cx, cy, cw, ch)
+      // DOM order is preserved — ids follow it
+      if (image) items.push({ id: `target-${items.length}`, rect, image })
+    }
     return { backdrop, items }
   } finally {
     unfreeze()

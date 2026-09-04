@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, lazy, Suspense, useCallback } from 'react'
 import { motion, AnimatePresence, useMotionValue } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { captureDOM } from './utils/domCapture'
-import { captureSmashScene } from './components/smash/elementCapture'
+import { captureSmashScene, prefetchSmashRoom } from './components/smash/elementCapture'
 import './App.css'
 
 // Components
@@ -114,6 +114,9 @@ function App() {
   // and breaks on its own.
   const handleSmash = useCallback(async () => {
     if (isCapturing || isTissueMode || isSmashMode) return
+    // Warm the overlay chunk in parallel with the screenshot so its
+    // fetch never sits behind the capture on the critical path.
+    prefetchSmashRoom()
     setIsCapturing(true)
 
     const appContent = document.getElementById('app-content')

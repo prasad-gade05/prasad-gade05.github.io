@@ -8,6 +8,7 @@ import { TbBrandMinecraft } from "react-icons/tb";
 import { handleCardTilt, resetCardTilt } from "../../../utils/cardTilt";
 import { hobbies } from "../../../data/portfolioData";
 import { getListItemKey, getRenderableListValues } from "../../../utils/listRendering";
+import { prefetchSmashRoom } from "../../smash/elementCapture";
 import { tabPaneMotionProps } from "./motion";
 
 const BlogsPane = lazy(() => import("../BlogsPane"));
@@ -67,6 +68,8 @@ export const HobbiesPane = ({ isSplit, onOpenMinecraft, onOpenMovies, onStartDoo
               className="hobby-activity-item minecraft-clickable doodle-clickable"
               data-shortcut-target="true"
               onClick={onStartSmash}
+              onMouseEnter={prefetchSmashRoom}
+              onFocus={prefetchSmashRoom}
             >
               <Hammer size={18} />
               <span>Smash Room</span>
