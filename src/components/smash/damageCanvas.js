@@ -127,6 +127,56 @@ export const paintImpact = (ctx, cx, cy, radius, material = 'glass') => {
 }
 
 /**
+ * HP stage of a card: 0 = pristine (frac > 2/3), 1 = cracked
+ * (1/3 < frac <= 2/3), 2 = critical (frac <= 1/3). Pure so the scene
+ * can detect threshold crossings without repainting every hit.
+ */
+export const damageStage = (hp, maxHp) => {
+  if (!(maxHp > 0)) return 0
+  const frac = hp / maxHp
+  if (frac <= 1 / 3) return 2
+  if (frac <= 2 / 3) return 1
+  return 0
+}
+
+/**
+ * Paint HP-stage cracks across a whole card canvas — the "this thing is
+ * about to go" read. Unlike impact holes these live on the CARD ONLY:
+ * the card wobbles on its spring while the wall stays put, so wall-side
+ * stage cracks would visibly ghost. Rebuild repaints pristine over them.
+ */
+export const paintDamageStage = (ctx, cw, ch, stage, material = 'glass') => {
+  if (!ctx || !(cw > 0) || !(ch > 0) || !(stage >= 1)) return
+  const seeds =
+    stage >= 2
+      ? [
+          { x: cw * 0.2, y: ch * 0.25 },
+          { x: cw * 0.8, y: ch * 0.3 },
+          { x: cw * 0.3, y: ch * 0.75 },
+          { x: cw * 0.75, y: ch * 0.8 },
+        ]
+      : [
+          { x: cw * 0.25, y: ch * 0.3 },
+          { x: cw * 0.75, y: ch * 0.7 },
+        ]
+  const baseR = Math.min(cw, ch) * (stage >= 2 ? 0.16 : 0.12)
+  ctx.save()
+  ctx.globalCompositeOperation = 'source-over'
+  ctx.strokeStyle = material === 'wood' ? 'rgba(40, 22, 8, 0.85)' : 'rgba(20, 30, 40, 0.75)'
+  ctx.lineWidth = Math.max(1, baseR * 0.06)
+  ctx.lineCap = 'round'
+  ctx.globalAlpha = stage >= 2 ? 0.85 : 0.6
+  for (const seed of seeds) {
+    const { radials } = buildCrackLines(seed.x, seed.y, baseR, material)
+    for (const line of radials) {
+      tracePath(ctx, line)
+      ctx.stroke()
+    }
+  }
+  ctx.restore()
+}
+
+/**
  * Jagged polygon tracing a rectangle perimeter (for clearing a whole
  * detached card off the backdrop). Origin top-left, jitter relative.
  */

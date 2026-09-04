@@ -3,6 +3,8 @@ import {
   buildCrackLines,
   buildImpactPolygon,
   buildRectPolygon,
+  damageStage,
+  paintDamageStage,
   paintImpact,
   paintRectHole,
   paneToCanvas,
@@ -104,6 +106,49 @@ describe('paintImpact', () => {  it('knocks out a hole then strokes cracks', () 
     paintImpact(null, 0, 0, 10)
     paintImpact(ctx, 0, 0, 0)
     expect(ctx.fill).not.toHaveBeenCalled()
+    expect(ctx.stroke).not.toHaveBeenCalled()
+  })
+})
+
+describe('damageStage', () => {
+  it('maps HP fractions to pristine / cracked / critical', () => {
+    expect(damageStage(100, 100)).toBe(0)
+    expect(damageStage(67, 100)).toBe(0)
+    expect(damageStage(66, 100)).toBe(1)
+    expect(damageStage(34, 100)).toBe(1)
+    expect(damageStage(33, 100)).toBe(2)
+    expect(damageStage(1, 100)).toBe(2)
+    expect(damageStage(0, 100)).toBe(2)
+  })
+
+  it('treats invalid max HP as pristine', () => {
+    expect(damageStage(10, 0)).toBe(0)
+    expect(damageStage(10, -5)).toBe(0)
+    expect(damageStage(10, null)).toBe(0)
+  })
+})
+
+describe('paintDamageStage', () => {
+  it('cracks lightly at stage 1 and heavily at stage 2', () => {
+    const mild = makeCtx()
+    paintDamageStage(mild, 200, 150, 1)
+    // 2 seeds x 9 glass radials
+    expect(mild.stroke.mock.calls.length).toBe(18)
+
+    const severe = makeCtx()
+    paintDamageStage(severe, 200, 150, 2)
+    // 4 seeds x 9 glass radials
+    expect(severe.stroke.mock.calls.length).toBe(36)
+    expect(severe.save).toHaveBeenCalled()
+    expect(severe.restore).toHaveBeenCalled()
+  })
+
+  it('ignores pristine stages and invalid input without touching the context', () => {
+    const ctx = makeCtx()
+    paintDamageStage(ctx, 200, 150, 0)
+    paintDamageStage(null, 200, 150, 1)
+    paintDamageStage(ctx, 0, 150, 1)
+    paintDamageStage(ctx, 200, 150, -1)
     expect(ctx.stroke).not.toHaveBeenCalled()
   })
 })

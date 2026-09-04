@@ -14,7 +14,7 @@ import {
   targetMaxHp,
   translateShards,
 } from './shatterPhysics'
-import { paintImpact, paintRectHole, paneToCanvas, radiusToCanvas } from './damageCanvas'
+import { damageStage, paintDamageStage, paintImpact, paintRectHole, paneToCanvas, radiusToCanvas } from './damageCanvas'
 import { playGunshot, playSmashSound } from './smashSound'
 import { shouldHoldRepeat } from './holdFire'
 
@@ -727,6 +727,7 @@ const SmashScene = ({ scene, weapon, resetKey, onProgress }) => {
             detached: false,
             gone: false,
             fade: 0,
+            stage: 0, // progressive damage stage, see damageStage()
             onDown: null,
             onUp: null,
             onMove: null,
@@ -797,6 +798,7 @@ const SmashScene = ({ scene, weapon, resetKey, onProgress }) => {
     if (resetKey === 0 || !ready) return
     for (const t of targetsRef.current) {
       t.hp = t.maxHp
+      t.stage = 0
       t.ox = 0; t.oy = 0; t.oz = 0
       t.vx = 0; t.vy = 0; t.vz = 0
       t.rot = 0; t.vr = 0
@@ -1010,6 +1012,14 @@ const SmashScene = ({ scene, weapon, resetKey, onProgress }) => {
       }
       burst({ x, y, speed: speed + 4, target, detach: true, bullet: isBullet })
     } else {
+      // Progressive damage: crossing an HP threshold cracks the whole
+      // card so weakened targets read at a glance. Painted once per
+      // stage (tex already flags for re-upload from the impact above).
+      const nextStage = damageStage(target.hp, target.maxHp)
+      if (nextStage > target.stage) {
+        target.stage = nextStage
+        paintDamageStage(target.face.ctx, target.face.cw, target.face.ch, nextStage, 'glass')
+      }
       burst({ x, y, speed, target, bullet: isBullet })
       if (isBullet) playSmashSound('glass', 0.45)
     }
