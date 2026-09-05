@@ -20,7 +20,7 @@
   position: absolute;
   top: 16px;
   right: 16px;
-  z-index: 1;
+  z-index: 3;
 }
 
 .smash-exit-btn {
@@ -52,7 +52,7 @@
   position: absolute;
   top: 16px;
   left: 16px;
-  z-index: 1;
+  z-index: 3;
   display: flex;
   flex-direction: row;
   gap: 8px;
@@ -131,13 +131,13 @@
   }
 }
 
-/* Demolished banner */
+/* Demolished banner — never blocks the controls beneath it */
 .smash-demolished {
   position: absolute;
   top: 16px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1;
+  z-index: 2;
   padding: 10px 20px;
   font-size: 14px;
   font-weight: 700;
@@ -151,6 +151,30 @@
   box-shadow: 0 0 24px rgba(255, 120, 40, 0.35);
   white-space: nowrap;
   animation: smash-banner-in 0.35s ease;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Rebuild action inside the banner — re-enables pointer events just for the button
+   so Rebuild stays tappable even if the banner overlaps the panel on small screens. */
+.smash-rebuild-btn {
+  pointer-events: auto;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  color: #1a1005;
+  background: #ffbf69;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.smash-rebuild-btn:hover {
+  background: #ffd9a0;
 }
 
 @keyframes smash-banner-in {
@@ -196,10 +220,15 @@
     text-align: center;
   }
 
+  /* Drop the banner below the top-left panel / top-right exit
+     so it never visually covers Rebuild, Mute, or ✕. */
   .smash-demolished {
+    top: 84px;
     font-size: 12px;
     max-width: calc(100vw - 32px);
     white-space: normal;
     text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

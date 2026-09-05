@@ -188,7 +188,15 @@ const SmashOverlay = ({ scene, onExit }) => {
 
       {demolished && (
         <div className="smash-demolished" data-testid="smash-demolished">
-          DEMOLISHED — every panel down! Hit <strong>Rebuild</strong> to go again.
+          <span>DEMOLISHED — every panel down!</span>
+          <button
+            type="button"
+            className="smash-rebuild-btn"
+            onClick={handleReset}
+            aria-label="Rebuild"
+          >
+            Rebuild
+          </button>
         </div>
       )}
 

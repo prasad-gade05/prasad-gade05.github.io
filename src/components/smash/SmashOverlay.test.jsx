@@ -62,8 +62,11 @@ describe('SmashOverlay', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Report demolished' }))
     expect(screen.getByTestId('smash-demolished')).toBeInTheDocument()
 
-    // Rebuild bumps the scene key (scene reports fresh progress itself)
-    fireEvent.click(screen.getByRole('button', { name: 'Rebuild' }))
+    // Rebuild bumps the scene key (scene reports fresh progress itself).
+    // The demolished banner carries its own Rebuild action, so both stay tappable.
+    const rebuildButtons = screen.getAllByRole('button', { name: 'Rebuild' })
+    expect(rebuildButtons).toHaveLength(2)
+    fireEvent.click(rebuildButtons[0])
     expect(screen.getByText('reset:1')).toBeInTheDocument()
 
     // Background follows the site theme, like the paper playground
