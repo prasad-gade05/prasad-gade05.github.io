@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, lazy, Suspense, useCallback } from 'react'
 import { motion, AnimatePresence, useMotionValue } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { captureDOM } from './utils/domCapture'
+import { captureSmashScene, prefetchSmashRoom } from './components/smash/elementCapture'
 import './App.css'
 
 // Components
@@ -9,20 +10,27 @@ import Hero from './components/Hero'
 
 const NeuralBackground = lazy(() => import('./components/NeuralBackground'))
 const TissueOverlay = lazy(() => import('./components/tissue/TissueOverlay'))
+const SmashOverlay = lazy(() => import('./components/smash/SmashOverlay'))
 
 function App() {
   const [isTissueMode, setIsTissueMode] = useState(false)
   const [capturedImage, setCapturedImage] = useState(null)
+  const [isSmashMode, setIsSmashMode] = useState(false)
+  const [smashScene, setSmashScene] = useState(null)
   const [isCapturing, setIsCapturing] = useState(false)
   const cursorX = useMotionValue(-100)
   const cursorY = useMotionValue(-100)
 
   // Ref so the stable keydown handler can always read the latest value
-  // without needing to be re-created whenever isTissueMode changes.
+  // without needing to be re-created whenever the mode changes.
   const isTissueModeRef = useRef(isTissueMode)
+  const isSmashModeRef = useRef(isSmashMode)
   useEffect(() => {
     isTissueModeRef.current = isTissueMode
   }, [isTissueMode])
+  useEffect(() => {
+    isSmashModeRef.current = isSmashMode
+  }, [isSmashMode])
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -54,6 +62,10 @@ function App() {
         setCapturedImage(null)
         return
       }
+      if (e.key === 'Escape' && isSmashModeRef.current) {
+        setIsSmashMode(false)
+        return
+      }
 
       keys.push(e.key)
       if (keys.length > konamiCode.length) keys.shift()
@@ -80,7 +92,7 @@ function App() {
   }, [])
 
   const handlePeel = useCallback(async () => {
-    if (isCapturing || isTissueMode) return
+    if (isCapturing || isTissueMode || isSmashMode) return
     setIsCapturing(true)
 
     const appContent = document.getElementById('app-content')
@@ -95,11 +107,40 @@ function App() {
       setIsTissueMode(true)
     }
     setIsCapturing(false)
-  }, [isCapturing, isTissueMode])
+  }, [isCapturing, isTissueMode, isSmashMode])
+
+  // The smash room captures the real page: full backdrop plus one
+  // screenshot per card, so every element looks exactly like the site
+  // and breaks on its own.
+  const handleSmash = useCallback(async () => {
+    if (isCapturing || isTissueMode || isSmashMode) return
+    // Warm the overlay chunk in parallel with the screenshot so its
+    // fetch never sits behind the capture on the critical path.
+    prefetchSmashRoom()
+    setIsCapturing(true)
+
+    const appContent = document.getElementById('app-content')
+    if (!appContent) {
+      setIsCapturing(false)
+      return
+    }
+
+    const scene = await captureSmashScene(appContent)
+    if (scene?.backdrop) {
+      setSmashScene(scene)
+      setIsSmashMode(true)
+    }
+    setIsCapturing(false)
+  }, [isCapturing, isTissueMode, isSmashMode])
 
   const handleExitTissue = useCallback(() => {
     setIsTissueMode(false)
     setCapturedImage(null)
+  }, [])
+
+  const handleExitSmash = useCallback(() => {
+    setIsSmashMode(false)
+    setSmashScene(null)
   }, [])
 
   return (
@@ -109,9 +150,9 @@ function App() {
         id="app-content"
         className="content-wrapper"
         initial={{ opacity: 0 }}
-        animate={{ opacity: isTissueMode ? 0 : 1 }}
+        animate={{ opacity: isTissueMode || isSmashMode ? 0 : 1 }}
         transition={{ duration: 0.3 }}
-        style={{ pointerEvents: isTissueMode ? 'none' : 'auto' }}
+        style={{ pointerEvents: isTissueMode || isSmashMode ? 'none' : 'auto' }}
       >
         {/* Cursor glow effect */}
         <motion.div 
@@ -129,7 +170,7 @@ function App() {
         
         {/* Main content lives in the root HTML landmark; this section labels the interactive surface. */}
         <section aria-label="Interactive portfolio">
-          <Hero onStartDoodle={handlePeel} />
+          <Hero onStartDoodle={handlePeel} onStartSmash={handleSmash} isOverlayOpen={isTissueMode || isSmashMode} />
         </section>
       </motion.div>
 
@@ -150,6 +191,30 @@ function App() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Smash Room Wrecking-Ball Mode */}
+      <AnimatePresence>
+        {isSmashMode && smashScene && (
+          <motion.div
+            key="smash"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            style={{ position: 'fixed', inset: 0, zIndex: 10000 }}
+          >
+            <Suspense fallback={null}>
+              <SmashOverlay scene={smashScene} onExit={handleExitSmash} />
+            </Suspense>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {isCapturing && (
+        <div className="capture-toast" role="status" aria-live="polite">
+          Capturing the site for the arena…
+        </div>
+      )}
     </div>
   )
 }

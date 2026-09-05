@@ -1,0 +1,205 @@
+/* ============================================
+   SMASH ROOM OVERLAY (wrecking-ball mode)
+   ============================================ */
+
+.smash-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
+.smash-overlay canvas {
+  touch-action: none !important;
+  display: block;
+}
+
+/* Exit button */
+.smash-controls {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1;
+}
+
+.smash-exit-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.smash-exit-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  transform: scale(1.05);
+}
+/* ============================================
+   CONTROLS — top-left: three icon buttons only
+   ============================================ */
+.smash-panel {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+}
+
+.smash-icon-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.smash-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  transform: scale(1.06);
+}
+
+.smash-icon-btn.active {
+  background: rgba(255, 170, 60, 0.22);
+  border-color: rgba(255, 170, 60, 0.55);
+  color: #ffd9a0;
+  box-shadow: 0 0 12px rgba(255, 170, 60, 0.25);
+}
+
+/* Crosshair — gun mode cursor replacement */
+.smash-crosshair {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.smash-cross-dot {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ffd9a0;
+  box-shadow: 0 0 6px rgba(255, 170, 60, 0.9);
+}
+
+.smash-cross-ring {
+  position: absolute;
+  top: -13px;
+  left: -13px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 217, 160, 0.85);
+  box-shadow: 0 0 10px rgba(255, 170, 60, 0.4);
+}
+
+@media (pointer: coarse) {
+  .smash-crosshair {
+    display: none;
+  }
+}
+
+/* Demolished banner */
+.smash-demolished {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffd9a0;
+  background: rgba(120, 20, 20, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 170, 60, 0.5);
+  border-radius: 12px;
+  box-shadow: 0 0 24px rgba(255, 120, 40, 0.35);
+  white-space: nowrap;
+  animation: smash-banner-in 0.35s ease;
+}
+
+@keyframes smash-banner-in {
+  from { opacity: 0; transform: translateX(-50%) scale(0.9); }
+  to   { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+/* Bottom hint bar */
+.smash-hint {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 12px;
+  padding: 6px 16px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 8px;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.smash-hint kbd {
+  display: inline-block;
+  padding: 1px 5px;
+  font-size: 11px;
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 640px) {
+  .smash-hint {
+    font-size: 10px;
+    max-width: calc(100vw - 32px);
+    white-space: normal;
+    text-align: center;
+  }
+
+  .smash-demolished {
+    font-size: 12px;
+    max-width: calc(100vw - 32px);
+    white-space: normal;
+    text-align: center;
+  }
+}

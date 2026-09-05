@@ -16,6 +16,7 @@ const ContentTabPanes = ({
   onOpenMinecraft,
   onOpenMovies,
   onStartDoodle,
+  onStartSmash,
 }) => {
   const isSplit = activeTabs.length > 1;
 
@@ -36,6 +37,7 @@ const ContentTabPanes = ({
             onOpenMinecraft={onOpenMinecraft}
             onOpenMovies={onOpenMovies}
             onStartDoodle={onStartDoodle}
+            onStartSmash={onStartSmash}
           />
         )}
         {activeTabs.includes("blogs") && <BlogsTabPane />}

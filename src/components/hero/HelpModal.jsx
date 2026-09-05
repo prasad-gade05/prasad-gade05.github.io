@@ -199,6 +199,12 @@ const HelpModal = ({ onClose }) => {
               Head to <strong>Hobbies</strong> tab and click <strong>Paper Playground</strong>. 
               It turns the page into draggable paper with real physics! Press <kbd>Esc</kbd> to return.
             </p>
+            <p>
+              Feeling destructive? Click <strong>Smash Room</strong> instead — it captures
+              the site&apos;s real cards as breakable glass panels and hands you a gun and
+              wrecking balls (switch weapons top-left). Every card cracks on its own and
+              pops off when its HP hits zero. Press <kbd>Esc</kbd> to return.
+            </p>
           </section>
 
           {/* Easter egg - always last/bottom */}

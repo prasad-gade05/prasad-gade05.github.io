@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
-import { Gamepad2, Headphones, Music, Pencil, Tv } from "lucide-react";
+import { Gamepad2, Hammer, Headphones, Music, Pencil, Tv } from "lucide-react";
 import { FaSpotify } from "react-icons/fa";
 import { GiBookCover, GiCricketBat } from "react-icons/gi";
 import { MdMovie } from "react-icons/md";
@@ -8,11 +8,12 @@ import { TbBrandMinecraft } from "react-icons/tb";
 import { handleCardTilt, resetCardTilt } from "../../../utils/cardTilt";
 import { hobbies } from "../../../data/portfolioData";
 import { getListItemKey, getRenderableListValues } from "../../../utils/listRendering";
+import { prefetchSmashRoom } from "../../smash/elementCapture";
 import { tabPaneMotionProps } from "./motion";
 
 const BlogsPane = lazy(() => import("../BlogsPane"));
 
-export const HobbiesPane = ({ isSplit, onOpenMinecraft, onOpenMovies, onStartDoodle }) => (
+export const HobbiesPane = ({ isSplit, onOpenMinecraft, onOpenMovies, onStartDoodle, onStartSmash }) => (
   <motion.div
     key="hobbies"
     className={`tab-pane hobbies-pane ${isSplit ? "split" : ""}`}
@@ -61,6 +62,17 @@ export const HobbiesPane = ({ isSplit, onOpenMinecraft, onOpenMovies, onStartDoo
             >
               <Pencil size={18} />
               <span>Paper Playground</span>
+            </button>
+            <button
+              type="button"
+              className="hobby-activity-item minecraft-clickable doodle-clickable"
+              data-shortcut-target="true"
+              onClick={onStartSmash}
+              onMouseEnter={prefetchSmashRoom}
+              onFocus={prefetchSmashRoom}
+            >
+              <Hammer size={18} />
+              <span>Smash Room</span>
             </button>
           </div>
         </div>

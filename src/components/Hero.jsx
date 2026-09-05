@@ -19,7 +19,7 @@ import {
 const ResumeViewer = lazy(() => import("./ResumeViewer"));
 const MinecraftSkinViewer = lazy(() => import("./MinecraftSkinViewer"));
 
-const Hero = ({ onStartDoodle }) => {
+const Hero = ({ onStartDoodle, onStartSmash, isOverlayOpen }) => {
   const [showMinecraftModal, setShowMinecraftModal] = useState(false);
   const [showResumeModal, setShowResumeModal] = useState(false);
   const [showHelpModal, setShowHelpModal] = useState(false);
@@ -29,6 +29,13 @@ const Hero = ({ onStartDoodle }) => {
   useEffect(() => {
     const handleKeyDown = (e) => {
       const normalizedKey = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+
+      // While a tissue/smash room owns the screen, page shortcuts stand
+      // down so room keys (1/2/R/M) don't leak into the page behind.
+      // Theme cycling stays live so the room backdrop follows the theme.
+      if (isOverlayOpen && normalizedKey !== 't') {
+        return;
+      }
 
       if (e.key === 'Escape') {
         if (showHelpModal) {
@@ -114,7 +121,7 @@ const Hero = ({ onStartDoodle }) => {
     };
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [showHelpModal, showResumeModal, showMinecraftModal]);
+  }, [showHelpModal, showResumeModal, showMinecraftModal, isOverlayOpen]);
 
   return (
     <section className="hero">
@@ -138,6 +145,7 @@ const Hero = ({ onStartDoodle }) => {
         <ContentTabs
           onOpenMinecraft={() => setShowMinecraftModal(true)}
           onStartDoodle={onStartDoodle}
+          onStartSmash={onStartSmash}
           onBlogsActiveChange={setIsBlogsActive}
           onShortcutApiReady={(api) => {
             shortcutApiRef.current = api;

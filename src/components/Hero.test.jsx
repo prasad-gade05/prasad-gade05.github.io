@@ -181,6 +181,32 @@ describe('Hero', () => {
     input.remove()
   })
 
+  it('stands page shortcuts down while an overlay room is open, except theme cycling', async () => {
+    selectTabByIndex.mockReset()
+    cycleTheme.mockReset()
+    moveShortcutFocus.mockReset()
+    shortcutApiBlocked = false
+
+    render(<Hero onStartDoodle={vi.fn()} isOverlayOpen />)
+
+    // Room keys must not leak into the page behind (e.g. R rebuilding
+    // the room must not open the resume modal underneath it).
+    fireEvent.keyDown(document, { key: 'r' })
+    expect(screen.queryByText('/Prasad_Gade_Resume.pdf')).not.toBeInTheDocument()
+
+    fireEvent.keyDown(document, { key: '?' })
+    expect(screen.queryByText('Help Modal Mock')).not.toBeInTheDocument()
+
+    fireEvent.keyDown(document, { key: '2' })
+    fireEvent.keyDown(document, { key: 'ArrowDown' })
+    expect(selectTabByIndex).not.toHaveBeenCalled()
+    expect(moveShortcutFocus).not.toHaveBeenCalled()
+
+    // Theme cycling stays live so the room backdrop follows the theme.
+    fireEvent.keyDown(document, { key: 't' })
+    expect(cycleTheme).toHaveBeenCalledTimes(1)
+  })
+
   it('keeps theme cycling available while help, resume, minecraft, and movies modals are open', async () => {
     cycleTheme.mockReset()
     shortcutApiBlocked = false
