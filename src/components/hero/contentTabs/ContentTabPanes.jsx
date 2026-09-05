@@ -23,16 +23,17 @@ const ContentTabPanes = ({
   return (
     <div ref={contentRef} className={`tabs-content ${isSplit ? "split-view" : ""}`}>
       <AnimatePresence mode="sync">
-        {activeTabs.includes("projects") && <ProjectsPane />}
-        {activeTabs.includes("about") && <AboutPane isSplit={isSplit} />}
-        {activeTabs.includes("skills") && <SkillsPane isSplit={isSplit} />}
-        {activeTabs.includes("experience") && <ExperiencePane isSplit={isSplit} />}
-        {activeTabs.includes("education") && <EducationPane isSplit={isSplit} />}
-        {activeTabs.includes("achievements") && <AchievementsPane isSplit={isSplit} />}
-        {activeTabs.includes("certifications") && <CertificationsPane isSplit={isSplit} />}
-        {activeTabs.includes("volunteering") && <VolunteeringPane isSplit={isSplit} />}
+        {activeTabs.includes("projects") && <ProjectsPane key="projects" />}
+        {activeTabs.includes("about") && <AboutPane key="about" isSplit={isSplit} />}
+        {activeTabs.includes("skills") && <SkillsPane key="skills" isSplit={isSplit} />}
+        {activeTabs.includes("experience") && <ExperiencePane key="experience" isSplit={isSplit} />}
+        {activeTabs.includes("education") && <EducationPane key="education" isSplit={isSplit} />}
+        {activeTabs.includes("achievements") && <AchievementsPane key="achievements" isSplit={isSplit} />}
+        {activeTabs.includes("certifications") && <CertificationsPane key="certifications" isSplit={isSplit} />}
+        {activeTabs.includes("volunteering") && <VolunteeringPane key="volunteering" isSplit={isSplit} />}
         {activeTabs.includes("hobbies") && (
           <HobbiesPane
+            key="hobbies"
             isSplit={isSplit}
             onOpenMinecraft={onOpenMinecraft}
             onOpenMovies={onOpenMovies}
@@ -40,7 +41,7 @@ const ContentTabPanes = ({
             onStartSmash={onStartSmash}
           />
         )}
-        {activeTabs.includes("blogs") && <BlogsTabPane />}
+        {activeTabs.includes("blogs") && <BlogsTabPane key="blogs" />}
       </AnimatePresence>
     </div>
   );

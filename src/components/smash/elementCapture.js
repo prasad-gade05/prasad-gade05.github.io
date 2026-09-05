@@ -103,10 +103,10 @@ export const collectBreakables = (root) => {
 }
 
 /**
- * Capture the smash scene with ONE html2canvas pass, then slice each
+ * Capture the smash scene with ONE capture pass, then slice each
  * breakable out of that same bitmap with synchronous canvas crops.
  *
- * The old approach ran html2canvas once per card (up to 40 passes over
+  * The old approach ran one capture once per card (up to 40 passes over
  * the DOM plus 40 PNG encodes, in batches of 4) — that was the entire
  * "Capturing the site for the arena…" wait. Crops are pixel-perfect by
  * construction (same source bitmap as the backdrop) and cost ~ms each.
@@ -130,8 +130,8 @@ const ITEM_MIME = 'image/jpeg'
 const ITEM_QUALITY = 0.85
 
 /**
- * Warm up everything the click needs while the user is still hovering:
- * the html2canvas chunk and the SmashOverlay lazy chunk. Both are
+  * Warm up everything the click needs while the user is still hovering:
+  * the capture-library chunk and the SmashOverlay lazy chunk. Both are
  * cached, so the real click only pays for the single screenshot.
  */
 export const prefetchSmashRoom = () => {
@@ -202,7 +202,7 @@ export const captureSmashScene = async (rootEl) => {
     if (!backdrop) return { backdrop: null, items: [] }
 
     // Map viewport CSS px to bitmap px with the measured (not requested)
-    // ratio, so html2canvas rounding can't drift the crops.
+    // ratio, so capture rounding can't drift the crops.
     const kx = source.width / rootW
     const ky = source.height / rootH
     const items = []
