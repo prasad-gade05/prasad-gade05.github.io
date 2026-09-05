@@ -550,7 +550,7 @@ const loadImage = (src) => new Promise((resolve, reject) => {
   img.src = src
 })
 
-const SmashScene = ({ scene, weapon, resetKey, onProgress }) => {
+const SmashScene = ({ scene, weapon, resetKey, onProgress, isDarkBackdrop = false }) => {
   const { viewport } = useThree()
   const [ready, setReady] = useState(false)
   const [targetsVersion, setTargetsVersion] = useState(0)
@@ -575,6 +575,7 @@ const SmashScene = ({ scene, weapon, resetKey, onProgress }) => {
     { active: false, x: 0, y: 0, t: 0 },
   ])
   const weaponRef = useRef(weapon)
+  const isDarkBackdropRef = useRef(isDarkBackdrop)
   const aimRef = useRef({ x: 0, y: 0.5, z: 0 })
   const mountRef = useRef({ x: 0, y: -3, z: 2.6 })
   const paneSizeRef = useRef({ w: 0, h: 0 })
@@ -591,6 +592,10 @@ const SmashScene = ({ scene, weapon, resetKey, onProgress }) => {
   useEffect(() => {
     weaponRef.current = weapon
   }, [weapon])
+
+  useEffect(() => {
+    isDarkBackdropRef.current = isDarkBackdrop
+  }, [isDarkBackdrop])
 
   useEffect(() => {
     progressRef.current = { onProgress }
@@ -849,7 +854,7 @@ const SmashScene = ({ scene, weapon, resetKey, onProgress }) => {
     const { w, h } = paneSizeRef.current
     if (!wall?.ctx || w <= 0) return
     const { px, py } = paneToCanvas(x, y, w, h, wall.cw, wall.ch)
-    paintImpact(wall.ctx, px, py, radiusToCanvas(radius, w, wall.cw), 'glass')
+    paintImpact(wall.ctx, px, py, radiusToCanvas(radius, w, wall.cw), 'glass', isDarkBackdropRef.current)
     wall.tex.needsUpdate = true
   }
 
@@ -976,6 +981,7 @@ const SmashScene = ({ scene, weapon, resetKey, onProgress }) => {
       (1 - v) * target.face.ch,
       radiusToCanvas(radius, target.w, target.face.cw),
       'glass',
+      isDarkBackdropRef.current,
     )
     target.face.tex.needsUpdate = true
     // …and the matching hole in the wall behind, so chunks read as missing
@@ -1018,7 +1024,7 @@ const SmashScene = ({ scene, weapon, resetKey, onProgress }) => {
       const nextStage = damageStage(target.hp, target.maxHp)
       if (nextStage > target.stage) {
         target.stage = nextStage
-        paintDamageStage(target.face.ctx, target.face.cw, target.face.ch, nextStage, 'glass')
+        paintDamageStage(target.face.ctx, target.face.cw, target.face.ch, nextStage, 'glass', isDarkBackdropRef.current)
       }
       burst({ x, y, speed, target, bullet: isBullet })
       if (isBullet) playSmashSound('glass', 0.45)
@@ -1232,7 +1238,7 @@ const SmashScene = ({ scene, weapon, resetKey, onProgress }) => {
           onPointerMove={onWallMove}
         >
           <planeGeometry args={[w, h]} />
-          <meshBasicMaterial map={wallRef.current.tex} />
+          <meshBasicMaterial map={wallRef.current.tex} transparent />
         </mesh>
       )}
 

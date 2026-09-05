@@ -93,8 +93,10 @@ const tracePath = (ctx, pts) => {
 /**
  * Punch a fracture hole + cracks into a 2D context.
  * Coordinates are canvas pixels with origin at the top-left.
+ * When `isLight` is true (dark backdrop/arena), cracks and the hole rim
+ * are painted white so bullet holes stay visible on dark screenshots.
  */
-export const paintImpact = (ctx, cx, cy, radius, material = 'glass') => {
+export const paintImpact = (ctx, cx, cy, radius, material = 'glass', isLight = false) => {
   if (!ctx || !(radius > 0)) return
 
   // 1. Knock out the hole
@@ -110,7 +112,18 @@ export const paintImpact = (ctx, cx, cy, radius, material = 'glass') => {
   const { radials, rings } = buildCrackLines(cx, cy, radius, material)
   ctx.save()
   ctx.globalCompositeOperation = 'source-over'
-  ctx.strokeStyle = material === 'wood' ? 'rgba(40, 22, 8, 0.85)' : 'rgba(20, 30, 40, 0.75)'
+  if (isLight) {
+    // White rim around the punched hole so the hole itself reads on dark
+    tracePath(ctx, hole)
+    ctx.closePath()
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.95)'
+    ctx.lineWidth = Math.max(1.5, radius * 0.08)
+    ctx.lineCap = 'round'
+    ctx.stroke()
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)'
+  } else {
+    ctx.strokeStyle = material === 'wood' ? 'rgba(40, 22, 8, 0.85)' : 'rgba(20, 30, 40, 0.75)'
+  }
   ctx.lineWidth = Math.max(1, radius * 0.06)
   ctx.lineCap = 'round'
   for (const line of radials) {
@@ -144,8 +157,9 @@ export const damageStage = (hp, maxHp) => {
  * about to go" read. Unlike impact holes these live on the CARD ONLY:
  * the card wobbles on its spring while the wall stays put, so wall-side
  * stage cracks would visibly ghost. Rebuild repaints pristine over them.
+ * When `isLight` is true (dark backdrop/arena), cracks are white.
  */
-export const paintDamageStage = (ctx, cw, ch, stage, material = 'glass') => {
+export const paintDamageStage = (ctx, cw, ch, stage, material = 'glass', isLight = false) => {
   if (!ctx || !(cw > 0) || !(ch > 0) || !(stage >= 1)) return
   const seeds =
     stage >= 2
@@ -162,7 +176,11 @@ export const paintDamageStage = (ctx, cw, ch, stage, material = 'glass') => {
   const baseR = Math.min(cw, ch) * (stage >= 2 ? 0.16 : 0.12)
   ctx.save()
   ctx.globalCompositeOperation = 'source-over'
-  ctx.strokeStyle = material === 'wood' ? 'rgba(40, 22, 8, 0.85)' : 'rgba(20, 30, 40, 0.75)'
+  ctx.strokeStyle = isLight
+    ? 'rgba(255, 255, 255, 0.9)'
+    : material === 'wood'
+      ? 'rgba(40, 22, 8, 0.85)'
+      : 'rgba(20, 30, 40, 0.75)'
   ctx.lineWidth = Math.max(1, baseR * 0.06)
   ctx.lineCap = 'round'
   ctx.globalAlpha = stage >= 2 ? 0.85 : 0.6

@@ -35,6 +35,7 @@ function useCurrentTheme() {
 const SmashOverlay = ({ scene, onExit }) => {
   const currentTheme = useCurrentTheme()
   const canvasBg = CANVAS_BG_BY_THEME[currentTheme] || DEFAULT_CANVAS_BG
+  const isDarkBackdrop = currentTheme.includes('dark')
   const [weapon, setWeapon] = useState('gun')
   const [progress, setProgress] = useState({ integrity: 100, hits: 0, shots: 0, left: 0, total: 0 })
   const [resetKey, setResetKey] = useState(0)
@@ -122,6 +123,7 @@ const SmashOverlay = ({ scene, onExit }) => {
             weapon={weapon}
             resetKey={resetKey}
             onProgress={handleProgress}
+            isDarkBackdrop={isDarkBackdrop}
           />
         </Suspense>
       </Canvas>
