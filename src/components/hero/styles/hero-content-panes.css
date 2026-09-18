@@ -166,6 +166,19 @@
   flex: 0.45;
 }
 
+.exp-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.2vmin, 12px);
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.exp-list::-webkit-scrollbar {
+  display: none;
+}
+
 .exp-card {
   display: flex;
   flex-direction: column;
@@ -218,8 +231,8 @@
 
 .exp-points {
   display: flex;
-  gap: clamp(8px, 1vmin, 12px);
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: clamp(4px, 0.6vmin, 8px);
   list-style: none;
 }
 
@@ -239,6 +252,7 @@
 
 .exp-tags {
   display: flex;
+  flex-wrap: wrap;
   gap: clamp(6px, 0.7vmin, 8px);
 }
 

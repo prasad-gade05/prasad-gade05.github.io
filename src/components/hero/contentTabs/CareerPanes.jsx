@@ -63,59 +63,67 @@ const getAchievementLinkIcon = (platform) => {
   return <ExternalLink size={10} />;
 };
 
-export const ExperiencePane = ({ isSplit }) => (
-  <motion.div
-    key="experience"
-    className={`tab-pane experience-pane ${isSplit ? "split" : ""}`}
-    {...tabPaneMotionProps}
-  >
-    <div className="pane-header">
-      <Briefcase size={16} />
-      <span>Experience</span>
-    </div>
-    <div
-      className="exp-card"
-      data-shortcut-target="true"
-      aria-label={`${experience.title} at ${experience.company}`}
-      role="group"
-      tabIndex={-1}
-      onMouseMove={handleCardTilt}
-      onMouseLeave={resetCardTilt}
+export const ExperiencePane = ({ isSplit }) => {
+  const experiences = Array.isArray(experience) ? experience : [experience];
+  return (
+    <motion.div
+      key="experience"
+      className={`tab-pane experience-pane ${isSplit ? "split" : ""}`}
+      {...tabPaneMotionProps}
     >
-      <div className="exp-header">
-        <div>
-          <h3>{experience.title}</h3>
-          <p className="exp-company">{experience.company}</p>
-        </div>
-        <span className="exp-date">{experience.date}</span>
+      <div className="pane-header">
+        <Briefcase size={16} />
+        <span>Experience</span>
       </div>
-      <ul className="exp-points">
-        {getRenderableListValues(experience.points).map((point, index) => (
-          <li key={getListItemKey("experience-point", point, index)}>{point}</li>
-        ))}
-      </ul>
-      <div className="exp-tags">
-        {getRenderableListValues(experience.tags).map((tag, index) => (
-          <span key={getListItemKey("experience-tag", tag, index)} className="exp-tag">
-            {tag}
-          </span>
+      <div className="exp-list">
+        {experiences.map((item, expIndex) => (
+          <div
+            key={`${item.title || "experience"}-${item.company || expIndex}-${expIndex}`}
+            className="exp-card"
+            data-shortcut-target="true"
+            aria-label={`${item.title} at ${item.company}`}
+            role="group"
+            tabIndex={-1}
+            onMouseMove={handleCardTilt}
+            onMouseLeave={resetCardTilt}
+          >
+            <div className="exp-header">
+              <div>
+                <h3>{item.title}</h3>
+                <p className="exp-company">{item.company}</p>
+              </div>
+              <span className="exp-date">{item.date}</span>
+            </div>
+            <ul className="exp-points">
+              {getRenderableListValues(item.points).map((point, index) => (
+                <li key={getListItemKey(`experience-${expIndex}-point`, point, index)}>{point}</li>
+              ))}
+            </ul>
+            <div className="exp-tags">
+              {getRenderableListValues(item.tags).map((tag, index) => (
+                <span key={getListItemKey(`experience-${expIndex}-tag`, tag, index)} className="exp-tag">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            {item.certificateLink && (
+              <a
+                href={item.certificateLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="exp-cert-link"
+                data-shortcut-target="true"
+              >
+                <ExternalLink size={12} />
+                View Certificate
+              </a>
+            )}
+          </div>
         ))}
       </div>
-      {experience.certificateLink && (
-        <a
-          href={experience.certificateLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="exp-cert-link"
-          data-shortcut-target="true"
-        >
-          <ExternalLink size={12} />
-          View Certificate
-        </a>
-      )}
-    </div>
-  </motion.div>
-);
+    </motion.div>
+  );
+};
 
 export const EducationPane = ({ isSplit }) => (
   <motion.div

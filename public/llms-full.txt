@@ -78,7 +78,7 @@ Site features:
 ### Independent AI & Software Developer
 - Organization: Confidential Client (NDA-Protected), Remote, India
 - Duration: April 2026 to present
-- Architected an end-to-end data-intelligence pipeline using Python, consolidating unstructured document, web, and structured-data workflows into reproducible JSON, CSV, and Markdown outputs
+- Architected and developed an end-to-end data-intelligence pipeline using Python, delivering a functional MVP that consolidates unstructured document, web, and structured-data workflows into reproducible JSON, CSV, and Markdown outputs
 - Achieved 91.7% correctness on manually verified answer-bearing document extractions using Docling page-level provenance, section-aware retrieval, local Ollama inference, deterministic Python post-processing, and automated validation
 - Engineered a citation-grounded research agent using LangGraph, Pydantic, DDGS/SearXNG, Trafilatura, Playwright, pypdf, and Ollama with query rewriting, source ranking, caching, bounded retries, and quote-level verification (zero pipeline errors)
 - Automated ingestion and normalization of heterogeneous CSV, XLSX, DOC, PDF, and HTML inputs using Python and Openpyxl with strict evidence provenance and validation logs

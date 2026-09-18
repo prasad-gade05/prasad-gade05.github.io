@@ -43,9 +43,10 @@
         "startDate": "2026-04",
         "endDate": "Present",
         "highlights": [
-          "Architected an end-to-end data pipeline using Python to ingest heterogeneous formats (PDF, HTML, XLSX) into reproducible JSON & Markdown with strict evidence provenance",
-          "Achieved 91.7% correctness in document extraction via Docling section-aware retrieval, local Ollama inference, and deterministic validation",
-          "Engineered a citation-grounded RAG agent using LangGraph, Pydantic, SearXNG, Playwright, & Ollama for query rewriting and quote-level verification with zero pipeline errors"
+          "Architected and developed an end-to-end data-intelligence pipeline using Python, delivering a functional MVP that consolidates unstructured document, web, and structured-data workflows into reproducible JSON, CSV, and Markdown outputs",
+          "Achieved 91.7% correctness on manually verified answer-bearing document extractions by combining Docling page-level provenance, section-aware retrieval, local Ollama inference, deterministic Python post-processing, and automated validation",
+          "Engineered a citation-grounded research agent using LangGraph, Pydantic, DDGS/SearXNG, Trafilatura, Playwright, pypdf, and Ollama, implementing query rewriting, source ranking, caching, bounded retries, and quote-level verification with zero pipeline errors",
+          "Automated the ingestion and normalization of heterogeneous CSV, XLSX, DOC, PDF, and HTML inputs using Python and Openpyxl, producing auditable outputs with strict evidence provenance, missing-data classification, and validation logs"
         ]
       },
       {

@@ -1,16 +1,30 @@
-export const experience = {
-  title: "Data Analyst Intern",
-  company: "R3 Systems India Pvt. Ltd.",
-  date: "Jun - Jul 2023",
-  points: [
-    "Power BI dashboards",
-    "Business Intelligence",
-    "70% improved data visibility",
-  ],
-  tags: ["Power BI", "Data Analysis", "BI"],
-  certificateLink:
-    "https://drive.google.com/file/d/1FP5WnbkzvDJZOVNOtqmmt1sJCc7pjzju/view?usp=sharing",
-};
+export const experience = [
+  {
+    title: "Independent AI & Software Developer",
+    company: "Confidential Client (NDA-Protected) — Remote, India",
+    date: "Apr 2026 – Present",
+    points: [
+      "Architected and developed an end-to-end data-intelligence pipeline using Python, delivering a functional MVP that consolidates unstructured document, web, and structured-data workflows into reproducible JSON, CSV, and Markdown outputs.",
+      "Achieved 91.7% correctness on manually verified answer-bearing document extractions by combining Docling page-level provenance, section-aware retrieval, local Ollama inference, deterministic Python post-processing, and automated validation.",
+      "Engineered a citation-grounded research agent using LangGraph, Pydantic, DDGS/SearXNG, Trafilatura, Playwright, pypdf, and Ollama, implementing query rewriting, source ranking, caching, bounded retries, and quote-level verification with zero pipeline errors.",
+      "Automated the ingestion and normalization of heterogeneous CSV, XLSX, DOC, PDF, and HTML inputs using Python and Openpyxl, producing auditable outputs with strict evidence provenance, missing-data classification, and validation logs.",
+    ],
+    tags: ["Python", "LangGraph", "Ollama", "Docling", "Pydantic", "Playwright"],
+  },
+  {
+    title: "Data Analyst Intern",
+    company: "R3 Systems India Pvt. Ltd.",
+    date: "Jun - Jul 2023",
+    points: [
+      "Power BI dashboards",
+      "Business Intelligence",
+      "70% improved data visibility",
+    ],
+    tags: ["Power BI", "Data Analysis", "BI"],
+    certificateLink:
+      "https://drive.google.com/file/d/1FP5WnbkzvDJZOVNOtqmmt1sJCc7pjzju/view?usp=sharing",
+  },
+];
 
 export const education = [
   {

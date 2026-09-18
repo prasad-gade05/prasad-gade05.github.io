@@ -35,12 +35,17 @@ describe('portfolio data modules', () => {
     expect(skills.Languages).toContain('Python')
     expect(skillIcons.Python).toBeTypeOf('function')
 
-    expect(experience).toMatchObject({
-      title: expect.any(String),
-      company: expect.any(String),
-      points: expect.any(Array),
-      tags: expect.any(Array),
-    })
+    expect(experience).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          title: expect.any(String),
+          company: expect.any(String),
+          points: expect.any(Array),
+          tags: expect.any(Array),
+        }),
+      ]),
+    )
+    expect(experience.some((item) => item.title === 'Independent AI & Software Developer')).toBe(true)
     expect(education.length).toBeGreaterThan(0)
     expect(achievements.some((item) => Array.isArray(item.links))).toBe(true)
     expect(certifications.every((item) => item.link)).toBe(true)
