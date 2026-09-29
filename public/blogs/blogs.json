@@ -1,5 +1,17 @@
 [
   {
+    "slug": "ml-research-hygiene-practices-that-most-tutorials-skip",
+    "title": "ML Research Hygiene Practices that Most Tutorials Skip",
+    "date": "2026-09-29",
+    "thumbnail": "/blogs/assets/ml-research-hygiene-practices-that-most-tutorials-skip.png",
+    "categories": [
+      "Technical"
+    ],
+    "excerpt": "Here are a few ML habits which I learnt over the years which will definitely make your ML model more robust and worth talking about next time:",
+    "readTime": 5,
+    "url": "/blogs/ml-research-hygiene-practices-that-most-tutorials-skip/"
+  },
+  {
     "slug": "the-philosophy-behind-my-site",
     "title": "The Philosophy Behind My Site",
     "date": "2026-05-01",

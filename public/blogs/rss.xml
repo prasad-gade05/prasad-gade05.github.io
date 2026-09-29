@@ -5,7 +5,7 @@
     <link>https://prasadgade.dev/?tab=blogs</link>
     <description>100% human written thoughts on tech, data, building things, and whatever else catches my attention. No AI content. No fluff. Just honest writing.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 May 2026 00:00:00 +0530</lastBuildDate>
+    <lastBuildDate>Tue, 29 Sep 2026 00:00:00 +0530</lastBuildDate>
     <managingEditor>prasadgade4405@gmail.com (Prasad Gade)</managingEditor>
     <webMaster>prasadgade4405@gmail.com (Prasad Gade)</webMaster>
     <atom:link href="https://prasadgade.dev/blogs/rss.xml" rel="self" type="application/rss+xml" />
@@ -14,6 +14,17 @@
       <title>Prasad Gade — Blog</title>
       <link>https://prasadgade.dev/?tab=blogs</link>
     </image>
+
+    <item>
+      <title>ML Research Hygiene Practices that Most Tutorials Skip</title>
+      <link>https://prasadgade.dev/blogs/ml-research-hygiene-practices-that-most-tutorials-skip/</link>
+      <guid isPermaLink="true">https://prasadgade.dev/blogs/ml-research-hygiene-practices-that-most-tutorials-skip/</guid>
+      <description>Here are a few ML habits which I learnt over the years which will definitely make your ML model more robust and worth talking about next time: Assume we have two cooks that make food for the same 100 customers. 52 customers liked the food made by Cook A, and 48 liked the food made by Cook B. Based on this, can we say that Cook A is better?</description>
+      <pubDate>Tue, 29 Sep 2026 00:00:00 +0530</pubDate>
+      <author>prasadgade4405@gmail.com (Prasad Gade)</author>
+      <category>Technical</category>
+      <enclosure url="https://prasadgade.dev/blogs/assets/ml-research-hygiene-practices-that-most-tutorials-skip.png" type="image/png" length="0" />
+    </item>
 
     <item>
       <title>The Philosophy Behind My Site</title>
