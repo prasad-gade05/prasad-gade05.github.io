@@ -105,6 +105,7 @@
     });
   })();</script>
   <link rel="stylesheet" href="/blogs/blog.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -228,9 +229,9 @@ A wins.
 <p>For each calibration point, we compute a nonconformity score:</p>
 <p>$$s = 1 - p_y$$</p>
 <p><em>(where $p_y$ is the predicted probability of the actual true class).</em></p>
-<p>For a target error rate $\alpha$ (e.g., $0.10$ for $90%$ coverage), you set the threshold $q$ to the $\frac{\lceil (n+1)(1-\alpha) \rceil}{n}$ quantile of the calibration scores.</p>
+<p>For a target error rate $\alpha$ (e.g., $0.10$ for $90\%$ coverage), you set the threshold $q$ to the $\frac{\lceil (n+1)(1-\alpha) \rceil}{n}$ quantile of the calibration scores.</p>
 <p>At test time, the prediction set is:</p>
-<p>$$C(x) = { y : 1 - p_y \le q }$$</p>
+<p>$$C(x) = \{ y : 1 - p_y \le q \}$$</p>
 <p>We then report two numbers:</p>
 <ol>
 <li><strong>Empirical coverage:</strong> The fraction of test sets containing the true label (measures <em>validity</em>).</li>
@@ -356,6 +357,24 @@ A wins.
         setTimeout(() => { shareBtn.textContent = '⇪ Share'; }, 2200);
       });
     };
+  </script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderBlogMath()"></script>
+  <script>
+    function renderBlogMath() {
+      if (typeof renderMathInElement === 'undefined') return;
+      renderMathInElement(document.querySelector('.blog-content') || document.body, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '\\[', right: '\\]', display: true },
+          { left: '$', right: '$', display: false },
+          { left: '\\(', right: '\\)', display: false }
+        ],
+        throwOnError: false,
+        ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'option']
+      });
+    }
   </script>
 </body>
 </html>

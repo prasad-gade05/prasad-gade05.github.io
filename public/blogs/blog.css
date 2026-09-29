@@ -319,6 +319,23 @@ main {
   margin: 2.5em 0;
 }
 
+/* ---- Math (KaTeX) ---- */
+.blog-content .katex-display {
+  margin: 1.4em 0;
+  padding: 0.6em 0.4em;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.blog-content .katex-display > .katex {
+  white-space: normal;
+}
+
+.blog-content .katex {
+  font-size: 1.05em;
+  color: var(--blog-text);
+}
+
 /* ---- Footer ---- */
 .blog-footer {
   max-width: var(--blog-max-width);

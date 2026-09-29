@@ -118,7 +118,7 @@ function loadPost(paths, folderName) {
   const plainText = collapseWhitespace(stripMarkdown(bodyMarkdown));
   const wordCount = countWords(plainText);
   const readTime = Math.max(1, Math.ceil(wordCount / 225));
-  const contentHtml = marked.parse(bodyMarkdown);
+  const contentHtml = renderMarkdownWithMath(bodyMarkdown);
   const publishedDateLabel = formatDisplayDate(publishedDate);
 
   return {
@@ -527,6 +527,7 @@ ${articleTags}
   </script>
   <script>${analyticsLoaderScript}</script>
   <link rel="stylesheet" href="/blogs/blog.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -682,6 +683,24 @@ ${post.contentHtml.trim()}
       });
     };
   </script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderBlogMath()"></script>
+  <script>
+    function renderBlogMath() {
+      if (typeof renderMathInElement === 'undefined') return;
+      renderMathInElement(document.querySelector('.blog-content') || document.body, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '\\\\[', right: '\\\\]', display: true },
+          { left: '$', right: '$', display: false },
+          { left: '\\\\(', right: '\\\\)', display: false }
+        ],
+        throwOnError: false,
+        ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'option']
+      });
+    }
+  </script>
 </body>
 </html>
 `;
@@ -804,6 +823,63 @@ function stripMarkdown(markdown) {
 
 function countWords(text) {
   return text.split(/\s+/).filter(Boolean).length;
+}
+
+function renderMarkdownWithMath(bodyMarkdown) {
+  // Protect fenced code blocks so `$` inside code is never treated as math.
+  const fencedCodes = [];
+  let protectedText = bodyMarkdown.replace(/```[\s\S]*?```/g, (match) => {
+    fencedCodes.push(match);
+    return `\n\nMATHFENCEDCODE${fencedCodes.length - 1}PLACEHOLDER\n\n`;
+  });
+
+  // Protect inline code spans for the same reason.
+  const inlineCodes = [];
+  protectedText = protectedText.replace(/`[^`\n]+`/g, (match) => {
+    inlineCodes.push(match);
+    return `MATHINLINECODE${inlineCodes.length - 1}PLACEHOLDER`;
+  });
+
+  // Extract math before marked runs, otherwise CommonMark backslash escapes
+  // mangle LaTeX (`\%` -> `%`, `\{` -> `{`, ...).
+  const maths = [];
+  const stashMath = (match) => {
+    maths.push(match);
+    return `MATHSEGMENT${maths.length - 1}PLACEHOLDER`;
+  };
+
+  // Display math first so `$$...$$` is not mistaken for two inline spans.
+  protectedText = protectedText.replace(/\$\$([\s\S]+?)\$\$/g, stashMath);
+  protectedText = protectedText.replace(/\\\[([\s\S]+?)\\\]/g, stashMath);
+  protectedText = protectedText.replace(/\\\((.+?)\\\)/g, stashMath);
+  protectedText = protectedText.replace(/(?<!\$)\$(?!\$)([^$\n]+?)(?<!\\)\$(?!\$)/g, stashMath);
+
+  let html = marked.parse(protectedText);
+
+  // Restore fenced code blocks by rendering each one separately with marked.
+  html = html.replace(/<p>MATHFENCEDCODE(\d+)PLACEHOLDER<\/p>/g, (_, index) => {
+    return marked.parse(fencedCodes[Number(index)]).trim();
+  });
+  html = html.replace(/MATHFENCEDCODE(\d+)PLACEHOLDER/g, (_, index) => {
+    return marked.parse(fencedCodes[Number(index)]).trim();
+  });
+
+  // Restore inline code spans.
+  html = html.replace(/MATHINLINECODE(\d+)PLACEHOLDER/g, (_, index) => {
+    return marked.parseInline(inlineCodes[Number(index)]);
+  });
+
+  // Restore raw math (HTML-escaped only for & < > so backslashes survive
+  // intact for KaTeX auto-render on the client).
+  html = html.replace(/MATHSEGMENT(\d+)PLACEHOLDER/g, (_, index) => {
+    return escapeMathForHtml(maths[Number(index)]);
+  });
+
+  return html;
+}
+
+function escapeMathForHtml(math) {
+  return math.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 function trimText(text, maxLength) {

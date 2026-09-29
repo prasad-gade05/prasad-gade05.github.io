@@ -8,7 +8,7 @@ slug: "ml-research-hygiene-practices-that-most-tutorials-skip"
 
 # ML Research Hygiene Practices that Most Tutorials Skip
 
-> In today's landscape, where everyone has free and hassle-free access to LLMs, the problem of just blindly following what your LLM tells you—or just blindly following what everyone else is bragging about on LinkedIn and gathering hundreds of likes—has become very common. And ironically, more so in the very field which is the foundation of these LLMs: yes, I am talking about machine learning.
+> In today's landscape, where everyone has free and hassle-free access to LLMs, the problem of just blindly following what your LLM tells you-or just blindly following what everyone else is bragging about on LinkedIn and gathering hundreds of likes-has become very common. And ironically, more so in the very field which is the foundation of these LLMs: yes, I am talking about machine learning.
 >
 > I think the primary reason for this is that people do not really understand machine learning at its core. The majority just watch a few YouTube playlists, read a few blogs, clone a GitHub repo, or ask their LLMs. There's nothing wrong with it, but that within itself is not enough to prove that your ML model is worthy.
 
@@ -30,7 +30,7 @@ model_B = 0.81
 A wins.
 ```
 
-Notice we just did one run, one test set, and no checking if the win is real or just luck—as in the case of our example of the cooks.
+Notice we just did one run, one test set, and no checking if the win is real or just luck-as in the case of our example of the cooks.
 
 Here is what we should do instead (again continuing with our cooks and customers example): do a taste test again and again with the same 100 customers. Every time, pick 100 customers **with replacement** (some might get repeated, some might get skipped). Check what the winners are.
 
@@ -115,4 +115,4 @@ If you have measured feature change over time, claim feature change over time. D
 
 ---
 
-> Honestly, none of these habits will make your model numbers bigger; in fact, most of them will make them smaller. Instead, they make your numbers believable. These make your models robust to thorough, research-level questioning. Adhering to these will make your model/research stand out—not because the numbers are fancy, but because your practices are hard to doubt.
+> Honestly, none of these habits will make your model numbers bigger; in fact, most of them will make them smaller. Instead, they make your numbers believable. These make your models robust to thorough, research-level questioning. Adhering to these will make your model/research stand out-not because the numbers are fancy, but because your practices are hard to doubt.
