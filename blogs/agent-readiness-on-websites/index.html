@@ -105,6 +105,7 @@
     });
   })();</script>
   <link rel="stylesheet" href="/blogs/blog.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -360,6 +361,24 @@ Ohh, well, that rings a bell to me, you can actually go to your favourite chatbo
         setTimeout(() => { shareBtn.textContent = '⇪ Share'; }, 2200);
       });
     };
+  </script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderBlogMath()"></script>
+  <script>
+    function renderBlogMath() {
+      if (typeof renderMathInElement === 'undefined') return;
+      renderMathInElement(document.querySelector('.blog-content') || document.body, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '\\[', right: '\\]', display: true },
+          { left: '$', right: '$', display: false },
+          { left: '\\(', right: '\\)', display: false }
+        ],
+        throwOnError: false,
+        ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'option']
+      });
+    }
   </script>
 </body>
 </html>
