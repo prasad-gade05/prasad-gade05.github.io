@@ -2,21 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://prasadgade.dev/</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://prasadgade.dev/blogs/blogs.json</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://prasadgade.dev/blogs/rss.xml</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://prasadgade.dev/blogs/ml-research-hygiene-practices-that-most-tutorials-skip/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://prasadgade.dev/blogs/the-philosophy-behind-my-site/</loc>

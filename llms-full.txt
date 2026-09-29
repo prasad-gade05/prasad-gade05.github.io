@@ -275,6 +275,13 @@ Blog pipeline:
 
 ### Published Posts
 
+#### ML Research Hygiene Practices that Most Tutorials Skip
+- URL: https://prasadgade.dev/blogs/ml-research-hygiene-practices-that-most-tutorials-skip/
+- Date: September 29, 2026
+- Category: Technical
+- Read time: 5 min
+- Summary: Here are a few ML habits which I learnt over the years which will definitely make your ML model more robust and worth talking about next time: Assume we have two cooks that make food for the same 100 customers. 52 customers liked the food made by Cook A, and 48 liked the food made by Cook B. Based on this, can we say that Cook A is better?
+
 #### The Philosophy Behind My Site
 - URL: https://prasadgade.dev/blogs/the-philosophy-behind-my-site/
 - Date: May 1, 2026

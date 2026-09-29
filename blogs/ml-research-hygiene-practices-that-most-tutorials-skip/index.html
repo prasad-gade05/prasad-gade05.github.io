@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ML Research Hygiene Practices that Most Tutorials Skip — Prasad Gade</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Here are a few ML habits which I learnt over the years which will definitely make your ML model more robust and worth talking about next time:" />
+  <meta name="author" content="Prasad Gade" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <link rel="canonical" href="https://prasadgade.dev/blogs/ml-research-hygiene-practices-that-most-tutorials-skip/" />
+
+  <!-- OpenGraph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://prasadgade.dev/blogs/ml-research-hygiene-practices-that-most-tutorials-skip/" />
+  <meta property="og:title" content="ML Research Hygiene Practices that Most Tutorials Skip — Prasad Gade" />
+  <meta property="og:description" content="Here are a few ML habits which I learnt over the years which will definitely make your ML model more robust and worth talking about next time: Assume we have two cooks that make food for the same 100 customers. 52 customers liked the food made by Cook A, and 48 liked the food made by Cook B. Based on this, can we say that Cook A is better?" />
+  <meta property="og:image" content="https://prasadgade.dev/blogs/assets/ml-research-hygiene-practices-that-most-tutorials-skip.png" />
+  <meta property="og:site_name" content="Prasad Gade — Blog" />
+  <meta property="article:author" content="Prasad Gade" />
+  <meta property="article:published_time" content="2026-09-29" />
+  <meta property="article:section" content="Technical" />
+  <meta property="article:tag" content="Technical" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@prasad_gade05" />
+  <meta name="twitter:creator" content="@prasad_gade05" />
+  <meta name="twitter:title" content="ML Research Hygiene Practices that Most Tutorials Skip — Prasad Gade" />
+  <meta name="twitter:description" content="Here are a few ML habits which I learnt over the years which will definitely make your ML model more robust and worth talking about next time: Assume we have two cooks that make food for the same 100 customers. 52 customers liked the food made by Cook A, and 48 liked the food made by Cook B. Based on this, can we say that Cook A is better?" />
+  <meta name="twitter:image" content="https://prasadgade.dev/blogs/assets/ml-research-hygiene-practices-that-most-tutorials-skip.png" />
+
+  <!-- RSS Feed -->
+  <link rel="alternate" type="application/rss+xml" title="Prasad Gade — Blog RSS" href="https://prasadgade.dev/blogs/rss.xml" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preload" as="image" href="/blogs/assets/ml-research-hygiene-practices-that-most-tutorials-skip.png" fetchpriority="high" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+  />
+  <script>
+    (function() {
+      var portfolioTheme = null;
+      var blogTheme = null;
+      try {
+        portfolioTheme = localStorage.getItem('portfolio-theme');
+        blogTheme = localStorage.getItem('blog-theme');
+      } catch (_) {}
+
+      var theme = null;
+      if (portfolioTheme) {
+        theme = portfolioTheme === 'light' || portfolioTheme === 'arcade-light' ? 'light' : 'dark';
+      }
+      if (!theme) theme = blogTheme;
+      if (theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+      }
+    })();
+  </script>
+  <script>(() => {
+    const schedule = (callback) => {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(callback, { timeout: 2000 });
+        return;
+      }
+
+      window.setTimeout(callback, 1200);
+    };
+
+    const appendScript = (attributes) => {
+      const script = document.createElement('script');
+      Object.entries(attributes).forEach(([key, value]) => {
+        if (value === true) {
+          script.setAttribute(key, '');
+          return;
+        }
+
+        script.setAttribute(key, value);
+      });
+      document.head.appendChild(script);
+    };
+
+    schedule(() => {
+      appendScript({
+        async: true,
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-382G6DQ243',
+      });
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function gtag() {
+        window.dataLayer.push(arguments);
+      };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-382G6DQ243');
+
+      appendScript({
+        async: true,
+        'data-goatcounter': 'https://prasadgade05.goatcounter.com/count',
+        src: '//gc.zgo.at/count.js',
+      });
+    });
+  })();</script>
+  <link rel="stylesheet" href="/blogs/blog.css" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ML Research Hygiene Practices that Most Tutorials Skip",
+  "image": "https://prasadgade.dev/blogs/assets/ml-research-hygiene-practices-that-most-tutorials-skip.png",
+  "datePublished": "2026-09-29",
+  "dateModified": "2026-09-29",
+  "author": {
+    "@type": "Person",
+    "name": "Prasad Gade",
+    "url": "https://prasadgade.dev"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Prasad Gade",
+    "url": "https://prasadgade.dev"
+  },
+  "description": "Here are a few ML habits which I learnt over the years which will definitely make your ML model more robust and worth talking about next time: Assume we have two cooks that make food for the same 100 customers. 52 customers liked the food made by Cook A, and 48 liked the food made by Cook B. Based on this, can we say that Cook A is better?",
+  "url": "https://prasadgade.dev/blogs/ml-research-hygiene-practices-that-most-tutorials-skip/",
+  "keywords": [
+    "Technical",
+    "Blog"
+  ],
+  "wordCount": 963,
+  "timeRequired": "PT5M"
+}
+  </script>
+</head>
+<body>
+  <div class="reading-progress" id="reading-progress"></div>
+
+  <nav class="blog-nav" aria-label="Blog navigation">
+    <a href="https://prasadgade.dev/?tab=blogs" class="nav-logo" id="all-blogs-link">← All Blogs</a>
+    <div class="nav-actions">
+      <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" aria-label="Toggle theme">☀ Light</button>
+      <button class="share-btn" onclick="sharePost()" id="share-btn" aria-label="Share this post">⇪ Share</button>
+    </div>
+  </nav>
+
+  <main>
+    <article>
+      <header class="blog-header">
+        <div class="blog-categories">
+          <span class="category-tag">Technical</span>
+        </div>
+        <h1 class="blog-title">ML Research Hygiene Practices that Most Tutorials Skip</h1>
+        <div class="blog-meta">
+          <span class="author">Prasad Gade</span>
+          <span class="separator">·</span>
+          <time datetime="2026-09-29">September 29, 2026</time>
+          <span class="separator">·</span>
+          <span>5 min read</span>
+          <span class="separator">·</span>
+          <span id="blog-views" class="blog-views" hidden></span>
+        </div>
+        <div class="blog-thumbnail">
+          <img
+            src="/blogs/assets/ml-research-hygiene-practices-that-most-tutorials-skip.png"
+            alt="ML Research Hygiene Practices that Most Tutorials Skip thumbnail"
+            width="1376"
+            height="768"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+      </header>
+
+      <div class="blog-content">
+<blockquote>
+<p>In today&#39;s landscape, where everyone has free and hassle-free access to LLMs, the problem of just blindly following what your LLM tells you—or just blindly following what everyone else is bragging about on LinkedIn and gathering hundreds of likes—has become very common. And ironically, more so in the very field which is the foundation of these LLMs: yes, I am talking about machine learning.</p>
+<p>I think the primary reason for this is that people do not really understand machine learning at its core. The majority just watch a few YouTube playlists, read a few blogs, clone a GitHub repo, or ask their LLMs. There&#39;s nothing wrong with it, but that within itself is not enough to prove that your ML model is worthy.</p>
+</blockquote>
+<p>Here are a few ML habits which I learnt over the years which will definitely make your ML model more robust and worth talking about next time:</p>
+<hr>
+<h4>1. Paired Bootstrapping</h4>
+<p>Assume we have two cooks that make food for the same 100 customers. 52 customers liked the food made by Cook A, and 48 liked the food made by Cook B. Based on this, can we say that Cook A is better?</p>
+<p><strong>No.</strong> Because if just 2 customers change their mind, Cook B would have more votes.</p>
+<p>Here is what most tutorials do and most LLMs suggest:</p>
+<pre><code class="language-text">model_A = 0.84
+model_B = 0.81
+A wins.
+</code></pre>
+<p>Notice we just did one run, one test set, and no checking if the win is real or just luck—as in the case of our example of the cooks.</p>
+<p>Here is what we should do instead (again continuing with our cooks and customers example): do a taste test again and again with the same 100 customers. Every time, pick 100 customers <strong>with replacement</strong> (some might get repeated, some might get skipped). Check what the winners are.</p>
+<ul>
+<li>If A wins <strong>295/300</strong>, we can trust it.</li>
+<li>If A wins <strong>160/300</strong>, we can call it what it was: just luck.</li>
+</ul>
+<p>This is called <strong>paired bootstrapping</strong>. Here we have the same test items, and we resample the test indices with replacement, usually 300 times. Each time we compute:</p>
+<p>$$\text{metric}(A) - \text{metric}(B)$$</p>
+<p>This gives us a distribution of differences. We report this mean difference along with a <strong>95% confidence interval</strong> from percentiles. If the interval does not include $0$, we can say the win of a model is significant and our model actually performs better and did not just get lucky.</p>
+<hr>
+<h4>2. Ablation</h4>
+<p>You buy a car and it has a spoiler, alloy wheels, a turbocharger, suspension, an air intake, etc. The seller tells you all of these drastically improve the vehicle&#39;s performance. The question is: how do you actually test which of these components actually improve the performance and which do not matter?</p>
+<p>We can remove one component at a time and then test the car&#39;s performance:</p>
+<ul>
+<li><strong>Remove the alloy wheels:</strong> Speed is the same.</li>
+<li><strong>Remove the suspension:</strong> Small change.</li>
+<li><strong>Remove the turbocharger:</strong> You notice a huge gap in the performance.</li>
+</ul>
+<p>Now you know which component actually matters.</p>
+<p>This is exactly what you should do in an ML model. Having 5 ideas/components in one model is great until you do not know which actually matters. This is called an <strong>ablation study</strong>.</p>
+<p>Here, we define switches for each component (for example: <code>no_low_pass</code>, <code>no_high_pass</code>, <code>no_graph</code>, <code>no_batch_norm</code>, <code>no_residual</code>), and we vary one switch at a time. The best result is a neutral ablation, meaning every component in your model is important.</p>
+<hr>
+<h4>3. Split-conformal prediction with coverage and efficiency reporting</h4>
+<p>This one&#39;s my particular favourite... Take, for example, a weather app that says:</p>
+<blockquote>
+<p><em>&quot;Tomorrow it might rain or not rain. 100% Guarantee.&quot;</em></p>
+</blockquote>
+<p>Is that true? <strong>Yes.</strong><br>Helpful? <strong>Not really.</strong></p>
+<p>Because it gave you both answers. Your model can get 100% coverage by predicting both classes, but the predictor itself is useless.</p>
+<p>The clear solution to this is to always report two numbers: <strong>how often the model was right</strong>, and <strong>how big was the answer</strong>:</p>
+<blockquote>
+<p><em>&quot;I was right 100% of the time, but my answer always had two options.&quot;</em></p>
+</blockquote>
+<p>This version of the metrics is more honest.</p>
+<p>This is called <strong>split-conformal prediction with coverage and efficiency reporting</strong>. Here, we hold out a calibration set which is never used for training or threshold selection.</p>
+<p>For each calibration point, we compute a nonconformity score:</p>
+<p>$$s = 1 - p_y$$</p>
+<p><em>(where $p_y$ is the predicted probability of the actual true class).</em></p>
+<p>For a target error rate $\alpha$ (e.g., $0.10$ for $90%$ coverage), you set the threshold $q$ to the $\frac{\lceil (n+1)(1-\alpha) \rceil}{n}$ quantile of the calibration scores.</p>
+<p>At test time, the prediction set is:</p>
+<p>$$C(x) = { y : 1 - p_y \le q }$$</p>
+<p>We then report two numbers:</p>
+<ol>
+<li><strong>Empirical coverage:</strong> The fraction of test sets containing the true label (measures <em>validity</em>).</li>
+<li><strong>Mean set size:</strong> The average number of labels per set (measures <em>efficiency</em>).</li>
+</ol>
+<hr>
+<h4>4. Temporal distribution-shift diagnostics without generalization claims</h4>
+<p>Assume you create an accident predictor model and you say:</p>
+<blockquote>
+<p><em>&quot;My accident predictor works for all seasons.&quot;</em></p>
+</blockquote>
+<p>If you have watched traffic on a road for 12 months, you see cars change (e.g., more trucks in winter, more bikes in summer, etc.). From this, your model cannot claim seasonal accident performance, because we just measured traffic change and not the per-season accidents.</p>
+<p>The simplest solution is to <strong>separate your claims from what you actually measured</strong>.</p>
+<p>If you have measured feature change over time, claim feature change over time. Do not claim that <em>&quot;my model generalizes over time&quot;</em> unless you have time-stamped labels and time-split evaluation.</p>
+<hr>
+<blockquote>
+<p>Honestly, none of these habits will make your model numbers bigger; in fact, most of them will make them smaller. Instead, they make your numbers believable. These make your models robust to thorough, research-level questioning. Adhering to these will make your model/research stand out—not because the numbers are fancy, but because your practices are hard to doubt.</p>
+</blockquote>
+      </div>
+    </article>
+  </main>
+
+  <footer class="blog-footer">
+    <p class="human-written-note">All written content is 100% human written · Thumbnail generated by AI</p>
+    <div class="footer-links">
+      <a href="https://prasadgade.dev" rel="noopener noreferrer">Portfolio</a>
+      <a href="https://prasadgade.dev/?tab=blogs" rel="noopener noreferrer" id="footer-all-blogs-link">All Blogs</a>
+      <a href="https://github.com/prasad-gade05" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="mailto:prasadgade4405@gmail.com">Mail</a>
+    </div>
+  </footer>
+
+  <script>
+    const progressBar = document.getElementById('reading-progress');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = Math.min(progress, 100) + '%';
+    }, { passive: true });
+
+    (() => {
+      const viewsEl = document.getElementById('blog-views');
+      if (!viewsEl) return;
+      fetch('https://prasadgade05.goatcounter.com/counter/' + encodeURIComponent(location.pathname) + '.json')
+        .then((response) => (response.ok ? response.json() : null))
+        .then((data) => {
+          if (data && typeof data.count === 'string' && data.count) {
+            viewsEl.textContent = data.count + ' views';
+            viewsEl.hidden = false;
+          }
+        })
+        .catch(() => {});
+    })();
+
+    const THEME_KEY = 'blog-theme';
+    const PORTFOLIO_THEME_KEY = 'portfolio-theme';
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('theme-btn');
+    const allBlogsLinks = [
+      document.getElementById('all-blogs-link'),
+      document.getElementById('footer-all-blogs-link'),
+    ].filter(Boolean);
+    let portfolioTheme = null;
+
+    const resolvePortfolioTheme = (theme) => {
+      if (portfolioTheme === 'arcade-dark' || portfolioTheme === 'arcade-light') {
+        return theme === 'light' ? 'arcade-light' : 'arcade-dark';
+      }
+      return theme;
+    };
+
+    const syncAllBlogsLinks = () => {
+      const href = 'https://prasadgade.dev/?tab=blogs&theme=' + encodeURIComponent(portfolioTheme || 'dark');
+      allBlogsLinks.forEach((link) => {
+        link.href = href;
+      });
+    };
+
+    const applyTheme = (theme) => {
+      html.setAttribute('data-theme', theme);
+      themeBtn.textContent = theme === 'dark' ? '☀ Light' : '☾ Dark';
+      portfolioTheme = resolvePortfolioTheme(theme);
+      syncAllBlogsLinks();
+      try {
+        localStorage.setItem(THEME_KEY, theme);
+        localStorage.setItem(PORTFOLIO_THEME_KEY, portfolioTheme);
+      } catch (_) {}
+    };
+
+    const savedTheme = (() => {
+      try { return localStorage.getItem(THEME_KEY); } catch (_) { return null; }
+    })();
+    portfolioTheme = (() => {
+      try { return localStorage.getItem(PORTFOLIO_THEME_KEY); } catch (_) { return null; }
+    })();
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme((portfolioTheme === 'light' || portfolioTheme === 'arcade-light' ? 'light' : portfolioTheme ? 'dark' : null) || savedTheme || (systemDark ? 'dark' : 'light'));
+
+    const toggleTheme = () => {
+      const current = html.getAttribute('data-theme');
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    };
+
+    const shareBtn = document.getElementById('share-btn');
+    const sharePost = () => {
+      const url = 'https://prasadgade.dev/blogs/ml-research-hygiene-practices-that-most-tutorials-skip/';
+      navigator.clipboard.writeText(url).then(() => {
+        shareBtn.textContent = '✓ Copied!';
+        shareBtn.classList.add('copied');
+        setTimeout(() => {
+          shareBtn.textContent = '⇪ Share';
+          shareBtn.classList.remove('copied');
+        }, 2200);
+      }).catch(() => {
+        const el = document.createElement('textarea');
+        el.value = url;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        shareBtn.textContent = '✓ Copied!';
+        setTimeout(() => { shareBtn.textContent = '⇪ Share'; }, 2200);
+      });
+    };
+  </script>
+</body>
+</html>
