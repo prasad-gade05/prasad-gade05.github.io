@@ -5,6 +5,7 @@
     <link>https://prasadgade.dev/?tab=blogs</link>
     <description>100% human written thoughts on tech, data, building things, and whatever else catches my attention. No AI content. No fluff. Just honest writing.</description>
     <language>en-us</language>
+    <ttl>60</ttl>
     <lastBuildDate>Tue, 29 Sep 2026 00:00:00 +0530</lastBuildDate>
     <managingEditor>prasadgade4405@gmail.com (Prasad Gade)</managingEditor>
     <webMaster>prasadgade4405@gmail.com (Prasad Gade)</webMaster>
@@ -23,7 +24,7 @@
       <pubDate>Tue, 29 Sep 2026 00:00:00 +0530</pubDate>
       <author>prasadgade4405@gmail.com (Prasad Gade)</author>
       <category>Technical</category>
-      <enclosure url="https://prasadgade.dev/blogs/assets/ml-research-hygiene-practices-that-most-tutorials-skip.png" type="image/png" length="0" />
+      <enclosure url="https://prasadgade.dev/blogs/assets/ml-research-hygiene-practices-that-most-tutorials-skip.png" type="image/png" length="2082700" />
     </item>
 
     <item>
@@ -35,7 +36,7 @@
       <author>prasadgade4405@gmail.com (Prasad Gade)</author>
       <category>Technical</category>
       <category>Personal</category>
-      <enclosure url="https://prasadgade.dev/blogs/assets/the-philosophy-behind-my-site.png" type="image/png" length="0" />
+      <enclosure url="https://prasadgade.dev/blogs/assets/the-philosophy-behind-my-site.png" type="image/png" length="2152522" />
     </item>
 
     <item>
@@ -46,7 +47,7 @@
       <pubDate>Sun, 26 Apr 2026 00:00:00 +0530</pubDate>
       <author>prasadgade4405@gmail.com (Prasad Gade)</author>
       <category>Technical</category>
-      <enclosure url="https://prasadgade.dev/blogs/assets/agent-readiness-on-websites.png" type="image/png" length="0" />
+      <enclosure url="https://prasadgade.dev/blogs/assets/agent-readiness-on-websites.png" type="image/png" length="1727969" />
     </item>
 
     <item>
@@ -57,7 +58,7 @@
       <pubDate>Wed, 22 Apr 2026 00:00:00 +0530</pubDate>
       <author>prasadgade4405@gmail.com (Prasad Gade)</author>
       <category>Personal</category>
-      <enclosure url="https://prasadgade.dev/blogs/assets/thumbnail-introduction-blogging-journey.png" type="image/png" length="0" />
+      <enclosure url="https://prasadgade.dev/blogs/assets/thumbnail-introduction-blogging-journey.png" type="image/png" length="1652391" />
     </item>
   </channel>
 </rss>

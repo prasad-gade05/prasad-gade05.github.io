@@ -204,4 +204,28 @@ describe("generate-blogs", () => {
     expect(fs.existsSync(path.join(rootDir, "public", "blogs", "first-post"))).toBe(false);
     expect(fs.existsSync(path.join(rootDir, "public", "blogs", "assets", "first.png"))).toBe(false);
   });
+
+  it("emits rss with real enclosure byte lengths and a ttl hint", () => {
+    const rootDir = createFixtureRoot();
+
+    writePost(rootDir, "1", {
+      markdownName: "first.md",
+      imageName: "first.png",
+      title: "First Post",
+      date: "2026-05-01",
+      categories: ["Technical"],
+      slug: "first-post",
+      body: "One paragraph.\n\nSecond paragraph.",
+      imageBytes: [1, 2, 3, 4],
+    });
+
+    syncBlogs({ rootDir });
+
+    const rss = fs.readFileSync(path.join(rootDir, "public", "blogs", "rss.xml"), "utf8");
+    expect(rss).toContain("<ttl>60</ttl>");
+    expect(rss).toContain(
+      '<enclosure url="https://prasadgade.dev/blogs/assets/first.png" type="image/png" length="4" />'
+    );
+    expect(rss).not.toContain('length="0"');
+  });
 });

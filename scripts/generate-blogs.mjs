@@ -120,6 +120,7 @@ function loadPost(paths, folderName) {
   const readTime = Math.max(1, Math.ceil(wordCount / 225));
   const contentHtml = renderMarkdownWithMath(bodyMarkdown);
   const publishedDateLabel = formatDisplayDate(publishedDate);
+  const thumbnailSize = fs.statSync(imagePath).size;
 
   return {
     sourceFolder: folderName,
@@ -130,6 +131,7 @@ function loadPost(paths, folderName) {
     categories,
     slug,
     thumbnail,
+    thumbnailSize,
     excerpt,
     summary,
     wordCount,
@@ -187,7 +189,7 @@ function writeRssFeed(paths, posts) {
       <pubDate>${escapeXml(formatRssDate(post.date))}</pubDate>
       <author>${escapeXml(`${AUTHOR_EMAIL} (${AUTHOR_NAME})`)}</author>
 ${post.categories.map((category) => `      <category>${escapeXml(category)}</category>`).join("\n")}
-      <enclosure url="${escapeXml(post.absoluteThumbnailUrl)}" type="image/png" length="0" />
+      <enclosure url="${escapeXml(post.absoluteThumbnailUrl)}" type="image/png" length="${post.thumbnailSize}" />
     </item>`
     )
     .join("\n\n");
@@ -199,6 +201,7 @@ ${post.categories.map((category) => `      <category>${escapeXml(category)}</cat
     <link>${SITE_URL}/?tab=blogs</link>
     <description>100% human written thoughts on tech, data, building things, and whatever else catches my attention. No AI content. No fluff. Just honest writing.</description>
     <language>en-us</language>
+    <ttl>60</ttl>
     <lastBuildDate>${escapeXml(lastBuildDate)}</lastBuildDate>
     <managingEditor>${escapeXml(`${AUTHOR_EMAIL} (${AUTHOR_NAME})`)}</managingEditor>
     <webMaster>${escapeXml(`${AUTHOR_EMAIL} (${AUTHOR_NAME})`)}</webMaster>
