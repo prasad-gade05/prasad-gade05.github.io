@@ -95,7 +95,10 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: clamp(8px, 1.2vmin, 12px);
-  align-content: start;
+  flex: 1;
+  min-height: 0;
+  align-content: stretch;
+  grid-auto-rows: minmax(min-content, 1fr);
 }
 
 .skill-group {
@@ -304,10 +307,13 @@
   flex-direction: column;
   gap: clamp(8px, 1.2vmin, 12px);
   flex: 1;
+  min-height: 0;
 }
 
 .edu-item {
   display: flex;
+  flex: 1;
+  align-items: center;
   justify-content: space-between;
   gap: clamp(10px, 1.4vmin, 16px);
   padding: clamp(10px, 1.4vmin, 16px);
@@ -455,7 +461,9 @@
   grid-template-columns: repeat(2, 1fr);
   gap: clamp(8px, 1vmin, 12px);
   flex: 1;
-  align-content: start;
+  min-height: 0;
+  align-content: stretch;
+  grid-auto-rows: minmax(min-content, 1fr);
 }
 
 .cert-item {
