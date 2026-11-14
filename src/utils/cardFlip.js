@@ -18,6 +18,26 @@ const returnRate = (rotation) => Math.min(24, Math.max(6, Math.abs(rotation) / 1
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
+const COMPACT_CARD_FLIP_QUERY = "(max-width: 900px), (hover: none) and (pointer: coarse)";
+
+const isNonMousePointer = (event) =>
+  Boolean(event.pointerType && event.pointerType !== "mouse");
+
+// Drag-to-spin fights native touch scrolling. It therefore stays a
+// mouse-only, desktop-sized interaction; compact and touch layouts use
+// the same hover tilt as every other card instead.
+export const canStartCardFlip = (event) => {
+  if (isNonMousePointer(event)) {
+    return false;
+  }
+
+  if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+    return true;
+  }
+
+  return !window.matchMedia(COMPACT_CARD_FLIP_QUERY).matches;
+};
+
 const states = new WeakMap();
 
 const getState = (card) => {
@@ -145,6 +165,7 @@ const swallowNextClick = (card) => {
 
 export const startCardFlip = (event) => {
   if (event.button !== undefined && event.button !== 0) return;
+  if (!canStartCardFlip(event)) return;
   const card = event.currentTarget;
   const state = getState(card);
   if (state.raf) cancelAnimationFrame(state.raf);
@@ -177,6 +198,7 @@ export const moveCardFlip = (event) => {
   const state = getState(card);
   if (!state.dragging) {
     if (state.mode !== "idle") return;
+    if (isNonMousePointer(event)) return;
     handleCardTilt(event);
     return;
   }

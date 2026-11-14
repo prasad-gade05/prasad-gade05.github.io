@@ -15,6 +15,11 @@
   .skills-compact {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* Card spin is disabled on compact screens. */
+  .project-card {
+    cursor: default;
+  }
 }
 
 /* Mobile screens */

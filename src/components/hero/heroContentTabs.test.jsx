@@ -310,6 +310,64 @@ describe('hero content tabs', () => {
     expect(card.style.transform).toBe('')
   })
 
+  it('disables project card spinning on compact screens but keeps hover tilt', () => {
+    vi.spyOn(window, 'matchMedia').mockImplementation((query) => ({
+      matches: query.includes('max-width: 900px'),
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }))
+
+    render(<ProjectsPane />)
+    const card = screen.getAllByRole('group', { name: /project card/i })[0]
+
+    Object.defineProperty(card, 'getBoundingClientRect', {
+      value: () => ({ left: 0, top: 0, width: 200, height: 200 }),
+      configurable: true,
+    })
+
+    fireEvent.pointerDown(card, { pointerId: 1, button: 0, clientX: 100, clientY: 100 })
+    fireEvent.pointerMove(card, { pointerId: 1, clientX: 150, clientY: 60 })
+
+    expect(card.classList.contains('is-flipping')).toBe(false)
+    expect(card.style.transform).toContain('perspective(600px)')
+    expect(card.style.transform).not.toContain('perspective(900px)')
+
+    fireEvent.pointerLeave(card)
+    expect(card.style.transform).toBe('')
+  })
+
+  it('ignores project card drags from touch input so the page can scroll', () => {
+    render(<ProjectsPane />)
+    const card = screen.getAllByRole('group', { name: /project card/i })[0]
+
+    Object.defineProperty(card, 'getBoundingClientRect', {
+      value: () => ({ left: 0, top: 0, width: 200, height: 200 }),
+      configurable: true,
+    })
+
+    fireEvent.pointerDown(card, {
+      pointerId: 1,
+      pointerType: 'touch',
+      button: 0,
+      clientX: 100,
+      clientY: 100,
+    })
+    fireEvent.pointerMove(card, {
+      pointerId: 1,
+      pointerType: 'touch',
+      clientX: 150,
+      clientY: 60,
+    })
+
+    expect(card.classList.contains('is-flipping')).toBe(false)
+    expect(card.style.transform).toBe('')
+  })
+
   it('opens the blogs tab from the url param and closes the movies modal on escape', async () => {
     const onBlogsActiveChange = vi.fn()
 
