@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Film, Tv } from "lucide-react";
 import { MdMovie } from "react-icons/md";
-import { isEditableShortcutTarget } from "../../utils/keyboardShortcuts";
+import { hasKeyboardModifier, isEditableShortcutTarget } from "../../utils/keyboardShortcuts";
 
 const MoviesModal = ({ isOpen, onClose, movies, shows }) => {
   const [activeTab, setActiveTab] = useState("movies");
@@ -46,6 +46,10 @@ const MoviesModal = ({ isOpen, onClose, movies, shows }) => {
     focusContent();
 
     const handleKeyDown = (event) => {
+      if (hasKeyboardModifier(event)) {
+        return;
+      }
+
       if (isEditableShortcutTarget(event.target)) {
         return;
       }

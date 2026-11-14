@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
 import * as skinview3d from 'skinview3d';
-import { isEditableShortcutTarget } from '../utils/keyboardShortcuts';
+import { hasKeyboardModifier, isEditableShortcutTarget } from '../utils/keyboardShortcuts';
 
 const MinecraftSkinViewer = ({ skinUrl, width = 300, height = 400 }) => {
   const canvasRef = useRef(null);
@@ -16,6 +16,10 @@ const MinecraftSkinViewer = ({ skinUrl, width = 300, height = 400 }) => {
   }, []);
 
   const handleJumpShortcut = useCallback((event) => {
+    if (hasKeyboardModifier(event)) {
+      return;
+    }
+
     const isSpaceKey = event.code === 'Space' || event.key === ' ' || event.key === 'Spacebar';
     if (!isSpaceKey) {
       return;

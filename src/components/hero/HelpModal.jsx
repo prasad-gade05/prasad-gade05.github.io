@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { X, HelpCircle, User, Globe, Folder, Github, Compass, Palette, Gamepad2, Sparkles, FileText, BookOpen, Keyboard } from "lucide-react";
-import { isEditableShortcutTarget } from "../../utils/keyboardShortcuts";
+import { hasKeyboardModifier, isEditableShortcutTarget } from "../../utils/keyboardShortcuts";
 import "./HelpModal.css";
 
 const HelpModal = ({ onClose }) => {
@@ -22,6 +22,10 @@ const HelpModal = ({ onClose }) => {
 
   useEffect(() => {
     const handleKeyDown = (event) => {
+      if (hasKeyboardModifier(event)) {
+        return;
+      }
+
       const isSpaceKey = event.code === "Space" || event.key === " " || event.key === "Spacebar";
       if (!isSpaceKey) {
         return;

@@ -11,6 +11,9 @@ export const getTabIndexForShortcutKey = (key) => {
   return key === "0" ? 9 : Number(key) - 1;
 };
 
+export const hasKeyboardModifier = (event) =>
+  Boolean(event && (event.ctrlKey || event.metaKey || event.altKey));
+
 export const isEditableShortcutTarget = (target) => {
   if (!(target instanceof HTMLElement)) {
     return false;

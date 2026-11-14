@@ -4,6 +4,7 @@ import {
   focusShortcutBoundaryTarget,
   getShortcutTargets,
   getTabIndexForShortcutKey,
+  hasKeyboardModifier,
   IN_PANE_FOCUS_NEXT_KEYS,
   IN_PANE_FOCUS_PREV_KEYS,
   isEditableShortcutTarget,
@@ -21,6 +22,15 @@ describe("keyboard shortcut helpers", () => {
     expect(getTabIndexForShortcutKey("5")).toBe(4);
     expect(getTabIndexForShortcutKey("0")).toBe(9);
     expect(getTabIndexForShortcutKey("r")).toBeNull();
+  });
+
+  it("flags modifier combos so browser and OS shortcuts stay untouched", () => {
+    expect(hasKeyboardModifier({ ctrlKey: true })).toBe(true);
+    expect(hasKeyboardModifier({ metaKey: true })).toBe(true);
+    expect(hasKeyboardModifier({ altKey: true })).toBe(true);
+    expect(hasKeyboardModifier({ shiftKey: true })).toBe(false);
+    expect(hasKeyboardModifier({})).toBe(false);
+    expect(hasKeyboardModifier(null)).toBe(false);
   });
 
   it("detects editable targets so shortcuts can be ignored while typing", () => {

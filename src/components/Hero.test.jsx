@@ -181,6 +181,32 @@ describe('Hero', () => {
     input.remove()
   })
 
+  it('does not intercept browser and OS shortcuts that use modifiers', () => {
+    selectTabByIndex.mockReset()
+    cycleTheme.mockReset()
+    moveShortcutFocus.mockReset()
+    focusShortcutBoundary.mockReset()
+    shortcutApiBlocked = false
+    moveShortcutFocus.mockReturnValue(true)
+
+    render(<Hero onStartDoodle={vi.fn()} />)
+
+    // fireEvent returns false when the event was default-prevented.
+    expect(fireEvent.keyDown(document, { key: 'j', ctrlKey: true, shiftKey: true })).toBe(true)
+    expect(fireEvent.keyDown(document, { key: '1', ctrlKey: true })).toBe(true)
+    expect(fireEvent.keyDown(document, { key: 'r', ctrlKey: true })).toBe(true)
+    expect(fireEvent.keyDown(document, { key: 't', metaKey: true })).toBe(true)
+    expect(fireEvent.keyDown(document, { key: 'ArrowLeft', altKey: true })).toBe(true)
+
+    expect(moveShortcutFocus).not.toHaveBeenCalled()
+    expect(selectTabByIndex).not.toHaveBeenCalled()
+    expect(cycleTheme).not.toHaveBeenCalled()
+    expect(screen.queryByText('/Prasad_Gade_Resume.pdf')).not.toBeInTheDocument()
+
+    expect(fireEvent.keyDown(document, { key: 'j' })).toBe(false)
+    expect(moveShortcutFocus).toHaveBeenCalledWith(1)
+  })
+
   it('stands page shortcuts down while an overlay room is open, except theme cycling', async () => {
     selectTabByIndex.mockReset()
     cycleTheme.mockReset()

@@ -11,6 +11,7 @@ import ContentTabs from "./hero/ContentTabs";
 import ClickSparkle from "./ClickSparkle";
 import {
   getTabIndexForShortcutKey,
+  hasKeyboardModifier,
   IN_PANE_FOCUS_NEXT_KEYS,
   IN_PANE_FOCUS_PREV_KEYS,
   isEditableShortcutTarget,
@@ -28,6 +29,12 @@ const Hero = ({ onStartDoodle, onStartSmash, isOverlayOpen }) => {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
+      // Never swallow browser/OS shortcuts such as Ctrl+Shift+J
+      // (DevTools), Ctrl+R (reload), or Alt+Left (back).
+      if (hasKeyboardModifier(e)) {
+        return;
+      }
+
       const normalizedKey = e.key.length === 1 ? e.key.toLowerCase() : e.key;
 
       // While a tissue/smash room owns the screen, page shortcuts stand
