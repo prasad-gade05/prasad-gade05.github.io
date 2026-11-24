@@ -35,6 +35,12 @@ const Hero = ({ onStartDoodle, onStartSmash, isOverlayOpen }) => {
         return;
       }
 
+      // Ignore auto-repeat: holding a key must not machine-gun page
+      // shortcuts (holding "t" used to flood theme View Transitions).
+      if (e.repeat) {
+        return;
+      }
+
       const normalizedKey = e.key.length === 1 ? e.key.toLowerCase() : e.key;
 
       // While a tissue/smash room owns the screen, page shortcuts stand

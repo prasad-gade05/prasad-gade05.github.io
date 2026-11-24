@@ -301,6 +301,15 @@ button {
   background-clip: text;
 }
 
+/* Theme swaps must not replay every component `transition: all` rule.
+   Without this, each toggle restarts hundreds of color, border, and
+   box-shadow transitions, which pile up when themes are cycled fast. */
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
+}
+
 /* View Transition for Theme Toggle */
 ::view-transition-old(root),
 ::view-transition-new(root) {

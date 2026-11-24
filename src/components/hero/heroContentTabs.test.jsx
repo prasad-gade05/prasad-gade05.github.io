@@ -95,7 +95,11 @@ describe('hero content tabs', () => {
     const animateSpy = vi.fn()
     const startViewTransition = vi.fn((callback) => {
       callback()
-      return { ready: Promise.resolve() }
+      return {
+        ready: Promise.resolve(),
+        finished: Promise.resolve(),
+        skipTransition: vi.fn(),
+      }
     })
     document.startViewTransition = startViewTransition
     document.documentElement.animate = animateSpy
@@ -135,6 +139,8 @@ describe('hero content tabs', () => {
     expect(startViewTransition).toHaveBeenCalledTimes(1)
     expect(result.current.theme).toBe('dark')
     expect(animateSpy).toHaveBeenCalledTimes(1)
+    // Component transitions are held still while the palette swaps.
+    expect(document.documentElement).toHaveClass('theme-switching')
 
     act(() => {
       result.current.switchTheme('dark', { clientX: 25, clientY: 35 })
@@ -149,6 +155,124 @@ describe('hero content tabs', () => {
     await Promise.resolve()
 
     expect(result.current.theme).toBe('light')
+  })
+
+  it('never stacks view transitions when themes are cycled rapidly', async () => {
+    localStorage.setItem('portfolio-theme', 'dark')
+    document.documentElement.animate = vi.fn()
+
+    let resolveFinished
+    const finished = new Promise((resolve) => {
+      resolveFinished = resolve
+    })
+    const startViewTransition = vi.fn((callback) => {
+      callback()
+      return { ready: Promise.resolve(), finished }
+    })
+    document.startViewTransition = startViewTransition
+
+    const { result } = renderHook(() => useThemePicker())
+
+    act(() => {
+      result.current.cycleTheme()
+    })
+
+    expect(startViewTransition).toHaveBeenCalledTimes(1)
+    expect(result.current.theme).toBe('light')
+
+    // A second press while the reveal is still running must apply the
+    // theme directly instead of capturing another full-page snapshot pair.
+    act(() => {
+      result.current.cycleTheme()
+    })
+
+    expect(startViewTransition).toHaveBeenCalledTimes(1)
+    expect(result.current.theme).toBe('arcade-dark')
+
+    await act(async () => {
+      resolveFinished()
+      await Promise.resolve()
+    })
+
+    act(() => {
+      result.current.cycleTheme()
+    })
+
+    expect(startViewTransition).toHaveBeenCalledTimes(2)
+    expect(result.current.theme).toBe('arcade-light')
+  })
+
+  it('skips the reveal when the user prefers reduced motion', () => {
+    localStorage.setItem('portfolio-theme', 'dark')
+    const startViewTransition = vi.fn((callback) => {
+      callback()
+      return { ready: Promise.resolve(), finished: Promise.resolve() }
+    })
+    document.startViewTransition = startViewTransition
+
+    vi.spyOn(window, 'matchMedia').mockImplementation((query) => ({
+      matches: query.includes('prefers-reduced-motion'),
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }))
+
+    const { result } = renderHook(() => useThemePicker())
+
+    act(() => {
+      result.current.cycleTheme()
+    })
+
+    expect(startViewTransition).not.toHaveBeenCalled()
+    expect(result.current.theme).toBe('light')
+  })
+
+  it('releases the transition lock when the browser aborts the reveal', async () => {
+    localStorage.setItem('portfolio-theme', 'dark')
+    vi.spyOn(window, 'matchMedia').mockImplementation((query) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }))
+    const startViewTransition = vi.fn((callback) => {
+      callback()
+      return {
+        ready: Promise.reject(new Error('Transition was skipped')),
+        finished: Promise.reject(new Error('Transition was skipped')),
+      }
+    })
+    document.startViewTransition = startViewTransition
+
+    const { result } = renderHook(() => useThemePicker())
+
+    act(() => {
+      result.current.cycleTheme()
+    })
+
+    expect(startViewTransition).toHaveBeenCalledTimes(1)
+
+    await act(async () => {
+      await Promise.resolve()
+      await Promise.resolve()
+      await Promise.resolve()
+    })
+
+    // Rejections are handled, so a later press may animate again.
+    act(() => {
+      result.current.cycleTheme()
+    })
+
+    expect(startViewTransition).toHaveBeenCalledTimes(2)
+    expect(result.current.theme).toBe('arcade-dark')
   })
 
   it('renders the tabs header and theme options', () => {

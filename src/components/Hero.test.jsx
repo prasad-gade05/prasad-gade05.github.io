@@ -207,6 +207,28 @@ describe('Hero', () => {
     expect(moveShortcutFocus).toHaveBeenCalledWith(1)
   })
 
+  it('ignores auto-repeated keydown events so held keys cannot flood shortcuts', () => {
+    selectTabByIndex.mockReset()
+    cycleTheme.mockReset()
+    moveShortcutFocus.mockReset()
+    shortcutApiBlocked = false
+
+    render(<Hero onStartDoodle={vi.fn()} />)
+
+    fireEvent.keyDown(document, { key: 't', repeat: true })
+    fireEvent.keyDown(document, { key: '2', repeat: true })
+    fireEvent.keyDown(document, { key: 'r', repeat: true })
+    fireEvent.keyDown(document, { key: 'ArrowDown', repeat: true })
+
+    expect(cycleTheme).not.toHaveBeenCalled()
+    expect(selectTabByIndex).not.toHaveBeenCalled()
+    expect(moveShortcutFocus).not.toHaveBeenCalled()
+    expect(screen.queryByText('/Prasad_Gade_Resume.pdf')).not.toBeInTheDocument()
+
+    fireEvent.keyDown(document, { key: 't' })
+    expect(cycleTheme).toHaveBeenCalledTimes(1)
+  })
+
   it('stands page shortcuts down while an overlay room is open, except theme cycling', async () => {
     selectTabByIndex.mockReset()
     cycleTheme.mockReset()
